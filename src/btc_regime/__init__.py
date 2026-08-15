@@ -1,0 +1,16 @@
+"""BTCUSDT USD-M perpetual regime-switching research package."""
+
+from .backtest import BacktestConfig, BacktestResult, run_backtest
+from .micro_backtest import MicroBacktestConfig, MicroBacktestResult, run_micro_backtest
+from .strategy import StrategyParams, generate_signals
+
+__all__ = [
+    "BacktestConfig",
+    "BacktestResult",
+    "MicroBacktestConfig",
+    "MicroBacktestResult",
+    "StrategyParams",
+    "generate_signals",
+    "run_backtest",
+    "run_micro_backtest",
+]

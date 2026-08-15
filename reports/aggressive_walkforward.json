@@ -1,0 +1,93 @@
+{
+  "strategy": {
+    "ema_fast": 30,
+    "ema_slow": 120,
+    "atr_period": 20,
+    "adx_period": 14,
+    "adx_enter": 27.0,
+    "adx_exit": 18.0,
+    "trend_separation_atr": 0.15,
+    "rsi_period": 14,
+    "rsi_entry": 27.0,
+    "rsi_exit": 52.0,
+    "bb_period": 24,
+    "bb_std": 2.0,
+    "mr_stop_atr": 2.2,
+    "mr_max_bars": 18,
+    "target_vol": 1.0,
+    "max_leverage": 5.0,
+    "trend_scale": 1.25,
+    "rebound_scale": 0.65,
+    "allow_short": false,
+    "rebalance_bars": 72
+  },
+  "backtest": {
+    "initial_cash": 10000.0,
+    "fee_bps": 4.0,
+    "slippage_bps": 1.0,
+    "funding_enabled": true,
+    "periods_per_year": 2190
+  },
+  "periods": {
+    "train_2020_2022": {
+      "total_return": 4.31764497924285,
+      "cagr": 0.7453721846335009,
+      "annualized_volatility": 0.48858592252732397,
+      "sharpe": 1.3837738119061511,
+      "sortino": 2.1746258958646534,
+      "max_drawdown": -0.2956669905739989,
+      "trade_count": 89.0,
+      "win_rate": 0.43820224719101125,
+      "final_equity": 53176.4497924285,
+      "max_leverage_observed": 4.104406693057735,
+      "average_leverage": 0.3491821278304017,
+      "turnover_multiple": 247.17643884648604,
+      "rebalance_events": 197.0
+    },
+    "validation_2023_2024": {
+      "total_return": 6.321951344376082,
+      "cagr": 1.7046821883805996,
+      "annualized_volatility": 0.6200556098271554,
+      "sharpe": 1.9004891813682068,
+      "sortino": 3.5808546025142007,
+      "max_drawdown": -0.3528911260769323,
+      "trade_count": 73.0,
+      "win_rate": 0.3835616438356164,
+      "final_equity": 73219.51344376082,
+      "max_leverage_observed": 4.994827378062632,
+      "average_leverage": 0.6428430882177761,
+      "turnover_multiple": 278.6089488367507,
+      "rebalance_events": 168.0
+    },
+    "holdout_2025_2026_07": {
+      "total_return": 0.13843411253914328,
+      "cagr": 0.08556061427380723,
+      "annualized_volatility": 0.3973641574471256,
+      "sharpe": 0.40423591036866025,
+      "sortino": 0.632541920893662,
+      "max_drawdown": -0.2745210119554061,
+      "trade_count": 54.0,
+      "win_rate": 0.4074074074074074,
+      "final_equity": 11384.341125391433,
+      "max_leverage_observed": 3.5842477660527305,
+      "average_leverage": 0.4989511388387544,
+      "turnover_multiple": 242.4919774242801,
+      "rebalance_events": 121.0
+    },
+    "full_2020_2026_07": {
+      "total_return": 43.325544426907015,
+      "cagr": 0.7791007456886465,
+      "annualized_volatility": 0.5134496909736974,
+      "sharpe": 1.373112978753006,
+      "sortino": 2.317549736403283,
+      "max_drawdown": -0.3528911260769336,
+      "trade_count": 216.0,
+      "win_rate": 0.41203703703703703,
+      "final_equity": 443255.44426907017,
+      "max_leverage_observed": 4.994827378062632,
+      "average_leverage": 0.47442459097307654,
+      "turnover_multiple": 768.2773651075167,
+      "rebalance_events": 486.0
+    }
+  }
+}

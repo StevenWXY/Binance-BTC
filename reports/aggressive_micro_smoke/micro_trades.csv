@@ -1,0 +1,2 @@
+entry_time,side,equity_before,exit_time,pnl,exit_reason
+2025-01-27 12:00:00+00:00,long,10000.0,2025-01-29 20:00:00+00:00,380.0424610984883,signal

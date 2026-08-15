@@ -1,0 +1,227 @@
+{
+  "selection_protocol": {
+    "post_2024_used_for_selection": false,
+    "selection_window": "2020-01-01/2025-01-01",
+    "folds": {
+      "oos_2021": {
+        "start": "2021-02-01 00:00:00+00:00",
+        "end": "2022-01-01 00:00:00+00:00"
+      },
+      "oos_2022": {
+        "start": "2022-02-01 00:00:00+00:00",
+        "end": "2023-01-01 00:00:00+00:00"
+      },
+      "oos_2023": {
+        "start": "2023-02-01 00:00:00+00:00",
+        "end": "2024-01-01 00:00:00+00:00"
+      },
+      "oos_2024": {
+        "start": "2024-02-01 00:00:00+00:00",
+        "end": "2025-01-01 00:00:00+00:00"
+      }
+    },
+    "embargo_days_at_each_fold_start": 31,
+    "candidate_count": {
+      "structural": 144,
+      "risk_control": 81
+    },
+    "plateau_selection": true,
+    "holdout_warning": "2025+ was seen in prior research rounds and is reused only for reporting."
+  },
+  "comparison": {
+    "train_2020_2022": {
+      "v2": {
+        "final_equity": 60392.16114589048,
+        "cagr": 0.820821932295756,
+        "sharpe": 1.73272636902795,
+        "sortino": 3.1296627871954987,
+        "max_drawdown": -0.2581666408436848,
+        "trade_count": 93.0,
+        "fill_count": 510.0,
+        "fees_paid": 6139.281267648865,
+        "funding_paid": 7568.702412303251,
+        "liquidation_count": 0.0
+      },
+      "v3": {
+        "final_equity": 58263.05994498154,
+        "cagr": 0.7991728988150917,
+        "sharpe": 1.7144636899229078,
+        "sortino": 3.102452385364821,
+        "max_drawdown": -0.25770885003495225,
+        "trade_count": 94.0,
+        "fill_count": 509.0,
+        "fees_paid": 5989.911948776241,
+        "funding_paid": 6798.23059348283,
+        "liquidation_count": 0.0
+      },
+      "delta_v3_minus_v2": {
+        "fees_paid": -149.3693188726238,
+        "fill_count": -1.0,
+        "cagr": -0.02164903348066427,
+        "trade_count": 1.0,
+        "final_equity": -2129.101200908939,
+        "max_drawdown": 0.00045779080873253886,
+        "liquidation_count": 0.0,
+        "sharpe": -0.0182626791050422,
+        "sortino": -0.0272104018306778,
+        "funding_paid": -770.4718188204206
+      }
+    },
+    "validation_2023_2024": {
+      "v2": {
+        "final_equity": 357627.0971887413,
+        "cagr": 1.4319841908076114,
+        "sharpe": 1.8737177305847406,
+        "sortino": 3.437551020424745,
+        "max_drawdown": -0.3081777992109369,
+        "trade_count": 9.0,
+        "fill_count": 801.0,
+        "fees_paid": 33149.0960801583,
+        "funding_paid": 28468.442832592733,
+        "liquidation_count": 0.0
+      },
+      "v3": {
+        "final_equity": 340272.16802022874,
+        "cagr": 1.4152075139353069,
+        "sharpe": 1.86436715148087,
+        "sortino": 3.4234706891468982,
+        "max_drawdown": -0.30780651210134435,
+        "trade_count": 17.0,
+        "fill_count": 779.0,
+        "fees_paid": 32196.384369693176,
+        "funding_paid": 26425.43832935801,
+        "liquidation_count": 0.0
+      },
+      "delta_v3_minus_v2": {
+        "fees_paid": -952.7117104651225,
+        "fill_count": -22.0,
+        "cagr": -0.016776676872304552,
+        "trade_count": 8.0,
+        "final_equity": -17354.92916851258,
+        "max_drawdown": 0.0003712871095925552,
+        "liquidation_count": 0.0,
+        "sharpe": -0.009350579103870604,
+        "sortino": -0.014080331277846803,
+        "funding_paid": -2043.0045032347225
+      }
+    },
+    "holdout_2025_2026_07": {
+      "v2": {
+        "final_equity": 428256.59234824305,
+        "cagr": 0.12085242208255753,
+        "sharpe": 0.4869092234920907,
+        "sortino": 0.7749780406213761,
+        "max_drawdown": -0.2770551569688625,
+        "trade_count": 19.0,
+        "fill_count": 787.0,
+        "fees_paid": 46761.54482845573,
+        "funding_paid": 14430.499538510585,
+        "liquidation_count": 0.0
+      },
+      "v3": {
+        "final_equity": 417797.6496482105,
+        "cagr": 0.1387456595033485,
+        "sharpe": 0.5285543448541605,
+        "sortino": 0.8431306298759527,
+        "max_drawdown": -0.2759005671067839,
+        "trade_count": 41.0,
+        "fill_count": 739.0,
+        "fees_paid": 45473.49294039625,
+        "funding_paid": 13706.708857382084,
+        "liquidation_count": 0.0
+      },
+      "delta_v3_minus_v2": {
+        "fees_paid": -1288.0518880594755,
+        "fill_count": -48.0,
+        "cagr": 0.017893237420790964,
+        "trade_count": 22.0,
+        "final_equity": -10458.942700032552,
+        "max_drawdown": 0.0011545898620786144,
+        "liquidation_count": 0.0,
+        "sharpe": 0.041645121362069826,
+        "sortino": 0.06815258925457657,
+        "funding_paid": -723.7906811285011
+      }
+    },
+    "full": {
+      "v2": {
+        "final_equity": 428256.59234824305,
+        "cagr": 0.769749404558965,
+        "sharpe": 1.500601274722238,
+        "sortino": 2.658172232308136,
+        "max_drawdown": -0.3081777992109369,
+        "trade_count": 121.0,
+        "fill_count": 2098.0,
+        "fees_paid": 86049.92217626281,
+        "funding_paid": 50467.6447834065,
+        "liquidation_count": 0.0
+      },
+      "v3": {
+        "final_equity": 417797.6496482105,
+        "cagr": 0.7631135975331753,
+        "sharpe": 1.4979136324096554,
+        "sortino": 2.6574289332008108,
+        "max_drawdown": -0.30780651210134435,
+        "trade_count": 152.0,
+        "fill_count": 2027.0,
+        "fees_paid": 83659.78925886567,
+        "funding_paid": 46930.37778022285,
+        "liquidation_count": 0.0
+      },
+      "delta_v3_minus_v2": {
+        "fees_paid": -2390.1329173971462,
+        "fill_count": -71.0,
+        "cagr": -0.006635807025789697,
+        "trade_count": 31.0,
+        "final_equity": -10458.942700032552,
+        "max_drawdown": 0.0003712871095925552,
+        "liquidation_count": 0.0,
+        "sharpe": -0.002687642312582561,
+        "sortino": -0.0007432991073250683,
+        "funding_paid": -3537.267003183646
+      }
+    }
+  },
+  "paired_block_bootstrap": {
+    "pre_2025_selection_period": {
+      "bars": 10913,
+      "block_bars": 84,
+      "bootstrap_samples": 2000,
+      "observed_v2_sharpe": 1.7745422156987005,
+      "observed_v3_sharpe": 1.7600008242325567,
+      "observed_sharpe_delta": -0.01454139146614386,
+      "v3_sharpe_ci_95_low": 0.6673856705591901,
+      "v3_sharpe_ci_95_high": 2.7396279720111276,
+      "delta_ci_95_low": -0.07035905136804461,
+      "delta_ci_95_high": 0.03089497280557278,
+      "probability_v3_delta_positive": 0.305
+    },
+    "reused_2025_2026_reporting_period": {
+      "bars": 3455,
+      "block_bars": 84,
+      "bootstrap_samples": 2000,
+      "observed_v2_sharpe": 0.4869800815326122,
+      "observed_v3_sharpe": 0.5286312423881432,
+      "observed_sharpe_delta": 0.041651160855531,
+      "v3_sharpe_ci_95_low": -0.8380772496740131,
+      "v3_sharpe_ci_95_high": 1.6989689346123513,
+      "delta_ci_95_low": -0.03644601184743418,
+      "delta_ci_95_high": 0.13377994902750495,
+      "probability_v3_delta_positive": 0.821
+    },
+    "full_period": {
+      "bars": 14369,
+      "block_bars": 84,
+      "bootstrap_samples": 2000,
+      "observed_v2_sharpe": 1.5006536265776007,
+      "observed_v3_sharpe": 1.4979658931022768,
+      "observed_sharpe_delta": -0.002687733475323917,
+      "v3_sharpe_ci_95_low": 0.5854938362926759,
+      "v3_sharpe_ci_95_high": 2.3731024880295815,
+      "delta_ci_95_low": -0.0502523506308464,
+      "delta_ci_95_high": 0.03741325998205742,
+      "probability_v3_delta_positive": 0.4655
+    }
+  },
+  "interpretation": "Bootstrap intervals measure return-path uncertainty, not all forms of model or selection risk. The post-2024 period is not a pristine holdout because earlier research rounds already inspected it."
+}

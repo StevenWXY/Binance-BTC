@@ -1,0 +1,33 @@
+{
+  "strategy": {
+    "ema_fast": 24,
+    "ema_slow": 96,
+    "atr_period": 20,
+    "adx_period": 14,
+    "adx_enter": 23.0,
+    "adx_exit": 18.0,
+    "trend_separation_atr": 0.15,
+    "rsi_period": 14,
+    "rsi_entry": 29.0,
+    "rsi_exit": 52.0,
+    "bb_period": 24,
+    "bb_std": 2.0,
+    "mr_stop_atr": 2.2,
+    "mr_max_bars": 18,
+    "target_vol": 0.35,
+    "max_leverage": 3.0,
+    "trend_scale": 1.0,
+    "rebound_scale": 0.65
+  },
+  "metrics": {
+    "total_return": 0.8699818561894397,
+    "cagr": 0.09977610911546897,
+    "annualized_volatility": 0.20209314302152948,
+    "sharpe": 0.5711581481132558,
+    "sortino": 0.9428862727843519,
+    "max_drawdown": -0.26417792199569956,
+    "trade_count": 10093.0,
+    "win_rate": 0.48766471812147033,
+    "final_equity": 18699.818561894397
+  }
+}

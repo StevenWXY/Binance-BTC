@@ -1,0 +1,178 @@
+{
+  "strategy": {
+    "ema_fast": 30,
+    "ema_slow": 120,
+    "atr_period": 20,
+    "adx_period": 14,
+    "adx_enter": 27.0,
+    "adx_exit": 18.0,
+    "trend_separation_atr": 0.15,
+    "rsi_period": 14,
+    "rsi_entry": 27.0,
+    "rsi_exit": 52.0,
+    "bb_period": 24,
+    "bb_std": 2.0,
+    "mr_stop_atr": 2.2,
+    "mr_max_bars": 18,
+    "target_vol": 1.1,
+    "max_leverage": 6.0,
+    "trend_scale": 1.25,
+    "rebound_scale": 0.65,
+    "allow_short": false,
+    "rebalance_bars": 72,
+    "vol_risk_enabled": true,
+    "realized_vol_period": 12,
+    "vol_baseline_period": 90,
+    "vol_shock_enter": 1.25,
+    "vol_shock_exit": 1.1,
+    "vol_shock_scale": 0.25,
+    "vol_momentum_period": 36
+  },
+  "execution": {
+    "initial_cash": 10000.0,
+    "taker_fee_bps": 4.0,
+    "base_slippage_bps": 1.0,
+    "impact_bps": 8.0,
+    "max_minute_participation": 0.02,
+    "liquidation_fee_bps": 50.0,
+    "liquidation_slippage_bps": 5.0,
+    "quantity_step": 0.001,
+    "min_notional": 5.0,
+    "periods_per_year": 2190
+  },
+  "maintenance_brackets": [
+    {
+      "notional_cap": 50000.0,
+      "maintenance_rate": 0.004,
+      "cumulative_deduction": 0.0
+    },
+    {
+      "notional_cap": 250000.0,
+      "maintenance_rate": 0.005,
+      "cumulative_deduction": 50.0
+    },
+    {
+      "notional_cap": 1000000.0,
+      "maintenance_rate": 0.01,
+      "cumulative_deduction": 1300.0
+    },
+    {
+      "notional_cap": 10000000.0,
+      "maintenance_rate": 0.025,
+      "cumulative_deduction": 16300.0
+    },
+    {
+      "notional_cap": 20000000.0,
+      "maintenance_rate": 0.05,
+      "cumulative_deduction": 266300.0
+    },
+    {
+      "notional_cap": 50000000.0,
+      "maintenance_rate": 0.1,
+      "cumulative_deduction": 1266300.0
+    },
+    {
+      "notional_cap": 100000000.0,
+      "maintenance_rate": 0.125,
+      "cumulative_deduction": 2516300.0
+    },
+    {
+      "notional_cap": 200000000.0,
+      "maintenance_rate": 0.15,
+      "cumulative_deduction": 5016300.0
+    },
+    {
+      "notional_cap": 300000000.0,
+      "maintenance_rate": 0.25,
+      "cumulative_deduction": 25016300.0
+    },
+    {
+      "notional_cap": 500000000.0,
+      "maintenance_rate": 0.5,
+      "cumulative_deduction": 100016300.0
+    }
+  ],
+  "metrics": {
+    "total_return": 26.018960547489627,
+    "cagr": 0.6501352363715454,
+    "annualized_volatility": 0.49965302590060123,
+    "sharpe": 1.2524699636034131,
+    "sortino": 2.0536347831850454,
+    "max_drawdown": -0.35318036317615253,
+    "trade_count": 185.0,
+    "win_rate": 0.3837837837837838,
+    "final_equity": 270189.60547489626,
+    "fill_count": 1076.0,
+    "liquidation_count": 0.0,
+    "fees_paid": 52006.20364531625,
+    "funding_paid": 48402.30304901187,
+    "realized_pnl": 360598.112169225,
+    "order_notional": 130015446.25967665,
+    "max_leverage_observed": 5.587105015634063,
+    "max_margin_ratio": 0.043267036031116785,
+    "minimum_margin_buffer": 9144.990356872408,
+    "max_minute_participation_observed": 0.019999991682301627
+  },
+  "periods": {
+    "train_2020_2022": {
+      "total_return": 3.143389942220412,
+      "cagr": 0.6059733311520443,
+      "annualized_volatility": 0.4800996957743498,
+      "sharpe": 1.231362202971421,
+      "sortino": 1.9453027512694478,
+      "max_drawdown": -0.35318036317615253,
+      "trade_count": 89.0,
+      "win_rate": 0.42696629213483145,
+      "final_equity": 41433.899422204115,
+      "fill_count": 227.0,
+      "fees_paid": 3433.0945125159396,
+      "funding_paid": 11682.663726373312,
+      "liquidation_count": 0.0
+    },
+    "validation_2023_2024": {
+      "total_return": 4.764205347541082,
+      "cagr": 1.3994381031697527,
+      "annualized_volatility": 0.581563098865683,
+      "sharpe": 1.790776749178455,
+      "sortino": 3.1189196898709906,
+      "max_drawdown": -0.3373272220086645,
+      "trade_count": 62.0,
+      "win_rate": 0.3548387096774194,
+      "final_equity": 238833.5046189483,
+      "fill_count": 348.0,
+      "fees_paid": 17355.19860444213,
+      "funding_paid": 25646.875778082365,
+      "liquidation_count": 0.0
+    },
+    "holdout_2025_2026_07": {
+      "total_return": 0.13128853468852997,
+      "cagr": 0.08121680897568595,
+      "annualized_volatility": 0.4166249594906629,
+      "sharpe": 0.3947994092417059,
+      "sortino": 0.6222949457869599,
+      "max_drawdown": -0.3009566482405883,
+      "trade_count": 34.0,
+      "win_rate": 0.3235294117647059,
+      "final_equity": 270189.60547489626,
+      "fill_count": 501.0,
+      "fees_paid": 31217.910528358163,
+      "funding_paid": 11072.763544556188,
+      "liquidation_count": 0.0
+    },
+    "full_2020_2026_07": {
+      "total_return": 26.018960547489627,
+      "cagr": 0.6501352363715454,
+      "annualized_volatility": 0.49965302590060123,
+      "sharpe": 1.2524699636034131,
+      "sortino": 2.0536347831850454,
+      "max_drawdown": -0.35318036317615253,
+      "trade_count": 185.0,
+      "win_rate": 0.3837837837837838,
+      "final_equity": 270189.60547489626,
+      "fill_count": 1076.0,
+      "fees_paid": 52006.20364531623,
+      "funding_paid": 48402.30304901187,
+      "liquidation_count": 0.0
+    }
+  }
+}

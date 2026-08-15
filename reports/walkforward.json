@@ -1,0 +1,77 @@
+{
+  "strategy": {
+    "ema_fast": 30,
+    "ema_slow": 120,
+    "atr_period": 20,
+    "adx_period": 14,
+    "adx_enter": 21.0,
+    "adx_exit": 16.0,
+    "trend_separation_atr": 0.15,
+    "rsi_period": 14,
+    "rsi_entry": 30.0,
+    "rsi_exit": 52.0,
+    "bb_period": 24,
+    "bb_std": 2.0,
+    "mr_stop_atr": 2.2,
+    "mr_max_bars": 18,
+    "target_vol": 0.35,
+    "max_leverage": 3.0,
+    "trend_scale": 1.0,
+    "rebound_scale": 0.65,
+    "allow_short": false,
+    "rebalance_bars": 72
+  },
+  "backtest": {
+    "initial_cash": 10000.0,
+    "fee_bps": 4.0,
+    "slippage_bps": 1.0,
+    "funding_enabled": true,
+    "periods_per_year": 2190
+  },
+  "periods": {
+    "train_2020_2022": {
+      "total_return": 0.6794262596819316,
+      "cagr": 0.18863342592923615,
+      "annualized_volatility": 0.14692886071493066,
+      "sharpe": 1.2487342182082906,
+      "sortino": 1.9669754986498007,
+      "max_drawdown": -0.13232658504479144,
+      "trade_count": 118.0,
+      "win_rate": 0.3983050847457627,
+      "final_equity": 16794.262596819317
+    },
+    "validation_2023_2024": {
+      "total_return": 0.8415866969059709,
+      "cagr": 0.3568617736335773,
+      "annualized_volatility": 0.17766404539249558,
+      "sharpe": 1.8042982291411163,
+      "sortino": 3.3583512059954956,
+      "max_drawdown": -0.11688964081105302,
+      "trade_count": 90.0,
+      "win_rate": 0.32222222222222224,
+      "final_equity": 18415.86696905971
+    },
+    "holdout_2025_2026_07": {
+      "total_return": 0.08624008248029735,
+      "cagr": 0.053775696178273824,
+      "annualized_volatility": 0.11587138369208455,
+      "sharpe": 0.5095906808194575,
+      "sortino": 0.7993396665765454,
+      "max_drawdown": -0.09774602768199936,
+      "trade_count": 62.0,
+      "win_rate": 0.3870967741935484,
+      "final_equity": 10862.400824802973
+    },
+    "full_2020_2026_07": {
+      "total_return": 2.359533166545363,
+      "cagr": 0.20216852368452298,
+      "annualized_volatility": 0.15053519674140284,
+      "sharpe": 1.297163433557022,
+      "sortino": 2.1760461347172626,
+      "max_drawdown": -0.13477877388107173,
+      "trade_count": 270.0,
+      "win_rate": 0.37037037037037035,
+      "final_equity": 33595.33166545363
+    }
+  }
+}

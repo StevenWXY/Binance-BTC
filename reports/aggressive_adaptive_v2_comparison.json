@@ -1,0 +1,61 @@
+{
+  "adaptive_v1": {
+    "final_equity": 440793.13326961786,
+    "cagr": 0.7775246307045158,
+    "sharpe": 1.5001814939922091,
+    "sortino": 2.645905012034189,
+    "max_drawdown": -0.3191186277439494,
+    "fill_count": 2018.0,
+    "fees_paid": 84312.35291377359,
+    "funding_paid": 50972.71356869209,
+    "max_leverage_observed": 6.555462464231224,
+    "liquidation_count": 0.0
+  },
+  "adaptive_v2": {
+    "final_equity": 428256.59234824305,
+    "cagr": 0.769749404558965,
+    "sharpe": 1.500601274722238,
+    "sortino": 2.658172232308136,
+    "max_drawdown": -0.3081777992109369,
+    "fill_count": 2098.0,
+    "fees_paid": 86049.92217626281,
+    "funding_paid": 50467.6447834065,
+    "max_leverage_observed": 6.555442415843245,
+    "liquidation_count": 0.0
+  },
+  "delta_v2_minus_v1": {
+    "final_equity": -12536.540921374806,
+    "cagr": -0.007775226145550818,
+    "sharpe": 0.0004197807300287959,
+    "sortino": 0.012267220273946666,
+    "max_drawdown": 0.010940828533012481,
+    "fill_count": 80.0,
+    "fees_paid": 1737.5692624892254,
+    "funding_paid": -505.06878528559173,
+    "max_leverage_observed": -2.0048387978199855e-05,
+    "liquidation_count": 0.0
+  },
+  "holdout_2025_2026_07": {
+    "adaptive_v1": {
+      "final_equity": 440793.13326961786,
+      "cagr": 0.13081604340213326,
+      "sharpe": 0.5099888541397334,
+      "sortino": 0.8139659922828179,
+      "max_drawdown": -0.28637954051045844
+    },
+    "adaptive_v2": {
+      "final_equity": 428256.59234824305,
+      "cagr": 0.12085242208255753,
+      "sharpe": 0.4869092234920907,
+      "sortino": 0.7749780406213761,
+      "max_drawdown": -0.2770551569688625
+    },
+    "delta_v2_minus_v1": {
+      "final_equity": -12536.540921374806,
+      "cagr": -0.009963621319575733,
+      "sharpe": -0.02307963064764268,
+      "sortino": -0.038987951661441755,
+      "max_drawdown": 0.009324383541595926
+    }
+  }
+}

@@ -1,0 +1,17 @@
+.DS_Store
+.pytest_cache/
+**/__pycache__/
+*.py[cod]
+
+# Downloaded Binance archives and derived intrabar data are reproducible.
+data/raw/
+
+# Local environment and editor files.
+.venv/
+venv/
+.env
+.idea/
+.vscode/
+
+# Duplicate image exported by the Codex desktop app.
+Codex 图像*.png
