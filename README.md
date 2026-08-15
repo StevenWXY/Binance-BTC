@@ -2,7 +2,7 @@
 
 这是一个只交易 Binance USDⓈ-M `BTCUSDT` 永续合约的研究/回测项目。策略在 4 小时级别上使用 ADX + EMA 判断趋势状态：上升趋势做多，下降趋势在当前推荐配置中空仓；非趋势状态只做布林带下轨 + RSI 超跌反弹多单。仓位按 ATR 波动率目标缩放，代码硬限制不超过 10 倍杠杆。当前微调版每 60 根 bar（10 天）定期再平衡，但方向变化、风险倍率变化和退出信号会立即生效。
 
-提供多套参数：`configs/balanced_params.json` 目标波动率 35%、杠杆上限 3 倍；`configs/aggressive_params.json` 目标波动率 100%、趋势仓位乘数 1.25、杠杆上限 5 倍。当前研究配置 `configs/aggressive_adaptive_v3_params.json` 在波动率风险层和资金费拥挤因子之外，增加下行波动占比驱动的自适应资金分配，目标波动率 107.5%、杠杆上限 6.5 倍。Aggressive 配置均是收益优先实验，不代表适合实盘。
+提供多套参数：`configs/balanced_params.json` 目标波动率 35%、杠杆上限 3 倍；`configs/aggressive_params.json` 目标波动率 100%、趋势仓位乘数 1.25、杠杆上限 5 倍。当前推荐基线是 `configs/aggressive_adaptive_v3_params.json`，在波动率风险层和资金费拥挤因子之外，增加下行波动占比驱动的自适应资金分配，目标波动率 107.5%、杠杆上限 6.5 倍。新增 `configs/aggressive_adaptive_v4_short_params.json` 是固定规则的谨慎对称做空实验，不替代 V3 基线。Aggressive 配置均是收益优先实验，不代表适合实盘。
 
 ## 当前策略的具体规则
 
@@ -13,7 +13,7 @@
 - 只交易 Binance U 本位 `BTCUSDT` 永续合约，不交易现货、币本位合约或其他币种。
 - 所有行情状态和目标仓位均由 4 小时 K 线计算。指标只读取当前及更早的已完成 K 线，不使用未来数据。
 - 4 小时 K 线收盘后生成信号，最早在下一个 4 小时边界对应的 1 分钟开盘开始成交，因此不存在按本根收盘价提前成交的问题。
-- 当前配置 `allow_short=false`：策略只做多或空仓。代码保留做空能力，但本轮回测结果不包含空头收益。
+- V3 当前配置 `allow_short=false`：策略只做多或空仓。V4 实验才开启做空，结果与 V3 分开报告。
 
 ### 2. 趋势与震荡状态切换
 
@@ -149,7 +149,13 @@ btc-regime micro-backtest --start 2020-01-01 --end 2026-08-01 --params configs/a
 python scripts/robust_optimize_v3.py
 btc-regime micro-backtest --start 2020-01-01 --end 2026-08-01 --params configs/aggressive_adaptive_v3_params.json --output reports/aggressive_adaptive_v3_micro
 python scripts/analyze_v3_robustness.py
+python scripts/evaluate_cautious_shorts.py
+btc-regime backtest --start 2020-01-01 --end 2026-08-01 --params configs/aggressive_adaptive_v4_short_params.json --output reports/aggressive_adaptive_v4_short
+btc-regime walkforward --params configs/aggressive_adaptive_v4_short_params.json --output reports/aggressive_adaptive_v4_short_walkforward.json
+btc-regime micro-backtest --start 2020-01-01 --end 2026-08-01 --params configs/aggressive_adaptive_v4_short_params.json --output reports/aggressive_adaptive_v4_short_micro
+python scripts/compare_v4_short.py
 python scripts/render_global_capital_curve.py
+python scripts/render_interactive_capital_curve.py
 ```
 
 `reports/full_metrics.json`、逐笔交易 CSV 会写入报告目录；安装 `matplotlib` 时还会生成权益曲线 PNG。优化结果只用于研究参数稳定性，不应把全样本最优值当作无偏的未来收益承诺。
@@ -210,4 +216,31 @@ V3 不使用 2025 年以后的数据选参数。筛选区间固定为 2020-01 �
 
 按 14 天收益块进行 2,000 次配对 Bootstrap 后，全样本 V3-V2 Sharpe 差的 95% 区间为 [-0.050, 0.037]，2025-2026 报告段为 [-0.036, 0.134]，均包含 0。因此 V3 提供的是更严格的筛选流程和较好的近期方向性结果，而不是统计上已经证实的超额收益；任何历史回测都不能“确保”不存在过拟合。
 
-资金曲线图采用简写：A = 原 Aggressive，B = 资金费因子版，C = 自适应 V1，D = 稳健 V3，P = BTCUSDT 价格。V2 曲线不再绘制。
+## 谨慎对称做空 V4 实验
+
+为了检验“在合适的位置开空”是否改善收益或 Sharpe，V4 只增加一个受限的对称趋势空头分支，其他 V3 参数全部冻结：
+
+- 空头方向沿用与多头相反的 EMA(30)/EMA(120) + `+DI/-DI` 趋势判断；震荡区的布林带/RSI 超跌反弹仍然只做多。
+- 空头必须同时满足收盘价低于 EMA(120)，且 24 根 4 小时动量小于 0，才允许开仓；这是固定的因果确认，不使用未来数据。
+- 空头风险预算为多头趋势预算的 25%（`short_scale=0.25`），策略杠杆上限仍为 6.5 倍，代码硬上限仍为 10 倍。
+- 做空参数没有按 2025+ 结果挑选。只在 2020-2024 的 4 个年度折上对 0.25/0.35/0.50 和“有/无确认”做 6 组敏感性诊断，E 在查看分数前预先固定为 0.25 + 确认。
+
+普通 4 小时回测结果如下，手续费为 4 bps、滑点为 1 bps，并计入资金费：
+
+| 版本 | 最终权益 | CAGR | Sharpe | 最大回撤 |
+| --- | ---: | ---: | ---: | ---: |
+| D 稳健 V3（仅多） | 652,069.40 | 88.66% | 1.569 | -30.65% |
+| E 谨慎对称空头 V4 | 621,940.57 | 87.31% | 1.552 | -30.40% |
+
+逐笔成交复测进一步加入 1 分钟分批成交、冲击滑点、真实资金费和分档维持保证金/盘中强平检查：
+
+| 版本 | 最终权益 | CAGR | Sharpe | Sortino | 最大回撤 | 成交笔数 | 手续费 | 资金费 | 强平 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| D 稳健 V3（仅多） | 417,797.65 | 76.31% | 1.498 | 2.657 | -30.78% | 2,027 | 83,659.79 | 46,930.38 | 0 |
+| E 谨慎对称空头 V4 | 397,127.35 | 74.96% | 1.479 | 2.630 | -31.08% | 2,864 | 90,476.57 | 44,601.25 | 0 |
+
+E 在 2020-2024 筛选段的四折 Sharpe 下四分位数为 0.786，D 为 0.793；筛选段 Sharpe 为 1.820（D 为 1.824），最大回撤为 -30.40%（D 为 -30.65%）。2,000 次、14 天收益块配对 Bootstrap 得到 E-D Sharpe 差：2020-2024 为 -0.004，95% 区间 [-0.049, 0.040]；完整区间为 -0.019，95% 区间 [-0.060, 0.022]。区间包含 0，不能证明做空提高 Sharpe；逐笔成交下 E 还增加了 837 次成交、约 6,817 USDT 手续费。2025-2026-07 报告段 Sharpe 从 0.529 降至 0.454、最大回撤从 -27.59% 变为 -29.26%，且该段在早期研究中已被查看，不是完全盲测。
+
+因此当前推荐仍为 D 长多基线；E 作为透明的对称做空对照和可复现实验保留，不把它描述成收益改进版本。完整报告位于 `reports/aggressive_adaptive_v4_short_comparison.json`，敏感性表位于 `reports/aggressive_adaptive_v4_short_sensitivity.csv`。
+
+资金曲线图采用简写并在图例中标注含义：A = 原 Aggressive，B = 资金费因子版，C = 自适应 V1，D = 稳健 V3（仅多），E = 谨慎对称空头 V4，P = BTCUSDT 价格。V2 曲线不再绘制；最新 PNG 为 `reports/global_capital_curve_v4_with_btc.png`。

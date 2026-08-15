@@ -17,6 +17,16 @@ def synthetic_data(n=400):
     }, index=index)
 
 
+def synthetic_downtrend(n=400):
+    index = pd.date_range("2024-01-01", periods=n, freq="4h", tz="UTC")
+    close = 100 * np.exp(np.cumsum(np.full(n, -0.0002)))
+    return pd.DataFrame({
+        "open": close, "high": close * 1.005, "low": close * 0.995,
+        "close": close, "volume": 1.0, "quote_volume": 100.0,
+        "funding_rate": 0.0,
+    }, index=index)
+
+
 def test_signals_are_bounded_and_causal():
     data = synthetic_data()
     result = generate_signals(data, StrategyParams(max_leverage=3))
@@ -41,6 +51,21 @@ def test_leverage_hard_limit():
         StrategyParams(max_leverage=10.01)
     result = generate_signals(synthetic_data(), StrategyParams(max_leverage=2, trend_scale=20))
     assert result["leverage"].max() <= 2.0 + 1e-12
+
+
+def test_short_branch_is_directional_and_budget_limited():
+    params = StrategyParams(
+        allow_short=True,
+        short_scale=0.25,
+        short_momentum_gate_enabled=True,
+        target_vol=1.0,
+        max_leverage=6.5,
+    )
+    result = generate_signals(synthetic_downtrend(), params)
+    assert (result["signal"] < 0).any()
+    assert result["signal"].abs().max() <= params.max_leverage
+    with pytest.raises(ValueError):
+        StrategyParams(short_scale=1.01)
 
 
 def test_minute_engine_liquidates_on_mark_price_breach():

@@ -1,0 +1,200 @@
+{
+  "strategy_e": {
+    "config": "configs/aggressive_adaptive_v4_short_params.json",
+    "signal_symmetry": "EMA/DI trend direction is symmetric; long rebound remains long-only.",
+    "short_risk_budget": "short_scale=0.25, max leverage=6.5x",
+    "short_confirmation": "close below EMA120 and 24-bar momentum below zero",
+    "selection_protocol": "fixed before inspection; 2020-2024 four-fold sensitivity is diagnostic only",
+    "holdout_warning": "2025+ was seen in prior research rounds and is reused only for reporting."
+  },
+  "comparison": {
+    "train_2020_2022": {
+      "d_long_only": {
+        "final_equity": 58263.05994498154,
+        "cagr": 0.7991728988150917,
+        "sharpe": 1.7144636899229078,
+        "sortino": 3.102452385364821,
+        "max_drawdown": -0.25770885003495225,
+        "trade_count": 94.0,
+        "fill_count": 509.0,
+        "fees_paid": 5989.911948776241,
+        "funding_paid": 6798.23059348283,
+        "liquidation_count": 0.0
+      },
+      "e_cautious_symmetric_short": {
+        "final_equity": 57917.17835357789,
+        "cagr": 0.7956063495891137,
+        "sharpe": 1.7067020558253525,
+        "sortino": 3.0976772608425924,
+        "max_drawdown": -0.24125825438480264,
+        "trade_count": 260.0,
+        "fill_count": 951.0,
+        "fees_paid": 6522.651707041181,
+        "funding_paid": 6501.157410811795,
+        "liquidation_count": 0.0
+      },
+      "delta_e_minus_d": {
+        "max_drawdown": 0.016450595650149613,
+        "sharpe": -0.007761634097555259,
+        "fill_count": 442.0,
+        "final_equity": -345.88159140365315,
+        "cagr": -0.0035665492259779885,
+        "liquidation_count": 0.0,
+        "fees_paid": 532.7397582649401,
+        "trade_count": 166.0,
+        "sortino": -0.004775124522228502,
+        "funding_paid": -297.0731826710353
+      }
+    },
+    "validation_2023_2024": {
+      "d_long_only": {
+        "final_equity": 340272.16802022874,
+        "cagr": 1.4152075139353069,
+        "sharpe": 1.86436715148087,
+        "sortino": 3.4234706891468982,
+        "max_drawdown": -0.30780651210134435,
+        "trade_count": 17.0,
+        "fill_count": 779.0,
+        "fees_paid": 32196.384369693176,
+        "funding_paid": 26425.43832935801,
+        "liquidation_count": 0.0
+      },
+      "e_cautious_symmetric_short": {
+        "final_equity": 338367.8860124281,
+        "cagr": 1.4156204771328564,
+        "sharpe": 1.8635057544809226,
+        "sortino": 3.4273322700322386,
+        "max_drawdown": -0.31077018092494835,
+        "trade_count": 155.0,
+        "fill_count": 903.0,
+        "fees_paid": 33947.56165817447,
+        "funding_paid": 25597.854136661954,
+        "liquidation_count": 0.0
+      },
+      "delta_e_minus_d": {
+        "max_drawdown": -0.002963668823603993,
+        "sharpe": -0.0008613969999473614,
+        "fill_count": 124.0,
+        "final_equity": -1904.282007800648,
+        "cagr": 0.0004129631975495762,
+        "liquidation_count": 0.0,
+        "fees_paid": 1751.1772884812926,
+        "trade_count": 138.0,
+        "sortino": 0.0038615808853403877,
+        "funding_paid": -827.5841926960566
+      }
+    },
+    "holdout_2025_2026_07": {
+      "d_long_only": {
+        "final_equity": 417797.6496482105,
+        "cagr": 0.1387456595033485,
+        "sharpe": 0.5285543448541605,
+        "sortino": 0.8431306298759527,
+        "max_drawdown": -0.2759005671067839,
+        "trade_count": 41.0,
+        "fill_count": 739.0,
+        "fees_paid": 45473.49294039625,
+        "funding_paid": 13706.708857382084,
+        "liquidation_count": 0.0
+      },
+      "e_cautious_symmetric_short": {
+        "final_equity": 397127.35187898873,
+        "cagr": 0.10667557160070817,
+        "sharpe": 0.4542895521846928,
+        "sortino": 0.7267753684799834,
+        "max_drawdown": -0.2926138723335986,
+        "trade_count": 144.0,
+        "fill_count": 1010.0,
+        "fees_paid": 50006.361523660664,
+        "funding_paid": 12502.241090271677,
+        "liquidation_count": 0.0
+      },
+      "delta_e_minus_d": {
+        "max_drawdown": -0.01671330522681469,
+        "sharpe": -0.07426479266946773,
+        "fill_count": 271.0,
+        "final_equity": -20670.29776922177,
+        "cagr": -0.03207008790264032,
+        "liquidation_count": 0.0,
+        "fees_paid": 4532.868583264411,
+        "trade_count": 103.0,
+        "sortino": -0.1163552613959693,
+        "funding_paid": -1204.4677671104073
+      }
+    },
+    "full": {
+      "d_long_only": {
+        "final_equity": 417797.6496482105,
+        "cagr": 0.7631135975331753,
+        "sharpe": 1.4979136324096554,
+        "sortino": 2.6574289332008108,
+        "max_drawdown": -0.30780651210134435,
+        "trade_count": 152.0,
+        "fill_count": 2027.0,
+        "fees_paid": 83659.78925886567,
+        "funding_paid": 46930.37778022285,
+        "liquidation_count": 0.0
+      },
+      "e_cautious_symmetric_short": {
+        "final_equity": 397127.35187898873,
+        "cagr": 0.7495737007244252,
+        "sharpe": 1.4788645123136153,
+        "sortino": 2.629817742774238,
+        "max_drawdown": -0.31077018092494835,
+        "trade_count": 559.0,
+        "fill_count": 2864.0,
+        "fees_paid": 90476.57488887629,
+        "funding_paid": 44601.25263774561,
+        "liquidation_count": 0.0
+      },
+      "delta_e_minus_d": {
+        "max_drawdown": -0.002963668823603993,
+        "sharpe": -0.019049120096040095,
+        "fill_count": 837.0,
+        "final_equity": -20670.29776922177,
+        "cagr": -0.013539896808750118,
+        "liquidation_count": 0.0,
+        "fees_paid": 6816.785630010621,
+        "trade_count": 407.0,
+        "sortino": -0.027611190426572563,
+        "funding_paid": -2329.1251424772418
+      }
+    }
+  },
+  "paired_block_bootstrap": {
+    "pre_2025_selection_period": {
+      "bars": 10913,
+      "block_bars": 84,
+      "bootstrap_samples": 2000,
+      "observed_d_sharpe": 1.7600008242325567,
+      "observed_e_sharpe": 1.7558058086659216,
+      "observed_sharpe_delta_e_minus_d": -0.004195015566635041,
+      "delta_ci_95_low": -0.048894192269908175,
+      "delta_ci_95_high": 0.0395684126289091,
+      "probability_e_delta_positive": 0.443
+    },
+    "reused_2025_2026_reporting_period": {
+      "bars": 3455,
+      "block_bars": 84,
+      "bootstrap_samples": 2000,
+      "observed_d_sharpe": 0.5286312423881432,
+      "observed_e_sharpe": 0.4543312444603213,
+      "observed_sharpe_delta_e_minus_d": -0.07429999792782188,
+      "delta_ci_95_low": -0.20821449082090726,
+      "delta_ci_95_high": 0.03249459238095601,
+      "probability_e_delta_positive": 0.0925
+    },
+    "full_period": {
+      "bars": 14369,
+      "block_bars": 84,
+      "bootstrap_samples": 2000,
+      "observed_d_sharpe": 1.4979658931022768,
+      "observed_e_sharpe": 1.4789109882313514,
+      "observed_sharpe_delta_e_minus_d": -0.019054904870925427,
+      "delta_ci_95_low": -0.0599582920592285,
+      "delta_ci_95_high": 0.022076795971961424,
+      "probability_e_delta_positive": 0.177
+    }
+  },
+  "interpretation": "E is a controlled experiment, not a claim that shorting improves the strategy. It slightly reduces full-period drawdown but also reduces full-period Sharpe and net equity after realistic fills, fees, funding, and liquidation checks."
+}

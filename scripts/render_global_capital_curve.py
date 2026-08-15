@@ -31,6 +31,7 @@ COLORS = {
     "b": "#E58A3B",
     "c": "#3CA66B",
     "d": "#D45B57",
+    "e": "#0F766E",
     "p": "#7B61B8",
 }
 
@@ -69,6 +70,7 @@ def load_chart_data() -> pd.DataFrame:
         load_equity(ROOT / "reports/aggressive_vol_carry_micro/micro_equity.csv", "b"),
         load_equity(ROOT / "reports/aggressive_adaptive_micro/micro_equity.csv", "c"),
         load_equity(ROOT / "reports/aggressive_adaptive_v3_micro/micro_equity.csv", "d"),
+        load_equity(ROOT / "reports/aggressive_adaptive_v4_short_micro/micro_equity.csv", "e"),
     ]
     data = pd.concat(equities, axis=1).dropna()
     klines = load_klines(ROOT / "data/raw", start="2020-01-01", end="2026-08-01 00:00:00+00:00")
@@ -154,7 +156,7 @@ def draw_log_panel(
 ) -> None:
     start, end = data.index[0], data.index[-1]
     equity_low = 8_000.0
-    equity_keys = ["a", "b", "c", "d"]
+    equity_keys = ["a", "b", "c", "d", "e"]
     equity_high = max(700_000.0, float(data[equity_keys].max().max()) * 1.08)
     btc_low = max(1_000.0, float(data["p"].min()) * 0.82)
     btc_high = float(data["p"].max()) * 1.18
@@ -208,7 +210,7 @@ def draw_drawdown_panel(
     area: PlotArea,
 ) -> None:
     start, end = data.index[0], data.index[-1]
-    equity_keys = ["a", "b", "c", "d"]
+    equity_keys = ["a", "b", "c", "d", "e"]
     drawdowns = data[equity_keys].div(data[equity_keys].cummax()) - 1.0
     low = min(-0.4, float(drawdowns.min().min()) * 1.08)
     high = 0.02
@@ -250,11 +252,12 @@ def render(output: Path) -> None:
     draw_legend(
         draw,
         [
-            ("A", COLORS["a"]),
-            ("B", COLORS["b"]),
-            ("C", COLORS["c"]),
-            ("D", COLORS["d"]),
-            ("P", COLORS["p"]),
+            ("A 原 Aggressive", COLORS["a"]),
+            ("B 资金费因子", COLORS["b"]),
+            ("C 自适应 V1", COLORS["c"]),
+            ("D 稳健 V3（仅多）", COLORS["d"]),
+            ("E 谨慎对称空头 V4", COLORS["e"]),
+            ("P BTCUSDT 价格", COLORS["p"]),
         ],
         y=148,
     )
@@ -275,7 +278,7 @@ def main() -> None:
     parser.add_argument(
         "--output",
         type=Path,
-        default=ROOT / "reports/global_capital_curve_v3_with_btc.png",
+        default=ROOT / "reports/global_capital_curve_v4_with_btc.png",
     )
     args = parser.parse_args()
     render(args.output)

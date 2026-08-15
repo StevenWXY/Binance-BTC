@@ -36,6 +36,7 @@ def chart_rows() -> list[list[float | int]]:
             load_equity(ROOT / "reports/aggressive_vol_carry_micro/micro_equity.csv", "b"),
             load_equity(ROOT / "reports/aggressive_adaptive_micro/micro_equity.csv", "c"),
             load_equity(ROOT / "reports/aggressive_adaptive_v3_micro/micro_equity.csv", "d"),
+            load_equity(ROOT / "reports/aggressive_adaptive_v4_short_micro/micro_equity.csv", "e"),
         ],
         axis=1,
     ).dropna()
@@ -49,7 +50,7 @@ def chart_rows() -> list[list[float | int]]:
     return [
         [
             int(timestamp.timestamp() * 1000),
-            *[round(float(row[key]), 2) for key in ["a", "b", "c", "d", "p"]],
+            *[round(float(row[key]), 2) for key in ["a", "b", "c", "d", "e", "p"]],
         ]
         for timestamp, row in data.iterrows()
     ]
@@ -57,34 +58,34 @@ def chart_rows() -> list[list[float | int]]:
 
 def render_fragment(rows: list[list[float | int]]) -> str:
     raw = json.dumps(rows, separators=(",", ":"))
-    return f'''<div id="btc-global-capital-curve-v3">
+    return f'''<div id="btc-global-capital-curve-v4">
   <style>
-    #btc-global-capital-curve-v3 {{ position: relative; width: 100%; color: var(--foreground); font-family: ui-sans-serif, system-ui, sans-serif; }}
-    #btc-global-capital-curve-v3 h2 {{ margin: 0 0 8px; font-weight: 500; letter-spacing: 0; }}
-    #btc-global-capital-curve-v3 .legend {{ display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0 0 10px; }}
-    #btc-global-capital-curve-v3 .legend button {{ display: inline-flex; align-items: center; gap: 7px; padding: 3px 0; border: 0; background: transparent; color: var(--foreground); font: inherit; cursor: pointer; }}
-    #btc-global-capital-curve-v3 .legend button[aria-pressed="false"] {{ opacity: .42; }}
-    #btc-global-capital-curve-v3 .swatch {{ width: 18px; height: 2px; }}
-    #btc-global-capital-curve-v3 .plot {{ width: 100%; }}
-    #btc-global-capital-curve-v3 svg {{ display: block; width: 100%; overflow: visible; }}
-    #btc-global-capital-curve-v3 .axis text,
-    #btc-global-capital-curve-v3 .axis-title {{ fill: var(--foreground); font-size: 12px; }}
-    #btc-global-capital-curve-v3 .axis path,
-    #btc-global-capital-curve-v3 .axis line {{ stroke: var(--border); }}
-    #btc-global-capital-curve-v3 .grid line {{ stroke: var(--border); stroke-opacity: .45; }}
-    #btc-global-capital-curve-v3 .grid path {{ display: none; }}
-    #btc-global-capital-curve-v3 [data-chart-frame] {{ fill: transparent; stroke: var(--border); }}
-    #btc-global-capital-curve-v3 .series-line {{ fill: none; stroke-width: 1.25; }}
-    #btc-global-capital-curve-v3 .price-line {{ fill: none; stroke-width: 1.1; }}
-    #btc-global-capital-curve-v3 .drawdown-line {{ fill: none; stroke-width: 1; }}
-    #btc-global-capital-curve-v3 [data-chart-hover-guide] {{ stroke: var(--foreground); stroke-opacity: .35; stroke-dasharray: 3 3; pointer-events: none; }}
-    #btc-global-capital-curve-v3 [data-chart-hover-marker] {{ stroke: var(--popover); stroke-width: 1.5; pointer-events: none; }}
-    #btc-global-capital-curve-v3 .tooltip {{ position: absolute; z-index: 10; display: none; min-width: 170px; padding: 8px 10px; border: 1px solid var(--border); background: var(--popover); color: var(--popover-foreground); font-size: 12px; pointer-events: none; }}
-    #btc-global-capital-curve-v3 .tooltip-row {{ display: flex; justify-content: space-between; gap: 18px; }}
-    #btc-global-capital-curve-v3 .tooltip-name {{ display: inline-flex; align-items: center; gap: 6px; }}
-    #btc-global-capital-curve-v3 .tooltip-dot {{ width: 8px; height: 8px; border-radius: 50%; }}
+    #btc-global-capital-curve-v4 {{ position: relative; width: 100%; color: var(--foreground); font-family: ui-sans-serif, system-ui, sans-serif; }}
+    #btc-global-capital-curve-v4 h2 {{ margin: 0 0 8px; font-weight: 500; letter-spacing: 0; }}
+    #btc-global-capital-curve-v4 .legend {{ display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0 0 10px; }}
+    #btc-global-capital-curve-v4 .legend button {{ display: inline-flex; align-items: center; gap: 7px; padding: 3px 0; border: 0; background: transparent; color: var(--foreground); font: inherit; cursor: pointer; }}
+    #btc-global-capital-curve-v4 .legend button[aria-pressed="false"] {{ opacity: .42; }}
+    #btc-global-capital-curve-v4 .swatch {{ width: 18px; height: 2px; }}
+    #btc-global-capital-curve-v4 .plot {{ width: 100%; }}
+    #btc-global-capital-curve-v4 svg {{ display: block; width: 100%; overflow: visible; }}
+    #btc-global-capital-curve-v4 .axis text,
+    #btc-global-capital-curve-v4 .axis-title {{ fill: var(--foreground); font-size: 12px; }}
+    #btc-global-capital-curve-v4 .axis path,
+    #btc-global-capital-curve-v4 .axis line {{ stroke: var(--border); }}
+    #btc-global-capital-curve-v4 .grid line {{ stroke: var(--border); stroke-opacity: .45; }}
+    #btc-global-capital-curve-v4 .grid path {{ display: none; }}
+    #btc-global-capital-curve-v4 [data-chart-frame] {{ fill: transparent; stroke: var(--border); }}
+    #btc-global-capital-curve-v4 .series-line {{ fill: none; stroke-width: 1.25; }}
+    #btc-global-capital-curve-v4 .price-line {{ fill: none; stroke-width: 1.1; }}
+    #btc-global-capital-curve-v4 .drawdown-line {{ fill: none; stroke-width: 1; }}
+    #btc-global-capital-curve-v4 [data-chart-hover-guide] {{ stroke: var(--foreground); stroke-opacity: .35; stroke-dasharray: 3 3; pointer-events: none; }}
+    #btc-global-capital-curve-v4 [data-chart-hover-marker] {{ stroke: var(--popover); stroke-width: 1.5; pointer-events: none; }}
+    #btc-global-capital-curve-v4 .tooltip {{ position: absolute; z-index: 10; display: none; min-width: 170px; padding: 8px 10px; border: 1px solid var(--border); background: var(--popover); color: var(--popover-foreground); font-size: 12px; pointer-events: none; }}
+    #btc-global-capital-curve-v4 .tooltip-row {{ display: flex; justify-content: space-between; gap: 18px; }}
+    #btc-global-capital-curve-v4 .tooltip-name {{ display: inline-flex; align-items: center; gap: 6px; }}
+    #btc-global-capital-curve-v4 .tooltip-dot {{ width: 8px; height: 8px; border-radius: 50%; }}
   </style>
-  <h2>BTCUSDT 全局资金曲线（A–D，2020–2026）</h2>
+  <h2>BTCUSDT 全局资金曲线（A–E + P，2020–2026）</h2>
   <div class="legend" aria-label="曲线图例"></div>
   <div class="plot" data-plot="equity"></div>
   <div class="plot" data-plot="drawdown"></div>
@@ -92,18 +93,19 @@ def render_fragment(rows: list[list[float | int]]) -> str:
   <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
   <script>
   (() => {{
-    const root = document.getElementById('btc-global-capital-curve-v3');
+    const root = document.getElementById('btc-global-capital-curve-v4');
     const raw = {raw};
     const equitySeries = [
-      {{ key: 'a', name: 'A', color: 'var(--viz-series-1)', axis: 'equity' }},
-      {{ key: 'b', name: 'B', color: 'var(--viz-series-2)', axis: 'equity' }},
-      {{ key: 'c', name: 'C', color: 'var(--viz-series-3)', axis: 'equity' }},
-      {{ key: 'd', name: 'D', color: 'var(--viz-series-4)', axis: 'equity' }}
+      {{ key: 'a', name: 'A 原 Aggressive', color: 'var(--viz-series-1)', axis: 'equity' }},
+      {{ key: 'b', name: 'B 资金费因子', color: 'var(--viz-series-2)', axis: 'equity' }},
+      {{ key: 'c', name: 'C 自适应 V1', color: 'var(--viz-series-3)', axis: 'equity' }},
+      {{ key: 'd', name: 'D 稳健 V3（仅多）', color: 'var(--viz-series-4)', axis: 'equity' }},
+      {{ key: 'e', name: 'E 谨慎对称空头 V4', color: 'var(--viz-series-5)', axis: 'equity' }}
     ];
-    const priceSeries = {{ key: 'p', name: 'P', color: 'var(--viz-series-5)', axis: 'price' }};
+    const priceSeries = {{ key: 'p', name: 'P BTCUSDT 价格', color: 'var(--viz-series-6)', axis: 'price' }};
     const series = [...equitySeries, priceSeries];
     const visible = new Set(series.map(d => d.key));
-    const data = raw.map(d => ({{ date: new Date(d[0]), a: d[1], b: d[2], c: d[3], d: d[4], p: d[5] }}));
+    const data = raw.map(d => ({{ date: new Date(d[0]), a: d[1], b: d[2], c: d[3], d: d[4], e: d[5], p: d[6] }}));
     const peaks = Object.fromEntries(equitySeries.map(s => [s.key, -Infinity]));
     data.forEach(row => {{
       row.dd = {{}};
@@ -153,7 +155,7 @@ def render_fragment(rows: list[list[float | int]]) -> str:
         : [...activeEquities, ...(visible.has(priceSeries.key) ? [priceSeries] : [])];
       const svg = d3.select(container).selectAll('svg').data([null]).join('svg')
         .attr('viewBox', `0 0 ${{width}} ${{height}}`).attr('height', height).attr('role', 'img')
-        .attr('aria-label', drawdown ? 'A 至 D 策略回撤曲线' : 'A 至 D 策略资金曲线与 P 价格曲线');
+        .attr('aria-label', drawdown ? 'A 至 E 策略回撤曲线' : 'A 至 E 策略资金曲线与 P 价格曲线');
       svg.selectAll('*').remove();
       svg.append('title').text(drawdown ? '策略回撤' : '策略权益与 BTCUSDT 价格');
       const g = svg.append('g').attr('transform', `translate(${{margin.left}},${{margin.top}})`);
@@ -269,7 +271,7 @@ def main() -> None:
 :root {{
   {root_tokens}
   --viz-series-1: #3b82c4; --viz-series-2: #e58a3b;
-  --viz-series-3: #3ca66b; --viz-series-4: #d45b57; --viz-series-5: #7b61b8;
+  --viz-series-3: #3ca66b; --viz-series-4: #d45b57; --viz-series-5: #0f766e; --viz-series-6: #7b61b8;
 }}
 {automatic_dark}
 body {{ margin: 20px; background: var(--background); }}

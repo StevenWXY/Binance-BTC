@@ -31,6 +31,10 @@ class StrategyParams:
     trend_scale: float = 1.0
     rebound_scale: float = 0.65
     allow_short: bool = False
+    # Short entries use the same directional trend logic as longs, but have an
+    # independent risk budget. A gate can require bearish price/momentum confirmation.
+    short_scale: float = 0.35
+    short_momentum_gate_enabled: bool = False
     # 72 x 4h = 12 days; direction changes still apply immediately.
     rebalance_bars: int = 72
     vol_risk_enabled: bool = False
@@ -63,6 +67,8 @@ class StrategyParams:
     def __post_init__(self) -> None:
         if not 0 <= self.max_leverage <= 10:
             raise ValueError("max_leverage must be between 0 and 10")
+        if not 0 <= self.short_scale <= 1:
+            raise ValueError("short_scale must be between 0 and 1")
         if self.rebalance_bars < 1:
             raise ValueError("rebalance_bars must be positive")
         if self.realized_vol_period < 2 or self.vol_baseline_period < 2:
@@ -257,12 +263,27 @@ def generate_signals(data: pd.DataFrame, params: StrategyParams = StrategyParams
                     * _factor_scale(row, direction, p)
                     * float(row.allocation_scale)
                 )
+                direction_scale = p.trend_scale
+                short_gate_pass = True
+                if direction < 0:
+                    direction_scale *= p.short_scale
+                    short_gate_pass = (
+                        p.allow_short
+                        and (
+                            not p.short_momentum_gate_enabled
+                            or (
+                                row.close < row.ema_slow
+                                and np.isfinite(row.trend_momentum)
+                                and row.trend_momentum < 0
+                            )
+                        )
+                    )
                 raw_size = min(
-                    sized(base_size.iloc[i], p.trend_scale) * control_scale,
+                    sized(base_size.iloc[i], direction_scale) * control_scale,
                     p.max_leverage,
                     10.0,
                 )
-                raw_signal = direction * raw_size
+                raw_signal = direction * raw_size if short_gate_pass else 0.0
                 if direction < 0 and not p.allow_short:
                     raw_signal = 0.0
                 control_changed = control_scale != previous_control_scale
@@ -270,7 +291,10 @@ def generate_signals(data: pd.DataFrame, params: StrategyParams = StrategyParams
                     held_signal = raw_signal
                 signals[i] = held_signal
                 previous_control_scale = control_scale
-                regime[i] = "trend_long" if direction > 0 else "trend_short"
+                if direction > 0:
+                    regime[i] = "trend_long"
+                else:
+                    regime[i] = "trend_short" if raw_signal < 0 else "trend_short_filtered"
             else:
                 regime[i] = "trend_flat"
             continue
