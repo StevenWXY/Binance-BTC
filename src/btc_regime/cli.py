@@ -23,6 +23,15 @@ from .report import write_report
 from .strategy import StrategyParams, generate_signals
 
 
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+DEFAULT_PARAMS_PATH = PROJECT_ROOT / "configs/default_params.json"
+
+
+def _load_strategy_params(path: str | Path | None = None) -> StrategyParams:
+    config_path = Path(path) if path else DEFAULT_PARAMS_PATH
+    return StrategyParams(**json.loads(config_path.read_text(encoding="utf-8")))
+
+
 def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="BTCUSDT USD-M regime-switching backtest")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -39,8 +48,11 @@ def _parse_args() -> argparse.Namespace:
     run.add_argument("--start", default="2020-01-01")
     run.add_argument("--end", default="2026-08-01")
     run.add_argument("--raw-dir", default="data/raw")
-    run.add_argument("--output", default="reports")
-    run.add_argument("--params", help="JSON file containing StrategyParams fields")
+    run.add_argument("--output", default="reports/aggressive_adaptive_v3")
+    run.add_argument(
+        "--params",
+        help="JSON file containing StrategyParams fields; defaults to priority strategy D/V3",
+    )
     run.add_argument("--fee-bps", type=float, default=4.0)
     run.add_argument("--slippage-bps", type=float, default=1.0)
     optimize = sub.add_parser("optimize", help="rank a small in-sample parameter grid")
@@ -82,16 +94,22 @@ def _parse_args() -> argparse.Namespace:
     allocation_optimize.add_argument("--limit", type=int)
     walk = sub.add_parser("walkforward", help="write train/validation/holdout metrics")
     walk.add_argument("--raw-dir", default="data/raw")
-    walk.add_argument("--output", default="reports/walkforward.json")
-    walk.add_argument("--params", help="JSON file containing StrategyParams fields")
+    walk.add_argument("--output", default="reports/aggressive_adaptive_v3_walkforward.json")
+    walk.add_argument(
+        "--params",
+        help="JSON file containing StrategyParams fields; defaults to priority strategy D/V3",
+    )
     walk.add_argument("--fee-bps", type=float, default=4.0)
     walk.add_argument("--slippage-bps", type=float, default=1.0)
     micro = sub.add_parser("micro-backtest", help="run 1m execution and liquidation simulation")
     micro.add_argument("--start", default="2020-01-01")
     micro.add_argument("--end", default="2026-08-01")
     micro.add_argument("--raw-dir", default="data/raw")
-    micro.add_argument("--output", default="reports/aggressive_micro")
-    micro.add_argument("--params", required=True, help="JSON file containing StrategyParams fields")
+    micro.add_argument("--output", default="reports/aggressive_adaptive_v3_micro")
+    micro.add_argument(
+        "--params",
+        help="JSON file containing StrategyParams fields; defaults to priority strategy D/V3",
+    )
     micro.add_argument("--fee-bps", type=float, default=4.0)
     micro.add_argument("--slippage-bps", type=float, default=1.0)
     micro.add_argument("--impact-bps", type=float, default=8.0)
@@ -111,7 +129,7 @@ def main() -> None:
         ), indent=2))
         return
     if args.command == "micro-backtest":
-        params = StrategyParams(**json.loads(Path(args.params).read_text(encoding="utf-8")))
+        params = _load_strategy_params(args.params)
         market = load_market_data(args.raw_dir, start=args.start, end=args.end)
         signaled = generate_signals(market, params)
         funding = load_funding(args.raw_dir, start=args.start, end=args.end)
@@ -133,7 +151,7 @@ def main() -> None:
         return
     config = BacktestConfig(fee_bps=args.fee_bps, slippage_bps=args.slippage_bps)
     if args.command == "optimize-vol-risk":
-        base = StrategyParams(**json.loads(Path(args.params).read_text(encoding="utf-8")))
+        base = _load_strategy_params(args.params)
         # The optimizer deliberately cannot access the 2025+ holdout segment.
         data = load_market_data(args.raw_dir, start="2020-01-01", end="2025-01-01")
         table = search_volatility_risk(data, base, config, args.limit)
@@ -149,7 +167,7 @@ def main() -> None:
         print(table.loc[:, columns].head(20).to_string(index=False))
         return
     if args.command == "optimize-factors":
-        base = StrategyParams(**json.loads(Path(args.params).read_text(encoding="utf-8")))
+        base = _load_strategy_params(args.params)
         data = load_market_data(args.raw_dir, start="2020-01-01", end="2025-01-01")
         table = search_factors(data, base, config, args.limit)
         Path(args.output).parent.mkdir(parents=True, exist_ok=True)
@@ -165,7 +183,7 @@ def main() -> None:
         print(table.loc[:, columns].head(20).to_string(index=False))
         return
     if args.command == "optimize-allocation":
-        base = StrategyParams(**json.loads(Path(args.params).read_text(encoding="utf-8")))
+        base = _load_strategy_params(args.params)
         data = load_market_data(args.raw_dir, start="2020-01-01", end="2025-01-01")
         table = search_allocation(data, base, config, args.limit)
         Path(args.output).parent.mkdir(parents=True, exist_ok=True)
@@ -189,9 +207,7 @@ def main() -> None:
         return
     if args.command == "walkforward":
         data = load_market_data(args.raw_dir, start="2020-01-01", end="2026-08-01")
-        params = StrategyParams()
-        if args.params:
-            params = StrategyParams(**json.loads(Path(args.params).read_text(encoding="utf-8")))
+        params = _load_strategy_params(args.params)
         signaled = generate_signals(data, params)
         periods = {
             "train_2020_2022": ("2020-01-01", "2023-01-01"),
@@ -212,9 +228,7 @@ def main() -> None:
         print(json.dumps(report, indent=2))
         return
     data = load_market_data(args.raw_dir, start=args.start, end=args.end)
-    params = StrategyParams()
-    if args.params:
-        params = StrategyParams(**json.loads(Path(args.params).read_text(encoding="utf-8")))
+    params = _load_strategy_params(args.params)
     result = run_backtest(generate_signals(data, params), config)
     write_report(result, params, args.output, "full")
     print(json.dumps(result.metrics, indent=2))

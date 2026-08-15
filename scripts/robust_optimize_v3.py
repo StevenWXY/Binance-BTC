@@ -237,7 +237,10 @@ def run_search(base_path: Path, output_dir: Path) -> StrategyParams:
     stage_two.to_csv(output_dir / "adaptive_v3_control_grid.csv", index=False)
 
     config_path = ROOT / "configs/aggressive_adaptive_v3_params.json"
-    config_path.write_text(json.dumps(selected_two.to_dict(), indent=2) + "\n", encoding="utf-8")
+    config_payload = json.dumps(selected_two.to_dict(), indent=2) + "\n"
+    config_path.write_text(config_payload, encoding="utf-8")
+    # D/V3 is the project priority strategy, so keep the CLI default in sync.
+    (ROOT / "configs/default_params.json").write_text(config_payload, encoding="utf-8")
     summary = {
         "method": "coarse_parameter_plateau_with_purged_annual_walkforward",
         "selection_window": "2020-01-01/2025-01-01",

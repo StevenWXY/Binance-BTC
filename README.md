@@ -2,11 +2,11 @@
 
 这是一个只交易 Binance USDⓈ-M `BTCUSDT` 永续合约的研究/回测项目。策略在 4 小时级别上使用 ADX + EMA 判断趋势状态：上升趋势做多，下降趋势在当前推荐配置中空仓；非趋势状态只做布林带下轨 + RSI 超跌反弹多单。仓位按 ATR 波动率目标缩放，代码硬限制不超过 10 倍杠杆。当前微调版每 60 根 bar（10 天）定期再平衡，但方向变化、风险倍率变化和退出信号会立即生效。
 
-提供多套参数：`configs/balanced_params.json` 目标波动率 35%、杠杆上限 3 倍；`configs/aggressive_params.json` 目标波动率 100%、趋势仓位乘数 1.25、杠杆上限 5 倍。当前推荐基线是 `configs/aggressive_adaptive_v3_params.json`，在波动率风险层和资金费拥挤因子之外，增加下行波动占比驱动的自适应资金分配，目标波动率 107.5%、杠杆上限 6.5 倍。新增 `configs/aggressive_adaptive_v4_short_params.json` 是固定规则的谨慎对称做空实验，不替代 V3 基线。Aggressive 配置均是收益优先实验，不代表适合实盘。
+提供多套参数：`configs/balanced_params.json` 目标波动率 35%、杠杆上限 3 倍；`configs/aggressive_params.json` 目标波动率 100%、趋势仓位乘数 1.25、杠杆上限 5 倍。**项目优先策略是 D，即 `configs/aggressive_adaptive_v3_params.json`**：它在波动率风险层和资金费拥挤因子之外，增加下行波动占比驱动的自适应资金分配，目标波动率 107.5%、杠杆上限 6.5 倍。`configs/default_params.json` 与 D 保持同步；命令行省略 `--params` 时默认运行 D。`configs/aggressive_adaptive_v4_short_params.json` 只是固定规则的谨慎做空实验 E，不作为优先策略。Aggressive 配置均是收益优先实验，不代表适合实盘。
 
 ## 当前策略的具体规则
 
-以下内容以稳健配置 `configs/aggressive_adaptive_v3_params.json` 为准。其他配置使用相同框架，但可能关闭部分风险层或采用更低的目标波动率和杠杆上限。
+以下内容以优先策略 D，即稳健配置 `configs/aggressive_adaptive_v3_params.json` 为准。其他配置使用相同框架，但可能关闭部分风险层或采用更低的目标波动率和杠杆上限。
 
 ### 1. 交易标的与信号时序
 
@@ -132,22 +132,24 @@ ATR 年化波动代理 = ATR(20) / 收盘价 × sqrt(365 × 6)
 ```bash
 python -m pip install -e .
 btc-regime download --start 2020-01 --end 2026-07
+btc-regime backtest --start 2020-01-01 --end 2026-08-01
+btc-regime walkforward
+btc-regime download-intrabar --start 2020-01 --end 2026-07 --workers 12
+btc-regime micro-backtest --start 2020-01-01 --end 2026-08-01
+
+# 以下命令用于复现历史研究与 E 做空实验
 btc-regime optimize --start 2020-01-01 --end 2023-01-01 --output reports/grid.csv
 btc-regime optimize-vol-risk --params configs/aggressive_params.json --output reports/volatility_risk_grid.csv
 btc-regime optimize-factors --params configs/aggressive_vol_balanced_params.json --output reports/factor_grid.csv
 btc-regime optimize-allocation --params configs/aggressive_vol_carry_params.json --output reports/allocation_grid.csv
-btc-regime walkforward --params configs/default_params.json --output reports/walkforward.json
-btc-regime backtest --start 2020-01-01 --end 2026-08-01 --params configs/default_params.json --output reports
 btc-regime walkforward --params configs/aggressive_params.json --output reports/aggressive_walkforward.json
 btc-regime backtest --start 2020-01-01 --end 2026-08-01 --params configs/aggressive_params.json --output reports/aggressive
-btc-regime download-intrabar --start 2020-01 --end 2026-07 --workers 12
 btc-regime micro-backtest --start 2020-01-01 --end 2026-08-01 --params configs/aggressive_params.json --output reports/aggressive_micro
 btc-regime micro-backtest --start 2020-01-01 --end 2026-08-01 --params configs/aggressive_vol_balanced_params.json --output reports/aggressive_vol_balanced_micro
 btc-regime micro-backtest --start 2020-01-01 --end 2026-08-01 --params configs/aggressive_vol_carry_params.json --output reports/aggressive_vol_carry_micro
 btc-regime micro-backtest --start 2020-01-01 --end 2026-08-01 --params configs/aggressive_adaptive_params.json --output reports/aggressive_adaptive_micro
 btc-regime micro-backtest --start 2020-01-01 --end 2026-08-01 --params configs/aggressive_adaptive_v2_params.json --output reports/aggressive_adaptive_v2_micro
 python scripts/robust_optimize_v3.py
-btc-regime micro-backtest --start 2020-01-01 --end 2026-08-01 --params configs/aggressive_adaptive_v3_params.json --output reports/aggressive_adaptive_v3_micro
 python scripts/analyze_v3_robustness.py
 python scripts/evaluate_cautious_shorts.py
 btc-regime backtest --start 2020-01-01 --end 2026-08-01 --params configs/aggressive_adaptive_v4_short_params.json --output reports/aggressive_adaptive_v4_short
@@ -158,7 +160,7 @@ python scripts/render_global_capital_curve.py
 python scripts/render_interactive_capital_curve.py
 ```
 
-`reports/full_metrics.json`、逐笔交易 CSV 会写入报告目录；安装 `matplotlib` 时还会生成权益曲线 PNG。优化结果只用于研究参数稳定性，不应把全样本最优值当作无偏的未来收益承诺。
+前三条默认回测命令都会使用优先策略 D，并分别写入 `reports/aggressive_adaptive_v3`、`reports/aggressive_adaptive_v3_walkforward.json` 和 `reports/aggressive_adaptive_v3_micro`。安装 `matplotlib` 时普通回测还会生成权益曲线 PNG。优化结果只用于研究参数稳定性，不应把全样本最优值当作无偏的未来收益承诺。
 
 ## 二阶段实测对比
 
