@@ -85,7 +85,7 @@ def render_fragment(rows: list[list[float | int]]) -> str:
     #btc-global-capital-curve-v4 .tooltip-name {{ display: inline-flex; align-items: center; gap: 6px; }}
     #btc-global-capital-curve-v4 .tooltip-dot {{ width: 8px; height: 8px; border-radius: 50%; }}
   </style>
-  <h2>BTCUSDT 全局资金曲线（A–E + P，2020–2026）</h2>
+  <h2>BTCUSDT 全局资金曲线（V1–V5 + P，2020–2026）</h2>
   <div class="legend" aria-label="曲线图例"></div>
   <div class="plot" data-plot="equity"></div>
   <div class="plot" data-plot="drawdown"></div>
@@ -96,11 +96,11 @@ def render_fragment(rows: list[list[float | int]]) -> str:
     const root = document.getElementById('btc-global-capital-curve-v4');
     const raw = {raw};
     const equitySeries = [
-      {{ key: 'a', name: 'A 原 Aggressive', color: 'var(--viz-series-1)', axis: 'equity' }},
-      {{ key: 'b', name: 'B 资金费因子', color: 'var(--viz-series-2)', axis: 'equity' }},
-      {{ key: 'c', name: 'C 自适应 V1', color: 'var(--viz-series-3)', axis: 'equity' }},
-      {{ key: 'd', name: 'D 稳健 V3（仅多）', color: 'var(--viz-series-4)', axis: 'equity' }},
-      {{ key: 'e', name: 'E 谨慎对称空头 V4', color: 'var(--viz-series-5)', axis: 'equity' }}
+      {{ key: 'a', name: 'V1 基础趋势跟随与 ATR 仓位', color: 'var(--viz-series-1)', axis: 'equity' }},
+      {{ key: 'b', name: 'V2 资金费率拥挤过滤趋势', color: 'var(--viz-series-2)', axis: 'equity' }},
+      {{ key: 'c', name: 'V3 波动率与下行风险自适应', color: 'var(--viz-series-3)', axis: 'equity' }},
+      {{ key: 'd', name: 'V4 稳健长多趋势-反弹混合', color: 'var(--viz-series-4)', axis: 'equity' }},
+      {{ key: 'e', name: 'V5 谨慎对称趋势与空头确认', color: 'var(--viz-series-5)', axis: 'equity' }}
     ];
     const priceSeries = {{ key: 'p', name: 'P BTCUSDT 价格', color: 'var(--viz-series-6)', axis: 'price' }};
     const series = [...equitySeries, priceSeries];
@@ -155,7 +155,7 @@ def render_fragment(rows: list[list[float | int]]) -> str:
         : [...activeEquities, ...(visible.has(priceSeries.key) ? [priceSeries] : [])];
       const svg = d3.select(container).selectAll('svg').data([null]).join('svg')
         .attr('viewBox', `0 0 ${{width}} ${{height}}`).attr('height', height).attr('role', 'img')
-        .attr('aria-label', drawdown ? 'A 至 E 策略回撤曲线' : 'A 至 E 策略资金曲线与 P 价格曲线');
+        .attr('aria-label', drawdown ? 'V1 至 V5 策略回撤曲线' : 'V1 至 V5 策略资金曲线与 P 价格曲线');
       svg.selectAll('*').remove();
       svg.append('title').text(drawdown ? '策略回撤' : '策略权益与 BTCUSDT 价格');
       const g = svg.append('g').attr('transform', `translate(${{margin.left}},${{margin.top}})`);

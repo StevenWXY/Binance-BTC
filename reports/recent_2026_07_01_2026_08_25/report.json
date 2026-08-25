@@ -1,0 +1,162 @@
+{
+  "generated_at_binance_server_time": "2026-08-25T10:03:30.849000Z",
+  "window": {
+    "start": "2026-07-01T00:00:00Z",
+    "end": "2026-08-25T08:00:00Z",
+    "timezone": "UTC",
+    "completed_4h_intervals": 332
+  },
+  "data": {
+    "source": "Binance USD-M Futures public REST API",
+    "symbol": "BTCUSDT",
+    "contract": "USDT-margined perpetual",
+    "kline_endpoint": "/fapi/v1/klines",
+    "funding_endpoint": "/fapi/v1/fundingRate",
+    "warmup_start": "2026-01-01T00:00:00Z",
+    "completed_kline_rows": 1418,
+    "funding_events": 710,
+    "archive_cross_check": {
+      "overlap_rows": 1272,
+      "first_open_time": "2026-01-01T00:00:00Z",
+      "last_open_time": "2026-07-31T20:00:00Z",
+      "max_ohlc_absolute_difference": 0.0,
+      "status": "match"
+    }
+  },
+  "method": {
+    "bar_interval": "4h",
+    "signal_timing": "completed candle at t; position applies over (t, t+4h]",
+    "funding_timing": "real event rate in (t, t+4h], settled at interval end",
+    "execution_model": "close-to-close; no intrabar liquidation simulation",
+    "parameters": "frozen existing V1-V5 configurations; no tuning on this window"
+  },
+  "backtest": {
+    "initial_cash": 10000.0,
+    "fee_bps": 4.0,
+    "slippage_bps": 1.0,
+    "funding_enabled": true,
+    "periods_per_year": 2190
+  },
+  "strategies": {
+    "V1": {
+      "name": "基础趋势跟随与 ATR 仓位",
+      "params_file": "configs/aggressive_params.json",
+      "metrics": {
+        "total_return": 0.19546757102296253,
+        "cagr": 2.249522453105732,
+        "annualized_volatility": 0.5167141501160056,
+        "sharpe": 2.532552900479806,
+        "sortino": 5.041917005240402,
+        "max_drawdown": -0.197296489534717,
+        "trade_count": 7.0,
+        "win_rate": 0.2857142857142857,
+        "final_equity": 11954.675710229625,
+        "max_leverage_observed": 3.5842477660527305,
+        "average_leverage": 0.6800526731972065,
+        "turnover_multiple": 34.88073271606491,
+        "rebalance_events": 13.0,
+        "exposure_time": 0.2672672672672673,
+        "long_exposure_time": 0.2672672672672673,
+        "short_exposure_time": 0.0
+      }
+    },
+    "V2": {
+      "name": "资金费率拥挤过滤趋势",
+      "params_file": "configs/aggressive_vol_carry_params.json",
+      "metrics": {
+        "total_return": 0.20496212169642924,
+        "cagr": 2.4237147628303544,
+        "annualized_volatility": 0.5425487295930784,
+        "sharpe": 2.532623738360761,
+        "sortino": 5.042083053326426,
+        "max_drawdown": -0.20626472864676026,
+        "trade_count": 7.0,
+        "win_rate": 0.2857142857142857,
+        "final_equity": 12049.621216964293,
+        "max_leverage_observed": 3.763460154355367,
+        "average_leverage": 0.7140553068570669,
+        "turnover_multiple": 36.62476935186816,
+        "rebalance_events": 13.0,
+        "exposure_time": 0.2672672672672673,
+        "long_exposure_time": 0.2672672672672673,
+        "short_exposure_time": 0.0
+      }
+    },
+    "V3": {
+      "name": "波动率与下行风险自适应",
+      "params_file": "configs/aggressive_adaptive_params.json",
+      "metrics": {
+        "total_return": 0.3645028576482845,
+        "cagr": 6.779529497207566,
+        "annualized_volatility": 0.6221431204501984,
+        "sharpe": 3.597022643756165,
+        "sortino": 8.02894769267957,
+        "max_drawdown": -0.14465163561467453,
+        "trade_count": 7.0,
+        "win_rate": 0.2857142857142857,
+        "final_equity": 13645.028576482846,
+        "max_leverage_observed": 3.8509402042287872,
+        "average_leverage": 0.7273070529819997,
+        "turnover_multiple": 33.56195247580875,
+        "rebalance_events": 22.0,
+        "exposure_time": 0.2672672672672673,
+        "long_exposure_time": 0.2672672672672673,
+        "short_exposure_time": 0.0
+      }
+    },
+    "V4": {
+      "name": "稳健长多趋势-反弹混合",
+      "params_file": "configs/aggressive_adaptive_v3_params.json",
+      "metrics": {
+        "total_return": 0.3911535928049956,
+        "cagr": 7.839039913782077,
+        "annualized_volatility": 0.626983089688676,
+        "sharpe": 3.777786348676855,
+        "sortino": 8.389267450484171,
+        "max_drawdown": -0.1279454318876646,
+        "trade_count": 8.0,
+        "win_rate": 0.25,
+        "final_equity": 13911.535928049956,
+        "max_leverage_observed": 3.8509402042287872,
+        "average_leverage": 0.7366312139083407,
+        "turnover_multiple": 38.16499563565172,
+        "rebalance_events": 25.0,
+        "exposure_time": 0.27627627627627627,
+        "long_exposure_time": 0.27627627627627627,
+        "short_exposure_time": 0.0
+      }
+    },
+    "V5": {
+      "name": "谨慎对称趋势与空头确认",
+      "params_file": "configs/aggressive_adaptive_v4_short_params.json",
+      "metrics": {
+        "total_return": 0.36340222247063214,
+        "cagr": 6.738201463720501,
+        "annualized_volatility": 0.628022323054087,
+        "sharpe": 3.5607054761458774,
+        "sortino": 7.930224648964935,
+        "max_drawdown": -0.14534157663877234,
+        "trade_count": 19.0,
+        "win_rate": 0.2631578947368421,
+        "final_equity": 13634.022224706321,
+        "max_leverage_observed": 3.8509402042287872,
+        "average_leverage": 0.7848163673793539,
+        "turnover_multiple": 43.012741552396314,
+        "rebalance_events": 51.0,
+        "exposure_time": 0.5135135135135135,
+        "long_exposure_time": 0.27627627627627627,
+        "short_exposure_time": 0.23723723723723725
+      }
+    }
+  },
+  "benchmark": {
+    "code": "P",
+    "name": "BTCUSDT price",
+    "start_price": 58605.4,
+    "end_price": 79661.5,
+    "total_return": 0.3592860043613728,
+    "annualized_volatility": 0.3555247225212404,
+    "sharpe": 5.873138101105736,
+    "max_drawdown": -0.062212953029700646
+  }
+}

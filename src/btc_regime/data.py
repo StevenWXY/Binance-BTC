@@ -2,21 +2,146 @@
 
 from __future__ import annotations
 
+import json
 import zipfile
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Iterator
 from urllib.error import HTTPError, URLError
+from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
 import pandas as pd
 
 BASE_URL = "https://data.binance.vision/data/futures/um/monthly"
+FUTURES_API_URL = "https://fapi.binance.com"
 KLINE_COLUMNS = [
     "open_time", "open", "high", "low", "close", "volume", "close_time",
     "quote_volume", "count", "taker_buy_volume", "taker_buy_quote_volume", "ignore",
 ]
+
+
+def _request_json(path: str, params: dict[str, object] | None = None) -> object:
+    query = f"?{urlencode(params)}" if params else ""
+    request = Request(
+        f"{FUTURES_API_URL}{path}{query}",
+        headers={"User-Agent": "btc-regime-research/0.1"},
+    )
+    for attempt in range(3):
+        try:
+            with urlopen(request, timeout=60) as response:
+                return json.loads(response.read())
+        except (HTTPError, URLError, TimeoutError):
+            if attempt == 2:
+                raise
+            time.sleep(attempt + 1)
+    raise RuntimeError("unreachable")
+
+
+def fetch_binance_server_time() -> pd.Timestamp:
+    """Return the public USD-M REST server time in UTC."""
+    payload = _request_json("/fapi/v1/time")
+    if not isinstance(payload, dict) or "serverTime" not in payload:
+        raise ValueError("unexpected Binance server-time response")
+    return pd.to_datetime(payload["serverTime"], unit="ms", utc=True)
+
+
+def fetch_recent_klines(
+    start: str | pd.Timestamp,
+    end: str | pd.Timestamp,
+    *,
+    symbol: str = "BTCUSDT",
+    interval: str = "4h",
+) -> pd.DataFrame:
+    """Fetch completed USD-M klines from the official public REST endpoint."""
+    start_ms = int(pd.Timestamp(start).timestamp() * 1000)
+    end_ms = int(pd.Timestamp(end).timestamp() * 1000)
+    cursor = start_ms
+    rows: list[list[object]] = []
+    while cursor <= end_ms:
+        payload = _request_json(
+            "/fapi/v1/klines",
+            {
+                "symbol": symbol,
+                "interval": interval,
+                "startTime": cursor,
+                "endTime": end_ms,
+                "limit": 1500,
+            },
+        )
+        if not isinstance(payload, list) or not payload:
+            break
+        batch = [list(row) for row in payload]
+        rows.extend(batch)
+        next_cursor = int(batch[-1][0]) + 1
+        if next_cursor <= cursor:
+            raise ValueError("Binance kline pagination did not advance")
+        cursor = next_cursor
+        if len(batch) < 1500:
+            break
+    if not rows:
+        raise ValueError("Binance returned no klines for the requested interval")
+
+    frame = pd.DataFrame(rows, columns=KLINE_COLUMNS)
+    frame["timestamp"] = pd.to_datetime(frame["open_time"], unit="ms", utc=True)
+    frame["close_timestamp"] = pd.to_datetime(frame["close_time"], unit="ms", utc=True)
+    for column in ["open", "high", "low", "close", "volume", "quote_volume"]:
+        frame[column] = pd.to_numeric(frame[column], errors="coerce")
+    end_timestamp = pd.Timestamp(end)
+    if end_timestamp.tzinfo is None:
+        end_timestamp = end_timestamp.tz_localize("UTC")
+    else:
+        end_timestamp = end_timestamp.tz_convert("UTC")
+    return (
+        frame.loc[frame["close_timestamp"] <= end_timestamp]
+        .dropna(subset=["timestamp", "open", "high", "low", "close"])
+        .sort_values("timestamp")
+        .drop_duplicates("timestamp", keep="last")
+        .set_index("timestamp")
+        [["open", "high", "low", "close", "volume", "quote_volume"]]
+    )
+
+
+def fetch_recent_funding(
+    start: str | pd.Timestamp,
+    end: str | pd.Timestamp,
+    *,
+    symbol: str = "BTCUSDT",
+) -> pd.DataFrame:
+    """Fetch USD-M funding events from the official public REST endpoint."""
+    start_ms = int(pd.Timestamp(start).timestamp() * 1000)
+    end_ms = int(pd.Timestamp(end).timestamp() * 1000)
+    cursor = start_ms
+    records: list[dict[str, object]] = []
+    while cursor <= end_ms:
+        payload = _request_json(
+            "/fapi/v1/fundingRate",
+            {"symbol": symbol, "startTime": cursor, "endTime": end_ms, "limit": 1000},
+        )
+        if not isinstance(payload, list) or not payload:
+            break
+        batch = [dict(record) for record in payload]
+        records.extend(batch)
+        next_cursor = int(batch[-1]["fundingTime"]) + 1
+        if next_cursor <= cursor:
+            raise ValueError("Binance funding pagination did not advance")
+        cursor = next_cursor
+        if len(batch) < 1000:
+            break
+    if not records:
+        raise ValueError("Binance returned no funding events for the requested interval")
+
+    frame = pd.DataFrame.from_records(records)
+    frame["timestamp"] = pd.to_datetime(frame["fundingTime"], unit="ms", utc=True)
+    frame["funding_rate"] = pd.to_numeric(frame["fundingRate"], errors="coerce")
+    return (
+        frame.dropna(subset=["timestamp", "funding_rate"])
+        .sort_values("timestamp")
+        .drop_duplicates("timestamp", keep="last")
+        .set_index("timestamp")
+        [["funding_rate"]]
+    )
 
 
 def _months(start: str, end: str) -> list[str]:

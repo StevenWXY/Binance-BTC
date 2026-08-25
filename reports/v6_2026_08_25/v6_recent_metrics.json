@@ -1,0 +1,25 @@
+{
+  "code": "V6",
+  "strategy": "置信度驱动多周期动态风险",
+  "total_return": 0.25915938060867894,
+  "cagr": 3.577444519729177,
+  "annualized_volatility": 0.31162143075581444,
+  "sharpe": 5.031411131260867,
+  "sortino": 14.415158821945456,
+  "max_drawdown": -0.049359694810465427,
+  "trade_count": 9.0,
+  "win_rate": 0.4444444444444444,
+  "final_equity": 12591.59380608679,
+  "max_leverage_observed": 2.303306078437279,
+  "average_leverage": 0.2571875725113252,
+  "turnover_multiple": 24.99743239244686,
+  "rebalance_events": 29.0,
+  "benchmark": {
+    "total_return": 0.3592860043613728,
+    "annualized_volatility": 0.3555247225212404,
+    "sharpe": 5.873138101105736,
+    "max_drawdown": -0.062212953029700646,
+    "start_price": 58605.4,
+    "end_price": 79661.5
+  }
+}

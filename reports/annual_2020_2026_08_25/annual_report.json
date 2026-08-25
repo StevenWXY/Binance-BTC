@@ -1,0 +1,771 @@
+{
+  "generated_at_binance_server_time": "2026-08-25T10:05:53.167000Z",
+  "data": {
+    "source": "Binance USD-M Futures official archives plus public REST API",
+    "symbol": "BTCUSDT",
+    "contract": "USDT-margined perpetual",
+    "warmup_start": "2020-01-01T00:00:00Z",
+    "latest_completed_close": "2026-08-25T08:00:00Z",
+    "kline_rows": 14570,
+    "funding_events": 7286
+  },
+  "method": {
+    "bar_interval": "4h",
+    "annual_window": "calendar year; 2026 is year-to-date through latest completed bar",
+    "signal_timing": "completed candle at t; position applies over (t, t+4h]",
+    "execution_model": "close-to-close; fees 4 bps + slippage 1 bps; no intrabar liquidation",
+    "annualization": "each year is evaluated independently from 10,000 USDT, while indicators use continuous full-history warm-up",
+    "parameters": "frozen existing V1-V5 configurations; no tuning on annual windows"
+  },
+  "backtest": {
+    "initial_cash": 10000.0,
+    "fee_bps": 4.0,
+    "slippage_bps": 1.0,
+    "funding_enabled": true,
+    "periods_per_year": 2190
+  },
+  "periods": {
+    "2020": {
+      "start": "2020-01-01T00:00:00Z",
+      "end": "2021-01-01T00:00:00Z",
+      "strategies": {
+        "V1": {
+          "name": "基础趋势跟随与 ATR 仓位",
+          "metrics": {
+            "total_return": 2.966364323458457,
+            "cagr": 2.9576596790024317,
+            "annualized_volatility": 0.6540468514620222,
+            "sharpe": 2.431194465857083,
+            "sortino": 3.8441803527856093,
+            "max_drawdown": -0.2580247450362624,
+            "trade_count": 41.0,
+            "win_rate": 0.43902439024390244,
+            "final_equity": 39663.64323458457,
+            "max_leverage_observed": 4.104406693057735,
+            "average_leverage": 0.5540598614135533,
+            "turnover_multiple": 126.2418949181702,
+            "rebalance_events": 88.0
+          }
+        },
+        "V2": {
+          "name": "资金费率拥挤过滤趋势",
+          "metrics": {
+            "total_return": 3.1622914927284596,
+            "cagr": 3.1528375735573064,
+            "annualized_volatility": 0.4970977013593218,
+            "sharpe": 3.1081296942102687,
+            "sortino": 5.55280720190385,
+            "max_drawdown": -0.16512647282420567,
+            "trade_count": 41.0,
+            "win_rate": 0.4878048780487805,
+            "final_equity": 41622.9149272846,
+            "max_leverage_observed": 4.309627027710622,
+            "average_leverage": 0.4653705843216074,
+            "turnover_multiple": 176.6987807125051,
+            "rebalance_events": 175.0
+          }
+        },
+        "V3": {
+          "name": "波动率与下行风险自适应",
+          "metrics": {
+            "total_return": 3.751991723741141,
+            "cagr": 3.7401968240191055,
+            "annualized_volatility": 0.5395581799916648,
+            "sharpe": 3.1455645477038177,
+            "sortino": 6.156539413739185,
+            "max_drawdown": -0.1615133661943976,
+            "trade_count": 41.0,
+            "win_rate": 0.4878048780487805,
+            "final_equity": 47519.91723741141,
+            "max_leverage_observed": 5.496850745953556,
+            "average_leverage": 0.44459088944913744,
+            "turnover_multiple": 192.41367901875017,
+            "rebalance_events": 230.0
+          }
+        },
+        "V4": {
+          "name": "稳健长多趋势-反弹混合",
+          "metrics": {
+            "total_return": 3.824592401222886,
+            "cagr": 3.8125009465485196,
+            "annualized_volatility": 0.5271369907270841,
+            "sharpe": 3.235582156288423,
+            "sortino": 6.5369004608064865,
+            "max_drawdown": -0.17868244126867583,
+            "trade_count": 41.0,
+            "win_rate": 0.4634146341463415,
+            "final_equity": 48245.92401222886,
+            "max_leverage_observed": 6.059871996142064,
+            "average_leverage": 0.42211202098051614,
+            "turnover_multiple": 209.89072106355246,
+            "rebalance_events": 232.0
+          }
+        },
+        "V5": {
+          "name": "谨慎对称趋势与空头确认",
+          "metrics": {
+            "total_return": 3.724715636302454,
+            "cagr": 3.7130316985650333,
+            "annualized_volatility": 0.5273950741909679,
+            "sharpe": 3.1946520173864097,
+            "sortino": 6.465790089683228,
+            "max_drawdown": -0.1835173161961594,
+            "trade_count": 93.0,
+            "win_rate": 0.3225806451612903,
+            "final_equity": 47247.15636302454,
+            "max_leverage_observed": 6.059871996142064,
+            "average_leverage": 0.4364839908879426,
+            "turnover_multiple": 221.6960005926822,
+            "rebalance_events": 355.0
+          }
+        }
+      },
+      "benchmark": {
+        "code": "P",
+        "name": "BTCUSDT 价格",
+        "start_price": 7221.65,
+        "end_price": 28951.68,
+        "total_return": 3.0090117909342053,
+        "annualized_volatility": 0.6730128265056327,
+        "sharpe": 2.403850236394501,
+        "max_drawdown": -0.5619870406211882
+      }
+    },
+    "2021": {
+      "start": "2021-01-01T00:00:00Z",
+      "end": "2022-01-01T00:00:00Z",
+      "strategies": {
+        "V1": {
+          "name": "基础趋势跟随与 ATR 仓位",
+          "metrics": {
+            "total_return": 0.5434818114271416,
+            "cagr": 0.5439407385794488,
+            "annualized_volatility": 0.4350098844313121,
+            "sharpe": 1.2121896023718808,
+            "sortino": 2.0564042038884267,
+            "max_drawdown": -0.23348624476378088,
+            "trade_count": 29.0,
+            "win_rate": 0.4827586206896552,
+            "final_equity": 15434.818114271415,
+            "max_leverage_observed": 1.7317666626267783,
+            "average_leverage": 0.2474607755438042,
+            "turnover_multiple": 65.84380147465629,
+            "rebalance_events": 65.0
+          }
+        },
+        "V2": {
+          "name": "资金费率拥挤过滤趋势",
+          "metrics": {
+            "total_return": 0.6003200694662214,
+            "cagr": 0.6008355472233029,
+            "annualized_volatility": 0.3664280252067037,
+            "sharpe": 1.4629290626194122,
+            "sortino": 2.671060678004093,
+            "max_drawdown": -0.17961378603869183,
+            "trade_count": 29.0,
+            "win_rate": 0.5172413793103449,
+            "final_equity": 16003.200694662215,
+            "max_leverage_observed": 1.8267267400667002,
+            "average_leverage": 0.20276013167315443,
+            "turnover_multiple": 78.89466989568425,
+            "rebalance_events": 102.0
+          }
+        },
+        "V3": {
+          "name": "波动率与下行风险自适应",
+          "metrics": {
+            "total_return": 0.6270761794503255,
+            "cagr": 0.6276187601077394,
+            "annualized_volatility": 0.39507070960457596,
+            "sharpe": 1.423616528135645,
+            "sortino": 2.6942385692047397,
+            "max_drawdown": -0.21219748618148915,
+            "trade_count": 29.0,
+            "win_rate": 0.4827586206896552,
+            "final_equity": 16270.761794503254,
+            "max_leverage_observed": 2.372930492772426,
+            "average_leverage": 0.19142357864010676,
+            "turnover_multiple": 86.62365659762901,
+            "rebalance_events": 139.0
+          }
+        },
+        "V4": {
+          "name": "稳健长多趋势-反弹混合",
+          "metrics": {
+            "total_return": 0.6236772490440905,
+            "cagr": 0.624216369886021,
+            "annualized_volatility": 0.39111222849185606,
+            "sharpe": 1.4286493723107787,
+            "sortino": 2.741193848064851,
+            "max_drawdown": -0.21078333635252755,
+            "trade_count": 34.0,
+            "win_rate": 0.38235294117647056,
+            "final_equity": 16236.772490440906,
+            "max_leverage_observed": 2.372930492772426,
+            "average_leverage": 0.1983257975704483,
+            "turnover_multiple": 103.50544996968466,
+            "rebalance_events": 158.0
+          }
+        },
+        "V5": {
+          "name": "谨慎对称趋势与空头确认",
+          "metrics": {
+            "total_return": 0.5958997646155779,
+            "cagr": 0.5964107941600858,
+            "annualized_volatility": 0.3919095371132668,
+            "sharpe": 1.3824984838956078,
+            "sortino": 2.6589336619948716,
+            "max_drawdown": -0.21988679601792493,
+            "trade_count": 90.0,
+            "win_rate": 0.3333333333333333,
+            "final_equity": 15958.99764615578,
+            "max_leverage_observed": 2.372930492772426,
+            "average_leverage": 0.20953373944252898,
+            "turnover_multiple": 112.24474268820347,
+            "rebalance_events": 303.0
+          }
+        }
+      },
+      "benchmark": {
+        "code": "P",
+        "name": "BTCUSDT 价格",
+        "start_price": 28951.68,
+        "end_price": 46210.56,
+        "total_return": 0.5961270641289209,
+        "annualized_volatility": 0.8725849838303347,
+        "sharpe": 0.9720907142749592,
+        "max_drawdown": -0.542222950548744
+      }
+    },
+    "2022": {
+      "start": "2022-01-01T00:00:00Z",
+      "end": "2023-01-01T00:00:00Z",
+      "strategies": {
+        "V1": {
+          "name": "基础趋势跟随与 ATR 仓位",
+          "metrics": {
+            "total_return": -0.1389660272484634,
+            "cagr": -0.1390542617942584,
+            "annualized_volatility": 0.31441033720088235,
+            "sharpe": -0.3167741016026996,
+            "sortino": -0.433572225188641,
+            "max_drawdown": -0.28163927405851297,
+            "trade_count": 20.0,
+            "win_rate": 0.4,
+            "final_equity": 8610.339727515366,
+            "max_leverage_observed": 3.119413446775403,
+            "average_leverage": 0.2457608497467985,
+            "turnover_multiple": 56.23310651681146,
+            "rebalance_events": 45.0
+          }
+        },
+        "V2": {
+          "name": "资金费率拥挤过滤趋势",
+          "metrics": {
+            "total_return": -0.1658722009927991,
+            "cagr": -0.16597581416974116,
+            "annualized_volatility": 0.3265981627712783,
+            "sharpe": -0.3898598718618871,
+            "sortino": -0.5312630990506606,
+            "max_drawdown": -0.3081940499225311,
+            "trade_count": 20.0,
+            "win_rate": 0.4,
+            "final_equity": 8341.277990072009,
+            "max_leverage_observed": 3.2753841191141735,
+            "average_leverage": 0.2523215398239108,
+            "turnover_multiple": 58.852060950075156,
+            "rebalance_events": 48.0
+          }
+        },
+        "V3": {
+          "name": "波动率与下行风险自适应",
+          "metrics": {
+            "total_return": -0.09768771289708855,
+            "cagr": -0.09775123999829283,
+            "annualized_volatility": 0.31229207347809435,
+            "sharpe": -0.17200012464116202,
+            "sortino": -0.24429666283238607,
+            "max_drawdown": -0.28241212634082047,
+            "trade_count": 20.0,
+            "win_rate": 0.35,
+            "final_equity": 9023.122871029114,
+            "max_leverage_observed": 4.4432145282507145,
+            "average_leverage": 0.22792978379057802,
+            "turnover_multiple": 73.47317938850045,
+            "rebalance_events": 84.0
+          }
+        },
+        "V4": {
+          "name": "稳健长多趋势-反弹混合",
+          "metrics": {
+            "total_return": -0.05261352376976869,
+            "cagr": -0.052648594695195894,
+            "annualized_volatility": 0.3066350204574859,
+            "sharpe": -0.021982900432158347,
+            "sortino": -0.03137285813838784,
+            "max_drawdown": -0.25571225149501886,
+            "trade_count": 20.0,
+            "win_rate": 0.35,
+            "final_equity": 9473.864762302313,
+            "max_leverage_observed": 4.331527503981212,
+            "average_leverage": 0.22364479281181235,
+            "turnover_multiple": 73.24723871256123,
+            "rebalance_events": 88.0
+          }
+        },
+        "V5": {
+          "name": "谨慎对称趋势与空头确认",
+          "metrics": {
+            "total_return": -0.021418953159128784,
+            "cagr": -0.021433465319932177,
+            "annualized_volatility": 0.30833727183658144,
+            "sharpe": 0.08489397284301081,
+            "sortino": 0.12189485960775427,
+            "max_drawdown": -0.23825472129577774,
+            "trade_count": 80.0,
+            "win_rate": 0.4125,
+            "final_equity": 9785.810468408712,
+            "max_leverage_observed": 4.331527503981212,
+            "average_leverage": 0.24909733678793375,
+            "turnover_multiple": 89.3532597407937,
+            "rebalance_events": 246.0
+          }
+        }
+      },
+      "benchmark": {
+        "code": "P",
+        "name": "BTCUSDT 价格",
+        "start_price": 46210.56,
+        "end_price": 16537.6,
+        "total_return": -0.6421250900227135,
+        "annualized_volatility": 0.6132771828175457,
+        "sharpe": -1.368226091853123,
+        "max_drawdown": -0.6721240323018175
+      }
+    },
+    "2023": {
+      "start": "2023-01-01T00:00:00Z",
+      "end": "2024-01-01T00:00:00Z",
+      "strategies": {
+        "V1": {
+          "name": "基础趋势跟随与 ATR 仓位",
+          "metrics": {
+            "total_return": 4.040411012422013,
+            "cagr": 4.0459982180662175,
+            "annualized_volatility": 0.7179728157090288,
+            "sharpe": 2.5903536262830373,
+            "sortino": 5.5034315541410415,
+            "max_drawdown": -0.32086003255382245,
+            "trade_count": 32.0,
+            "win_rate": 0.40625,
+            "final_equity": 50404.11012422013,
+            "max_leverage_observed": 4.994827378062632,
+            "average_leverage": 0.7245248048113409,
+            "turnover_multiple": 126.50733543631834,
+            "rebalance_events": 74.0
+          }
+        },
+        "V2": {
+          "name": "资金费率拥挤过滤趋势",
+          "metrics": {
+            "total_return": 3.968135526823816,
+            "cagr": 3.9735934150205825,
+            "annualized_volatility": 0.7507483436556066,
+            "sharpe": 2.486982746223388,
+            "sortino": 5.266838743963447,
+            "max_drawdown": -0.32471052821329727,
+            "trade_count": 32.0,
+            "win_rate": 0.40625,
+            "final_equity": 49681.355268238156,
+            "max_leverage_observed": 5.244568746965763,
+            "average_leverage": 0.7501046846256635,
+            "turnover_multiple": 122.14702316992516,
+            "rebalance_events": 75.0
+          }
+        },
+        "V3": {
+          "name": "波动率与下行风险自适应",
+          "metrics": {
+            "total_return": 3.9708307292534277,
+            "cagr": 3.976293426900959,
+            "annualized_volatility": 0.7298685382816971,
+            "sharpe": 2.5440185343661876,
+            "sortino": 5.13731417549024,
+            "max_drawdown": -0.31848315095379875,
+            "trade_count": 32.0,
+            "win_rate": 0.375,
+            "final_equity": 49708.30729253428,
+            "max_leverage_observed": 6.5,
+            "average_leverage": 0.6800194240749361,
+            "turnover_multiple": 158.31541719835153,
+            "rebalance_events": 135.0
+          }
+        },
+        "V4": {
+          "name": "稳健长多趋势-反弹混合",
+          "metrics": {
+            "total_return": 3.5183927737252674,
+            "cagr": 3.5230626117857273,
+            "annualized_volatility": 0.7159719373919557,
+            "sharpe": 2.4459859960281274,
+            "sortino": 4.985699099610293,
+            "max_drawdown": -0.30670722117450655,
+            "trade_count": 32.0,
+            "win_rate": 0.34375,
+            "final_equity": 45183.92773725268,
+            "max_leverage_observed": 6.5,
+            "average_leverage": 0.6521037943000996,
+            "turnover_multiple": 164.1094932370773,
+            "rebalance_events": 136.0
+          }
+        },
+        "V5": {
+          "name": "谨慎对称趋势与空头确认",
+          "metrics": {
+            "total_return": 3.4430797608710817,
+            "cagr": 3.4476205571011613,
+            "annualized_volatility": 0.716438988829925,
+            "sharpe": 2.421379462302688,
+            "sortino": 4.940229641537014,
+            "max_drawdown": -0.30418556888123915,
+            "trade_count": 79.0,
+            "win_rate": 0.34177215189873417,
+            "final_equity": 44430.79760871082,
+            "max_leverage_observed": 6.5,
+            "average_leverage": 0.6764600514775811,
+            "turnover_multiple": 182.9225557693572,
+            "rebalance_events": 248.0
+          }
+        }
+      },
+      "benchmark": {
+        "code": "P",
+        "name": "BTCUSDT 价格",
+        "start_price": 16537.6,
+        "end_price": 42314.0,
+        "total_return": 1.5586542182662542,
+        "annualized_volatility": 0.4228509727653106,
+        "sharpe": 2.432911531222811,
+        "max_drawdown": -0.21284007301655627
+      }
+    },
+    "2024": {
+      "start": "2024-01-01T00:00:00Z",
+      "end": "2025-01-01T00:00:00Z",
+      "strategies": {
+        "V1": {
+          "name": "基础趋势跟随与 ATR 仓位",
+          "metrics": {
+            "total_return": 0.4620734796537578,
+            "cagr": 0.46093585520052827,
+            "annualized_volatility": 0.5028317516155972,
+            "sharpe": 1.0032855983276583,
+            "sortino": 1.5798146157556654,
+            "max_drawdown": -0.35168608862649764,
+            "trade_count": 41.0,
+            "win_rate": 0.36585365853658536,
+            "final_equity": 14620.734796537577,
+            "max_leverage_observed": 3.2066364752269862,
+            "average_leverage": 0.5607992433234039,
+            "turnover_multiple": 152.1016134004323,
+            "rebalance_events": 94.0
+          }
+        },
+        "V2": {
+          "name": "资金费率拥挤过滤趋势",
+          "metrics": {
+            "total_return": 0.5762704214882883,
+            "cagr": 0.5748012293882119,
+            "annualized_volatility": 0.4803054319421462,
+            "sharpe": 1.1816418692838946,
+            "sortino": 1.9618079646600244,
+            "max_drawdown": -0.26729458085534186,
+            "trade_count": 41.0,
+            "win_rate": 0.36585365853658536,
+            "final_equity": 15762.704214882882,
+            "max_leverage_observed": 3.3669682989883354,
+            "average_leverage": 0.5513311662504039,
+            "turnover_multiple": 180.9040363475104,
+            "rebalance_events": 134.0
+          }
+        },
+        "V3": {
+          "name": "波动率与下行风险自适应",
+          "metrics": {
+            "total_return": 0.6607288614856526,
+            "cagr": 0.6590034968050544,
+            "annualized_volatility": 0.45085485020942445,
+            "sharpe": 1.344917627811777,
+            "sortino": 2.2624312917076224,
+            "max_drawdown": -0.2865946736389403,
+            "trade_count": 41.0,
+            "win_rate": 0.2926829268292683,
+            "final_equity": 16607.288614856527,
+            "max_leverage_observed": 3.556124653997662,
+            "average_leverage": 0.4913471710274463,
+            "turnover_multiple": 190.59574442090613,
+            "rebalance_events": 186.0
+          }
+        },
+        "V4": {
+          "name": "稳健长多趋势-反弹混合",
+          "metrics": {
+            "total_return": 0.5714781803758664,
+            "cagr": 0.5700232510877079,
+            "annualized_volatility": 0.43872915099207216,
+            "sharpe": 1.244385694246972,
+            "sortino": 2.0795953978743578,
+            "max_drawdown": -0.28155343296276747,
+            "trade_count": 41.0,
+            "win_rate": 0.3170731707317073,
+            "final_equity": 15714.781803758664,
+            "max_leverage_observed": 3.5231329907770013,
+            "average_leverage": 0.47320927026903586,
+            "turnover_multiple": 202.93934328427713,
+            "rebalance_events": 193.0
+          }
+        },
+        "V5": {
+          "name": "谨慎对称趋势与空头确认",
+          "metrics": {
+            "total_return": 0.5998271718890116,
+            "cagr": 0.59828743839901,
+            "annualized_volatility": 0.43925390047936097,
+            "sharpe": 1.284025381413789,
+            "sortino": 2.151865465902839,
+            "max_drawdown": -0.26398778792207134,
+            "trade_count": 85.0,
+            "win_rate": 0.38823529411764707,
+            "final_equity": 15998.271718890115,
+            "max_leverage_observed": 3.5231329907770013,
+            "average_leverage": 0.49190475728869903,
+            "turnover_multiple": 214.39146074132174,
+            "rebalance_events": 319.0
+          }
+        }
+      },
+      "benchmark": {
+        "code": "P",
+        "name": "BTCUSDT 价格",
+        "start_price": 42314.0,
+        "end_price": 93548.9,
+        "total_return": 1.2108262040932076,
+        "annualized_volatility": 0.5185371590670901,
+        "sharpe": 1.785324022981926,
+        "max_drawdown": -0.30086008291564426
+      }
+    },
+    "2025": {
+      "start": "2025-01-01T00:00:00Z",
+      "end": "2026-01-01T00:00:00Z",
+      "strategies": {
+        "V1": {
+          "name": "基础趋势跟随与 ATR 仓位",
+          "metrics": {
+            "total_return": 0.32048899484137827,
+            "cagr": 0.32074045627322567,
+            "annualized_volatility": 0.4178708912927426,
+            "sharpe": 0.8734892025862522,
+            "sortino": 1.3653451458718742,
+            "max_drawdown": -0.2654039570038861,
+            "trade_count": 36.0,
+            "win_rate": 0.4166666666666667,
+            "final_equity": 13204.889948413784,
+            "max_leverage_observed": 3.2673978934866295,
+            "average_leverage": 0.5269932718550345,
+            "turnover_multiple": 157.50355757133391,
+            "rebalance_events": 79.0
+          }
+        },
+        "V2": {
+          "name": "资金费率拥挤过滤趋势",
+          "metrics": {
+            "total_return": 0.3507188007519031,
+            "cagr": 0.35099696357304144,
+            "annualized_volatility": 0.43371973326772495,
+            "sharpe": 0.9092080450825275,
+            "sortino": 1.4255219163115056,
+            "max_drawdown": -0.258321865348745,
+            "trade_count": 36.0,
+            "win_rate": 0.4166666666666667,
+            "final_equity": 13507.188007519031,
+            "max_leverage_observed": 3.430767788160961,
+            "average_leverage": 0.5432233165222378,
+            "turnover_multiple": 154.50042546664645,
+            "rebalance_events": 82.0
+          }
+        },
+        "V3": {
+          "name": "波动率与下行风险自适应",
+          "metrics": {
+            "total_return": 0.5711059619479899,
+            "cagr": 0.5715921974111944,
+            "annualized_volatility": 0.42511294889633244,
+            "sharpe": 1.2731768903634557,
+            "sortino": 2.1115198181781554,
+            "max_drawdown": -0.21609522126277303,
+            "trade_count": 36.0,
+            "win_rate": 0.3888888888888889,
+            "final_equity": 15711.0596194799,
+            "max_leverage_observed": 4.491383327994463,
+            "average_leverage": 0.464683162410589,
+            "turnover_multiple": 167.07297454407697,
+            "rebalance_events": 128.0
+          }
+        },
+        "V4": {
+          "name": "稳健长多趋势-反弹混合",
+          "metrics": {
+            "total_return": 0.5352979355012131,
+            "cagr": 0.5357488371623615,
+            "annualized_volatility": 0.4218956860043049,
+            "sharpe": 1.2251319426955576,
+            "sortino": 2.017715384293221,
+            "max_drawdown": -0.22255985695287306,
+            "trade_count": 35.0,
+            "win_rate": 0.34285714285714286,
+            "final_equity": 15352.97935501213,
+            "max_leverage_observed": 4.491383327994463,
+            "average_leverage": 0.4587190469346511,
+            "turnover_multiple": 165.58915512631813,
+            "rebalance_events": 125.0
+          }
+        },
+        "V5": {
+          "name": "谨慎对称趋势与空头确认",
+          "metrics": {
+            "total_return": 0.4876822722064189,
+            "cagr": 0.48808707812063323,
+            "annualized_volatility": 0.4227975699832366,
+            "sharpe": 1.1488867604479536,
+            "sortino": 1.897952768225179,
+            "max_drawdown": -0.2244475288327915,
+            "trade_count": 92.0,
+            "win_rate": 0.358695652173913,
+            "final_equity": 14876.82272206419,
+            "max_leverage_observed": 4.491383327994463,
+            "average_leverage": 0.4870460272116115,
+            "turnover_multiple": 184.60946816768723,
+            "rebalance_events": 278.0
+          }
+        }
+      },
+      "benchmark": {
+        "code": "P",
+        "name": "BTCUSDT 价格",
+        "start_price": 93548.9,
+        "end_price": 87608.2,
+        "total_return": -0.06350368630737502,
+        "annualized_volatility": 0.4417497020528222,
+        "sharpe": 0.07230126795891605,
+        "max_drawdown": -0.34364332990579727
+      }
+    },
+    "2026 YTD": {
+      "start": "2026-01-01T00:00:00Z",
+      "end": "2026-08-25T08:00:00Z",
+      "strategies": {
+        "V1": {
+          "name": "基础趋势跟随与 ATR 仓位",
+          "metrics": {
+            "total_return": 0.221439479053823,
+            "cagr": 0.3622582270750918,
+            "annualized_volatility": 0.38740000139368147,
+            "sharpe": 0.9888770650286809,
+            "sortino": 1.7004836868236628,
+            "max_drawdown": -0.2786320018981957,
+            "trade_count": 19.0,
+            "win_rate": 0.42105263157894735,
+            "final_equity": 12214.39479053823,
+            "max_leverage_observed": 3.5842477660527305,
+            "average_leverage": 0.45725922540366204,
+            "turnover_multiple": 88.4036252843847,
+            "rebalance_events": 44.0
+          }
+        },
+        "V2": {
+          "name": "资金费率拥挤过滤趋势",
+          "metrics": {
+            "total_return": 0.22430116066509065,
+            "cagr": 0.36719395682242295,
+            "annualized_volatility": 0.4040786284021277,
+            "sharpe": 0.9729971859056566,
+            "sortino": 1.6767189301358763,
+            "max_drawdown": -0.2943106453696118,
+            "trade_count": 19.0,
+            "win_rate": 0.3684210526315789,
+            "final_equity": 12243.011606650905,
+            "max_leverage_observed": 3.763460154355367,
+            "average_leverage": 0.4761534499358,
+            "turnover_multiple": 95.79002689593412,
+            "rebalance_events": 46.0
+          }
+        },
+        "V3": {
+          "name": "波动率与下行风险自适应",
+          "metrics": {
+            "total_return": 0.27373701181739274,
+            "cagr": 0.45344758407122976,
+            "annualized_volatility": 0.40986355560329096,
+            "sharpe": 1.1133345695739485,
+            "sortino": 1.9541816883478202,
+            "max_drawdown": -0.2851087625344808,
+            "trade_count": 19.0,
+            "win_rate": 0.2631578947368421,
+            "final_equity": 12737.370118173927,
+            "max_leverage_observed": 4.145600842359244,
+            "average_leverage": 0.4344134377683885,
+            "turnover_multiple": 101.36747638343003,
+            "rebalance_events": 77.0
+          }
+        },
+        "V4": {
+          "name": "稳健长多趋势-反弹混合",
+          "metrics": {
+            "total_return": 0.3168647042388153,
+            "cagr": 0.5302037330993941,
+            "annualized_volatility": 0.42706413239938285,
+            "sharpe": 1.205196611511189,
+            "sortino": 2.1342466095614983,
+            "max_drawdown": -0.2604180480996583,
+            "trade_count": 21.0,
+            "win_rate": 0.2857142857142857,
+            "final_equity": 13168.647042388153,
+            "max_leverage_observed": 4.145600842359244,
+            "average_leverage": 0.43789675123165145,
+            "turnover_multiple": 103.83176946243529,
+            "rebalance_events": 79.0
+          }
+        },
+        "V5": {
+          "name": "谨慎对称趋势与空头确认",
+          "metrics": {
+            "total_return": 0.2987543859373871,
+            "cagr": 0.49780232144208636,
+            "annualized_volatility": 0.42812722031307665,
+            "sharpe": 1.1533000680471728,
+            "sortino": 2.047992251205769,
+            "max_drawdown": -0.2680264036165452,
+            "trade_count": 64.0,
+            "win_rate": 0.34375,
+            "final_equity": 12987.54385937387,
+            "max_leverage_observed": 4.145600842359244,
+            "average_leverage": 0.4733929120160834,
+            "turnover_multiple": 119.6550952368224,
+            "rebalance_events": 194.0
+          }
+        }
+      },
+      "benchmark": {
+        "code": "P",
+        "name": "BTCUSDT 价格",
+        "start_price": 87608.2,
+        "end_price": 79661.5,
+        "total_return": -0.0907072625621802,
+        "annualized_volatility": 0.42798125604394877,
+        "sharpe": -0.12928436149005174,
+        "max_drawdown": -0.3997621932529536
+      }
+    }
+  }
+}

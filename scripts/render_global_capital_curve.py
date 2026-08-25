@@ -252,11 +252,11 @@ def render(output: Path) -> None:
     draw_legend(
         draw,
         [
-            ("A 原 Aggressive", COLORS["a"]),
-            ("B 资金费因子", COLORS["b"]),
-            ("C 自适应 V1", COLORS["c"]),
-            ("D 稳健 V3（仅多）", COLORS["d"]),
-            ("E 谨慎对称空头 V4", COLORS["e"]),
+            ("V1 基础趋势跟随与 ATR 仓位", COLORS["a"]),
+            ("V2 资金费率拥挤过滤趋势", COLORS["b"]),
+            ("V3 波动率与下行风险自适应", COLORS["c"]),
+            ("V4 稳健长多趋势-反弹混合", COLORS["d"]),
+            ("V5 谨慎对称趋势与空头确认", COLORS["e"]),
             ("P BTCUSDT 价格", COLORS["p"]),
         ],
         y=148,

@@ -2,6 +2,7 @@
 
 from .backtest import BacktestConfig, BacktestResult, run_backtest
 from .micro_backtest import MicroBacktestConfig, MicroBacktestResult, run_micro_backtest
+from .v6 import V6Params, generate_v6_signals
 from .strategy import StrategyParams, generate_signals
 
 __all__ = [
@@ -13,4 +14,6 @@ __all__ = [
     "generate_signals",
     "run_backtest",
     "run_micro_backtest",
+    "V6Params",
+    "generate_v6_signals",
 ]

@@ -130,6 +130,21 @@ def _signal_events(signaled: pd.DataFrame) -> dict[pd.Timestamp, float]:
     return {(timestamp + pd.Timedelta(hours=4)): float(value) for timestamp, value in signal[changed].items()}
 
 
+def _protection_events(
+    signaled: pd.DataFrame,
+) -> dict[pd.Timestamp, tuple[float, float]]:
+    """Return causal stop/take-profit levels when supplied by a strategy."""
+    required = {"stop_price", "take_profit_price"}
+    if not required.issubset(signaled.columns):
+        return {}
+    levels: dict[pd.Timestamp, tuple[float, float]] = {}
+    for timestamp, row in signaled.iterrows():
+        stop = float(row["stop_price"]) if pd.notna(row["stop_price"]) else np.nan
+        take = float(row["take_profit_price"]) if pd.notna(row["take_profit_price"]) else np.nan
+        levels[timestamp + pd.Timedelta(hours=4)] = (stop, take)
+    return levels
+
+
 def run_micro_backtest(
     signaled: pd.DataFrame,
     minute_batches: Iterable[pd.DataFrame],
@@ -137,9 +152,11 @@ def run_micro_backtest(
     config: MicroBacktestConfig = MicroBacktestConfig(),
 ) -> MicroBacktestResult:
     events = _signal_events(signaled)
+    protection_events = _protection_events(signaled)
     funding_events = funding["funding_rate"].groupby(funding.index.floor("1min")).sum().to_dict()
     account = _Account(wallet=config.initial_cash)
     pending_signal: float | None = None
+    active_protection: tuple[float, float] | None = None
     fills: list[dict[str, object]] = []
     liquidations: list[dict[str, object]] = []
     funding_records: list[dict[str, object]] = []
@@ -157,7 +174,7 @@ def run_micro_backtest(
     liquidation_fee_rate = config.liquidation_fee_bps / 10_000
 
     def execute_liquidation(timestamp: pd.Timestamp, adverse_price: float, maintenance: float) -> None:
-        nonlocal cycle, pending_signal
+        nonlocal cycle, pending_signal, active_protection
         trigger_price = _liquidation_price(account, adverse_price)
         close_delta = -account.quantity
         execution_price = trigger_price * (
@@ -199,6 +216,48 @@ def run_micro_backtest(
             })
             cycle = None
         pending_signal = None
+        active_protection = None
+
+    def execute_protective_exit(
+        timestamp: pd.Timestamp,
+        trigger_price: float,
+        reason: str,
+    ) -> None:
+        nonlocal cycle, pending_signal, active_protection
+        if abs(account.quantity) < 1e-12:
+            return
+        close_delta = -account.quantity
+        execution_price = trigger_price * (
+            1 - math.copysign(config.base_slippage_bps / 10_000, account.quantity)
+        )
+        quantity = abs(account.quantity)
+        equity_before = account.equity(trigger_price)
+        realized, fee = account.fill(close_delta, execution_price, fee_rate)
+        fills.append({
+            "timestamp": timestamp,
+            "reason": reason,
+            "side": "sell" if close_delta < 0 else "buy",
+            "quantity": quantity,
+            "price": execution_price,
+            "trigger_price": trigger_price,
+            "notional": quantity * execution_price,
+            "fee": fee,
+            "slippage_bps": config.base_slippage_bps,
+            "participation": np.nan,
+            "realized_pnl": realized,
+            "position_after": 0.0,
+        })
+        if cycle is not None:
+            trade_cycles.append({
+                **cycle,
+                "exit_time": timestamp,
+                "pnl": account.wallet - float(cycle["equity_before"]),
+                "exit_reason": reason,
+                "equity_at_trigger": equity_before,
+            })
+            cycle = None
+        pending_signal = None
+        active_protection = None
 
     for batch in minute_batches:
         for row in batch.itertuples():
@@ -206,6 +265,8 @@ def run_micro_backtest(
             last_row = row
             last_timestamp = timestamp
             mark_open = float(row.mark_open)
+            if timestamp in protection_events:
+                active_protection = protection_events[timestamp]
             if not equity_times:
                 equity_times.append(timestamp)
                 equity_values.append(max(account.equity(mark_open), 0.0))
@@ -300,6 +361,23 @@ def run_micro_backtest(
                         remaining = target_quantity - account.quantity
                         if abs(remaining) * execution_price < config.min_notional:
                             pending_signal = None
+
+            if abs(account.quantity) > 1e-12 and active_protection is not None:
+                stop, take = active_protection
+                trigger_price = np.nan
+                reason = ""
+                if account.quantity > 0:
+                    if np.isfinite(stop) and float(row.mark_low) <= stop:
+                        trigger_price, reason = stop, "stop_loss"
+                    elif np.isfinite(take) and float(row.mark_high) >= take:
+                        trigger_price, reason = take, "take_profit"
+                else:
+                    if np.isfinite(stop) and float(row.mark_high) >= stop:
+                        trigger_price, reason = stop, "stop_loss"
+                    elif np.isfinite(take) and float(row.mark_low) <= take:
+                        trigger_price, reason = take, "take_profit"
+                if reason:
+                    execute_protective_exit(timestamp, float(trigger_price), reason)
 
             if abs(account.quantity) > 1e-12:
                 adverse_price = float(row.mark_low if account.quantity > 0 else row.mark_high)

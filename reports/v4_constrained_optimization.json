@@ -1,0 +1,35 @@
+{
+  "baseline": {
+    "pre_cagr": 1.1954386024147032,
+    "pre_sharpe": 1.8237347537336006,
+    "pre_sortino": 3.421740404912025,
+    "pre_max_drawdown": -0.30653273461340313,
+    "holdout_cagr": 0.16737098611158596,
+    "holdout_sharpe": 0.5875820734630681,
+    "holdout_max_drawdown": -0.2728993826871928
+  },
+  "selected": {
+    "pre_cagr": 1.2265261262941083,
+    "pre_sharpe": 1.8543138277665734,
+    "pre_sortino": 3.4887170502330305,
+    "pre_max_drawdown": -0.3071868664278208,
+    "holdout_cagr": 0.15087404092367218,
+    "holdout_sharpe": 0.5507338966367294,
+    "holdout_max_drawdown": -0.27436445189953984,
+    "robust_score": 1.7453068812286587
+  },
+  "selected_parameters": {
+    "adx_enter": 26.0,
+    "trend_separation_atr": 0.15,
+    "rebalance_bars": 60,
+    "funding_factor_scale": 0.3,
+    "downside_stress_scale": 0.3
+  },
+  "candidate_count": 243,
+  "feasible_count": 74,
+  "constraints": {
+    "pre_drawdown_tolerance": 0.01,
+    "pre_sharpe_floor": "baseline",
+    "pre_cagr_floor": "baseline"
+  }
+}
