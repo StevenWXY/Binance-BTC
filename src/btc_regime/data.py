@@ -15,6 +15,7 @@ from urllib.request import Request, urlopen
 import pandas as pd
 
 BASE_URL = "https://data.binance.vision/data/futures/um/monthly"
+DAILY_BASE_URL = "https://data.binance.vision/data/futures/um/daily"
 FUTURES_API_URL = "https://fapi.binance.com"
 KLINE_COLUMNS = [
     "open_time", "open", "high", "low", "close", "volume", "close_time",
@@ -233,6 +234,54 @@ def download_intrabar_data(
     return counts
 
 
+def download_daily_intrabar_data(
+    start: str,
+    end: str,
+    *,
+    symbol: str = "BTCUSDT",
+    raw_dir: str | Path = "data/raw",
+    max_workers: int = 8,
+) -> dict[str, int]:
+    """Download daily 1m contract and mark-price archives."""
+    start_date = pd.Timestamp(start).date()
+    end_date = pd.Timestamp(end).date()
+    if start_date > end_date:
+        raise ValueError("start must be before or equal to end")
+
+    raw_path = Path(raw_dir)
+    jobs: list[tuple[str, str, Path]] = []
+    for timestamp in pd.date_range(start_date, end_date, freq="D"):
+        date = timestamp.strftime("%Y-%m-%d")
+        minute_name = f"{symbol}-1m-{date}.zip"
+        jobs.extend([
+            (
+                "trade",
+                f"{DAILY_BASE_URL}/klines/{symbol}/1m/{minute_name}",
+                raw_path / "klines" / minute_name,
+            ),
+            (
+                "mark",
+                f"{DAILY_BASE_URL}/markPriceKlines/{symbol}/1m/{minute_name}",
+                raw_path / "mark_price" / minute_name,
+            ),
+        ])
+
+    counts = {
+        "trade_days": 0,
+        "mark_days": 0,
+        "missing_files": 0,
+    }
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        future_map = {executor.submit(_download, url, path): kind for kind, url, path in jobs}
+        for future in as_completed(future_map):
+            kind = future_map[future]
+            if future.result():
+                counts[f"{kind}_days"] += 1
+            else:
+                counts["missing_files"] += 1
+    return counts
+
+
 def _read_csv_from_zip(path: Path, expected_columns: list[str] | None = None) -> pd.DataFrame:
     with zipfile.ZipFile(path) as archive:
         names = [name for name in archive.namelist() if name.lower().endswith(".csv")]
@@ -299,10 +348,17 @@ def iter_intrabar_months(
     end: str | None = None,
     symbol: str = "BTCUSDT",
 ) -> Iterator[pd.DataFrame]:
-    """Yield aligned 1m contract and mark-price data one month at a time."""
+    """Yield aligned monthly or daily 1m contract and mark-price archives."""
     raw_path = Path(raw_dir)
-    trade_files = {path.stem[-7:]: path for path in raw_path.joinpath("klines").glob(f"{symbol}-1m-*.zip")}
-    mark_files = {path.stem[-7:]: path for path in raw_path.joinpath("mark_price").glob(f"{symbol}-1m-*.zip")}
+    prefix = f"{symbol}-1m-"
+    trade_files = {
+        path.stem.removeprefix(prefix): path
+        for path in raw_path.joinpath("klines").glob(f"{prefix}*.zip")
+    }
+    mark_files = {
+        path.stem.removeprefix(prefix): path
+        for path in raw_path.joinpath("mark_price").glob(f"{prefix}*.zip")
+    }
     missing_trade = sorted(set(mark_files) - set(trade_files))
     missing_mark = sorted(set(trade_files) - set(mark_files))
     if missing_trade or missing_mark:
@@ -313,9 +369,9 @@ def iter_intrabar_months(
         raise FileNotFoundError("No paired 1m archives found; run download-intrabar first")
     start_ts = pd.Timestamp(start, tz="UTC") if start else None
     end_ts = pd.Timestamp(end, tz="UTC") if end else None
-    for month in sorted(trade_files):
-        trade = load_ohlc_archive(trade_files[month]).add_prefix("trade_")
-        mark = load_ohlc_archive(mark_files[month])[["open", "high", "low", "close"]].add_prefix("mark_")
+    for period in sorted(trade_files):
+        trade = load_ohlc_archive(trade_files[period]).add_prefix("trade_")
+        mark = load_ohlc_archive(mark_files[period])[["open", "high", "low", "close"]].add_prefix("mark_")
         data = trade.join(mark, how="inner")
         if start_ts is not None:
             data = data.loc[data.index >= start_ts]

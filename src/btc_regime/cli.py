@@ -12,6 +12,7 @@ import pandas as pd
 from .backtest import BacktestConfig, run_backtest
 from .data import (
     download_binance_data,
+    download_daily_intrabar_data,
     download_intrabar_data,
     iter_intrabar_months,
     load_funding,
@@ -44,6 +45,14 @@ def _parse_args() -> argparse.Namespace:
     intrabar.add_argument("--end", default="2026-07")
     intrabar.add_argument("--raw-dir", default="data/raw")
     intrabar.add_argument("--workers", type=int, default=8)
+    daily_intrabar = sub.add_parser(
+        "download-daily-intrabar",
+        help="download daily 1m contract and mark-price archives",
+    )
+    daily_intrabar.add_argument("--start", required=True)
+    daily_intrabar.add_argument("--end", required=True)
+    daily_intrabar.add_argument("--raw-dir", default="data/raw")
+    daily_intrabar.add_argument("--workers", type=int, default=8)
     run = sub.add_parser("backtest", help="run a fixed-parameter backtest")
     run.add_argument("--start", default="2020-01-01")
     run.add_argument("--end", default="2026-08-01")
@@ -126,6 +135,14 @@ def main() -> None:
     if args.command == "download-intrabar":
         print(json.dumps(download_intrabar_data(
             args.start, args.end, raw_dir=args.raw_dir, max_workers=args.workers
+        ), indent=2))
+        return
+    if args.command == "download-daily-intrabar":
+        print(json.dumps(download_daily_intrabar_data(
+            args.start,
+            args.end,
+            raw_dir=args.raw_dir,
+            max_workers=args.workers,
         ), indent=2))
         return
     if args.command == "micro-backtest":
