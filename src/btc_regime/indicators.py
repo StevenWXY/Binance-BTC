@@ -57,6 +57,47 @@ def realized_volatility(
     ).std(bias=False) * np.sqrt(periods_per_year)
 
 
+def choppiness_index(data: pd.DataFrame, period: int = 14) -> pd.Series:
+    """Directional-agnostic range/trend score using only completed bars."""
+    prev_close = data["close"].shift(1)
+    true_range = pd.concat(
+        [
+            data["high"] - data["low"],
+            (data["high"] - prev_close).abs(),
+            (data["low"] - prev_close).abs(),
+        ],
+        axis=1,
+    ).max(axis=1)
+    high_low_range = (
+        data["high"].rolling(period, min_periods=period).max()
+        - data["low"].rolling(period, min_periods=period).min()
+    )
+    ratio = true_range.rolling(period, min_periods=period).sum() / high_low_range.replace(0, np.nan)
+    return 100 * np.log10(ratio) / np.log10(period)
+
+
+def aroon(data: pd.DataFrame, period: int = 25) -> tuple[pd.Series, pd.Series]:
+    """Return Aroon Up and Down using only completed bars."""
+    if period < 2:
+        raise ValueError("period must be at least 2")
+
+    def periods_since_extreme(values: np.ndarray, fn) -> float:
+        if np.isnan(values).all():
+            return np.nan
+        idx = fn(values)
+        return float((len(values) - 1) - idx)
+
+    highs = data["high"].rolling(period, min_periods=period).apply(
+        lambda values: 100.0 * (period - periods_since_extreme(values, np.argmax)) / period,
+        raw=True,
+    )
+    lows = data["low"].rolling(period, min_periods=period).apply(
+        lambda values: 100.0 * (period - periods_since_extreme(values, np.argmin)) / period,
+        raw=True,
+    )
+    return highs, lows
+
+
 def add_indicators(data: pd.DataFrame, *, ema_fast: int, ema_slow: int, atr_period: int,
                    rsi_period: int, bb_period: int, bb_std: float, adx_period: int) -> pd.DataFrame:
     result = data.copy()

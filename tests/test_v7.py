@@ -33,7 +33,14 @@ def test_v7_is_bounded_and_causal() -> None:
     pd.testing.assert_series_equal(original["signal"].iloc[:500], modified["signal"].iloc[:500])
     assert {
         "v7_market_state",
+        "v7_daily_state",
         "v7_range_percentile",
+        "v7_efficiency_ratio",
+        "v7_chop",
+        "v7_aroon_up",
+        "v7_aroon_down",
+        "v7_donchian_high",
+        "v7_donchian_low",
         "v7_long_allocation_scale",
         "v7_short_allocation_scale",
         "v7_speed_mode",
@@ -43,6 +50,7 @@ def test_v7_is_bounded_and_causal() -> None:
     assert set(original["v7_market_state"].dropna().unique()).issubset(
         {"warmup", "range", "trend_up", "trend_down"}
     )
+    assert original["v7_efficiency_ratio"].dropna().between(0, 1).all()
 
 
 def test_v7_opens_symmetric_short_in_downtrend() -> None:
@@ -74,7 +82,14 @@ def test_v7_short_allocation_uses_upside_as_adverse_volatility() -> None:
 
 
 def test_v7_range_percentile_entry_and_exit_are_ordered() -> None:
-    params = V7Params(adx_enter=80.0, adx_exit=70.0, range_entry_percentile=0.2, range_exit_percentile=0.78)
+    params = V7Params(
+        adx_enter=80.0,
+        adx_exit=70.0,
+        range_entry_percentile=0.2,
+        range_exit_percentile=0.78,
+        efficiency_trend_threshold=0.95,
+        efficiency_range_threshold=0.9,
+    )
     assert params.range_entry_percentile < params.range_exit_percentile
     close = 100 + 3 * np.sin(np.linspace(0, 30 * np.pi, 900))
     data = synthetic_market(close)
@@ -98,3 +113,53 @@ def test_v7_separates_rapid_and_normal_trend_modes() -> None:
     rapid_result = generate_v7_signals(synthetic_market(rapid), params)
     assert (normal_result["v7_speed_mode"] == "normal").any()
     assert (rapid_result["v7_speed_mode"] == "rapid").any()
+
+
+def test_v7_breakout_can_flip_out_of_range_promptly() -> None:
+    base = 100 + 0.02 * np.sin(np.linspace(0, 18 * np.pi, 900))
+    breakout = base.copy()
+    breakout[700:] += np.linspace(0, 16, len(breakout) - 700)
+    params = V7Params(
+        adx_enter=22.0,
+        adx_exit=16.0,
+        chop_range_threshold=60.0,
+        chop_trend_threshold=42.0,
+        range_entry_percentile=0.25,
+        range_exit_percentile=0.75,
+        donchian_lookback=12,
+    )
+    result = generate_v7_signals(synthetic_market(breakout), params)
+    assert (result["v7_market_state"] == "trend_up").any()
+    trend_start = result.index[result["v7_market_state"] == "trend_up"][0]
+    assert result.loc[trend_start, "close"] > result.loc[trend_start, "v7_close_breakout_high"]
+    assert result.loc[trend_start, "v7_chop"] > params.chop_trend_threshold
+
+
+def test_v7_daily_state_separates_downtrend_and_range() -> None:
+    down = 200 * np.exp(np.cumsum(np.full(1200, -0.0012)))
+    range_close = 100 + 2 * np.sin(np.linspace(0, 20 * np.pi, 1200))
+    down_result = generate_v7_signals(synthetic_market(down), V7Params())
+    range_result = generate_v7_signals(synthetic_market(range_close), V7Params())
+    assert (down_result["v7_daily_state"] == -1).any()
+    assert (range_result["v7_daily_state"] == 0).any()
+
+
+def test_v7_trailing_stop_can_exit_a_fading_trend() -> None:
+    base = 100 * np.exp(np.cumsum(np.full(1000, 0.0012)))
+    base[650:] *= np.linspace(1.0, 0.4, len(base) - 650)
+    params = V7Params(
+        adx_enter=20.0,
+        adx_exit=1.0,
+        trend_confirm_bars=1,
+        trend_exit_confirm_bars=20,
+        trend_trailing_stop_atr=1.5,
+        range_entry_percentile=0.1,
+        range_exit_percentile=0.78,
+        allow_short=False,
+        efficiency_trend_threshold=0.2,
+        efficiency_range_threshold=0.1,
+    )
+    result = generate_v7_signals(synthetic_market(base), params)
+    assert (result["regime"] == "trend_stop").any()
+    stop_idx = result.index[result["regime"] == "trend_stop"][0]
+    assert result.loc[stop_idx, "v7_market_state"] == "range"
