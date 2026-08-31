@@ -59,10 +59,10 @@ class V7Params:
     allow_short: bool = True
     short_scale: float = 0.08
     rebalance_bars: int = 120
-    trend_confirm_bars: int = 2
-    reversal_confirm_bars: int = 3
-    trend_exit_confirm_bars: int = 4
-    post_trend_probe_bars: int = 1
+    trend_confirm_bars: int = 3
+    reversal_confirm_bars: int = 4
+    trend_exit_confirm_bars: int = 5
+    post_trend_probe_bars: int = 2
     min_rebalance_delta: float = 0.35
     realized_vol_period: int = 12
     vol_baseline_period: int = 90
@@ -84,8 +84,8 @@ class V7Params:
     price_drawdown_scale: float = 0.2
     trend_trailing_stop_atr: float = 1.8
     range_lookback: int = 90
-    range_entry_percentile: float = 0.08
-    range_exit_percentile: float = 0.78
+    range_entry_percentile: float = 0.05
+    range_exit_percentile: float = 0.82
     range_stop_atr: float = 2.0
     range_max_bars: int = 18
     donchian_lookback: int = 18
@@ -98,12 +98,12 @@ class V7Params:
     rapid_rsi_low: float = 32.0
     rapid_range_high: float = 0.8
     rapid_range_low: float = 0.2
-    rapid_deceleration_min: float = 0.008
-    rapid_deceleration_scale: float = 0.45
+    rapid_deceleration_min: float = 0.012
+    rapid_deceleration_scale: float = 0.6
     adverse_return_threshold: float = 0.07
     adverse_medium_return_threshold: float = 0.1
     adverse_shock_scale: float = 0.25
-    volume_deceleration_scale: float = 0.7
+    volume_deceleration_scale: float = 0.6
 
     def __post_init__(self) -> None:
         if not 0 < self.max_leverage <= 10:
@@ -116,7 +116,12 @@ class V7Params:
             raise ValueError("adx_enter must exceed a positive adx_exit")
         if not 0 < self.short_scale <= 1:
             raise ValueError("short_scale must be in (0, 1]")
-        if min(self.trend_confirm_bars, self.trend_exit_confirm_bars, self.post_trend_probe_bars) < 1:
+        if min(
+            self.trend_confirm_bars,
+            self.reversal_confirm_bars,
+            self.trend_exit_confirm_bars,
+            self.post_trend_probe_bars,
+        ) < 1:
             raise ValueError("confirmation bars must be positive")
         if self.min_rebalance_delta < 0:
             raise ValueError("min_rebalance_delta must be non-negative")
@@ -507,13 +512,18 @@ def _confirmed_state_transition(
             counters["trend_direction"] = 0
             return _MARKET_RANGE
         if _trend_entry_ready(direction, row, params):
+            confirm_bars = params.trend_confirm_bars
+            last_trend_direction = int(counters.get("last_trend_direction", 0))
+            if last_trend_direction != 0 and direction != last_trend_direction:
+                confirm_bars = max(confirm_bars, params.reversal_confirm_bars)
             if direction == counters["trend_direction"]:
                 counters["trend"] += 1
             else:
                 counters["trend_direction"] = direction
                 counters["trend"] = 1
-            if counters["trend"] >= params.trend_confirm_bars:
+            if counters["trend"] >= confirm_bars:
                 counters["trend"] = 0
+                counters["last_trend_direction"] = direction
                 return _MARKET_UP if direction > 0 else _MARKET_DOWN
         else:
             counters["trend_direction"] = 0
@@ -528,6 +538,7 @@ def _confirmed_state_transition(
         if counters["range"] >= params.trend_exit_confirm_bars:
             counters["range"] = 0
             counters["probe_remaining"] = params.post_trend_probe_bars
+            counters["last_trend_direction"] = active_direction
             return _MARKET_RANGE
         return previous
 
@@ -566,18 +577,16 @@ def _speed_scale(row: object, direction: int, params: V7Params) -> tuple[str, fl
     if direction > 0:
         rapid = fast >= params.rapid_return_threshold or medium >= params.rapid_medium_return_threshold
         stretched = row.rsi >= params.rapid_rsi_high or range_pct >= params.rapid_range_high
-        decelerating = (
-            fast <= previous_fast - params.rapid_deceleration_min
-            or volume_speed <= previous_volume_speed * params.volume_deceleration_scale
-        )
+        price_decelerating = fast <= previous_fast - params.rapid_deceleration_min
+        volume_decelerating = volume_speed <= previous_volume_speed * params.volume_deceleration_scale
+        decelerating = price_decelerating and volume_decelerating
         adverse = fast <= -params.adverse_return_threshold or medium <= -params.adverse_medium_return_threshold
     else:
         rapid = fast <= -params.rapid_return_threshold or medium <= -params.rapid_medium_return_threshold
         stretched = row.rsi <= params.rapid_rsi_low or range_pct <= params.rapid_range_low
-        decelerating = (
-            fast >= previous_fast + params.rapid_deceleration_min
-            or volume_speed <= previous_volume_speed * params.volume_deceleration_scale
-        )
+        price_decelerating = fast >= previous_fast + params.rapid_deceleration_min
+        volume_decelerating = volume_speed <= previous_volume_speed * params.volume_deceleration_scale
+        decelerating = price_decelerating and volume_decelerating
         adverse = fast >= params.adverse_return_threshold or medium >= params.adverse_medium_return_threshold
 
     mode = _SPEED_RAPID if rapid and stretched else _SPEED_NORMAL
@@ -662,6 +671,7 @@ def generate_v7_signals(data: pd.DataFrame, params: V7Params = V7Params()) -> pd
     state_counters = {
         "trend": 0,
         "trend_direction": 0,
+        "last_trend_direction": 0,
         "range": 0,
         "probe_remaining": 0,
     }
@@ -718,6 +728,7 @@ def generate_v7_signals(data: pd.DataFrame, params: V7Params = V7Params()) -> pd
                 market_states[i] = market_state
                 state_counters["range"] = 0
                 state_counters["probe_remaining"] = params.post_trend_probe_bars
+                state_counters["last_trend_direction"] = int(direction)
                 held_signal = 0.0
                 signals[i] = 0.0
                 speed_modes[i] = _SPEED_NONE
