@@ -394,3 +394,20 @@ python scripts/render_global_curve_v1_v7.py
 ```
 
 V7 报告文件：`reports/global_curve_v1_v7_2020_2026_08_25/metrics.json` 和 `reports/global_curve_v1_v7_2020_2026_08_25/equity_curve_v1_v7_linear.svg`。其余资金曲线、回撤图和信号明细可由 `scripts/render_global_curve_v1_v7.py` 在本地重新生成。
+
+## 官方 1m 复核
+
+为了把 V4 和 V7 放在同一成交口径下比较，又做了一次官方 1m 级别复核。这里的信号仍然来自同一套 4 小时状态机，成交按 Binance 官方 1m 可达口径重放，区间覆盖 2020-01-01 至 2026-08-01，起始权益 10,000 USDT。
+
+| 策略 | 期末权益 | CAGR | Sharpe | Sortino | 最大回撤 | 交易段数 | 手续费 | 资金费 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| V4 | 417,797.65 | 76.31% | 1.498 | 2.657 | -30.78% | 152 | 83,659.79 | 46,930.38 |
+| V7 | 610,891.69 | 86.79% | 1.446 | 2.507 | -39.45% | 305 | 141,206.97 | 70,017.70 |
+
+结论很直接：V7 的绝对收益高于 V4，但换来的是更高的交易频率、更高的手续费和资金费，以及更大的回撤。也就是说，V7 验证了“互斥三态 + 对称做空 + 急速控制”这套结构能提高收益上限，但当前参数还没有把风险收益比压到比 V4 更好。
+
+本次官方 1m 复核文件在 `reports/v4_v7_micro_official_2020_2026_07/`，核心文件为 `metrics.json`、`summary_metrics.csv`、`equity_v4_v7.csv`、`drawdown_v4_v7.csv` 和 `equity_drawdown_v4_v7.png`。复现实验命令：
+
+```bash
+python scripts/compare_v4_v7_micro_official.py --start 2020-01-01 --end 2026-08-01 --output reports/v4_v7_micro_official_2020_2026_07
+```
