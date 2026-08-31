@@ -342,6 +342,30 @@ V6 在 V4 的趋势/反弹框架上增加了日线趋势门控、4 小时置信�
 
 V6 报告文件：`reports/v6_2026_08_25/v6_recent_metrics.json`、`v6_annual_metrics.csv`、`v6_annual_report.json`、`reports/v6_micro_2020_2026_07_31/micro_metrics.json`、`reports/v6_leverage_grid.csv`。杠杆候选扫描脚本为 `scripts/optimize_v6_leverage.py`；V1–V6 与 BTC 的近期及逐分钟资金曲线见 `reports/v6_2026_08_25/v6_curves.png`，生成脚本为 `scripts/backtest_v6.py` 和 `scripts/render_v6_curve.py`。
 
+## V7 互斥三态策略
+
+V7 是一套 4 小时级别的互斥状态机，不再把趋势单和震荡单混在同一根 K 线上。每根已完成的 4 小时 K 线只会落入三种主状态之一：`range`、`trend_up`、`trend_down`。
+
+- `trend_up`：上涨趋势做多，使用 EMA、ADX、DI 和 ATR 判断趋势强度；若出现急速上涨但买入速度减弱，就降低仓位，不立刻翻空。
+- `trend_down`：下跌趋势做空，空头参数与多头基本对称；做空只在明确下行时启用，不和震荡多单同时生效。
+- `range`：震荡区间只做分位策略，靠近最近 90 根 4 小时 K 线的低位分位时买入，接近高位分位时退出。
+
+急速行情控制只改仓位，不改主方向。也就是说，V7 先判断市场处于 `range`、`trend_up` 还是 `trend_down`，再决定是做多、做空还是观望；如果行情速度突然放大或减速，就只收缩仓位，避免把短期噪声当成趋势反转。
+
+当前默认参数在 `configs/v7_params.json`，核心字段是：
+
+| 参数 | 含义 |
+| --- | --- |
+| `allow_short` | 是否允许趋势做空 |
+| `range_lookback` | 震荡分位统计窗口 |
+| `range_entry_percentile` | 震荡低位入场阈值 |
+| `range_exit_percentile` | 震荡高位退出阈值 |
+| `rebound_scale` | 震荡仓位缩放 |
+| `rapid_return_threshold` | 单根急速变化阈值 |
+| `rapid_medium_return_threshold` | 3 根急速变化阈值 |
+| `rapid_deceleration_scale` | 急速减速时的仓位缩放 |
+| `adverse_shock_scale` | 反向急冲时的仓位缩放 |
+
 ## 官方 1m 复核
 
 为了把 V4 和 V7 放在同一成交口径下比较，又做了一次官方 1m 级别复核。这里的信号仍然来自同一套 4 小时状态机，成交按 Binance 官方 1m 可达口径重放，区间覆盖 2020-01-01 至 2026-08-01，起始权益 10,000 USDT。
