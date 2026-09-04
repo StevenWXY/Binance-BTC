@@ -113,18 +113,32 @@ def _rgb(hex_color: str) -> tuple[int, int, int]:
     return tuple(int(value[i:i + 2], 16) for i in (0, 2, 4))
 
 
-def _draw_legend(draw: ImageDraw.ImageDraw, left: int, right: int, y: int) -> int:
+def _draw_legend(
+    draw: ImageDraw.ImageDraw,
+    left: int,
+    right: int,
+    y: int,
+    *,
+    series: list[str] | None = None,
+    names: dict[str, str] | None = None,
+    colors: dict[str, str] | None = None,
+    highlighted: set[str] | None = None,
+) -> int:
     """Draw compact, wrapping strategy labels and return the final baseline."""
+    series = series or SERIES
+    names = names or NAMES
+    colors = colors or COLORS
+    highlighted = highlighted or HIGHLIGHTED
     x = left
-    for code in SERIES:
-        label = NAMES[code]
+    for code in series:
+        label = names[code]
         label_width = draw.textbbox((0, 0), label, font=_font(19))[2]
         needed = label_width + 88
         if x != left and x + needed > right:
             x = left
             y += 34
-        line_width = 2 if code in HIGHLIGHTED else 1
-        draw.line((x, y + 13, x + 34, y + 13), fill=_rgb(COLORS[code]), width=line_width)
+        line_width = 2 if code in highlighted else 1
+        draw.line((x, y + 13, x + 34, y + 13), fill=_rgb(colors[code]), width=line_width)
         draw.text((x + 44, y), label, font=_font(19), fill=(55, 55, 55))
         x += needed
     return y
@@ -155,23 +169,42 @@ def render_single(
     *,
     subtitle: str | None = None,
     note: str | None = None,
+    series: list[str] | None = None,
+    names: dict[str, str] | None = None,
+    colors: dict[str, str] | None = None,
+    highlighted: set[str] | None = None,
+    title: str | None = None,
+    plot_title: str | None = None,
 ) -> None:
     """Render standalone equity or drawdown charts for reports and sharing."""
+    series = series or SERIES
+    names = names or NAMES
+    colors = colors or COLORS
+    highlighted = highlighted or HIGHLIGHTED
     width, height = 2200, 1220
     left, right, top, bottom = 170, 2080, 330, 1080
     image = Image.new("RGB", (width, height), (252, 252, 252))
     draw = ImageDraw.Draw(image)
-    values = curve[SERIES].astype(float)
+    values = curve[series].astype(float)
     is_equity = kind == "equity"
-    title = "BTCUSDT 策略累计收益曲线" if is_equity else "BTCUSDT 策略峰值回撤曲线"
-    plot_title = "累计权益（USDT，对数纵轴）" if is_equity else "回撤（相对历史峰值）"
+    title = title or ("BTCUSDT 策略累计收益曲线" if is_equity else "BTCUSDT 策略峰值回撤曲线")
+    plot_title = plot_title or ("累计权益（USDT，对数纵轴）" if is_equity else "回撤（相对历史峰值）")
 
     draw.text((left, 36), title, font=_font(34, True), fill=(25, 25, 25))
     subtitle = subtitle or "V1–V6（含 V4.1）与 BTC · 2020-01-01 至 2026-08-25 08:00 UTC · 4小时"
     note = note or "2018–2019 无可比的 Binance BTCUSDT 永续合约样本，未用现货数据替代"
     draw.text((left, 87), subtitle, font=_font(22), fill=(90, 90, 90))
     draw.text((left, 122), note, font=_font(20), fill=(115, 70, 45))
-    _draw_legend(draw, left, right, 165)
+    _draw_legend(
+        draw,
+        left,
+        right,
+        165,
+        series=series,
+        names=names,
+        colors=colors,
+        highlighted=highlighted,
+    )
     draw.text((left, top - 42), plot_title, font=_font(24, True), fill=(45, 45, 45))
     draw.rectangle((left, top, right, bottom), outline=(170, 175, 185), width=2)
     _draw_year_lines(draw, curve, left, right, top, bottom)
@@ -206,30 +239,45 @@ def render_single(
         def y_for(value: float) -> float:
             return bottom - (value - low) / (high - low) * (bottom - top)
 
-    for code in SERIES:
+    for code in series:
         points = []
         for timestamp, value in series_values[code].iloc[::step].items():
             x = left + (timestamp.value - start.value) / max(end.value - start.value, 1) * (right - left)
             points.append((x, y_for(float(value))))
         if len(points) > 1:
-            draw.line(points, fill=_rgb(COLORS[code]), width=2 if code in HIGHLIGHTED else 1, joint="curve")
+            draw.line(points, fill=_rgb(colors[code]), width=2 if code in highlighted else 1, joint="curve")
     draw.text((left, bottom + 62), "日期（UTC）", font=_font(22), fill=(45, 45, 45))
     output.parent.mkdir(parents=True, exist_ok=True)
     image.save(output)
 
 
-def render(curve: pd.DataFrame, output: Path) -> None:
+def render(
+    curve: pd.DataFrame,
+    output: Path,
+    *,
+    series: list[str] | None = None,
+    names: dict[str, str] | None = None,
+    colors: dict[str, str] | None = None,
+    highlighted: set[str] | None = None,
+    title: str | None = None,
+    subtitle: str | None = None,
+    note: str | None = None,
+) -> None:
+    series = series or SERIES
+    names = names or NAMES
+    colors = colors or COLORS
+    highlighted = highlighted or HIGHLIGHTED
     width, height = 2200, 1700
     left, right = 170, 2080
     equity_top, equity_bottom = 250, 960
     drawdown_top, drawdown_bottom = 1120, 1530
     image = Image.new("RGB", (width, height), (252, 252, 252))
     draw = ImageDraw.Draw(image)
-    draw.text((left, 38), "BTCUSDT 策略收益与回撤：V1–V3、V4.1、V5、V6 与 BTC", font=_font(34, True), fill=(25, 25, 25))
-    draw.text((left, 89), "有效数据 2020-01-01 至 2026-08-25 08:00 UTC · 初始权益 10,000 USDT", font=_font(22), fill=(90, 90, 90))
-    draw.text((left, 125), "2018–2019 无可比的 Binance BTCUSDT 永续合约样本，未用现货数据替代", font=_font(20), fill=(115, 70, 45))
+    draw.text((left, 38), title or "BTCUSDT 策略收益与回撤", font=_font(34, True), fill=(25, 25, 25))
+    draw.text((left, 89), subtitle or "有效数据 2020-01-01 至 2026-08-25 08:00 UTC · 初始权益 10,000 USDT", font=_font(22), fill=(90, 90, 90))
+    draw.text((left, 125), note or "2018–2019 无可比的 Binance BTCUSDT 永续合约样本，未用现货数据替代", font=_font(20), fill=(115, 70, 45))
     draw.rectangle((left, equity_top, right, equity_bottom), outline=(170, 175, 185), width=2)
-    values = curve[SERIES].astype(float)
+    values = curve[series].astype(float)
     low = max(float(values.min().min()) * 0.82, 1000.0)
     high = float(values.max().max()) * 1.12
     log_low, log_high = math.log(low), math.log(high)
@@ -250,15 +298,24 @@ def render(curve: pd.DataFrame, output: Path) -> None:
         draw.line((x, drawdown_top, x, drawdown_bottom), fill=(235, 237, 240), width=1)
         draw.text((x - 22, drawdown_bottom + 16), str(year), font=_font(20), fill=(90, 90, 90))
     step = max(1, len(curve) // 5000)
-    for code in SERIES:
+    for code in series:
         points = []
         for timestamp, value in values[code].iloc[::step].items():
             x = left + (timestamp.value - start.value) / max(end.value - start.value, 1) * (right - left)
             y = equity_bottom - (math.log(float(value)) - log_low) / (log_high - log_low) * (equity_bottom - equity_top)
             points.append((x, y))
         if len(points) > 1:
-            draw.line(points, fill=_rgb(COLORS[code]), width=2 if code in HIGHLIGHTED else 1, joint="curve")
-    _draw_legend(draw, left, right, 155)
+            draw.line(points, fill=_rgb(colors[code]), width=2 if code in highlighted else 1, joint="curve")
+    _draw_legend(
+        draw,
+        left,
+        right,
+        155,
+        series=series,
+        names=names,
+        colors=colors,
+        highlighted=highlighted,
+    )
     draw.text((left, equity_top - 36), "累计收益曲线（对数纵轴）", font=_font(24, True), fill=(45, 45, 45))
     draw.text((25, (equity_top + equity_bottom) // 2), "账户权益（USDT）", font=_font(22), fill=(45, 45, 45))
 
@@ -272,14 +329,14 @@ def render(curve: pd.DataFrame, output: Path) -> None:
         y = drawdown_bottom - (tick - dd_low) / (dd_high - dd_low) * (drawdown_bottom - drawdown_top)
         draw.line((left, y, right, y), fill=(225, 228, 233), width=1)
         draw.text((left - 70, y - 12), f"{tick:.0%}", font=_font(20), fill=(90, 90, 90))
-    for code in SERIES:
+    for code in series:
         points = []
         for timestamp, value in drawdowns[code].iloc[::step].items():
             x = left + (timestamp.value - start.value) / max(end.value - start.value, 1) * (right - left)
             y = drawdown_bottom - (float(value) - dd_low) / (dd_high - dd_low) * (drawdown_bottom - drawdown_top)
             points.append((x, y))
         if len(points) > 1:
-            draw.line(points, fill=_rgb(COLORS[code]), width=2 if code in HIGHLIGHTED else 1, joint="curve")
+            draw.line(points, fill=_rgb(colors[code]), width=2 if code in highlighted else 1, joint="curve")
     draw.text((left, drawdown_top - 42), "峰值回撤曲线", font=_font(24, True), fill=(45, 45, 45))
     draw.text((60, (drawdown_top + drawdown_bottom) // 2), "回撤", font=_font(22), fill=(45, 45, 45))
     draw.text((left, drawdown_bottom + 62), "日期（UTC）", font=_font(22), fill=(45, 45, 45))

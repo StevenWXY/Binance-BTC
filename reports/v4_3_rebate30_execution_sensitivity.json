@@ -1,0 +1,93 @@
+{
+  "fee_rebate_rate": 0.3,
+  "effective_taker_fee_bps": 2.8,
+  "effective_maker_fee_bps": 0.14,
+  "window": {
+    "start": "2020-01-01",
+    "end": "2026-08-01",
+    "holdout_start": "2025-01-01"
+  },
+  "selection": "maker_offset_bps chosen from 2020-2024 train/validation sensitivity; 2025-2026 holdout is confirmation only; maker order timeout checked at 30/60/120 minutes",
+  "rebate_isolation_at_zero_offset": {
+    "without_rebate": {
+      "full_final_equity": 426965.28202645085,
+      "full_cagr": 0.768937602670652,
+      "full_sharpe": 1.6199952335498888,
+      "full_max_drawdown": -0.24426877774429934,
+      "full_fees_paid": 36091.768957813394,
+      "holdout_final_equity": 14898.875579119296,
+      "holdout_cagr": 0.287089840106429,
+      "holdout_sharpe": 0.8933973390793051,
+      "holdout_max_drawdown": -0.22178645927441187,
+      "holdout_fees_paid": 655.9814447392657
+    },
+    "with_30_percent_rebate": {
+      "full_final_equity": 453890.60501997545,
+      "full_cagr": 0.7854499491684954,
+      "full_sharpe": 1.6431615550460328,
+      "full_max_drawdown": -0.24193872174751685,
+      "full_fees_paid": 26431.196480536426,
+      "holdout_final_equity": 15106.335182442184,
+      "holdout_cagr": 0.2984060049329449,
+      "holdout_sharpe": 0.9188161534220323,
+      "holdout_max_drawdown": -0.22005390820993964,
+      "holdout_fees_paid": 462.45432993918524
+    }
+  },
+  "maker_offset_sensitivity": [
+    {
+      "maker_offset_bps": 0.0,
+      "full_final_equity": 453890.60501997545,
+      "full_cagr": 0.7854499491684954,
+      "full_sharpe": 1.6431615550460328,
+      "full_max_drawdown": -0.24193872174751685,
+      "full_fees_paid": 26431.196480536426,
+      "holdout_cagr": 0.28169447836135353,
+      "holdout_sharpe": 0.8808402092657269,
+      "holdout_max_drawdown": -0.22088661288301348
+    },
+    {
+      "maker_offset_bps": 0.25,
+      "full_final_equity": 413883.1957198851,
+      "full_cagr": 0.7605937560940705,
+      "full_sharpe": 1.6080384222598751,
+      "full_max_drawdown": -0.2419376145596559,
+      "full_fees_paid": 24672.827061519933,
+      "holdout_cagr": 0.2647981412880167,
+      "holdout_sharpe": 0.8436458476239741,
+      "holdout_max_drawdown": -0.22230937782916904
+    },
+    {
+      "maker_offset_bps": 0.5,
+      "full_final_equity": 412379.6559374249,
+      "full_cagr": 0.7596205114452808,
+      "full_sharpe": 1.6065274667450493,
+      "full_max_drawdown": -0.241562505907997,
+      "full_fees_paid": 24573.762962982746,
+      "holdout_cagr": 0.264361600488936,
+      "holdout_sharpe": 0.8426105375860441,
+      "holdout_max_drawdown": -0.22193370821419034
+    },
+    {
+      "maker_offset_bps": 0.75,
+      "full_final_equity": 412913.25873096,
+      "full_cagr": 0.75996626,
+      "full_sharpe": 1.60702939,
+      "full_max_drawdown": -0.24255734,
+      "full_fees_paid": 24572.42997263
+    },
+    {
+      "maker_offset_bps": 1.0,
+      "full_final_equity": 412195.27836452,
+      "full_cagr": 0.75950096,
+      "full_sharpe": 1.60624017,
+      "full_max_drawdown": -0.24277346,
+      "full_fees_paid": 24486.11148873
+    }
+  ],
+  "timeout_sensitivity_at_zero_offset": [
+    {"maker_order_timeout_minutes": 30, "full_final_equity": 453890.60501997545},
+    {"maker_order_timeout_minutes": 60, "full_final_equity": 453890.60501997545},
+    {"maker_order_timeout_minutes": 120, "full_final_equity": 453890.60501997545}
+  ]
+}

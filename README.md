@@ -1,6 +1,6 @@
 # BTCUSDT U 本位行情切换策略
 
-这是一个只交易 Binance USDⓈ-M `BTCUSDT` 永续合约的研究/回测项目。策略在 4 小时级别上使用 ADX + EMA 判断趋势状态：上升趋势做多，下降趋势在当前推荐配置中空仓；非趋势状态只做布林带下轨 + RSI 超跌反弹多单。仓位按 ATR 波动率目标缩放，代码硬限制不超过 10 倍杠杆。当前微调版每 60 根 bar（10 天）定期再平衡，但方向变化、风险倍率变化和退出信号会立即生效。
+这是一个只交易 Binance USDⓈ-M `BTCUSDT` 永续合约的研究/回测项目。策略在 4 小时级别上使用 ADX + EMA 判断趋势状态：上升趋势做多，下降趋势在当前推荐配置中空仓；非趋势状态只做布林带下轨 + RSI 超跌反弹多单。仓位按 ATR 波动率目标缩放，代码硬限制不超过 10 倍杠杆。当前正式版本命名为 V4、V4.1.1、V4.1.2、V4.2.1 和 V4.2.2；其中 V4.1.2 是原 V4.3 的新名称，V4.2.2 是增强版 V4.2。旧 V4.1/V4.2/V4.3 路径继续保留以保证历史报告可复现。
 
 提供多套参数：`configs/balanced_params.json` 目标波动率 35%、杠杆上限 3 倍；`configs/aggressive_params.json` 目标波动率 100%、趋势仓位乘数 1.25、杠杆上限 5 倍。**项目优先策略是 D，即 `configs/aggressive_adaptive_v3_params.json`**：它在波动率风险层和资金费拥挤因子之外，增加下行波动占比驱动的自适应资金分配，目标波动率 107.5%、杠杆上限 6.5 倍。`configs/default_params.json` 与 D 保持同步；命令行省略 `--params` 时默认运行 D。`configs/aggressive_adaptive_v4_short_params.json` 只是固定规则的谨慎做空实验 E，不作为优先策略。Aggressive 配置均是收益优先实验，不代表适合实盘。
 
@@ -129,6 +129,72 @@ ATR 年化波动代理 = ATR(20) / 收盘价 × sqrt(365 × 6)
 
 ## 使用
 
+### V4.3 maker 执行与快速下跌保护
+
+V4.3 在 V4.1 的信号和仓位框架上增加了执行与风险层：常规加仓/调仓使用
+post-only 限价单，只有 1 分钟成交区间触及报价才成交；默认 maker 费率为
+0.2 bps，风险收缩、止损、止盈和强平仍使用 taker，以免为了省手续费延迟
+退出。由于历史归档没有订单簿队列，maker 成交是“价格触及即成交、成交量仍受
+分钟参与率限制”的可复现实验代理，报告会同时给出同一信号的 taker 反事实。
+
+下跌保护在完成的 4 小时 K 线上检测单根大跌或连续 3 根累计跌幅，并要求价格
+低于 EMA(30)；触发后立即将下一边界目标仓位降为 0，已有仓位由微观执行层的
+taker 保护退出完成平仓。当前优化参数使用 2.5 ATR 初始止损、3.0 ATR 跟踪止损、
+12.0 ATR 止盈，并启用 15% 价格回撤刹车（仓位缩至 30%，回撤收复至 7.5% 才恢复）。
+下跌保护阈值为 3 根 K 线累计 -6%、波动比 1.3，退出后不额外冷却，避免错过
+快速反弹。所有信号和止损价仍只使用当前及更早的已完成 K 线；这些阈值应在留出集和压力测试中继续复核。
+
+返佣实验单独使用 30% 交易手续费返佣，即 taker 有效费率 2.8 bps、maker 有效费率
+0.14 bps，不覆盖无返佣的 V4.1/V4.3 原始报告。返佣敏感性下将 maker 报价偏移从
+0.5 bps 调为 0 bps；30/60/120 分钟挂单超时的结果相同，保留 60 分钟作为默认值。
+
+### V4.2 执行与风险增强版
+
+`V4.2-execution-rebate30` 保留 V4.2 的较低方向仓目标波动率和资金费中性覆盖，
+再复用 V4.3 的 ATR 止损、跟踪止损、止盈及快速下跌保护。方向仓的常规调仓使用
+maker-only 限价单；中性仓的现货/合约切换成本也按 30% 返佣后的有效费率计算。
+旧的 `reports/v4_2_2020_2026_08_25` 报告不会被覆盖。
+
+### V4 系列版本命名
+
+为便于继续迭代，当前五个策略的正式名称为：V4（基线）、V4.1.1（原 V4.1）、
+V4.1.2（新 V4.3 maker + 止损）、V4.2.1（原 V4.2）和 V4.2.2（新 V4.2 maker +
+止损 + 中性覆盖）。旧配置/报告路径继续保留兼容；统一五策略对比（30% 返佣、
+2020–2026-08-01）写入 `reports/v4_family_renamed_rebate30/`。
+
+```bash
+# V4.3 全样本逐分钟复测，并输出 maker / taker 反事实对比
+btc-regime micro-backtest-v43 --params configs/v4_3_params.json --output reports/v4_3_micro
+
+# 仅用 2020–2024 搜索 V4.3 风险细节，并锁定 2025–2026 留出集
+python scripts/optimize_v43.py --output reports/v4_3_optimization.csv \
+  --report reports/v4_3_optimization.json
+
+# 等价的可复现实验脚本
+python scripts/backtest_v43.py --output reports/v4_3_micro
+
+# 30% 手续费返佣的独立 V4.3 搜索与复测（不会覆盖上面的原报告）
+python scripts/optimize_v43.py --params configs/v4_3_params.json \
+  --fee-rebate-rate 0.30 \
+  --output reports/v4_3_rebate30_optimization.csv \
+  --report reports/v4_3_rebate30_optimization.json
+python scripts/backtest_v43.py --params configs/v4_3_rebate30_params.json \
+  --fee-rebate-rate 0.30 --output reports/v4_3_rebate30
+
+# V4.2 同样加入止损、maker 执行和 30% 返佣
+python scripts/backtest_v42_execution.py \
+  --params configs/v4_2_rebate30_params.json \
+  --fee-rebate-rate 0.30 --output reports/v4_2_rebate30
+
+# 五个正式版本的统一参数/回测对比
+python scripts/compare_v4_renamed.py --output reports/v4_family_renamed_rebate30
+```
+
+正式版本参数文件分别为 `configs/v4_1_1_params.json`、`configs/v4_1_2_params.json`、
+`configs/v4_2_1_params.json` 和 `configs/v4_2_2_params.json`；统一对比报告包括
+`reports/v4_family_renamed_rebate30/report.json`、`summary_metrics.csv` 和
+`parameters.csv`。
+
 ```bash
 python -m pip install -e .
 btc-regime download --start 2020-01 --end 2026-07
@@ -158,7 +224,40 @@ btc-regime micro-backtest --start 2020-01-01 --end 2026-08-01 --params configs/a
 python scripts/compare_v4_short.py
 python scripts/render_global_capital_curve.py
 python scripts/render_interactive_capital_curve.py
+
+# 确定性极端行情压力测试（强平、止盈止损和无保护对照）
+btc-regime stress-test --output reports/stress_test
+btc-regime stress-test --engine v6 --scenarios flash_crash gap_down volatility_cluster stop_take
+btc-regime stress-test --engine strategy --params configs/aggressive_adaptive_v3_params.json \
+  --scenarios flash_crash funding_spike liquidity_crunch --bars 720 --seed 42
+btc-regime stress-test --engine v6 --repeats 20 --seed 42 --output reports/stress_test_mc
+python3 scripts/validate_v4_family.py --output reports/v4_family_validation_2026_09_02
 ```
+
+`stress-test` 不读取历史行情，而是用固定随机种子生成 4 小时极端蜡烛，再展开为 1 分钟成交/标记价格路径，复用 `micro-backtest` 的分批成交、资金费、维持保证金和盘中强平逻辑。内置场景包括闪崩、跳空上下、波动聚类、趋势反转、资金费率尖峰、流动性枯竭和专门触发保护价的路径。每个场景会同时运行带策略止盈止损和移除保护价的对照组，输出 `stress_summary.csv`、`stress_report.json` 及每场景明细。
+
+`scripts/validate_v4_family.py` 使用统一 4 bps taker 费率、1 bps 基础滑点、8 bps 冲击滑点和 2% 分钟参与率，复测 V4/V4.1/V4.2 的 4 小时方向层、1 分钟方向层及 V4.2 中性覆盖，并在每套方向参数上运行重复极端场景。结果写入 `reports/v4_family_validation_2026_09_02/summary.csv` 和 `report.json`；V4/V4.1/V4.2 方向策略没有 `stop_price`/`take_profit_price` 列，因此压力报告会明确标记 `protection_available=false`，不能把 4 小时信号退出当成盘中止损保护。
+
+## V4 系列统一验证（2026-09-02）
+
+使用 2020-01-01 至 2026-08-25 08:00 UTC 的完整行情、4 bps taker 费率、1 bps 基础滑点、8 bps 冲击滑点、2% 分钟成交参与率和 10,000 USDT 初始权益，结果如下：
+
+| 策略层 | 期末权益 | CAGR | Sharpe | 最大回撤 | 成交/填单 | 强平 | 峰值杠杆 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| V4 4h 方向 | 1,031,318 | 100.84% | 1.687 | -30.65% | 223 / — | — | 6.50x |
+| V4 1m 方向 | 639,099 | 86.89% | 1.618 | -30.78% | 152 / 2,047 | 0 | 6.56x |
+| V4.1 4h 方向 | 1,081,865 | 102.29% | 1.702 | -30.72% | 220 / — | — | 6.50x |
+| V4.1 1m 方向 | 671,638 | 88.29% | 1.635 | -30.83% | 107 / 2,167 | 0 | 6.56x |
+| V4.2 1m 方向 | 287,303 | 65.71% | 1.653 | -23.68% | 215 / 1,218 | 0 | 4.90x |
+| V4.2 1m 组合（含中性覆盖） | 313,354 | 67.89% | 1.691 | -23.58% | — | — | — |
+
+V4.1 相对 V4 在 1 分钟模型中期末权益提高约 5.1%、Sharpe 提高 0.017，但最大回撤恶化约 0.05 个百分点，手续费和资金费也更高。V4.2 方向层牺牲部分收益换取约 7 个百分点的回撤改善；加入中性资金费覆盖后，组合期末权益提高至约 313,354 USDT，平均中性配置 12.74%，动态召回状态下估计最低自由保证金为 21.57%。
+
+每套参数均运行 8 个合成极端场景、每场景 2 个随机种子（共 16 条路径）。V4、V4.1、V4.2 的仓位覆盖率均为 93.75%，强平次数均为 0；最坏最大回撤分别为 -46.78%、-47.21% 和 -36.76%，最坏收益分别为 -46.08%、-46.56% 和 -36.18%。这些压力路径没有盘中止盈止损列，`protection_available=false`，所以结果不能证明 V4 系列具备 ATR 止损/止盈能力；如需验证保护价，应使用 V6 或为 V4 系列显式增加保护规则。
+
+完整机器可读报告：`reports/v4_family_validation_2026_09_02/report.json`；汇总表：`reports/v4_family_validation_2026_09_02/summary.csv`。
+
+摘要中的 `liquidation_count`/`liquidation_free` 表示是否发生强平，`max_margin_ratio` 和 `minimum_margin_buffer` 用于观察保证金余量，`position_observed`/`tested_with_position` 标记该路径是否实际持有仓位，避免把“策略空仓”误认为已完成风险验证；`stop_loss_count`/`take_profit_count` 及对应的 `*_realized_pnl` 统计保护退出次数和已实现盈亏，`drawdown_improvement` 与 `protected_vs_unprotected_return_delta` 比较保护组相对无保护组的最大回撤和收益变化，`robust_score` 是用于排序的透明启发式分数（不是收益预测）。`--repeats N` 会为每个场景运行 N 个独立种子；`metadata.aggregate` 给出运行/场景存活率、仓位覆盖率、最差回撤、最差收益及保护有效场景数。合成结果用于发现脆弱性和回归测试，不代表未来收益承诺。
 
 前三条默认回测命令都会使用优先策略 D，并分别写入 `reports/aggressive_adaptive_v3`、`reports/aggressive_adaptive_v3_walkforward.json` 和 `reports/aggressive_adaptive_v3_micro`。安装 `matplotlib` 时普通回测还会生成权益曲线 PNG。优化结果只用于研究参数稳定性，不应把全样本最优值当作无偏的未来收益承诺。
 

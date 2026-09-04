@@ -35,3 +35,14 @@ def test_cli_defaults_target_priority_strategy_d(monkeypatch, command, expected_
     args = _parse_args()
     assert args.params is None
     assert args.output == expected_output
+
+
+def test_cli_stress_defaults_and_scenario_choices(monkeypatch):
+    monkeypatch.setattr(sys, "argv", ["btc-regime", "stress-test"])
+    args = _parse_args()
+    assert args.engine == "v6"
+    assert args.output == "reports/stress_test"
+    assert args.bars == 420
+    assert args.repeats == 1
+    assert args.minutes_per_bar == 240
+    assert args.scenarios is None
