@@ -1,0 +1,15 @@
+{
+  "initial_cash": 10000.0,
+  "taker_fee_bps": 4.0,
+  "base_slippage_bps": 1.0,
+  "impact_bps": 8.0,
+  "max_minute_participation": 0.02,
+  "liquidation_fee_bps": 50.0,
+  "strategy_drawdown_enabled": true,
+  "strategy_drawdown_level_1": 0.20,
+  "strategy_drawdown_scale_1": 0.95,
+  "strategy_drawdown_level_2": 0.30,
+  "strategy_drawdown_scale_2": 0.85,
+  "strategy_drawdown_level_3": 0.40,
+  "strategy_drawdown_scale_3": 0.70
+}

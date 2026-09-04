@@ -1,0 +1,19 @@
+{
+  "data_source": "D:/文档/桌面/data.zip",
+  "period": "2020-01-01/2026-08-01",
+  "initial_cash": 10000.0,
+  "execution": "4h signals, 1m trade and mark-price execution, 4 bps taker fee, 1 bps base slippage, 8 bps impact, funding and margin checks",
+  "strategies": {
+    "V4": "configs/aggressive_adaptive_v3_params.json",
+    "V4.1": "configs/v4_refined_params.json",
+    "V4.2": "historical configs/v4_2_params.json direction strategy only",
+    "V7": "historical profit-focused V7 parameters from commit 95774d0",
+    "V7.1": "configs/v71_params.json plus execution drawdown overlay"
+  },
+  "v71_drawdown_overlay": {
+    "at_20_percent": 0.95,
+    "at_30_percent": 0.85,
+    "at_40_percent": 0.70
+  },
+  "note": "V4.2 neutral funding-arbitrage capital overlay is excluded from this direction-strategy comparison."
+}

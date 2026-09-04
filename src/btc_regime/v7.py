@@ -59,10 +59,10 @@ class V7Params:
     allow_short: bool = True
     short_scale: float = 0.08
     rebalance_bars: int = 120
-    trend_confirm_bars: int = 3
-    reversal_confirm_bars: int = 4
-    trend_exit_confirm_bars: int = 5
-    post_trend_probe_bars: int = 2
+    trend_confirm_bars: int = 2
+    reversal_confirm_bars: int = 3
+    trend_exit_confirm_bars: int = 4
+    post_trend_probe_bars: int = 1
     min_rebalance_delta: float = 0.35
     realized_vol_period: int = 12
     vol_baseline_period: int = 90
@@ -84,11 +84,12 @@ class V7Params:
     price_drawdown_scale: float = 0.2
     trend_trailing_stop_atr: float = 1.8
     range_lookback: int = 90
-    range_entry_percentile: float = 0.05
-    range_exit_percentile: float = 0.82
+    range_entry_percentile: float = 0.06
+    range_exit_percentile: float = 0.8
     range_stop_atr: float = 2.0
     range_max_bars: int = 18
     donchian_lookback: int = 18
+    breakout_buffer_atr: float = 0.0
     speed_fast_period: int = 1
     speed_medium_period: int = 3
     speed_slow_period: int = 6
@@ -98,12 +99,14 @@ class V7Params:
     rapid_rsi_low: float = 32.0
     rapid_range_high: float = 0.8
     rapid_range_low: float = 0.2
-    rapid_deceleration_min: float = 0.012
+    rapid_deceleration_min: float = 0.018
     rapid_deceleration_scale: float = 0.6
     adverse_return_threshold: float = 0.07
     adverse_medium_return_threshold: float = 0.1
     adverse_shock_scale: float = 0.25
-    volume_deceleration_scale: float = 0.6
+    adverse_exit_enabled: bool = False
+    adverse_exit_confirm_bars: int = 2
+    volume_deceleration_scale: float = 0.55
 
     def __post_init__(self) -> None:
         if not 0 < self.max_leverage <= 10:
@@ -149,6 +152,8 @@ class V7Params:
             raise ValueError("range lookback and max bars must be positive")
         if self.donchian_lookback < 2:
             raise ValueError("donchian_lookback must be positive")
+        if self.breakout_buffer_atr < 0:
+            raise ValueError("breakout_buffer_atr must be non-negative")
         if not 0 < self.range_entry_percentile < self.range_exit_percentile < 1:
             raise ValueError("range entry percentile must be below range exit percentile")
         if self.speed_fast_period < 1 or self.speed_medium_period <= self.speed_fast_period:
@@ -163,6 +168,8 @@ class V7Params:
             raise ValueError("rapid_deceleration_scale must be in (0, 1]")
         if not 0 < self.adverse_shock_scale <= 1:
             raise ValueError("adverse_shock_scale must be in (0, 1]")
+        if self.adverse_exit_confirm_bars < 1:
+            raise ValueError("adverse_exit_confirm_bars must be positive")
         if not 0 < self.volume_deceleration_scale <= 1:
             raise ValueError("volume_deceleration_scale must be in (0, 1]")
         if not 0 <= self.downside_calm_threshold < self.downside_stress_threshold <= 1:
@@ -427,8 +434,15 @@ def _market_direction(row: object, params: V7Params) -> int:
     aroon_up = float(row.v7_aroon_up)
     aroon_down = float(row.v7_aroon_down)
     efficiency = float(row.v7_efficiency_ratio)
-    breakout_up = close > float(row.v7_donchian_high) or close > float(row.v7_close_breakout_high)
-    breakout_down = close < float(row.v7_donchian_low) or close < float(row.v7_close_breakout_low)
+    breakout_buffer = float(row.atr) * params.breakout_buffer_atr
+    breakout_up = (
+        close > float(row.v7_donchian_high) + breakout_buffer
+        or close > float(row.v7_close_breakout_high) + breakout_buffer
+    )
+    breakout_down = (
+        close < float(row.v7_donchian_low) - breakout_buffer
+        or close < float(row.v7_close_breakout_low) - breakout_buffer
+    )
     aroon_up_trend = aroon_up >= params.aroon_trend_threshold and (aroon_up - aroon_down) >= params.aroon_spread_threshold
     aroon_down_trend = aroon_down >= params.aroon_trend_threshold and (aroon_down - aroon_up) >= params.aroon_spread_threshold
     if breakout_up and aroon_up_trend:
@@ -674,6 +688,7 @@ def generate_v7_signals(data: pd.DataFrame, params: V7Params = V7Params()) -> pd
         "last_trend_direction": 0,
         "range": 0,
         "probe_remaining": 0,
+        "adverse": 0,
     }
 
     for i, row in enumerate(frame.itertuples()):
@@ -712,6 +727,33 @@ def generate_v7_signals(data: pd.DataFrame, params: V7Params = V7Params()) -> pd
             range_age = 0
 
             direction = 1.0 if market_state == _MARKET_UP else -1.0
+            fast_return = float(row.v7_fast_return) if np.isfinite(row.v7_fast_return) else 0.0
+            medium_return = float(row.v7_medium_return) if np.isfinite(row.v7_medium_return) else 0.0
+            adverse_move = (
+                fast_return <= -params.adverse_return_threshold
+                or medium_return <= -params.adverse_medium_return_threshold
+                if direction > 0
+                else fast_return >= params.adverse_return_threshold
+                or medium_return >= params.adverse_medium_return_threshold
+            )
+            if params.adverse_exit_enabled and adverse_move:
+                state_counters["adverse"] += 1
+            else:
+                state_counters["adverse"] = 0
+            if params.adverse_exit_enabled and state_counters["adverse"] >= params.adverse_exit_confirm_bars:
+                market_state = _MARKET_RANGE
+                market_states[i] = market_state
+                state_counters["adverse"] = 0
+                state_counters["probe_remaining"] = params.post_trend_probe_bars
+                state_counters["last_trend_direction"] = int(direction)
+                held_signal = 0.0
+                signals[i] = 0.0
+                speed_modes[i] = _SPEED_NONE
+                speed_reasons[i] = "adverse_exit"
+                regimes[i] = "adverse_exit"
+                previous_control_scale = 1.0
+                trend_extreme = np.nan
+                continue
             if market_state != previous_market_state:
                 trend_extreme = row.close
             elif np.isfinite(trend_extreme):

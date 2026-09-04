@@ -44,6 +44,13 @@ class MicroBacktestConfig:
     quantity_step: float = 0.001
     min_notional: float = 5.0
     periods_per_year: int = 2190
+    strategy_drawdown_enabled: bool = False
+    strategy_drawdown_level_1: float = 0.10
+    strategy_drawdown_scale_1: float = 0.80
+    strategy_drawdown_level_2: float = 0.15
+    strategy_drawdown_scale_2: float = 0.50
+    strategy_drawdown_level_3: float = 0.20
+    strategy_drawdown_scale_3: float = 0.25
 
 
 @dataclass
@@ -169,6 +176,7 @@ def run_micro_backtest(
     order_notional = 0.0
     last_row: object | None = None
     last_timestamp: pd.Timestamp | None = None
+    peak_equity = config.initial_cash
 
     fee_rate = config.taker_fee_bps / 10_000
     liquidation_fee_rate = config.liquidation_fee_bps / 10_000
@@ -270,6 +278,7 @@ def run_micro_backtest(
             if not equity_times:
                 equity_times.append(timestamp)
                 equity_values.append(max(account.equity(mark_open), 0.0))
+            peak_equity = max(peak_equity, max(account.equity(mark_open), 0.0))
 
             # Existing positions are checked at the minute open before funding or orders.
             if abs(account.quantity) > 1e-12:
@@ -298,8 +307,17 @@ def run_micro_backtest(
 
             if pending_signal is not None and account.wallet > 0:
                 pre_fill_equity = max(account.equity(mark_open), 0.0)
+                effective_signal = pending_signal
+                if config.strategy_drawdown_enabled and peak_equity > 0:
+                    current_drawdown = max(0.0, 1.0 - pre_fill_equity / peak_equity)
+                    if current_drawdown >= config.strategy_drawdown_level_3:
+                        effective_signal *= config.strategy_drawdown_scale_3
+                    elif current_drawdown >= config.strategy_drawdown_level_2:
+                        effective_signal *= config.strategy_drawdown_scale_2
+                    elif current_drawdown >= config.strategy_drawdown_level_1:
+                        effective_signal *= config.strategy_drawdown_scale_1
                 target_quantity = _round_toward_zero(
-                    pending_signal * pre_fill_equity / float(row.trade_open), config.quantity_step
+                    effective_signal * pre_fill_equity / float(row.trade_open), config.quantity_step
                 )
                 desired_delta = target_quantity - account.quantity
                 desired_notional = abs(desired_delta) * float(row.trade_open)
@@ -390,6 +408,7 @@ def run_micro_backtest(
                     execute_liquidation(timestamp, adverse_price, maintenance)
 
             close_equity = max(account.equity(float(row.mark_close)), 0.0)
+            peak_equity = max(peak_equity, close_equity)
             if close_equity > 0:
                 leverage = abs(account.quantity) * float(row.mark_close) / close_equity
                 maintenance, _, _ = maintenance_margin(abs(account.quantity) * float(row.mark_close))
