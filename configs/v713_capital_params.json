@@ -1,0 +1,23 @@
+{
+  "direction_allocation": 0.75,
+  "free_margin_allocation": 0.1,
+  "neutral_allocation": 0.15,
+  "exchange_leverage": 6.5,
+  "idle_apy": 0.04,
+  "arb_notional_fraction": 0.8,
+  "entry_7d_annualized": 0.12,
+  "entry_30d_annualized": 0.06,
+  "exit_7d_annualized": 0.03,
+  "entry_positive_ratio": 0.7,
+  "exit_positive_ratio": 0.55,
+  "negative_settlements_exit": 2,
+  "minimum_30d_observations": 60,
+  "spot_fee_bps": 7.0,
+  "futures_fee_bps": 2.8,
+  "slippage_per_leg_bps": 1.0,
+  "recall_trigger_free_margin": 0.08,
+  "recall_restore_free_margin": 0.12,
+  "half_recall_drawdown": 0.15,
+  "full_recall_drawdown": 0.2,
+  "redeploy_drawdown": 0.1
+}

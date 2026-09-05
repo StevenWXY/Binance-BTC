@@ -44,13 +44,34 @@ class MicroBacktestConfig:
     quantity_step: float = 0.001
     min_notional: float = 5.0
     periods_per_year: int = 2190
+    # Optional post-only execution model.  The historical archive does not
+    # contain order-book queues, so maker fills are conservatively modelled as
+    # a limit order at a small offset from the minute open that fills only when
+    # the minute range touches the quote.  Protective exits remain taker orders
+    # unless ``maker_exit_enabled`` is explicitly requested.
+    maker_enabled: bool = False
+    maker_fee_bps: float = 0.2
+    maker_offset_bps: float = 0.5
+    maker_order_timeout_minutes: int = 60
+    maker_exit_enabled: bool = False
+    # Optional account-level drawdown overlay retained for V7.1 sizing control.
     strategy_drawdown_enabled: bool = False
-    strategy_drawdown_level_1: float = 0.10
-    strategy_drawdown_scale_1: float = 0.80
-    strategy_drawdown_level_2: float = 0.15
-    strategy_drawdown_scale_2: float = 0.50
-    strategy_drawdown_level_3: float = 0.20
-    strategy_drawdown_scale_3: float = 0.25
+    strategy_drawdown_level_1: float = 0.20
+    strategy_drawdown_scale_1: float = 0.95
+    strategy_drawdown_level_2: float = 0.30
+    strategy_drawdown_scale_2: float = 0.85
+    strategy_drawdown_level_3: float = 0.40
+    strategy_drawdown_scale_3: float = 0.70
+
+    def __post_init__(self) -> None:
+        if self.taker_fee_bps < 0 or self.maker_fee_bps < 0:
+            raise ValueError("fees must be non-negative")
+        if self.base_slippage_bps < 0 or self.impact_bps < 0:
+            raise ValueError("slippage must be non-negative")
+        if self.maker_offset_bps < 0:
+            raise ValueError("maker_offset_bps must be non-negative")
+        if self.maker_order_timeout_minutes < 1:
+            raise ValueError("maker_order_timeout_minutes must be positive")
 
 
 @dataclass
@@ -163,6 +184,8 @@ def run_micro_backtest(
     funding_events = funding["funding_rate"].groupby(funding.index.floor("1min")).sum().to_dict()
     account = _Account(wallet=config.initial_cash)
     pending_signal: float | None = None
+    pending_signal_time: pd.Timestamp | None = None
+    pending_maker_counted = False
     active_protection: tuple[float, float] | None = None
     fills: list[dict[str, object]] = []
     liquidations: list[dict[str, object]] = []
@@ -174,15 +197,22 @@ def run_micro_backtest(
     max_leverage = max_margin_ratio = max_participation = 0.0
     min_margin_buffer = float("inf")
     order_notional = 0.0
+    maker_order_count = 0
+    maker_cancel_count = 0
+    maker_fill_count = 0
+    taker_fill_count = 0
+    maker_filled_notional = 0.0
+    taker_filled_notional = 0.0
     last_row: object | None = None
     last_timestamp: pd.Timestamp | None = None
     peak_equity = config.initial_cash
 
     fee_rate = config.taker_fee_bps / 10_000
+    maker_fee_rate = config.maker_fee_bps / 10_000
     liquidation_fee_rate = config.liquidation_fee_bps / 10_000
 
     def execute_liquidation(timestamp: pd.Timestamp, adverse_price: float, maintenance: float) -> None:
-        nonlocal cycle, pending_signal, active_protection
+        nonlocal cycle, pending_signal, pending_signal_time, pending_maker_counted, active_protection
         trigger_price = _liquidation_price(account, adverse_price)
         close_delta = -account.quantity
         execution_price = trigger_price * (
@@ -204,6 +234,7 @@ def run_micro_backtest(
             "participation": np.nan,
             "realized_pnl": realized,
             "position_after": 0.0,
+            "liquidity": "taker",
         })
         liquidations.append({
             "timestamp": timestamp,
@@ -224,6 +255,8 @@ def run_micro_backtest(
             })
             cycle = None
         pending_signal = None
+        pending_signal_time = None
+        pending_maker_counted = False
         active_protection = None
 
     def execute_protective_exit(
@@ -231,7 +264,7 @@ def run_micro_backtest(
         trigger_price: float,
         reason: str,
     ) -> None:
-        nonlocal cycle, pending_signal, active_protection
+        nonlocal cycle, pending_signal, pending_signal_time, pending_maker_counted, active_protection
         if abs(account.quantity) < 1e-12:
             return
         close_delta = -account.quantity
@@ -254,6 +287,7 @@ def run_micro_backtest(
             "participation": np.nan,
             "realized_pnl": realized,
             "position_after": 0.0,
+            "liquidity": "taker",
         })
         if cycle is not None:
             trade_cycles.append({
@@ -265,6 +299,8 @@ def run_micro_backtest(
             })
             cycle = None
         pending_signal = None
+        pending_signal_time = None
+        pending_maker_counted = False
         active_protection = None
 
     for batch in minute_batches:
@@ -304,6 +340,8 @@ def run_micro_backtest(
 
             if timestamp in events:
                 pending_signal = events[timestamp]
+                pending_signal_time = timestamp
+                pending_maker_counted = False
 
             if pending_signal is not None and account.wallet > 0:
                 pre_fill_equity = max(account.equity(mark_open), 0.0)
@@ -323,6 +361,8 @@ def run_micro_backtest(
                 desired_notional = abs(desired_delta) * float(row.trade_open)
                 if desired_notional < config.min_notional:
                     pending_signal = None
+                    pending_signal_time = None
+                    pending_maker_counted = False
                 else:
                     available_quote = max(float(row.trade_quote_volume), 0.0)
                     capacity_quantity = (
@@ -334,51 +374,119 @@ def run_micro_backtest(
                         delta = math.copysign(fill_quantity, desired_delta)
                         fill_notional = fill_quantity * float(row.trade_open)
                         participation = fill_notional / max(available_quote, fill_notional)
-                        slippage_bps = config.base_slippage_bps + config.impact_bps * math.sqrt(participation)
-                        execution_price = float(row.trade_open) * (
-                            1 + math.copysign(slippage_bps / 10_000, delta)
+                        # Reducing risk is deliberately taker by default.  New
+                        # exposure and ordinary rebalances may rest post-only
+                        # limits, while stop/take/liquidation paths below always
+                        # use taker execution for latency.
+                        reducing = (
+                            abs(account.quantity) > 1e-12
+                            and (
+                                abs(target_quantity) < abs(account.quantity)
+                                or np.sign(target_quantity) != np.sign(account.quantity)
+                            )
                         )
-                        old_side = np.sign(account.quantity)
-                        old_equity = account.equity(mark_open)
-                        realized, fee = account.fill(delta, execution_price, fee_rate)
-                        new_side = np.sign(account.quantity)
-                        order_notional += abs(delta) * execution_price
-                        max_participation = max(max_participation, participation)
-                        fills.append({
-                            "timestamp": timestamp,
-                            "reason": "signal",
-                            "side": "buy" if delta > 0 else "sell",
-                            "quantity": abs(delta),
-                            "price": execution_price,
-                            "notional": abs(delta) * execution_price,
-                            "fee": fee,
-                            "slippage_bps": slippage_bps,
-                            "participation": participation,
-                            "realized_pnl": realized,
-                            "position_after": account.quantity,
-                        })
-                        if old_side == 0 and new_side != 0:
-                            cycle = {
-                                "entry_time": timestamp,
-                                "side": "long" if new_side > 0 else "short",
-                                "equity_before": old_equity,
-                            }
-                        elif old_side != 0 and new_side != old_side:
-                            if cycle is not None:
-                                trade_cycles.append({
-                                    **cycle,
-                                    "exit_time": timestamp,
-                                    "pnl": account.equity(mark_open) - float(cycle["equity_before"]),
-                                    "exit_reason": "signal",
-                                })
-                            cycle = None if new_side == 0 else {
-                                "entry_time": timestamp,
-                                "side": "long" if new_side > 0 else "short",
-                                "equity_before": account.equity(mark_open),
-                            }
-                        remaining = target_quantity - account.quantity
-                        if abs(remaining) * execution_price < config.min_notional:
-                            pending_signal = None
+                        use_maker = config.maker_enabled and (
+                            config.maker_exit_enabled or not reducing
+                        )
+                        if use_maker and not pending_maker_counted:
+                            maker_order_count += 1
+                            pending_maker_counted = True
+                        limit_price = np.nan
+                        touched = True
+                        if use_maker:
+                            limit_price = float(row.trade_open) * (
+                                1 - math.copysign(config.maker_offset_bps / 10_000, delta)
+                            )
+                            touched = (
+                                float(row.trade_low) <= limit_price
+                                if delta > 0
+                                else float(row.trade_high) >= limit_price
+                            )
+                        if not touched:
+                            if (
+                                pending_signal_time is not None
+                                and (timestamp - pending_signal_time).total_seconds() / 60
+                                >= config.maker_order_timeout_minutes
+                            ):
+                                pending_signal = None
+                                pending_signal_time = None
+                                pending_maker_counted = False
+                                maker_cancel_count += 1
+                            touched = False
+                        if touched:
+                            if use_maker:
+                                execution_price = limit_price
+                                slippage_bps = -config.maker_offset_bps
+                                execution_fee_rate = maker_fee_rate
+                                liquidity = "maker"
+                            else:
+                                slippage_bps = config.base_slippage_bps + config.impact_bps * math.sqrt(participation)
+                                execution_price = float(row.trade_open) * (
+                                    1 + math.copysign(slippage_bps / 10_000, delta)
+                                )
+                                execution_fee_rate = fee_rate
+                                liquidity = "taker"
+                            old_side = np.sign(account.quantity)
+                            old_equity = account.equity(mark_open)
+                            realized, fee = account.fill(delta, execution_price, execution_fee_rate)
+                            new_side = np.sign(account.quantity)
+                            order_notional += abs(delta) * execution_price
+                            if liquidity == "maker":
+                                maker_fill_count += 1
+                                maker_filled_notional += abs(delta) * execution_price
+                            else:
+                                taker_fill_count += 1
+                                taker_filled_notional += abs(delta) * execution_price
+                            max_participation = max(max_participation, participation)
+                            fills.append({
+                                "timestamp": timestamp,
+                                "reason": "signal",
+                                "side": "buy" if delta > 0 else "sell",
+                                "quantity": abs(delta),
+                                "price": execution_price,
+                                "notional": abs(delta) * execution_price,
+                                "fee": fee,
+                                "slippage_bps": slippage_bps,
+                                "participation": participation,
+                                "realized_pnl": realized,
+                                "position_after": account.quantity,
+                                "liquidity": liquidity,
+                                "limit_price": limit_price,
+                            })
+                            if old_side == 0 and new_side != 0:
+                                cycle = {
+                                    "entry_time": timestamp,
+                                    "side": "long" if new_side > 0 else "short",
+                                    "equity_before": old_equity,
+                                }
+                            elif old_side != 0 and new_side != old_side:
+                                if cycle is not None:
+                                    trade_cycles.append({
+                                        **cycle,
+                                        "exit_time": timestamp,
+                                        "pnl": account.equity(mark_open) - float(cycle["equity_before"]),
+                                        "exit_reason": "signal",
+                                    })
+                                cycle = None if new_side == 0 else {
+                                    "entry_time": timestamp,
+                                    "side": "long" if new_side > 0 else "short",
+                                    "equity_before": account.equity(mark_open),
+                                }
+                            remaining = target_quantity - account.quantity
+                            if abs(remaining) * execution_price < config.min_notional:
+                                pending_signal = None
+                                pending_signal_time = None
+                                pending_maker_counted = False
+                    elif (
+                        config.maker_enabled
+                        and pending_signal_time is not None
+                        and (timestamp - pending_signal_time).total_seconds() / 60
+                        >= config.maker_order_timeout_minutes
+                    ):
+                        pending_signal = None
+                        pending_signal_time = None
+                        pending_maker_counted = False
+                        maker_cancel_count += 1
 
             if abs(account.quantity) > 1e-12 and active_protection is not None:
                 stop, take = active_protection
@@ -442,6 +550,7 @@ def run_micro_backtest(
             "participation": np.nan,
             "realized_pnl": realized,
             "position_after": 0.0,
+            "liquidity": "taker",
         })
         if cycle is not None:
             trade_cycles.append({
@@ -471,6 +580,24 @@ def run_micro_backtest(
         "max_margin_ratio": float(max_margin_ratio),
         "minimum_margin_buffer": float(min_margin_buffer if np.isfinite(min_margin_buffer) else 0.0),
         "max_minute_participation_observed": float(max_participation),
+        "maker_enabled": float(config.maker_enabled),
+        "maker_order_count": float(maker_order_count),
+        "maker_cancel_count": float(maker_cancel_count),
+        "maker_fill_count": float(maker_fill_count),
+        "taker_fill_count": float(taker_fill_count),
+        "maker_filled_notional": float(maker_filled_notional),
+        "taker_filled_notional": float(taker_filled_notional),
+        "maker_fill_ratio": float(
+            maker_filled_notional / (maker_filled_notional + taker_filled_notional)
+            if maker_filled_notional + taker_filled_notional > 0
+            else 0.0
+        ),
+        "maker_fill_events_per_order": float(
+            maker_fill_count / maker_order_count if maker_order_count else 0.0
+        ),
+        "maker_fee_saved_vs_taker": float(
+            maker_filled_notional * max(config.taker_fee_bps - config.maker_fee_bps, 0.0) / 10_000
+        ),
     })
     return MicroBacktestResult(
         equity=equity,
@@ -522,6 +649,18 @@ def micro_period_metrics(result: MicroBacktestResult) -> dict[str, dict[str, flo
             "fees_paid": float(fills["fee"].sum()) if not fills.empty else 0.0,
             "funding_paid": float(funding["payment"].sum()) if not funding.empty else 0.0,
             "liquidation_count": float(len(liquidations)),
+            "maker_fill_count": float(
+                (fills.get("liquidity", pd.Series(dtype=object)) == "maker").sum()
+                if not fills.empty else 0.0
+            ),
+            "taker_fill_count": float(
+                (fills.get("liquidity", pd.Series(dtype=object)) == "taker").sum()
+                if not fills.empty else 0.0
+            ),
+            "maker_filled_notional": float(
+                fills.loc[fills.get("liquidity", pd.Series(dtype=object)) == "maker", "notional"].sum()
+                if not fills.empty and "liquidity" in fills else 0.0
+            ),
         })
         output[label] = metrics
     return output

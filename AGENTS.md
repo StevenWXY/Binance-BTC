@@ -17,7 +17,7 @@
 4. Compared V4, V4.1, V4.2 direction strategy, and the historical high-profit V7 using the same friend dataset and execution assumptions.
 5. Optimized V7 into V7.1 and pushed it to branch `xuyujian修改`.
 6. Added V7.1 strategy parameters, execution drawdown controls, README documentation, comparison results, parameter search, and validation scripts.
-7. Test status at handoff: `28 passed`.
+7. Test status after V7.1.3: `32 passed`.
 
 ## Strategy Versions
 
@@ -77,6 +77,17 @@ V7.1 is a historical candidate, not a guarantee of future performance. Its full-
 
 - `configs/v71_params.json`: V7.1 strategy parameters.
 - `configs/v71_execution.json`: V7.1 execution and drawdown overlay parameters.
+- `configs/v712_params.json` / `configs/v712_execution.json`: V7.1.2 protection, maker, and 30% rebate parameters.
+- `src/btc_regime/v712.py`: V7.1.2 causal ATR protection and fast downside exit.
+- `scripts/backtest_v712.py`: full V7.1/V7.1.2 minute-level comparison runner.
+- `reports/v712_micro_2020_2026_07/`: V7.1.2 full-period backtest outputs.
+- `configs/v713_params.json` / `configs/v713_execution.json`: V7.1.3 lower-leverage parameters.
+- `src/btc_regime/v713.py` and `scripts/backtest_v713.py`: V7.1.3 implementation and backtest runner.
+- `reports/v713_micro_2020_2026_07/`: V7.1.3 full-period backtest outputs, including the V4.2.1 neutral sleeve.
+- `configs/v713_capital_params.json`: V4.2.1-style neutral capital allocation and recall thresholds.
+- `src/btc_regime/v42.py`: causal settled-funding neutral sleeve reused by V7.1.3.
+- `scripts/compare_six_strategies_btc.py`: unified V4/V7 six-strategy replay with BTC baseline and SVG curves.
+- `reports/unified_v4_v7_btc_2020_2026_08_01/`: unified metrics, equity/drawdown curves, and per-strategy details.
 - `src/btc_regime/v7.py`: V7/V7.1 signal logic, including ATR breakout buffer.
 - `src/btc_regime/micro_backtest.py`: 1m execution, funding, margin, and optional equity drawdown scaling.
 - `scripts/compare_v4_v7_micro_local.py`: unified V4/V4.1/V4.2/V7/V7.1-compatible local comparison runner.
@@ -87,13 +98,12 @@ V7.1 is a historical candidate, not a guarantee of future performance. Its full-
 
 ## Pending Work
 
-1. Diagnose V7.1's remaining drawdown by aligning equity drawdown troughs with 4h market state, signal direction, leverage, funding, and fills.
-2. Separate drawdown caused by wrong trend classification from drawdown caused by correct classification but delayed exit or excessive leverage.
+1. Diagnose V7.1.3's remaining drawdown by aligning equity drawdown troughs with 4h market state, signal direction, leverage, funding, and fills.
+2. Run maker fill-rate, quote-offset, timeout, and adverse-selection sensitivity tests; historical OHLC touch fills are only a deterministic proxy for order-book execution.
 3. Re-run candidate tests with a proper walk-forward design: select on 2020-2022, validate on 2023-2024, and keep 2025-2026 as untouched holdout.
-4. Add tests for V7.1's breakout buffer and drawdown overlay, including boundary transitions at 20%, 30%, and 40% drawdown.
-5. Generate a clean five-line equity/drawdown chart for V4, V4.1, V4.2, V7, and V7.1 using the friend dataset.
-6. Do not make V7.1 the project-wide default until the above validation and drawdown attribution are complete.
-7. Future pushes should normally target `xuyujian修改`; synchronize with `main` only after explicit user approval.
+4. Add boundary tests for V7.1.3 protection triggers, account drawdown scaling, and neutral recall transitions.
+5. Do not make V7.1.3 the project-wide default until execution sensitivity and walk-forward validation are complete.
+6. Future pushes should normally target `xuyujian修改`; synchronize with `main` only after explicit user approval.
 
 ## Verification Commands
 
