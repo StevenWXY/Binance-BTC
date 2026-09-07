@@ -89,6 +89,200 @@ def test_minute_engine_liquidates_on_mark_price_breach():
     assert result.equity.iloc[-1] == 0
 
 
+def test_long_loss_reentry_probe_caps_reentry_after_fast_low_quality_loss():
+    signal_index = pd.DatetimeIndex(
+        [
+            pd.Timestamp("2024-01-01 00:00", tz="UTC"),
+            pd.Timestamp("2024-01-01 04:00", tz="UTC"),
+            pd.Timestamp("2024-01-01 08:00", tz="UTC"),
+        ]
+    )
+    signaled = pd.DataFrame(
+        {
+            "signal": [1.0, 0.0, 1.0],
+            "stop_price": [95.0, np.nan, 95.0],
+            "take_profit_price": [150.0, np.nan, 150.0],
+            "v71_permission_reason": ["confirmed_long", "weak_long_quality", "confirmed_long"],
+            "v71_trend_quality_score": [0.60, 0.0, 0.60],
+            "v71_direction_context": ["long_continuation", "range_wait", "long_continuation"],
+        },
+        index=signal_index,
+    )
+    minute_index = pd.DatetimeIndex(
+        [
+            pd.Timestamp("2024-01-01 04:00", tz="UTC"),
+            pd.Timestamp("2024-01-01 04:01", tz="UTC"),
+            pd.Timestamp("2024-01-01 08:00", tz="UTC"),
+            pd.Timestamp("2024-01-01 12:00", tz="UTC"),
+            pd.Timestamp("2024-01-01 12:01", tz="UTC"),
+        ]
+    )
+    minute = pd.DataFrame(
+        {
+            "trade_open": [100.0, 95.0, 100.0, 100.0, 100.0],
+            "trade_high": [100.5, 96.0, 100.5, 100.5, 100.5],
+            "trade_low": [99.5, 94.0, 99.5, 99.5, 99.5],
+            "trade_close": [100.0, 95.0, 100.0, 100.0, 100.0],
+            "trade_volume": [100_000.0] * 5,
+            "trade_quote_volume": [10_000_000.0] * 5,
+            "mark_open": [100.0, 95.0, 100.0, 100.0, 100.0],
+            "mark_high": [100.5, 96.0, 100.5, 100.5, 100.5],
+            "mark_low": [99.5, 94.0, 99.5, 99.5, 99.5],
+            "mark_close": [100.0, 95.0, 100.0, 100.0, 100.0],
+        },
+        index=minute_index,
+    )
+    funding = pd.DataFrame({"funding_rate": []}, index=pd.DatetimeIndex([], tz="UTC"))
+    baseline = run_micro_backtest(signaled, [minute], funding, MicroBacktestConfig())
+    cooled = run_micro_backtest(
+        signaled,
+        [minute],
+        funding,
+        MicroBacktestConfig(
+            long_loss_reentry_probe_enabled=True,
+            long_loss_reentry_probe_cooldown_minutes=24 * 60,
+            long_loss_reentry_probe_max_holding_minutes=24 * 60,
+            long_loss_reentry_probe_quality_max=0.7,
+            long_loss_reentry_probe_scale=0.5,
+        ),
+    )
+    baseline_buys = baseline.fills[(baseline.fills["reason"] == "signal") & (baseline.fills["side"] == "buy")]
+    cooled_buys = cooled.fills[(cooled.fills["reason"] == "signal") & (cooled.fills["side"] == "buy")]
+    assert len(baseline_buys) == len(cooled_buys) == 2
+    assert cooled_buys.iloc[1]["quantity"] < baseline_buys.iloc[1]["quantity"]
+
+
+def test_long_loss_reentry_probe_stop_loss_only_ignores_signal_exit():
+    signal_index = pd.DatetimeIndex(
+        [
+            pd.Timestamp("2024-01-01 00:00", tz="UTC"),
+            pd.Timestamp("2024-01-01 04:00", tz="UTC"),
+            pd.Timestamp("2024-01-01 08:00", tz="UTC"),
+        ]
+    )
+    signaled = pd.DataFrame(
+        {
+            "signal": [1.0, 0.0, 1.0],
+            "stop_price": [50.0, np.nan, 50.0],
+            "take_profit_price": [150.0, np.nan, 150.0],
+            "v71_permission_reason": ["confirmed_long", "weak_long_quality", "confirmed_long"],
+            "v71_trend_quality_score": [0.60, 0.0, 0.60],
+            "v71_direction_context": ["long_continuation", "range_wait", "long_continuation"],
+        },
+        index=signal_index,
+    )
+    minute_index = pd.DatetimeIndex(
+        [
+            pd.Timestamp("2024-01-01 04:00", tz="UTC"),
+            pd.Timestamp("2024-01-01 08:00", tz="UTC"),
+            pd.Timestamp("2024-01-01 12:00", tz="UTC"),
+        ]
+    )
+    minute = pd.DataFrame(
+        {
+            "trade_open": [100.0, 100.0, 100.0],
+            "trade_high": [100.5, 100.5, 100.5],
+            "trade_low": [99.5, 99.5, 99.5],
+            "trade_close": [100.0, 100.0, 100.0],
+            "trade_volume": [100_000.0] * 3,
+            "trade_quote_volume": [10_000_000.0] * 3,
+            "mark_open": [100.0, 100.0, 100.0],
+            "mark_high": [100.5, 100.5, 100.5],
+            "mark_low": [99.5, 99.5, 99.5],
+            "mark_close": [100.0, 100.0, 100.0],
+        },
+        index=minute_index,
+    )
+    funding = pd.DataFrame({"funding_rate": []}, index=pd.DatetimeIndex([], tz="UTC"))
+    baseline = run_micro_backtest(signaled, [minute], funding, MicroBacktestConfig())
+    cooled = run_micro_backtest(
+        signaled,
+        [minute],
+        funding,
+        MicroBacktestConfig(
+            long_loss_reentry_probe_enabled=True,
+            long_loss_reentry_probe_stop_loss_only=True,
+            long_loss_reentry_probe_cooldown_minutes=24 * 60,
+            long_loss_reentry_probe_max_holding_minutes=24 * 60,
+            long_loss_reentry_probe_quality_max=0.7,
+            long_loss_reentry_probe_scale=0.5,
+        ),
+    )
+    baseline_buys = baseline.fills[(baseline.fills["reason"] == "signal") & (baseline.fills["side"] == "buy")]
+    cooled_buys = cooled.fills[(cooled.fills["reason"] == "signal") & (cooled.fills["side"] == "buy")]
+    assert cooled_buys.iloc[1]["quantity"] == pytest.approx(baseline_buys.iloc[1]["quantity"])
+
+
+def test_long_loss_reentry_probe_can_limit_only_first_reentry():
+    signal_index = pd.DatetimeIndex(
+        [
+            pd.Timestamp("2024-01-01 00:00", tz="UTC"),
+            pd.Timestamp("2024-01-01 04:00", tz="UTC"),
+            pd.Timestamp("2024-01-01 08:00", tz="UTC"),
+            pd.Timestamp("2024-01-01 12:00", tz="UTC"),
+            pd.Timestamp("2024-01-01 16:00", tz="UTC"),
+        ]
+    )
+    signaled = pd.DataFrame(
+        {
+            "signal": [1.0, 0.0, 1.0, 0.0, 1.0],
+            "stop_price": [95.0, np.nan, 95.0, np.nan, 95.0],
+            "take_profit_price": [150.0, np.nan, 150.0, np.nan, 150.0],
+            "v71_permission_reason": ["confirmed_long", "weak_long_quality", "confirmed_long", "weak_long_quality", "confirmed_long"],
+            "v71_trend_quality_score": [0.60, 0.0, 0.60, 0.0, 0.60],
+            "v71_direction_context": ["long_continuation", "range_wait", "long_continuation", "range_wait", "long_continuation"],
+        },
+        index=signal_index,
+    )
+    minute_index = pd.DatetimeIndex(
+        [
+            pd.Timestamp("2024-01-01 04:00", tz="UTC"),
+            pd.Timestamp("2024-01-01 04:01", tz="UTC"),
+            pd.Timestamp("2024-01-01 08:00", tz="UTC"),
+            pd.Timestamp("2024-01-01 12:00", tz="UTC"),
+            pd.Timestamp("2024-01-01 12:01", tz="UTC"),
+            pd.Timestamp("2024-01-01 16:00", tz="UTC"),
+            pd.Timestamp("2024-01-01 20:00", tz="UTC"),
+        ]
+    )
+    minute = pd.DataFrame(
+        {
+            "trade_open": [100.0, 95.0, 100.0, 100.0, 100.0, 100.0, 100.0],
+            "trade_high": [100.5, 96.0, 100.5, 100.5, 100.5, 100.5, 100.5],
+            "trade_low": [99.5, 94.0, 99.5, 99.5, 99.5, 99.5, 99.5],
+            "trade_close": [100.0, 95.0, 100.0, 100.0, 100.0, 100.0, 100.0],
+            "trade_volume": [100_000.0] * 7,
+            "trade_quote_volume": [10_000_000.0] * 7,
+            "mark_open": [100.0, 95.0, 100.0, 100.0, 100.0, 100.0, 100.0],
+            "mark_high": [100.5, 96.0, 100.5, 100.5, 100.5, 100.5, 100.5],
+            "mark_low": [99.5, 94.0, 99.5, 99.5, 99.5, 99.5, 99.5],
+            "mark_close": [100.0, 95.0, 100.0, 100.0, 100.0, 100.0, 100.0],
+        },
+        index=minute_index,
+    )
+    funding = pd.DataFrame({"funding_rate": []}, index=pd.DatetimeIndex([], tz="UTC"))
+    baseline = run_micro_backtest(signaled, [minute], funding, MicroBacktestConfig())
+    cooled = run_micro_backtest(
+        signaled,
+        [minute],
+        funding,
+        MicroBacktestConfig(
+            long_loss_reentry_probe_enabled=True,
+            long_loss_reentry_probe_stop_loss_only=True,
+            long_loss_reentry_probe_cooldown_minutes=24 * 60,
+            long_loss_reentry_probe_max_holding_minutes=24 * 60,
+            long_loss_reentry_probe_quality_max=0.7,
+            long_loss_reentry_probe_scale=0.5,
+            long_loss_reentry_probe_max_reentries=1,
+        ),
+    )
+    baseline_buys = baseline.fills[(baseline.fills["reason"] == "signal") & (baseline.fills["side"] == "buy")].reset_index(drop=True)
+    cooled_buys = cooled.fills[(cooled.fills["reason"] == "signal") & (cooled.fills["side"] == "buy")].reset_index(drop=True)
+    assert len(baseline_buys) == len(cooled_buys) == 3
+    assert cooled_buys.iloc[1]["quantity"] < baseline_buys.iloc[1]["quantity"]
+    assert cooled_buys.iloc[2]["quantity"] >= baseline_buys.iloc[2]["quantity"] * 0.995
+
+
 def test_maintenance_margin_brackets_are_progressive():
     assert maintenance_margin(10_000)[0] == pytest.approx(40)
     assert maintenance_margin(100_000)[0] == pytest.approx(450)

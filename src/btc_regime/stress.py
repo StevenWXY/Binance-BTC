@@ -20,6 +20,7 @@ from .backtest import BacktestConfig, run_backtest
 from .micro_backtest import MicroBacktestConfig, run_micro_backtest
 from .strategy import StrategyParams, generate_signals
 from .v6 import V6Params, generate_v6_signals
+from .v71_live import V71LiveParams, generate_v71_live_signals
 
 
 @dataclass(frozen=True)
@@ -286,7 +287,7 @@ def generate_stress_intrabar(
 
 
 def _params_for_engine(
-    params: StrategyParams | V6Params | dict[str, object] | None, engine: str
+    params: StrategyParams | V6Params | V71LiveParams | dict[str, object] | None, engine: str
 ):
     if engine == "v6":
         if params is None:
@@ -306,17 +307,27 @@ def _params_for_engine(
         raise TypeError(
             "engine='strategy' requires StrategyParams or a parameter dictionary"
         )
-    raise ValueError("engine must be 'strategy' or 'v6'")
+    if engine == "v71_live":
+        if params is None:
+            return V71LiveParams()
+        if isinstance(params, V71LiveParams):
+            return params
+        if isinstance(params, dict):
+            return V71LiveParams(**params)
+        raise TypeError(
+            "engine='v71_live' requires V71LiveParams or a parameter dictionary"
+        )
+    raise ValueError("engine must be 'strategy', 'v6' or 'v71_live'")
 
 
 def _generate_signals(
-    market: pd.DataFrame, params: StrategyParams | V6Params, engine: str
+    market: pd.DataFrame, params: StrategyParams | V6Params | V71LiveParams, engine: str
 ) -> pd.DataFrame:
-    return (
-        generate_v6_signals(market, params)
-        if engine == "v6"
-        else generate_signals(market, params)
-    )
+    if engine == "v6":
+        return generate_v6_signals(market, params)
+    if engine == "v71_live":
+        return generate_v71_live_signals(market, params)
+    return generate_signals(market, params)
 
 
 def _metric_value(metrics: dict[str, float], key: str, default: float = 0.0) -> float:
@@ -325,7 +336,7 @@ def _metric_value(metrics: dict[str, float], key: str, default: float = 0.0) -> 
 
 
 def run_stress_suite(
-    params: StrategyParams | V6Params | dict[str, object] | None = None,
+    params: StrategyParams | V6Params | V71LiveParams | dict[str, object] | None = None,
     *,
     engine: str = "v6",
     scenarios: Sequence[str] | None = None,

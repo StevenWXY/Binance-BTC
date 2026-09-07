@@ -1,0 +1,154 @@
+{
+  "params_file": "/Users/apple/Documents/Binance-BTC/Binance-BTC-wzy/configs/v71_final_candidate_params.json",
+  "execution_file": "/Users/apple/Documents/Binance-BTC/Binance-BTC-wzy/configs/v71_final_candidate_execution.json",
+  "metrics": {
+    "total_return": 0.2564560499887869,
+    "cagr": 0.035294420657706826,
+    "annualized_volatility": 0.1156396256644164,
+    "sharpe": 0.35772332356713515,
+    "sortino": 0.5804472341160855,
+    "calmar": 0.27870598103797195,
+    "max_drawdown": -0.1266367536364359,
+    "trade_count": 74.0,
+    "win_rate": 0.4189189189189189,
+    "final_equity": 12564.56049988787,
+    "fill_count": 217.0,
+    "liquidation_count": 0.0,
+    "fees_paid": 518.1314383939665,
+    "funding_paid": 443.2183340950129,
+    "realized_pnl": 3525.9102723768524,
+    "order_notional": 1640653.8378825057,
+    "max_leverage_observed": 4.888622803367762,
+    "max_margin_ratio": 0.019554636481134445,
+    "minimum_margin_buffer": 9779.452615348715,
+    "max_minute_participation_observed": 0.019999680118412973,
+    "maker_enabled": 1.0,
+    "maker_order_count": 98.0,
+    "maker_cancel_count": 0.0,
+    "maker_fill_count": 112.0,
+    "taker_fill_count": 43.0,
+    "maker_filled_notional": 1229955.2421914495,
+    "taker_filled_notional": 410698.59569105576,
+    "maker_fill_ratio": 0.749673827465567,
+    "maker_fill_events_per_order": 1.1428571428571428,
+    "maker_fee_saved_vs_taker": 467.3829920327508,
+    "strategy_drawdown_enabled": 1.0,
+    "governor_peak_equity": 14984.20666877881,
+    "governor_max_drawdown_observed": 0.16147976482015103,
+    "governor_min_scale_observed": 0.0
+  },
+  "signal_activity": [
+    {
+      "year": 2020,
+      "bars": 2196,
+      "nonzero_signal_bars": 709,
+      "raw_signal_bars": 850,
+      "signal_change_bars": 247,
+      "raw_change_bars": 225,
+      "mean_abs_signal": 0.3749765454974359,
+      "max_abs_signal": 6.0
+    },
+    {
+      "year": 2021,
+      "bars": 2190,
+      "nonzero_signal_bars": 606,
+      "raw_signal_bars": 771,
+      "signal_change_bars": 164,
+      "raw_change_bars": 131,
+      "mean_abs_signal": 0.15538144262914186,
+      "max_abs_signal": 2.7347313622483456
+    },
+    {
+      "year": 2022,
+      "bars": 2190,
+      "nonzero_signal_bars": 735,
+      "raw_signal_bars": 859,
+      "signal_change_bars": 159,
+      "raw_change_bars": 136,
+      "mean_abs_signal": 0.18130447211604617,
+      "max_abs_signal": 3.8288125218697666
+    },
+    {
+      "year": 2023,
+      "bars": 2190,
+      "nonzero_signal_bars": 704,
+      "raw_signal_bars": 833,
+      "signal_change_bars": 186,
+      "raw_change_bars": 162,
+      "mean_abs_signal": 0.5676375511318722,
+      "max_abs_signal": 6.0
+    },
+    {
+      "year": 2024,
+      "bars": 2196,
+      "nonzero_signal_bars": 720,
+      "raw_signal_bars": 870,
+      "signal_change_bars": 233,
+      "raw_change_bars": 205,
+      "mean_abs_signal": 0.47568578587263444,
+      "max_abs_signal": 4.136280525849205
+    },
+    {
+      "year": 2025,
+      "bars": 2190,
+      "nonzero_signal_bars": 610,
+      "raw_signal_bars": 721,
+      "signal_change_bars": 165,
+      "raw_change_bars": 149,
+      "mean_abs_signal": 0.3871045427154119,
+      "max_abs_signal": 5.178014451276471
+    },
+    {
+      "year": 2026,
+      "bars": 1272,
+      "nonzero_signal_bars": 367,
+      "raw_signal_bars": 432,
+      "signal_change_bars": 83,
+      "raw_change_bars": 73,
+      "mean_abs_signal": 0.29558125301398164,
+      "max_abs_signal": 4.788072563603011
+    }
+  ],
+  "execution_activity": [
+    {
+      "year": 2020,
+      "fill_count": 217,
+      "trade_count": 74,
+      "maker_fill_count": 112,
+      "taker_fill_count": 105
+    }
+  ],
+  "post_last_fill": {
+    "last_fill_time": "2020-11-07T16:25:00+00:00",
+    "bars_after_last_fill": 12553,
+    "nonzero_signal_bars_after_last_fill": 3872,
+    "signal_change_bars_after_last_fill": 1055,
+    "market_state_counts_after_last_fill": {
+      "range": 7498,
+      "trend_up": 2620,
+      "trend_down": 2435
+    },
+    "regime_counts_after_last_fill": {
+      "range_flat": 7210,
+      "trend_long": 2620,
+      "trend_short": 2018,
+      "trend_short_wait": 417,
+      "trend_stop": 188,
+      "range_wait": 88,
+      "range_long": 7,
+      "range_exit": 5
+    }
+  },
+  "governor_diagnosis": {
+    "enabled": true,
+    "governor_peak_equity": 14984.20666877881,
+    "equity_last_close": 12564.56049988787,
+    "governor_max_drawdown_observed": 0.16147976482015103,
+    "implied_drawdown_vs_governor_peak": 0.16147976482015103,
+    "level_3": 0.16,
+    "scale_at_last_equity": 0.0,
+    "hypothetical_new_long_signal_after_last_equity": 0.0,
+    "hypothetical_new_short_signal_after_last_equity": 0.0,
+    "freeze_risk": true
+  }
+}

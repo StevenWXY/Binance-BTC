@@ -1,0 +1,4 @@
+code,strategy,final_equity,total_return,sharpe,max_drawdown,fees_paid,funding_paid,maker_fill_ratio,liquidation_count,governor_max_drawdown_observed
+main_v43,main: V4.3 maker/protection,10000.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+xuyujian_v71_ref,xuyujian: V7.1 reference,10000.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+wzy_v71_live,wzy: V7.1 live conservative,9944.961235121975,-0.005503876487802484,-8.450760678259073,-0.00554466506553819,0.9570381874981375,-0.041364281816000006,1.0,0.0,0.008394605320615312

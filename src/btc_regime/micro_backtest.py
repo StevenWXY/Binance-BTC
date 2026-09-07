@@ -12,6 +12,7 @@ import numpy as np
 import pandas as pd
 
 from .backtest import BacktestResult, calculate_metrics
+from .live_risk import AccountDrawdownGovernor, drawdown_from_equity
 from .strategy import StrategyParams
 
 
@@ -54,6 +55,29 @@ class MicroBacktestConfig:
     maker_offset_bps: float = 0.5
     maker_order_timeout_minutes: int = 60
     maker_exit_enabled: bool = False
+    strategy_drawdown_enabled: bool = False
+    strategy_drawdown_level_1: float = 0.08
+    strategy_drawdown_scale_1: float = 0.80
+    strategy_drawdown_level_2: float = 0.12
+    strategy_drawdown_scale_2: float = 0.50
+    strategy_drawdown_level_3: float = 0.16
+    strategy_drawdown_scale_3: float = 0.00
+    strategy_drawdown_reduce_only_level_3: bool = True
+    strategy_drawdown_recovery_enabled: bool = False
+    strategy_drawdown_recovery_flat_cooldown_minutes: int = 24 * 60
+    strategy_drawdown_recovery_max_signal: float = 0.25
+    strategy_drawdown_continuation_reentry_enabled: bool = False
+    strategy_drawdown_continuation_reentry_recovery_buffer: float = 0.03
+    strategy_drawdown_continuation_reentry_scale_1: float = 1.0
+    strategy_drawdown_continuation_reentry_scale_2: float = 0.75
+    strategy_drawdown_continuation_reentry_scale_3: float = 0.35
+    long_loss_reentry_probe_enabled: bool = False
+    long_loss_reentry_probe_cooldown_minutes: int = 24 * 60
+    long_loss_reentry_probe_max_holding_minutes: int = 24 * 60
+    long_loss_reentry_probe_quality_max: float = 0.70
+    long_loss_reentry_probe_scale: float = 0.50
+    long_loss_reentry_probe_stop_loss_only: bool = False
+    long_loss_reentry_probe_max_reentries: int = 999999
 
     def __post_init__(self) -> None:
         if self.taker_fee_bps < 0 or self.maker_fee_bps < 0:
@@ -64,6 +88,34 @@ class MicroBacktestConfig:
             raise ValueError("maker_offset_bps must be non-negative")
         if self.maker_order_timeout_minutes < 1:
             raise ValueError("maker_order_timeout_minutes must be positive")
+        if self.long_loss_reentry_probe_cooldown_minutes < 1:
+            raise ValueError("long_loss_reentry_probe_cooldown_minutes must be positive")
+        if self.long_loss_reentry_probe_max_holding_minutes < 1:
+            raise ValueError("long_loss_reentry_probe_max_holding_minutes must be positive")
+        if not 0 < self.long_loss_reentry_probe_quality_max <= 1:
+            raise ValueError("long_loss_reentry_probe_quality_max must be in (0, 1]")
+        if not 0 < self.long_loss_reentry_probe_scale <= 10:
+            raise ValueError("long_loss_reentry_probe_scale must be in (0, 10]")
+        if self.long_loss_reentry_probe_max_reentries < 1:
+            raise ValueError("long_loss_reentry_probe_max_reentries must be positive")
+        AccountDrawdownGovernor(
+            enabled=self.strategy_drawdown_enabled,
+            level_1=self.strategy_drawdown_level_1,
+            scale_1=self.strategy_drawdown_scale_1,
+            level_2=self.strategy_drawdown_level_2,
+            scale_2=self.strategy_drawdown_scale_2,
+            level_3=self.strategy_drawdown_level_3,
+            scale_3=self.strategy_drawdown_scale_3,
+            reduce_only_level_3=self.strategy_drawdown_reduce_only_level_3,
+            recovery_enabled=self.strategy_drawdown_recovery_enabled,
+            recovery_flat_cooldown_minutes=self.strategy_drawdown_recovery_flat_cooldown_minutes,
+            recovery_max_signal=self.strategy_drawdown_recovery_max_signal,
+            continuation_reentry_enabled=self.strategy_drawdown_continuation_reentry_enabled,
+            continuation_reentry_recovery_buffer=self.strategy_drawdown_continuation_reentry_recovery_buffer,
+            continuation_reentry_scale_1=self.strategy_drawdown_continuation_reentry_scale_1,
+            continuation_reentry_scale_2=self.strategy_drawdown_continuation_reentry_scale_2,
+            continuation_reentry_scale_3=self.strategy_drawdown_continuation_reentry_scale_3,
+        )
 
 
 @dataclass
@@ -165,6 +217,22 @@ def _protection_events(
     return levels
 
 
+def _signal_meta_events(signaled: pd.DataFrame) -> dict[pd.Timestamp, dict[str, object]]:
+    meta_cols = [
+        column
+        for column in ("v71_permission_reason", "v71_trend_quality_score", "v71_direction_context")
+        if column in signaled.columns
+    ]
+    if not meta_cols:
+        return {}
+    signal = signaled["signal"].fillna(0.0).clip(-10, 10)
+    changed = signal.ne(signal.shift(1)).fillna(True)
+    events: dict[pd.Timestamp, dict[str, object]] = {}
+    for timestamp, row in signaled.loc[changed, meta_cols].iterrows():
+        events[timestamp + pd.Timedelta(hours=4)] = row.to_dict()
+    return events
+
+
 def run_micro_backtest(
     signaled: pd.DataFrame,
     minute_batches: Iterable[pd.DataFrame],
@@ -172,11 +240,31 @@ def run_micro_backtest(
     config: MicroBacktestConfig = MicroBacktestConfig(),
 ) -> MicroBacktestResult:
     events = _signal_events(signaled)
+    signal_meta_events = _signal_meta_events(signaled)
     protection_events = _protection_events(signaled)
     funding_events = funding["funding_rate"].groupby(funding.index.floor("1min")).sum().to_dict()
     account = _Account(wallet=config.initial_cash)
+    governor = AccountDrawdownGovernor(
+        enabled=config.strategy_drawdown_enabled,
+        level_1=config.strategy_drawdown_level_1,
+        scale_1=config.strategy_drawdown_scale_1,
+        level_2=config.strategy_drawdown_level_2,
+        scale_2=config.strategy_drawdown_scale_2,
+        level_3=config.strategy_drawdown_level_3,
+        scale_3=config.strategy_drawdown_scale_3,
+        reduce_only_level_3=config.strategy_drawdown_reduce_only_level_3,
+        recovery_enabled=config.strategy_drawdown_recovery_enabled,
+        recovery_flat_cooldown_minutes=config.strategy_drawdown_recovery_flat_cooldown_minutes,
+        recovery_max_signal=config.strategy_drawdown_recovery_max_signal,
+        continuation_reentry_enabled=config.strategy_drawdown_continuation_reentry_enabled,
+        continuation_reentry_recovery_buffer=config.strategy_drawdown_continuation_reentry_recovery_buffer,
+        continuation_reentry_scale_1=config.strategy_drawdown_continuation_reentry_scale_1,
+        continuation_reentry_scale_2=config.strategy_drawdown_continuation_reentry_scale_2,
+        continuation_reentry_scale_3=config.strategy_drawdown_continuation_reentry_scale_3,
+    )
     pending_signal: float | None = None
     pending_signal_time: pd.Timestamp | None = None
+    pending_signal_meta: dict[str, object] = {}
     pending_maker_counted = False
     active_protection: tuple[float, float] | None = None
     fills: list[dict[str, object]] = []
@@ -195,15 +283,51 @@ def run_micro_backtest(
     taker_fill_count = 0
     maker_filled_notional = 0.0
     taker_filled_notional = 0.0
+    peak_equity = config.initial_cash
+    min_governor_scale = 1.0
+    max_drawdown_observed = 0.0
     last_row: object | None = None
     last_timestamp: pd.Timestamp | None = None
+    long_loss_probe_cooldown_until: pd.Timestamp | None = None
+    long_loss_probe_reentries_remaining = 0
 
     fee_rate = config.taker_fee_bps / 10_000
     maker_fee_rate = config.maker_fee_bps / 10_000
     liquidation_fee_rate = config.liquidation_fee_bps / 10_000
 
+    def maybe_arm_long_loss_probe_cooldown(
+        *,
+        closed_cycle: dict[str, object] | None,
+        exit_reason: str,
+        timestamp: pd.Timestamp,
+        pnl: float,
+    ) -> None:
+        nonlocal long_loss_probe_cooldown_until, long_loss_probe_reentries_remaining
+        if not config.long_loss_reentry_probe_enabled or closed_cycle is None:
+            return
+        if closed_cycle.get("side") != "long" or pnl >= 0:
+            return
+        if config.long_loss_reentry_probe_stop_loss_only:
+            if exit_reason != "stop_loss":
+                return
+        elif exit_reason not in {"signal", "stop_loss"}:
+            return
+        entry_time = pd.Timestamp(closed_cycle["entry_time"])
+        holding_minutes = (timestamp - entry_time).total_seconds() / 60
+        if holding_minutes > config.long_loss_reentry_probe_max_holding_minutes:
+            return
+        if closed_cycle.get("entry_permission_reason") != "confirmed_long":
+            return
+        quality = float(closed_cycle.get("entry_trend_quality", np.nan))
+        if not np.isfinite(quality) or quality > config.long_loss_reentry_probe_quality_max:
+            return
+        cooldown_until = timestamp + pd.Timedelta(minutes=config.long_loss_reentry_probe_cooldown_minutes)
+        if long_loss_probe_cooldown_until is None or cooldown_until > long_loss_probe_cooldown_until:
+            long_loss_probe_cooldown_until = cooldown_until
+        long_loss_probe_reentries_remaining = config.long_loss_reentry_probe_max_reentries
+
     def execute_liquidation(timestamp: pd.Timestamp, adverse_price: float, maintenance: float) -> None:
-        nonlocal cycle, pending_signal, pending_signal_time, pending_maker_counted, active_protection
+        nonlocal cycle, pending_signal, pending_signal_time, pending_signal_meta, pending_maker_counted, active_protection
         trigger_price = _liquidation_price(account, adverse_price)
         close_delta = -account.quantity
         execution_price = trigger_price * (
@@ -247,6 +371,7 @@ def run_micro_backtest(
             cycle = None
         pending_signal = None
         pending_signal_time = None
+        pending_signal_meta = {}
         pending_maker_counted = False
         active_protection = None
 
@@ -255,7 +380,7 @@ def run_micro_backtest(
         trigger_price: float,
         reason: str,
     ) -> None:
-        nonlocal cycle, pending_signal, pending_signal_time, pending_maker_counted, active_protection
+        nonlocal cycle, pending_signal, pending_signal_time, pending_signal_meta, pending_maker_counted, active_protection
         if abs(account.quantity) < 1e-12:
             return
         close_delta = -account.quantity
@@ -281,16 +406,25 @@ def run_micro_backtest(
             "liquidity": "taker",
         })
         if cycle is not None:
+            pnl = account.wallet - float(cycle["equity_before"])
+            maybe_arm_long_loss_probe_cooldown(
+                closed_cycle=cycle,
+                exit_reason=reason,
+                timestamp=timestamp,
+                pnl=pnl,
+            )
             trade_cycles.append({
                 **cycle,
                 "exit_time": timestamp,
-                "pnl": account.wallet - float(cycle["equity_before"]),
+                "holding_minutes": (timestamp - pd.Timestamp(cycle["entry_time"])).total_seconds() / 60,
+                "pnl": pnl,
                 "exit_reason": reason,
                 "equity_at_trigger": equity_before,
             })
             cycle = None
         pending_signal = None
         pending_signal_time = None
+        pending_signal_meta = {}
         pending_maker_counted = False
         active_protection = None
 
@@ -304,7 +438,9 @@ def run_micro_backtest(
                 active_protection = protection_events[timestamp]
             if not equity_times:
                 equity_times.append(timestamp)
-                equity_values.append(max(account.equity(mark_open), 0.0))
+                initial_equity = max(account.equity(mark_open), 0.0)
+                equity_values.append(initial_equity)
+                peak_equity = max(peak_equity, initial_equity)
 
             # Existing positions are checked at the minute open before funding or orders.
             if abs(account.quantity) > 1e-12:
@@ -331,18 +467,46 @@ def run_micro_backtest(
             if timestamp in events:
                 pending_signal = events[timestamp]
                 pending_signal_time = timestamp
+                pending_signal_meta = signal_meta_events.get(timestamp, {})
                 pending_maker_counted = False
 
             if pending_signal is not None and account.wallet > 0:
                 pre_fill_equity = max(account.equity(mark_open), 0.0)
+                peak_equity = max(peak_equity, pre_fill_equity)
+                current_drawdown = drawdown_from_equity(pre_fill_equity, peak_equity)
+                max_drawdown_observed = max(max_drawdown_observed, current_drawdown)
+                current_signal = (
+                    account.quantity * float(row.trade_open) / pre_fill_equity
+                    if pre_fill_equity > 0
+                    else 0.0
+                )
+                effective_signal = governor.apply_signal(
+                    pending_signal,
+                    current_signal,
+                    current_drawdown,
+                    timestamp=timestamp,
+                )
+                if (
+                    config.long_loss_reentry_probe_enabled
+                    and effective_signal > 0
+                    and long_loss_probe_cooldown_until is not None
+                    and timestamp < long_loss_probe_cooldown_until
+                    and long_loss_probe_reentries_remaining > 0
+                ):
+                    effective_signal = min(effective_signal, config.long_loss_reentry_probe_scale)
+                min_governor_scale = min(
+                    min_governor_scale,
+                    governor.scale_for_drawdown(current_drawdown),
+                )
                 target_quantity = _round_toward_zero(
-                    pending_signal * pre_fill_equity / float(row.trade_open), config.quantity_step
+                    effective_signal * pre_fill_equity / float(row.trade_open), config.quantity_step
                 )
                 desired_delta = target_quantity - account.quantity
                 desired_notional = abs(desired_delta) * float(row.trade_open)
                 if desired_notional < config.min_notional:
                     pending_signal = None
                     pending_signal_time = None
+                    pending_signal_meta = {}
                     pending_maker_counted = False
                 else:
                     available_quote = max(float(row.trade_quote_volume), 0.0)
@@ -391,6 +555,7 @@ def run_micro_backtest(
                             ):
                                 pending_signal = None
                                 pending_signal_time = None
+                                pending_signal_meta = {}
                                 pending_maker_counted = False
                                 maker_cancel_count += 1
                             touched = False
@@ -439,24 +604,57 @@ def run_micro_backtest(
                                     "entry_time": timestamp,
                                     "side": "long" if new_side > 0 else "short",
                                     "equity_before": old_equity,
+                                    "entry_permission_reason": pending_signal_meta.get("v71_permission_reason", ""),
+                                    "entry_trend_quality": pending_signal_meta.get("v71_trend_quality_score", np.nan),
+                                    "entry_direction_context": pending_signal_meta.get("v71_direction_context", ""),
                                 }
+                                if (
+                                    config.long_loss_reentry_probe_enabled
+                                    and new_side > 0
+                                    and long_loss_probe_cooldown_until is not None
+                                    and timestamp < long_loss_probe_cooldown_until
+                                    and long_loss_probe_reentries_remaining > 0
+                                ):
+                                    long_loss_probe_reentries_remaining -= 1
                             elif old_side != 0 and new_side != old_side:
                                 if cycle is not None:
+                                    pnl = account.equity(mark_open) - float(cycle["equity_before"])
+                                    maybe_arm_long_loss_probe_cooldown(
+                                        closed_cycle=cycle,
+                                        exit_reason="signal",
+                                        timestamp=timestamp,
+                                        pnl=pnl,
+                                    )
                                     trade_cycles.append({
                                         **cycle,
                                         "exit_time": timestamp,
-                                        "pnl": account.equity(mark_open) - float(cycle["equity_before"]),
+                                        "holding_minutes": (
+                                            timestamp - pd.Timestamp(cycle["entry_time"])
+                                        ).total_seconds() / 60,
+                                        "pnl": pnl,
                                         "exit_reason": "signal",
                                     })
                                 cycle = None if new_side == 0 else {
                                     "entry_time": timestamp,
                                     "side": "long" if new_side > 0 else "short",
                                     "equity_before": account.equity(mark_open),
+                                    "entry_permission_reason": pending_signal_meta.get("v71_permission_reason", ""),
+                                    "entry_trend_quality": pending_signal_meta.get("v71_trend_quality_score", np.nan),
+                                    "entry_direction_context": pending_signal_meta.get("v71_direction_context", ""),
                                 }
+                                if (
+                                    config.long_loss_reentry_probe_enabled
+                                    and new_side > 0
+                                    and long_loss_probe_cooldown_until is not None
+                                    and timestamp < long_loss_probe_cooldown_until
+                                    and long_loss_probe_reentries_remaining > 0
+                                ):
+                                    long_loss_probe_reentries_remaining -= 1
                             remaining = target_quantity - account.quantity
                             if abs(remaining) * execution_price < config.min_notional:
                                 pending_signal = None
                                 pending_signal_time = None
+                                pending_signal_meta = {}
                                 pending_maker_counted = False
                     elif (
                         config.maker_enabled
@@ -466,6 +664,7 @@ def run_micro_backtest(
                     ):
                         pending_signal = None
                         pending_signal_time = None
+                        pending_signal_meta = {}
                         pending_maker_counted = False
                         maker_cancel_count += 1
 
@@ -497,6 +696,11 @@ def run_micro_backtest(
                     execute_liquidation(timestamp, adverse_price, maintenance)
 
             close_equity = max(account.equity(float(row.mark_close)), 0.0)
+            peak_equity = max(peak_equity, close_equity)
+            max_drawdown_observed = max(
+                max_drawdown_observed,
+                drawdown_from_equity(close_equity, peak_equity),
+            )
             if close_equity > 0:
                 leverage = abs(account.quantity) * float(row.mark_close) / close_equity
                 maintenance, _, _ = maintenance_margin(abs(account.quantity) * float(row.mark_close))
@@ -536,6 +740,7 @@ def run_micro_backtest(
             trade_cycles.append({
                 **cycle,
                 "exit_time": last_timestamp,
+                "holding_minutes": (last_timestamp - pd.Timestamp(cycle["entry_time"])).total_seconds() / 60,
                 "pnl": account.wallet - float(cycle["equity_before"]),
                 "exit_reason": "final_close",
             })
@@ -578,6 +783,14 @@ def run_micro_backtest(
         "maker_fee_saved_vs_taker": float(
             maker_filled_notional * max(config.taker_fee_bps - config.maker_fee_bps, 0.0) / 10_000
         ),
+        "strategy_drawdown_enabled": float(config.strategy_drawdown_enabled),
+        "governor_peak_equity": float(peak_equity),
+        "governor_max_drawdown_observed": float(max_drawdown_observed),
+        "governor_min_scale_observed": float(min_governor_scale),
+        "governor_recovery_enabled": float(config.strategy_drawdown_recovery_enabled),
+        "governor_recovery_max_signal": float(config.strategy_drawdown_recovery_max_signal),
+        "governor_continuation_reentry_enabled": float(config.strategy_drawdown_continuation_reentry_enabled),
+        "governor_continuation_reentry_recovery_buffer": float(config.strategy_drawdown_continuation_reentry_recovery_buffer),
     })
     return MicroBacktestResult(
         equity=equity,

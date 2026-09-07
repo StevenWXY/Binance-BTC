@@ -12,6 +12,7 @@ from btc_regime.stress import (
     write_stress_report,
 )
 from btc_regime.v6 import V6Params, generate_v6_signals
+from btc_regime.v71_live import V71LiveParams
 
 
 def test_stress_market_is_reproducible_and_extreme() -> None:
@@ -122,3 +123,15 @@ def test_repeated_runs_measure_path_stability() -> None:
     assert len(result.summary) == 2
     assert set(result.details) == {"flash_crash__run1", "flash_crash__run2"}
     assert result.metadata["aggregate"]["robust_score_std"] >= 0
+
+
+def test_stress_suite_accepts_v71_live_engine() -> None:
+    result = run_stress_suite(
+        V71LiveParams(max_leverage=2.5, trend_scale=1.2, short_scale=0.08),
+        engine="v71_live",
+        scenarios=["flash_crash"],
+        bars=80,
+        seed=4,
+    )
+    assert result.summary.iloc[0]["engine"] == "v71_live"
+    assert "protection_exit_count" in result.summary.columns

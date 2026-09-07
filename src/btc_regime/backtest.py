@@ -41,6 +41,8 @@ def calculate_metrics(
     downside = returns.where(returns < 0, 0).std(ddof=1) * np.sqrt(periods_per_year)
     sortino = returns.mean() / returns.where(returns < 0, 0).std(ddof=1) * np.sqrt(periods_per_year) if downside > 0 else 0.0
     drawdown = equity / equity.cummax() - 1
+    max_drawdown = float(drawdown.min())
+    calmar = float(cagr / abs(max_drawdown)) if max_drawdown < 0 else 0.0
     win_rate = float((trades["pnl"] > 0).mean()) if len(trades) else 0.0
     return {
         "total_return": float(total_return),
@@ -48,7 +50,8 @@ def calculate_metrics(
         "annualized_volatility": float(volatility),
         "sharpe": float(sharpe),
         "sortino": float(sortino),
-        "max_drawdown": float(drawdown.min()),
+        "calmar": calmar,
+        "max_drawdown": max_drawdown,
         "trade_count": float(len(trades)),
         "win_rate": win_rate,
         "final_equity": float(equity.iloc[-1]),

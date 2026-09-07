@@ -1,0 +1,276 @@
+{
+  "summary": [
+    {
+      "variant": "baseline",
+      "note": "当前 long participation 最优候选",
+      "final_equity": 11689.78199960547,
+      "total_return": 0.16897819996054686,
+      "sharpe": 0.2554645541715677,
+      "calmar": 0.1362996552489633,
+      "max_drawdown": -0.17612000918543602,
+      "trade_count": 280.0,
+      "governor_max_drawdown_observed": 0.21725761798208443,
+      "governor_min_scale_observed": 0.0
+    },
+    {
+      "variant": "no_governor",
+      "note": "关闭账户级 governor",
+      "final_equity": 65798.064190771,
+      "total_return": 5.5798064190771,
+      "sharpe": 0.9852155240772683,
+      "calmar": 0.8617515784295872,
+      "max_drawdown": -0.3845871615518186,
+      "trade_count": 510.0,
+      "governor_max_drawdown_observed": 0.4029933436229004,
+      "governor_min_scale_observed": 1.0
+    },
+    {
+      "variant": "no_price_drawdown",
+      "note": "关闭价格回撤刹车",
+      "final_equity": 12285.957068867168,
+      "total_return": 0.22859570688671682,
+      "sharpe": 0.31282458004624153,
+      "calmar": 0.1802389179149506,
+      "max_drawdown": -0.176284421032064,
+      "trade_count": 280.0,
+      "governor_max_drawdown_observed": 0.21742015029525286,
+      "governor_min_scale_observed": 0.0
+    },
+    {
+      "variant": "no_governor_no_price_drawdown",
+      "note": "同时关闭 governor 与价格回撤刹车",
+      "final_equity": 66339.72170542645,
+      "total_return": 5.633972170542645,
+      "sharpe": 0.9839705199273553,
+      "calmar": 0.8652733206519846,
+      "max_drawdown": -0.3849397200909892,
+      "trade_count": 510.0,
+      "governor_max_drawdown_observed": 0.4104510547093565,
+      "governor_min_scale_observed": 1.0
+    }
+  ],
+  "annual_returns": [
+    {
+      "year": 2020,
+      "total_return": 0.2372805445478361,
+      "variant": "baseline"
+    },
+    {
+      "year": 2021,
+      "total_return": -0.02022597609721888,
+      "variant": "baseline"
+    },
+    {
+      "year": 2022,
+      "total_return": -0.026413913582675086,
+      "variant": "baseline"
+    },
+    {
+      "year": 2023,
+      "total_return": 0.018992754565081427,
+      "variant": "baseline"
+    },
+    {
+      "year": 2024,
+      "total_return": -0.0037496884666571306,
+      "variant": "baseline"
+    },
+    {
+      "year": 2025,
+      "total_return": 0.020827352397644328,
+      "variant": "baseline"
+    },
+    {
+      "year": 2026,
+      "total_return": -0.044246088782132875,
+      "variant": "baseline"
+    },
+    {
+      "year": 2020,
+      "total_return": 0.5977078428217997,
+      "variant": "no_governor"
+    },
+    {
+      "year": 2021,
+      "total_return": -0.007362303137448456,
+      "variant": "no_governor"
+    },
+    {
+      "year": 2022,
+      "total_return": 0.05800450701170945,
+      "variant": "no_governor"
+    },
+    {
+      "year": 2023,
+      "total_return": 1.504713105316069,
+      "variant": "no_governor"
+    },
+    {
+      "year": 2024,
+      "total_return": 0.1859954568429092,
+      "variant": "no_governor"
+    },
+    {
+      "year": 2025,
+      "total_return": 0.1651554387740175,
+      "variant": "no_governor"
+    },
+    {
+      "year": 2026,
+      "total_return": 0.13295480967995799,
+      "variant": "no_governor"
+    },
+    {
+      "year": 2020,
+      "total_return": 0.30259943795263355,
+      "variant": "no_price_drawdown"
+    },
+    {
+      "year": 2021,
+      "total_return": -0.020401678723224403,
+      "variant": "no_price_drawdown"
+    },
+    {
+      "year": 2022,
+      "total_return": -0.026512322850620884,
+      "variant": "no_price_drawdown"
+    },
+    {
+      "year": 2023,
+      "total_return": 0.01902386003532275,
+      "variant": "no_price_drawdown"
+    },
+    {
+      "year": 2024,
+      "total_return": -0.003484834566016226,
+      "variant": "no_price_drawdown"
+    },
+    {
+      "year": 2025,
+      "total_return": 0.013302462467602139,
+      "variant": "no_price_drawdown"
+    },
+    {
+      "year": 2026,
+      "total_return": -0.03880334011760922,
+      "variant": "no_price_drawdown"
+    },
+    {
+      "year": 2020,
+      "total_return": 0.6706528119749258,
+      "variant": "no_governor_no_price_drawdown"
+    },
+    {
+      "year": 2021,
+      "total_return": -0.00720650742827289,
+      "variant": "no_governor_no_price_drawdown"
+    },
+    {
+      "year": 2022,
+      "total_return": 0.05860076032838912,
+      "variant": "no_governor_no_price_drawdown"
+    },
+    {
+      "year": 2023,
+      "total_return": 1.6787511409366318,
+      "variant": "no_governor_no_price_drawdown"
+    },
+    {
+      "year": 2024,
+      "total_return": 0.18474935312286478,
+      "variant": "no_governor_no_price_drawdown"
+    },
+    {
+      "year": 2025,
+      "total_return": 0.050719323709143005,
+      "variant": "no_governor_no_price_drawdown"
+    },
+    {
+      "year": 2026,
+      "total_return": 0.13305436233408274,
+      "variant": "no_governor_no_price_drawdown"
+    }
+  ],
+  "signal_long_metrics": [
+    {
+      "year": 2020,
+      "long_bar_ratio": 0.23451730418943534,
+      "avg_long_signal": 1.5349674706345742,
+      "max_long_signal": 6.0,
+      "drawdown_brake_bar_ratio": 0.22586520947176686,
+      "drawdown_brake_long_ratio": 0.03495145631067961,
+      "avg_drawdown_scale_on_long": 0.9720388349514564,
+      "variant": "baseline"
+    },
+    {
+      "year": 2023,
+      "long_bar_ratio": 0.22968036529680366,
+      "avg_long_signal": 2.3346128983049512,
+      "max_long_signal": 6.0,
+      "drawdown_brake_bar_ratio": 0.13881278538812786,
+      "drawdown_brake_long_ratio": 0.011928429423459244,
+      "avg_drawdown_scale_on_long": 0.9904572564612326,
+      "variant": "baseline"
+    },
+    {
+      "year": 2020,
+      "long_bar_ratio": 0.23451730418943534,
+      "avg_long_signal": 1.5349674706345742,
+      "max_long_signal": 6.0,
+      "drawdown_brake_bar_ratio": 0.22586520947176686,
+      "drawdown_brake_long_ratio": 0.03495145631067961,
+      "avg_drawdown_scale_on_long": 0.9720388349514564,
+      "variant": "no_governor"
+    },
+    {
+      "year": 2023,
+      "long_bar_ratio": 0.22968036529680366,
+      "avg_long_signal": 2.3346128983049512,
+      "max_long_signal": 6.0,
+      "drawdown_brake_bar_ratio": 0.13881278538812786,
+      "drawdown_brake_long_ratio": 0.011928429423459244,
+      "avg_drawdown_scale_on_long": 0.9904572564612326,
+      "variant": "no_governor"
+    },
+    {
+      "year": 2020,
+      "long_bar_ratio": 0.23451730418943534,
+      "avg_long_signal": 1.5657996280869784,
+      "max_long_signal": 6.0,
+      "drawdown_brake_bar_ratio": 0.0,
+      "drawdown_brake_long_ratio": 0.0,
+      "avg_drawdown_scale_on_long": 1.0,
+      "variant": "no_price_drawdown"
+    },
+    {
+      "year": 2023,
+      "long_bar_ratio": 0.22968036529680366,
+      "avg_long_signal": 2.3687197506700066,
+      "max_long_signal": 6.0,
+      "drawdown_brake_bar_ratio": 0.0,
+      "drawdown_brake_long_ratio": 0.0,
+      "avg_drawdown_scale_on_long": 1.0,
+      "variant": "no_price_drawdown"
+    },
+    {
+      "year": 2020,
+      "long_bar_ratio": 0.23451730418943534,
+      "avg_long_signal": 1.5657996280869784,
+      "max_long_signal": 6.0,
+      "drawdown_brake_bar_ratio": 0.0,
+      "drawdown_brake_long_ratio": 0.0,
+      "avg_drawdown_scale_on_long": 1.0,
+      "variant": "no_governor_no_price_drawdown"
+    },
+    {
+      "year": 2023,
+      "long_bar_ratio": 0.22968036529680366,
+      "avg_long_signal": 2.3687197506700066,
+      "max_long_signal": 6.0,
+      "drawdown_brake_bar_ratio": 0.0,
+      "drawdown_brake_long_ratio": 0.0,
+      "avg_drawdown_scale_on_long": 1.0,
+      "variant": "no_governor_no_price_drawdown"
+    }
+  ]
+}

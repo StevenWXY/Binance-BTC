@@ -1,0 +1,363 @@
+{
+  "new_same_basis_dir": "/Users/apple/Documents/Binance-BTC/Binance-BTC-wzy/reports/module7_three_branch_same_basis_final_candidate_2020_2026_08_01",
+  "old_same_basis_dir": "/Users/apple/Documents/Binance-BTC/Binance-BTC-wzy/reports/final_candidate_recovery_same_basis_2020_2026_08_01",
+  "new_live_like_dir": "/Users/apple/Documents/Binance-BTC/Binance-BTC-wzy/reports/module7_final_candidate_live_like_2020_2026_08_01",
+  "old_live_like_dir": "/Users/apple/Documents/Binance-BTC/Binance-BTC-wzy/reports/final_candidate_recovery_live_like_2020_2026_08_01",
+  "same_basis": {
+    "baseline_main": {
+      "code": "main_v43",
+      "strategy": "main: V4.3 maker/protection",
+      "final_equity": 57159.394391917886,
+      "total_return": 4.715939439191788,
+      "cagr": 0.3032494771993774,
+      "annualized_volatility": 0.241605703935024,
+      "sharpe": 1.2161124071948988,
+      "sortino": 2.3850826435856547,
+      "calmar": 1.60915407573149,
+      "max_drawdown": -0.1884527291530652,
+      "fees_paid": 2702.9720185001443,
+      "funding_paid": 4171.065758480643,
+      "maker_fill_ratio": 0.5679272998793077,
+      "liquidation_count": 0.0,
+      "governor_max_drawdown_observed": 0.1919625666404825
+    },
+    "current_main": {
+      "code": "main_v43",
+      "strategy": "main: V4.3 maker/protection",
+      "final_equity": 57159.394391917886,
+      "total_return": 4.715939439191788,
+      "cagr": 0.3032494771993774,
+      "annualized_volatility": 0.241605703935024,
+      "sharpe": 1.2161124071948988,
+      "sortino": 2.3850826435856547,
+      "calmar": 1.60915407573149,
+      "max_drawdown": -0.1884527291530652,
+      "fees_paid": 2702.9720185001443,
+      "funding_paid": 4171.065758480643,
+      "maker_fill_ratio": 0.5679272998793077,
+      "liquidation_count": 0.0,
+      "governor_max_drawdown_observed": 0.1919625666404825
+    },
+    "baseline_x": {
+      "code": "xuyujian_v71_ref",
+      "strategy": "xuyujian: V7.1 reference",
+      "final_equity": 14102.846850299697,
+      "total_return": 0.4102846850299697,
+      "cagr": 0.0536219727254763,
+      "annualized_volatility": 0.147147552398384,
+      "sharpe": 0.4284376537985616,
+      "sortino": 0.7218533764387615,
+      "calmar": 0.2665901001433796,
+      "max_drawdown": -0.2011401499779508,
+      "fees_paid": 691.7151075163109,
+      "funding_paid": 1063.614987743467,
+      "maker_fill_ratio": 0.4997189466436785,
+      "liquidation_count": 0.0,
+      "governor_max_drawdown_observed": 0.2111020281866336
+    },
+    "current_x": {
+      "code": "xuyujian_v71_ref",
+      "strategy": "xuyujian: V7.1 reference",
+      "final_equity": 14258.243693814433,
+      "total_return": 0.4258243693814432,
+      "cagr": 0.0553776948626882,
+      "annualized_volatility": 0.1188422644511986,
+      "sharpe": 0.5132672248941719,
+      "sortino": 0.8796349968240955,
+      "calmar": 0.3365264824280942,
+      "max_drawdown": -0.1645567221430214,
+      "fees_paid": 476.8966745742104,
+      "funding_paid": 635.0275561001406,
+      "maker_fill_ratio": 0.4994391103239747,
+      "liquidation_count": 0.0,
+      "governor_max_drawdown_observed": 0.2111241502518018
+    },
+    "baseline_wzy": {
+      "code": "final_candidate_recovery",
+      "strategy": "wzy: final_candidate recovery",
+      "final_equity": 12309.691855919897,
+      "total_return": 0.2309691855919897,
+      "cagr": 0.0320759077105969,
+      "annualized_volatility": 0.1225693012430714,
+      "sharpe": 0.3187715586093157,
+      "sortino": 0.5064360046365042,
+      "calmar": 0.1884610815401137,
+      "max_drawdown": -0.1701991066191014,
+      "fees_paid": 775.8728084278665,
+      "funding_paid": 575.2292560228943,
+      "maker_fill_ratio": 0.7471825404576645,
+      "liquidation_count": 0.0,
+      "governor_max_drawdown_observed": 0.2112512040434915
+    },
+    "current_wzy": {
+      "code": "wzy_v71_final_structured",
+      "strategy": "wzy: V7.1 final candidate structured",
+      "final_equity": 9851.534225385263,
+      "total_return": -0.0148465774614736,
+      "cagr": -0.0022700359078431,
+      "annualized_volatility": 0.1071577395017259,
+      "sharpe": 0.0318197195640742,
+      "sortino": 0.0481329991845298,
+      "calmar": -0.0108929462914903,
+      "max_drawdown": -0.2083950335472145,
+      "fees_paid": 644.7128737005418,
+      "funding_paid": 478.5118635939082,
+      "maker_fill_ratio": 0.7068549723727473,
+      "liquidation_count": 0.0,
+      "governor_max_drawdown_observed": 0.2166437679797931
+    },
+    "delta_main": {
+      "final_equity": 0.0,
+      "sharpe": 0.0,
+      "calmar": 0.0,
+      "max_drawdown": 0.0
+    },
+    "delta_x": {
+      "final_equity": 155.39684351473625,
+      "sharpe": 0.08482957109561029,
+      "calmar": 0.0699363822847146,
+      "max_drawdown": 0.036583427834929405
+    },
+    "delta_wzy": {
+      "final_equity": -2458.1576305346334,
+      "sharpe": -0.2869518390452415,
+      "calmar": -0.199354027831604,
+      "max_drawdown": -0.038195926928113105
+    }
+  },
+  "live_like": {
+    "old_metrics": {
+      "total_return": 0.23096918559198976,
+      "cagr": 0.032075907710596985,
+      "annualized_volatility": 0.1225693012430714,
+      "sharpe": 0.3187715586093157,
+      "sortino": 0.5064360046365042,
+      "calmar": 0.18846108154011373,
+      "max_drawdown": -0.17019910661910143,
+      "trade_count": 301.0,
+      "win_rate": 0.42524916943521596,
+      "final_equity": 12309.691855919897,
+      "fill_count": 690.0,
+      "liquidation_count": 0.0,
+      "fees_paid": 775.8728084278665,
+      "funding_paid": 575.2292560228943,
+      "realized_pnl": 3660.793920370679,
+      "order_notional": 2470409.9905257723,
+      "max_leverage_observed": 4.888622803367762,
+      "max_margin_ratio": 0.019554636481134445,
+      "minimum_margin_buffer": 9779.452615348715,
+      "max_minute_participation_observed": 0.019999680118412973,
+      "maker_enabled": 1.0,
+      "maker_order_count": 342.0,
+      "maker_cancel_count": 0.0,
+      "maker_fill_count": 356.0,
+      "taker_fill_count": 116.0,
+      "maker_filled_notional": 1845847.21269304,
+      "taker_filled_notional": 624562.7778327303,
+      "maker_fill_ratio": 0.7471825404576645,
+      "maker_fill_events_per_order": 1.04093567251462,
+      "maker_fee_saved_vs_taker": 701.4219408233552,
+      "strategy_drawdown_enabled": 1.0,
+      "governor_peak_equity": 14984.20666877881,
+      "governor_max_drawdown_observed": 0.21125120404349151,
+      "governor_min_scale_observed": 0.0,
+      "governor_recovery_enabled": 1.0,
+      "governor_recovery_max_signal": 0.25
+    },
+    "new_metrics": {
+      "total_return": -0.014846577461473665,
+      "cagr": -0.0022700359078431376,
+      "annualized_volatility": 0.10715773950172598,
+      "sharpe": 0.0318197195640742,
+      "sortino": 0.04813299918452984,
+      "calmar": -0.010892946291490348,
+      "max_drawdown": -0.20839503354721456,
+      "trade_count": 299.0,
+      "win_rate": 0.4080267558528428,
+      "final_equity": 9851.534225385263,
+      "fill_count": 677.0,
+      "liquidation_count": 0.0,
+      "fees_paid": 644.7128737005418,
+      "funding_paid": 478.5118635939082,
+      "realized_pnl": 974.7589626797414,
+      "order_notional": 2170024.2317299647,
+      "max_leverage_observed": 4.3144975694025,
+      "max_margin_ratio": 0.017291828815634826,
+      "minimum_margin_buffer": 9699.147385488453,
+      "max_minute_participation_observed": 0.019999628883742276,
+      "maker_enabled": 1.0,
+      "maker_order_count": 336.0,
+      "maker_cancel_count": 0.0,
+      "maker_fill_count": 346.0,
+      "taker_fill_count": 153.0,
+      "maker_filled_notional": 1533892.4183676783,
+      "taker_filled_notional": 636131.813362289,
+      "maker_fill_ratio": 0.7068549723727473,
+      "maker_fill_events_per_order": 1.0297619047619047,
+      "maker_fee_saved_vs_taker": 582.8791189797176,
+      "strategy_drawdown_enabled": 1.0,
+      "governor_peak_equity": 12393.616003891691,
+      "governor_max_drawdown_observed": 0.21664376797979312,
+      "governor_min_scale_observed": 0.0,
+      "governor_recovery_enabled": 1.0,
+      "governor_recovery_max_signal": 0.25
+    },
+    "old_total_pnl": 2309.6918559198966,
+    "new_total_pnl": -148.4657746147368,
+    "old_yearly_pnl": [
+      {
+        "year": 2020,
+        "pnl": 2483.884169595329,
+        "pnl_share_of_total": 1.0754179884338102
+      },
+      {
+        "year": 2021,
+        "pnl": -498.6087815806932,
+        "pnl_share_of_total": -0.21587675442623444
+      },
+      {
+        "year": 2022,
+        "pnl": 456.2502623331802,
+        "pnl_share_of_total": 0.19753728670072584
+      },
+      {
+        "year": 2023,
+        "pnl": -15.781490935321926,
+        "pnl_share_of_total": -0.006832725713983403
+      },
+      {
+        "year": 2024,
+        "pnl": -239.39765988624276,
+        "pnl_share_of_total": -0.1036491769552074
+      },
+      {
+        "year": 2025,
+        "pnl": -12.735049209231875,
+        "pnl_share_of_total": -0.005513743825433285
+      },
+      {
+        "year": 2026,
+        "pnl": 136.08040560287736,
+        "pnl_share_of_total": 0.05891712578632256
+      }
+    ],
+    "new_yearly_pnl": [
+      {
+        "year": 2020,
+        "pnl": 262.28103974573605,
+        "pnl_share_of_total": -1.766609445350928
+      },
+      {
+        "year": 2021,
+        "pnl": -3.7111198884940677,
+        "pnl_share_of_total": 0.024996467355013548
+      },
+      {
+        "year": 2022,
+        "pnl": -312.0336255491311,
+        "pnl_share_of_total": 2.1017209276605793
+      },
+      {
+        "year": 2023,
+        "pnl": 134.4399776599057,
+        "pnl_share_of_total": -0.9055284156147939
+      },
+      {
+        "year": 2024,
+        "pnl": -111.69745401591717,
+        "pnl_share_of_total": 0.7523448034118836
+      },
+      {
+        "year": 2025,
+        "pnl": -175.92334468235094,
+        "pnl_share_of_total": 1.184942086072467
+      },
+      {
+        "year": 2026,
+        "pnl": 58.178752115514726,
+        "pnl_share_of_total": -0.3918664235342215
+      }
+    ],
+    "old_trade_concentration": {
+      "trade_count": 301,
+      "win_trade_count": 128,
+      "top5_positive_pnl_share": 0.35000146074115135,
+      "top10pct_positive_pnl_share": 0.5943316696785345,
+      "best_trade_pnl": 1524.1328727650398,
+      "worst_trade_pnl": -885.4948745665897
+    },
+    "new_trade_concentration": {
+      "trade_count": 299,
+      "win_trade_count": 122,
+      "top5_positive_pnl_share": 0.42169290732164355,
+      "top10pct_positive_pnl_share": 0.6371327748084997,
+      "best_trade_pnl": 1168.5192195721063,
+      "worst_trade_pnl": -891.9654253489516
+    },
+    "activity_compare": [
+      {
+        "year": 2020,
+        "fill_count_old": 231,
+        "fill_count_new": 263,
+        "trade_count_old": 79,
+        "trade_count_new": 98,
+        "fill_delta": 32,
+        "trade_delta": 19
+      },
+      {
+        "year": 2021,
+        "fill_count_old": 64,
+        "fill_count_new": 64,
+        "trade_count_old": 30,
+        "trade_count_new": 31,
+        "fill_delta": 0,
+        "trade_delta": 1
+      },
+      {
+        "year": 2022,
+        "fill_count_old": 92,
+        "fill_count_new": 79,
+        "trade_count_old": 45,
+        "trade_count_new": 38,
+        "fill_delta": -13,
+        "trade_delta": -7
+      },
+      {
+        "year": 2023,
+        "fill_count_old": 69,
+        "fill_count_new": 66,
+        "trade_count_old": 31,
+        "trade_count_new": 31,
+        "fill_delta": -3,
+        "trade_delta": 0
+      },
+      {
+        "year": 2024,
+        "fill_count_old": 85,
+        "fill_count_new": 75,
+        "trade_count_old": 42,
+        "trade_count_new": 37,
+        "fill_delta": -10,
+        "trade_delta": -5
+      },
+      {
+        "year": 2025,
+        "fill_count_old": 98,
+        "fill_count_new": 92,
+        "trade_count_old": 49,
+        "trade_count_new": 45,
+        "fill_delta": -6,
+        "trade_delta": -4
+      },
+      {
+        "year": 2026,
+        "fill_count_old": 51,
+        "fill_count_new": 38,
+        "trade_count_old": 25,
+        "trade_count_new": 19,
+        "fill_delta": -13,
+        "trade_delta": -6
+      }
+    ]
+  }
+}

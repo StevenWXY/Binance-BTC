@@ -57,6 +57,31 @@ def realized_volatility(
     ).std(bias=False) * np.sqrt(periods_per_year)
 
 
+def choppiness_index(data: pd.DataFrame, period: int = 14) -> pd.Series:
+    """Return the causal choppiness index in the conventional 0-100 scale."""
+    atr_sum = atr(data, 1).rolling(period, min_periods=period).sum()
+    highest = data["high"].rolling(period, min_periods=period).max()
+    lowest = data["low"].rolling(period, min_periods=period).min()
+    denominator = (highest - lowest).replace(0, np.nan)
+    return 100.0 * np.log10(atr_sum / denominator) / np.log10(period)
+
+
+def aroon(data: pd.DataFrame, period: int = 25) -> tuple[pd.Series, pd.Series]:
+    """Return Aroon up/down values using only completed bars."""
+
+    def days_since_high(values: np.ndarray) -> float:
+        return float(period - 1 - int(np.argmax(values)))
+
+    def days_since_low(values: np.ndarray) -> float:
+        return float(period - 1 - int(np.argmin(values)))
+
+    high_age = data["high"].rolling(period, min_periods=period).apply(days_since_high, raw=True)
+    low_age = data["low"].rolling(period, min_periods=period).apply(days_since_low, raw=True)
+    aroon_up = 100.0 * (period - high_age) / period
+    aroon_down = 100.0 * (period - low_age) / period
+    return aroon_up, aroon_down
+
+
 def add_indicators(data: pd.DataFrame, *, ema_fast: int, ema_slow: int, atr_period: int,
                    rsi_period: int, bb_period: int, bb_std: float, adx_period: int) -> pd.DataFrame:
     result = data.copy()
