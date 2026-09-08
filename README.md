@@ -414,3 +414,6 @@ V7.1 另外增加账户权益回撤控制。该控制属于执行/资金管理�
 V7.1 相比 V7，期末权益提高约 29.6%，最大回撤改善约 1.9 个百分点，Sharpe 提高约 0.105。分时期复测中，训练期 Sharpe 为 1.572，验证期为 2.105，2025-2026 留出期为 0.535，留出期最大回撤为 -28.47%。这些结果仍属于历史回测，不代表未来收益承诺；V7.1 需要在新数据和实盘仿真中继续监控。
 
 统一指标文件位于 `reports/v4_v41_v42_v7_v71_micro_friend_2020_2026_07/summary_metrics.csv` 和 `report.json`。原始 V7 与 V7.1 权益曲线复测目录分别为 `reports/v4_v7_micro_friend_old_v7_2020_2026_07/` 和 `reports/v7_equity_drawdown_overlay_late_clean_micro_friend_2020_2026_07/`。
+# 三策略统一回测（xuyujian-01）
+
+三个指定分支的 V4.3、V7.1、V7.2 对比及参数说明见 [`reports/three_strategy_comparison_xuyujian01.md`](reports/three_strategy_comparison_xuyujian01.md)。统一窗口为 2020-01-01 至 2026-08-01，数据源为 `D:\文档\桌面\data.zip`，初始资金 10,000 USDT；报告同时列出收益、CAGR、波动率、Sharpe、Sortino、Calmar、最大回撤、费用、资金费、Maker 成交率和强平次数。
