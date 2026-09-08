@@ -417,3 +417,6 @@ V7.1 相比 V7，期末权益提高约 29.6%，最大回撤改善约 1.9 个百�
 # 三策略统一回测（xuyujian-01）
 
 三个指定分支的 V4.3、V7.1、V7.2 对比及参数说明见 [`reports/three_strategy_comparison_xuyujian01.md`](reports/three_strategy_comparison_xuyujian01.md)。统一窗口为 2020-01-01 至 2026-08-01，数据源为 `D:\文档\桌面\data.zip`，初始资金 10,000 USDT；报告同时列出收益、CAGR、波动率、Sharpe、Sortino、Calmar、最大回撤、费用、资金费、Maker 成交率和强平次数。
+# 六策略统一回撤管控对比
+
+V4.3、原始 V7.1 和 V7.2 分别在关闭/启用独立回撤 Governor 的情况下，用 `D:\文档\桌面\data.zip` 和全局每分钟 2% 流动性限制完成六路线统一回测。完整策略参数、执行条件和结果见 [`reports/six_strategies_drawdown_2020_2026_08_01/README.md`](reports/six_strategies_drawdown_2020_2026_08_01/README.md)。
