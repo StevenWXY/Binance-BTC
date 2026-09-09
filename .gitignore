@@ -15,3 +15,5 @@ venv/
 
 # Duplicate image exported by the Codex desktop app.
 Codex 图像*.png
+
+runtime/
