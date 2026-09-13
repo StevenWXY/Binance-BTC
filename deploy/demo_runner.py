@@ -199,6 +199,34 @@ def governor_scale(key: str, equity: float, state: dict[str, Any], spec: Strateg
     return 1.0
 
 
+def replace_protective_orders(client: DemoClient, symbol: str, target_qty: Decimal, latest: pd.Series) -> list[dict[str, Any]]:
+    """Replace bracket exits on a dedicated strategy account.
+
+    The repository's V4.3 and V7.2 generators expose causal stop/take levels.
+    Binance's closePosition conditional orders protect the entire one-way
+    position without changing the strategy's entry or target-sizing rules.
+    """
+    cancelled = client.signed("DELETE", "/fapi/v1/allOpenOrders", symbol=symbol)
+    api_error(cancelled)
+    if target_qty == 0:
+        return []
+    stop = latest.get("stop_price")
+    take = latest.get("take_profit_price")
+    if not pd.notna(stop) or not pd.notna(take):
+        return []
+    side = "SELL" if target_qty > 0 else "BUY"
+    created = []
+    for order_type, price in (("STOP_MARKET", stop), ("TAKE_PROFIT_MARKET", take)):
+        response = client.signed(
+            "POST", "/fapi/v1/order", symbol=symbol, side=side, type=order_type,
+            stopPrice=f"{float(price):.2f}", closePosition="true", workingType="MARK_PRICE",
+            priceProtect="TRUE", newClientOrderId=f"btcprotect{int(time.time() * 1000)}{len(created)}",
+        )
+        api_error(response)
+        created.append(response)
+    return created
+
+
 def cycle(key: str, *, force: bool = False) -> dict[str, Any]:
     spec = SPECS[key]
     config = read_json(CONFIG, {})
@@ -232,6 +260,7 @@ def cycle(key: str, *, force: bool = False) -> dict[str, Any]:
     current_qty = Decimal(str(position.get("positionAmt", "0")))
     delta = target_qty - current_qty
     order: dict[str, Any] | None = None
+    protective_orders: list[dict[str, Any]] = []
     if force or state.get("last_bar") != bar:
         if abs(delta) * Decimal(str(mark)) >= min_notional and delta != 0:
             order = client.signed(
@@ -241,13 +270,14 @@ def cycle(key: str, *, force: bool = False) -> dict[str, Any]:
                 newClientOrderId=f"btc{key}{int(time.time())}",
             )
             api_error(order)
+        protective_orders = replace_protective_orders(client, symbol, target_qty, latest)
         state["last_bar"] = bar
     state.update({
         "strategy": spec.name, "updated_at": int(time.time()), "last_signal": signal,
         "last_reason": str(latest.get("v71_live_reason", latest.get("regime", ""))),
         "equity": equity, "usable_equity": usable_equity, "governor_scale": scale,
         "current_qty": str(current_qty), "target_qty": str(target_qty), "mark_price": mark,
-        "last_order": order,
+        "last_order": order, "protective_orders": protective_orders,
     })
     write_json(state_path, state)
     return state
@@ -274,13 +304,15 @@ def close(key: str) -> dict[str, Any]:
     c = config.get(key) or {}
     symbol = str(c.get("symbol", "BTCUSDT")).upper()
     client = DemoClient(str(c.get("api_key", "")), str(c.get("api_secret", "")))
+    cancelled = client.signed("DELETE", "/fapi/v1/allOpenOrders", symbol=symbol)
+    api_error(cancelled)
     _, position = account_snapshot(client, symbol)
     quantity = Decimal(str(position.get("positionAmt", "0")))
     if quantity == 0:
-        return {"message": "already flat"}
+        return {"message": "already flat", "cancelled": cancelled}
     result = client.signed("POST", "/fapi/v1/order", symbol=symbol, side="SELL" if quantity > 0 else "BUY", type="MARKET", quantity=format(abs(quantity), "f"), reduceOnly="true", newOrderRespType="RESULT", newClientOrderId=f"btc{key}close{int(time.time())}")
     api_error(result)
-    return result
+    return {"cancelled": cancelled, "close_order": result}
 
 
 def main() -> None:
