@@ -1,0 +1,1603 @@
+{
+  "start": "2020-01-01",
+  "end_exclusive": "2026-08-01",
+  "raw_dir": "/Users/weixinyu/Desktop/Private Project/Binance-BTC/data/raw",
+  "commits": {
+    "main": "4bf42f54f07ca32661818b241f1f472a5acc2d77",
+    "x": "512e46d60e801563c27f8964cd2e1d3a6780e3a5",
+    "wzy": "98175aed764d5989dc4d45698053f382d02a06bd"
+  },
+  "market": {
+    "rows": 14424,
+    "first": "2020-01-01 00:00:00+00:00",
+    "last": "2026-07-31 20:00:00+00:00",
+    "duplicates": 0,
+    "sha256_pandas_hash": "950a56640c202ec836d9fde59a93cb4c41ceb13849211777c4121dd39f25a32f"
+  },
+  "funding_rows": 7212,
+  "python": "3.14.3 (v3.14.3:323c59a5e34, Feb  3 2026, 11:41:37) [Clang 16.0.0 (clang-1600.0.26.6)]",
+  "pandas": "2.3.3",
+  "numpy": "2.4.3",
+  "archives": [
+    {
+      "path": "klines/BTCUSDT-4h-2020-01.zip",
+      "bytes": 10197,
+      "sha256": "f9b28212bf6f8a3a21c17274090ddcb9ce1deb3b9c9e10ba1c7f8829e5914cb4"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2020-02.zip",
+      "bytes": 9593,
+      "sha256": "6a960e937e872b91bd5bd0eb5bb0ce6d524cb298279a602940844e2c0a46fff8"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2020-03.zip",
+      "bytes": 10420,
+      "sha256": "78ee62b77557cac23f765653a901e5f12a01231e96f1f31cff84d1771465ec46"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2020-04.zip",
+      "bytes": 10066,
+      "sha256": "ecc3b3ba4af97ee49eeda70a4061533889fad5a8c43c05668db9b36232c5b3cb"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2020-05.zip",
+      "bytes": 10405,
+      "sha256": "f44ea339dd8b93c64805a5edac440260514d1ad4cd28c9a9e2af30460f44027c"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2020-06.zip",
+      "bytes": 9885,
+      "sha256": "ce267c20880ac4d39c25559f17d2f80d82e5fee98cf6c1cf74cc3a87cf14c749"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2020-07.zip",
+      "bytes": 10146,
+      "sha256": "cd1efbb9e0a8b9cc7b82a86a446afcd00d3e1bd618a62297653eb3763f9cd07a"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2020-08.zip",
+      "bytes": 10368,
+      "sha256": "b360d15cbce58125c3cbb0d8e34a034482983339d9860f19eb1acc92bc1d4899"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2020-09.zip",
+      "bytes": 10042,
+      "sha256": "f481189a2ef9cd1e79adbd42b59b9633b60289c552bcf93cee191b618240f352"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2020-10.zip",
+      "bytes": 10391,
+      "sha256": "1791e2dd8b1d4dbbb588f2a851102424787037ddb3e13f4ef91b076558c83dca"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2020-11.zip",
+      "bytes": 10326,
+      "sha256": "66b146e2ece8779b8b4dd0256ea89fd46956347431535c5229161de8f7e007b0"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2020-12.zip",
+      "bytes": 10667,
+      "sha256": "e6802fc8b7a750cab7388bc3b0c3638d1649220a67810252d9ec3c02c8933671"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2021-01.zip",
+      "bytes": 10935,
+      "sha256": "0013f302159ee46ad4f81dbd44b595df8f4d764de88b64273b79d01b4f333e23"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2021-02.zip",
+      "bytes": 9827,
+      "sha256": "e52a119613bf8d2d7fed60f6a80ddbf0b0f9127d966e7ad1b15ffeca8ecb280a"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2021-03.zip",
+      "bytes": 10893,
+      "sha256": "ca4eacc180f975d3c7413bf868a1655dbaea006092e07ba28ea9ea43aad0403c"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2021-04.zip",
+      "bytes": 10522,
+      "sha256": "8f2f40d6d567cb2081de7edfcbb8e5c8c33759866b4f75cb178ca7292f84985b"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2021-05.zip",
+      "bytes": 11057,
+      "sha256": "529ae82f647603ef517e5de807d14d3c90f072a4543e804239b67c6b588ad8b5"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2021-06.zip",
+      "bytes": 10664,
+      "sha256": "5f4a6687e046483d22d2e0db89b6f04ad4d49987344d5a4d7665b46a1eca5b9f"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2021-07.zip",
+      "bytes": 10837,
+      "sha256": "951590c2ff4f4c69d4ad0d72f53e6a3d287ba667dcec099ac9afcb7d5635fd22"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2021-08.zip",
+      "bytes": 10865,
+      "sha256": "750efc433242daf5424b2aff49f3c3ea6fcca41eb3f2893f3cbc832fdd43cb34"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2021-09.zip",
+      "bytes": 10510,
+      "sha256": "c05ab152bd0c4b544d61a22a9ae7a3b65cbfebb3ed54511a350e7fd36bcc83a8"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2021-10.zip",
+      "bytes": 10855,
+      "sha256": "d9a13fcd9a6a0b9a506ea1fbe06975bcf0f9ebbcd2de4639df65cbfb0d01333d"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2021-11.zip",
+      "bytes": 10480,
+      "sha256": "06ff7fbaf5edf3d77e9a070bca341e2a7781d9e30bb199051d1442df1a79fc0b"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2021-12.zip",
+      "bytes": 10813,
+      "sha256": "30124fe8c2de7114781371e867b63fb7e57c8f7590f8f05c03b8e9f3e3a43993"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2022-01.zip",
+      "bytes": 10902,
+      "sha256": "600262e137d855af1fb005a605477dda53ae784e682c00ad8ec5a86066c565f6"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2022-02.zip",
+      "bytes": 9840,
+      "sha256": "0e072f3d2ab245b0b3327b50ab2b8b664cd2d8d51c3b51876aeb7d6ca0f6b566"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2022-03.zip",
+      "bytes": 10692,
+      "sha256": "49000ed74b217b0d5a7b478b0aeb252c3d2987f8a014dad23dca1c0e89cd5bae"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2022-04.zip",
+      "bytes": 10295,
+      "sha256": "8e2c9c80707ff1f5965c98761dcfbadfdb583e62d24c8c5d9ff63423cc7c2bfd"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2022-05.zip",
+      "bytes": 10748,
+      "sha256": "409dfc24ea1e06de9a00b9e39d68fc23699ca3cb8919f58ec8f6e8af17358322"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2022-06.zip",
+      "bytes": 10424,
+      "sha256": "8bafe0fe001a2b764779e7c418f03eb5ca1162ef0315655177c917e6e670b3ad"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2022-07.zip",
+      "bytes": 10715,
+      "sha256": "1f66bb3de104e5ce6b568bcc16e466060446a6fb8d6fd46f9b9490be8259f134"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2022-08.zip",
+      "bytes": 10582,
+      "sha256": "c7c451a4a9f09f14339286ff654fed40b294fc37328126e43531bd3a1c98fe3d"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2022-09.zip",
+      "bytes": 10305,
+      "sha256": "d7bb4d9961577057bbfd54ea8d6aafd81a5df889b011837c989f7b9f120629d2"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2022-10.zip",
+      "bytes": 10395,
+      "sha256": "baa731766e96b40c1727dea96e24cb204b6f17012b434a0d196b4736c5e91e58"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2022-11.zip",
+      "bytes": 10155,
+      "sha256": "155d3052a60386e20f8dda75bbf814098c0174f7f9e59c2b1022aacd563d5dc6"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2022-12.zip",
+      "bytes": 10201,
+      "sha256": "94a9a1ae61658c9b5d35589e400cd6f5516ee330b11ea53879fc126a3b1651c6"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2023-01.zip",
+      "bytes": 10465,
+      "sha256": "4475545f9db058f7722538ced9a1c135cd41889abb9eb252bedaac1aaee1916b"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2023-02.zip",
+      "bytes": 9573,
+      "sha256": "d9590a2bffb078b0c142f7280a3a280e6225cf71341e8f30ebf02c9ecc0f228c"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2023-03.zip",
+      "bytes": 10719,
+      "sha256": "57a2e2e607b58f7bb7e92e57b3ccc03a79e9fd275dced372dd9a8dd10a9017ff"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2023-04.zip",
+      "bytes": 10239,
+      "sha256": "b71c07d7dab22741cd41706dda7d93c7b08826b9019d542948696a356b8dd91d"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2023-05.zip",
+      "bytes": 10548,
+      "sha256": "c402551012cb8cab3db8f4b2e983edc57b8f2d5da3e878c483f702fec5058138"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2023-06.zip",
+      "bytes": 10269,
+      "sha256": "9620b1bae1d2964a3365d70df0c6dcb7322efeaa8336fb91c456a446b02e7ec0"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2023-07.zip",
+      "bytes": 10401,
+      "sha256": "30cc6dbc5ef4eac56021a27c2323b4359a143ca36dc7cce5574616e185caf9ad"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2023-08.zip",
+      "bytes": 10357,
+      "sha256": "6df3c520bde3fcc94fa09d574040fc70b4020c1058886938add513813059093f"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2023-09.zip",
+      "bytes": 9962,
+      "sha256": "a6453bb8c555256f6edad4073d7c4b7af0443a7699cad0cf3c4d5a2323433a41"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2023-10.zip",
+      "bytes": 10407,
+      "sha256": "00621f34fd85de12927d044c61df0573ac359b4e14b89fd694cb8906e16ac414"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2023-11.zip",
+      "bytes": 10105,
+      "sha256": "22c096eb32612b29d251d4c8146e4561a65de1df15f27169ac8e28818a3b147c"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2023-12.zip",
+      "bytes": 10584,
+      "sha256": "c3ce7bd7d7348add8464e3272a422e5d12109c927e6f0152641f89feb1177b94"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2024-01.zip",
+      "bytes": 10664,
+      "sha256": "4f971989eb615ec46d21b7f1730eccf95e133c24c9a9d81faabbc12f89f01dee"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2024-02.zip",
+      "bytes": 9998,
+      "sha256": "72c0d4432b5369cc53a8e077cb3763b9aa74c6988b285c9983212d765f327597"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2024-03.zip",
+      "bytes": 10812,
+      "sha256": "2979a6fe55b2fff6c6c5a851d6f047110f1f304ff884b1cc3dd750aff851f2cc"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2024-04.zip",
+      "bytes": 10419,
+      "sha256": "ef0120818c28d50facb94c61ef96dace2c15d9dcbb37595d11042a1e3484b3de"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2024-05.zip",
+      "bytes": 10595,
+      "sha256": "e6c04ffbfb59f6403ddf2e1e6018113ef4e1fc6c9782e705eb72ec00c8cdff9e"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2024-06.zip",
+      "bytes": 10156,
+      "sha256": "8b48ccc0a2f81c683cfadd32f2b616af401dc275c02eb30c718fdeef4e828510"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2024-07.zip",
+      "bytes": 10639,
+      "sha256": "a3245611dcc9b6a7dc4a3a134907e8a9dd3ae422c34cb1a5bda475cdae3f4d91"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2024-08.zip",
+      "bytes": 10688,
+      "sha256": "3bc8467576e2f0257754aa8e0517ca82ebaae59000490027878852a79808e255"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2024-09.zip",
+      "bytes": 10247,
+      "sha256": "66b9440bc484f8c31dd9c1b6cfe29715dc8303b9bc4c57f37a08a0c2d9cbc929"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2024-10.zip",
+      "bytes": 10552,
+      "sha256": "c8f2fd616e8ea6ff8de0e2f5bb01676c6cda17bd0e18914903b333945c195434"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2024-11.zip",
+      "bytes": 10349,
+      "sha256": "28f91a142cc2da46ab308862f68ba5c7a6c1ae726d21af2356f774ee0db636f5"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2024-12.zip",
+      "bytes": 10680,
+      "sha256": "5a3f9a42a41556fff257dc08c8f1ec33eb3bd7a803e805289ed20e2ad13a755e"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2025-01.zip",
+      "bytes": 10695,
+      "sha256": "083b54f2b4d9aeece598eaa98a90ee7a6338492dac9703243ff76e3ca2855d1e"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2025-02.zip",
+      "bytes": 9586,
+      "sha256": "abd8c4db055c7d72ba1b3f1ad44338b24c752d9dda78d4b64ea718c27940addd"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2025-03.zip",
+      "bytes": 10663,
+      "sha256": "0b72737b4e28f27417b4738a98d5ec0be2665f137d39cbd8bf15c67d39a152bc"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2025-04.zip",
+      "bytes": 10272,
+      "sha256": "e30dedb8e3faab67cf63cbec104aa7f65156bae47939e60e07b2e3adf22f65c2"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2025-05.zip",
+      "bytes": 10683,
+      "sha256": "dee60341a0ea548e0611af52f1a15e2748748a0d4c73f0d93cb50d53273e71c4"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2025-06.zip",
+      "bytes": 10274,
+      "sha256": "36da42e7bef46276cf5020614a5f6e211faa77d021cb0f09e6e988ef3ed8a2d4"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2025-07.zip",
+      "bytes": 10630,
+      "sha256": "5677e7817f6fde164d19e7f9870edc740ba96af4e341a4fff53dff2660e8bf73"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2025-08.zip",
+      "bytes": 10630,
+      "sha256": "c6aabd1f8586921521facfd029629d0a990f4a4a0ef09648cd1929349a02fba3"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2025-09.zip",
+      "bytes": 10221,
+      "sha256": "289171608f6af47e8040b7cba1a1288eda535f4c027d9c0a1111246625a3c1fc"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2025-10.zip",
+      "bytes": 10708,
+      "sha256": "f69c52a2f467424279b23991c7cc07c36fbdf2afa37c0e9aa115e8c171368d2b"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2025-11.zip",
+      "bytes": 10304,
+      "sha256": "c8a7c379d06a48c26620fd352efabc4106847958f0c4cd500b2c2392ed546848"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2025-12.zip",
+      "bytes": 10515,
+      "sha256": "2c028e8568c65bfc5e4052574eb456f76173d0a0ae204c3c65727e7971a113a3"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2026-01.zip",
+      "bytes": 10478,
+      "sha256": "3d3709c48cb4fe637e797baeef36334cc6faded93d5c0f54e727e9e2bd2d1b3b"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2026-02.zip",
+      "bytes": 9622,
+      "sha256": "e53365a8190cdece74c5f4e680209d1b84edb95c2f1ca76b1876a97d5c1fbde9"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2026-03.zip",
+      "bytes": 10598,
+      "sha256": "3bf4f515d5a0e445ef94b0a73892edae438ebac84311853992cd46aa1e3768e2"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2026-04.zip",
+      "bytes": 10162,
+      "sha256": "eab8688878cebc3a940ab7af83a122ef6d7d0176a28208b104bd50fa111cf5e4"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2026-05.zip",
+      "bytes": 10453,
+      "sha256": "88a85f864a664d39be622718b30c83e5a8ffa4729bf3b56efdfad8eb3eae9326"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2026-06.zip",
+      "bytes": 10263,
+      "sha256": "51da327f0c3a278399ffc983c419b2f946720e904c2a603cf1a1b6f58699783d"
+    },
+    {
+      "path": "klines/BTCUSDT-4h-2026-07.zip",
+      "bytes": 10453,
+      "sha256": "2fff352c045efe78b52785b2dc6d6107ce63c435c5eec9e28f2c247e110afde0"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2020-01.zip",
+      "bytes": 1829116,
+      "sha256": "b4e13ea185ba96c413ac9167cfbb6e238eb5eae119a7a77f41f4c61c5e099d03"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2020-02.zip",
+      "bytes": 1726957,
+      "sha256": "f32b20168ea590cd7d04a2995bc5ec500ea06331c8174f7fd14f29c1078e5ed2"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2020-03.zip",
+      "bytes": 1908886,
+      "sha256": "15790b4b031cbc5f59cae30e523fb8341588d279fe3839ba1224c7fe8a6bc929"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2020-04.zip",
+      "bytes": 1833303,
+      "sha256": "f45228183c21030fc3a787109eada99187d9ba8c4d5d7ea5c178967150fa7467"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2020-05.zip",
+      "bytes": 1917755,
+      "sha256": "bc5bdae217f9ef6a32ffcc7653e3d45e007a2d9b2e93b752bdc7805254446821"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2020-06.zip",
+      "bytes": 1790292,
+      "sha256": "91f18492445c0a9609d70bd4603c73c8588a88c06105ade34082417f8b2e7e6d"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2020-07.zip",
+      "bytes": 1808294,
+      "sha256": "4cb7dcf6e1adb17e8ab8787c459f3f645b7070633f530485f0f93dd45a9de693"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2020-08.zip",
+      "bytes": 1883510,
+      "sha256": "7596de0f26df44d782713475f97af34f27a287faf084c73bdcc61819215b060a"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2020-09.zip",
+      "bytes": 1816087,
+      "sha256": "9f2d575ffc17a14320bc08a99d51a5580fd7f058f1495cfec598fbbd959792c2"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2020-10.zip",
+      "bytes": 1865118,
+      "sha256": "f35bc01dc1bba142c87033b33055c34a0ba37c2a2abd6c115af6a9c4f238dd03"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2020-11.zip",
+      "bytes": 1905251,
+      "sha256": "8eb55b2a547c35d792f88186168774804346426b82289bc9b1633406c0ff9e40"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2020-12.zip",
+      "bytes": 1974734,
+      "sha256": "72cfa1e9aeb851871af0168eb7ee22d334b5efb3aa4a76d7382754dac5e885d8"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2021-01.zip",
+      "bytes": 2057786,
+      "sha256": "ba7aeda6a99e0828b39da1b0605aaefcb40882fe9d44034598c4404f8a07783f"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2021-02.zip",
+      "bytes": 1851915,
+      "sha256": "0a270f354b15b053824a7bb87c652aa95acb4a255fc968fe0a24bdc9e785223e"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2021-03.zip",
+      "bytes": 2053085,
+      "sha256": "15a2676410d5104fac1ea15f7302addbf4d0de14f6db8ce10a4930c3f5d5e7fa"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2021-04.zip",
+      "bytes": 1971044,
+      "sha256": "d957fcde82f9b5a9a05264a9602e5deae03472aa0d424ddb0f27a04e58723217"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2021-05.zip",
+      "bytes": 2087690,
+      "sha256": "dcf7c567cbde49a5e564b29f01be95e28d32f12cb68c40b2a14da75930187dc8"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2021-06.zip",
+      "bytes": 2015140,
+      "sha256": "a640c7f935a1136d2f65f28f9606f0e063185c500f982aec273bb2ed3f61bfc5"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2021-07.zip",
+      "bytes": 2037166,
+      "sha256": "1367b5cd230474b0ecc6031b9e18cffe66e011c8fdd01c3325985a39c5d5ed48"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2021-08.zip",
+      "bytes": 2049960,
+      "sha256": "a864bdf38c9d06b7a6a1dc07c5593bbe7387cec3b869e9ebee020da053d94f37"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2021-09.zip",
+      "bytes": 1970475,
+      "sha256": "6e7bbfe650e6c56e189e78d521b3714feffd38468d1268b706a6626737326676"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2021-10.zip",
+      "bytes": 2040146,
+      "sha256": "4b78dd0174890c975effca2ed078163d6e9b4f7437f692e2c430c724b7eafc24"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2021-11.zip",
+      "bytes": 1963552,
+      "sha256": "67da3342f014166d2af97321599e0011453c4bd5a9282ef12c1a6131efd12993"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2021-12.zip",
+      "bytes": 2033812,
+      "sha256": "c905c5c8ff36d0dfac3a0581225ab305f72d1e11e634953d8d3a136161d10956"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2022-01.zip",
+      "bytes": 2029103,
+      "sha256": "9cdbcf68903434c850f9bec60d8174c2cfd105dd24a7566965b442ec15124e04"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2022-02.zip",
+      "bytes": 1795701,
+      "sha256": "63672d552f98ec125ac4d90d82154313fb9832b7e1aaed196101816bd61bfb89"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2022-03.zip",
+      "bytes": 1922190,
+      "sha256": "4532faf2f92d205fac79b7d25327d2045843b60a4494e00b0962e6b7f028bc06"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2022-04.zip",
+      "bytes": 1833665,
+      "sha256": "0f509e296da62eed5f4e903507ced0de9738ea96a7a885e76dd2394b8049e689"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2022-05.zip",
+      "bytes": 1926294,
+      "sha256": "768bdbbd11b08d935b3753ecfee7f1e351a346c71b11cf68a4a51296d694f368"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2022-06.zip",
+      "bytes": 1875823,
+      "sha256": "8587319eaf1b1f6d73fd34446acdecdc72c47b23ecfd2d88e2a6dd2a35470565"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2022-07.zip",
+      "bytes": 1925230,
+      "sha256": "6fc45fa135a6be85679a6ab0b1268fbd1f8258079295cd134b9a4c535c6b6b65"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2022-08.zip",
+      "bytes": 1897142,
+      "sha256": "806ee1d6efa856984fe79453d17f04c0fb5e447413fe828cbd3ec2df9a1f5fc4"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2022-09.zip",
+      "bytes": 1842043,
+      "sha256": "fa1adecbe41b530c12f481882115511297ac7b78a9a7ae9d9d21b11c745649a4"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2022-10.zip",
+      "bytes": 1847485,
+      "sha256": "0f2d2cd67b30ab186bf3db5a07acfe835f1d74335c6493c80e9e4f0598e29b2c"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2022-11.zip",
+      "bytes": 1801135,
+      "sha256": "96916aba47f230a9bc68cd3fd98d0d352e1fd8f23c16c515107c4d965a2067a3"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2022-12.zip",
+      "bytes": 1765742,
+      "sha256": "0f4788019cdb29f4db7b03d9efefce099d7adf49c0daf70a144b814b292bf577"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2023-01.zip",
+      "bytes": 1824474,
+      "sha256": "b7b04483464b36c89f519bf35d6461d278c709577562108b6a00fb786b92e6a6"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2023-02.zip",
+      "bytes": 1688103,
+      "sha256": "b62ca5df57b1715109cb1fd57097529b28410fb36b0db5bd41dbefe7e070db68"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2023-03.zip",
+      "bytes": 1907895,
+      "sha256": "1cb47aae71e941d3e9d333f9c96723eb35c8b4a7ec90e819c59a7c02f89b03bb"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2023-04.zip",
+      "bytes": 1810833,
+      "sha256": "2c22e2e460bf0e41884bf71031eebf60224ba470b25777a4d17ddc9298390650"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2023-05.zip",
+      "bytes": 1859563,
+      "sha256": "cf9e0ab390e3872ddb9d807ad161933a28e374e09dbee2b9addf659856d1e656"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2023-06.zip",
+      "bytes": 1806762,
+      "sha256": "8dac3fe301198e752b257817542a7ded393dbe00b604f67aba6bc0090778ae95"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2023-07.zip",
+      "bytes": 1805388,
+      "sha256": "5cc84c767c9f4d1fa3cb3d33bd009a0b5e3a445e9c89ad2ef259c90b0365cbc3"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2023-08.zip",
+      "bytes": 1781029,
+      "sha256": "8d77e6f898fba3aa5bf643d128e0aaa1b722ea6881cd26a3d19088705117a1d7"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2023-09.zip",
+      "bytes": 1729534,
+      "sha256": "ea43f6e612b54e165c47ea30955b8d9e825b1d3ad1846f12c03ad0f0fced9029"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2023-10.zip",
+      "bytes": 1829597,
+      "sha256": "153f1322695d16a12cab261b7798045323d9f893b19d35d95ffe94a62530b4de"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2023-11.zip",
+      "bytes": 1783820,
+      "sha256": "63aa156170b2316927ae4c4928cc78866934a02b4bbc14c730b5fe4790383a80"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2023-12.zip",
+      "bytes": 1874380,
+      "sha256": "947ea9b1c5dfa301f1d5ff89d28f3ee49bc73eef2cfa1f0dc4024048458eb60b"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2024-01.zip",
+      "bytes": 1898532,
+      "sha256": "21eeac04a76a7a35b10467e5e752fb2f8cff77cdeb57df6b50a23ce8d69bb190"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2024-02.zip",
+      "bytes": 1770127,
+      "sha256": "1407acbf8ad99911bdf582805699b7e85fdbc346dbe12618ce8b6369f0d8058d"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2024-03.zip",
+      "bytes": 1950611,
+      "sha256": "040b8e448e4243072b88b0d9908dfebed91bba943b75f4e831fa5337a2e1dab9"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2024-04.zip",
+      "bytes": 1870249,
+      "sha256": "6a41f002da0c8e3f60bd46c841ea4ed766fb195764ad3b6b10e4f508d29c2eb7"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2024-05.zip",
+      "bytes": 1896566,
+      "sha256": "42de617ed643def54b5a2c3fceb7cd2edec91aafaa01104a097b2ded5c5122d4"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2024-06.zip",
+      "bytes": 1789499,
+      "sha256": "93499da4990fec5471bb0d73c91116e7d20a8b2697d7a4491665d6d1b8e85c85"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2024-07.zip",
+      "bytes": 1912408,
+      "sha256": "97f9cd5104a33828c5c2d8d03a2796d600102ab88737d1c6da515b9609540c3c"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2024-08.zip",
+      "bytes": 1919190,
+      "sha256": "f69dbcebfd7108dc97825bd6c35d8d9a51745082f66617cb69de888e867e8e89"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2024-09.zip",
+      "bytes": 1829434,
+      "sha256": "16fe2e13728236bfbd3efee99671612daadeea3b62dfd55d8874feae9faa4946"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2024-10.zip",
+      "bytes": 1878910,
+      "sha256": "aa8c79ad120a8d870e23276d1ad5966f99f59bc0a1886ef5927a3808a5efee36"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2024-11.zip",
+      "bytes": 1876449,
+      "sha256": "9c3dad038f4b043ec51d4200f57d15a0a07b3fc32b3ea3dca6a96543b9624941"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2024-12.zip",
+      "bytes": 1929835,
+      "sha256": "bfce141d2a152c2b94d85b797fe18ebfa195fa0e6091a7ccc06663ae1309466f"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2025-01.zip",
+      "bytes": 1917878,
+      "sha256": "b69ca5b2c2d1ae00d68d2790d09138cb2a44085ff19e0da5dc98b569ea7e489e"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2025-02.zip",
+      "bytes": 1718529,
+      "sha256": "d84ca981d06ee6491e16597f8d43955f62cab399a9f4b6efc2ee1b4d3a37f0fc"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2025-03.zip",
+      "bytes": 1919175,
+      "sha256": "4837163333c9c9978255b8870a5a6de1bc48bd22a6c72fef54665a8d4e70b4df"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2025-04.zip",
+      "bytes": 1846549,
+      "sha256": "87bca047ca7e8b1d27913091255018e121210276726c5aa445e85da6f56e2dcc"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2025-05.zip",
+      "bytes": 1904964,
+      "sha256": "7acab7e40a74db53a2d6c35373ebe327eefa85b98f8c92fbe58755881e3841ee"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2025-06.zip",
+      "bytes": 1817901,
+      "sha256": "78872b32c4d0bbc2d89a0459539b90cff47de08a9a56fdf8d233943a32e78efc"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2025-07.zip",
+      "bytes": 1868400,
+      "sha256": "cf5fe0891c80e68d2d613eb5457100b7d886eee8cc913ccdd96ef45e757a5aaf"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2025-08.zip",
+      "bytes": 1871971,
+      "sha256": "eaf41354fc1aa96eac94ee50b3fda603cd595f95030ebf30b2ab5bea7a4462c3"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2025-09.zip",
+      "bytes": 1782066,
+      "sha256": "c296ba45c215934e9750ca82846c7b5d14be661649d8e4423eac834cf57330dc"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2025-10.zip",
+      "bytes": 1913274,
+      "sha256": "bb7f53350fe27b6d8e38b5856ffc43f9ecda9d568d5bf31d0db0cd011da7100f"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2025-11.zip",
+      "bytes": 1856815,
+      "sha256": "981da0b054f99b959fe6245fb363336b46908d358f37251d59bad308f375bc54"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2025-12.zip",
+      "bytes": 1868657,
+      "sha256": "2d5b2e1887dac1dfe450010877de7203a72e19df7a771067b980bbb07ad3069c"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2026-01.zip",
+      "bytes": 1852279,
+      "sha256": "58e9c620a6acda209d25766b3cf4262f3104649f5c26f247d933e0da8bb7946f"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2026-02.zip",
+      "bytes": 1743792,
+      "sha256": "805626ad2dc5b704d52c211996d12e9e4b1be234998f3dba4b3d34ff79be0337"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2026-03.zip",
+      "bytes": 1911731,
+      "sha256": "c472a865f230bf1b5b17e124770a83c083144e3e11a115733288fb8f3e3b8baa"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2026-04.zip",
+      "bytes": 1810071,
+      "sha256": "515b86570f0c6924f6dc2cf90589d3db90f3de9c6bfd9a22dde0429995dc5405"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2026-05.zip",
+      "bytes": 1845894,
+      "sha256": "d91548e94220d5211bb32447cc4b604ee266d145f2092edc5ec613328cbbc20a"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2026-06.zip",
+      "bytes": 1838455,
+      "sha256": "9b214199eb5063585c7ed0f59ba19323326d68ac024b85106713989399204490"
+    },
+    {
+      "path": "klines/BTCUSDT-1m-2026-07.zip",
+      "bytes": 1844583,
+      "sha256": "f18440bb58f0c7e1ff63cbb906132002877c4914540c8aebab920da6937cff73"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2020-01.zip",
+      "bytes": 1375518,
+      "sha256": "04a7ae26d01cdcc75edb917fafba70f2b2b026a64ce2e66d25dc7cef0f722531"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2020-02.zip",
+      "bytes": 1295962,
+      "sha256": "8e99768235c8bd120ee25e7020ad3106488440eb41bbabe2935324dc1632a3db"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2020-03.zip",
+      "bytes": 1405627,
+      "sha256": "93d4d8ca217dbd21e0079448e324e906df835e4e552b1256a55de768f8da8588"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2020-04.zip",
+      "bytes": 1329863,
+      "sha256": "1999cc84238930a1d2b85eafbcbd60a62257b6bb8744ee737d8a5e8c56e16532"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2020-05.zip",
+      "bytes": 1384259,
+      "sha256": "8fa6f2fc5fc1d710e2ee27e409e0ac7fa4deab05a66739825aa0d8c9e1dfa098"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2020-06.zip",
+      "bytes": 1310243,
+      "sha256": "823896788de2a12ef2cfbb73f9a40f8a641272b5967b4f607355feae794779dc"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2020-07.zip",
+      "bytes": 1298664,
+      "sha256": "b8ee8e08290ceeac9fddbb57217ff3d920e505cc4aea1a24c79940cad745a17b"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2020-08.zip",
+      "bytes": 1117044,
+      "sha256": "ea98a513d0a77dd4598b12b2df757a24879ef33574616ac5f9c82af1b058e21b"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2020-09.zip",
+      "bytes": 1115575,
+      "sha256": "491e3ec2b9aa21eef52c8206567bfb23b351ceba3052c5f80ad02c930f75a1f7"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2020-10.zip",
+      "bytes": 1127878,
+      "sha256": "93b2a35009518db9fb7572b41dd0efe3a94d867606d6633c1f4f502f9a7c1323"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2020-11.zip",
+      "bytes": 1146929,
+      "sha256": "2a7816860dbb997d9a5adf12b93d32678c0e92611e580327bd9b10fb47079436"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2020-12.zip",
+      "bytes": 1199182,
+      "sha256": "cd3edb99a29714eab9f0b128c23a965b562e08170f4e1b95cce3486d5fde0740"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2021-01.zip",
+      "bytes": 1239482,
+      "sha256": "883021211d84d5d0996bb6c946e82163b508d02f7e7d53e50c399f4622f4a3dc"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2021-02.zip",
+      "bytes": 1095774,
+      "sha256": "b090f44eb2b24486e89c387db83533f309800aa44931d73964bfc211846205bf"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2021-03.zip",
+      "bytes": 1224368,
+      "sha256": "6e25031ed12e52dbd7ddc854e829e9c53df4c1fd621eda00db18ad3cc6c4b439"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2021-04.zip",
+      "bytes": 1186523,
+      "sha256": "8f8067c9b653c09fad49545daf1e3438190ec59ad8582b9f52f8395cee038c6a"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2021-05.zip",
+      "bytes": 1273457,
+      "sha256": "9f5a9515e9ee59519cdce2d8b6ea2a81a21fe377ad524214a292cc51a1d55482"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2021-06.zip",
+      "bytes": 1222754,
+      "sha256": "0bb4c8f4bfb11d662095277164bd6dbf645d8ef4470786f07be8342f4ccc52fd"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2021-07.zip",
+      "bytes": 993150,
+      "sha256": "f803d5e91d9a932bee0b816abc7c6fdedcd9cf9c327474b195ef72d0c9693a06"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2021-08.zip",
+      "bytes": 1241082,
+      "sha256": "a4dd146ec0ef0f17f63940e3f32a22433fa9e093856f4ebfb8b9c12f0dccdec0"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2021-09.zip",
+      "bytes": 1199774,
+      "sha256": "70167cdb73095e89095038631e94f0629c453abb45a6e9f8f6de0f7429ec4723"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2021-10.zip",
+      "bytes": 1223781,
+      "sha256": "4301f4ae15eec9c9ae241b973ddda311e964fb3c87eeb2f8c4d8c26e7b10c507"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2021-11.zip",
+      "bytes": 1188286,
+      "sha256": "48b6337e60328c2a48c8664198b0ce01700a7aa3208d86c7eb0035edb06faa53"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2021-12.zip",
+      "bytes": 1262041,
+      "sha256": "b7d4014d14c149012c7b64423f1a683ab0364269945e02c1789dcdbe44ebce61"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2022-01.zip",
+      "bytes": 1245748,
+      "sha256": "620ec2bfdaed255236b7daa113488a4b2eada7bf3384b1fe640d40dd85d9c4bb"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2022-02.zip",
+      "bytes": 1081159,
+      "sha256": "9554d65c02469ef76ba92b7e8646d2ab606238ca83f23b73957a44c78c7674fd"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2022-03.zip",
+      "bytes": 1167017,
+      "sha256": "8cc7cd5451a9c9eaef4a82cb80ef96cabda957fb64943b3620e19bb467d71f49"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2022-04.zip",
+      "bytes": 1102577,
+      "sha256": "89d70dc94e4336f71380497008dd3de4831c8eb2b0cf25aa139c042204efb67c"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2022-05.zip",
+      "bytes": 1178126,
+      "sha256": "589544c8c2971e42d7b54d3d42c3dee01474b5bb8f03fe6884304b86af194e68"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2022-06.zip",
+      "bytes": 1126259,
+      "sha256": "7a4aadc8beebd88105f564c1e4c6db4d2ba3d768638926429aa0b109643b440a"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2022-07.zip",
+      "bytes": 1120026,
+      "sha256": "35d2afc48289d0c9e75b311672aae21c6d635f62bb3836eb63694f554d39f1c6"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2022-08.zip",
+      "bytes": 1122119,
+      "sha256": "fc15588d80e2fea766ce86906c5b7f1975f00a03637483f6606e26f1769a3675"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2022-09.zip",
+      "bytes": 1086101,
+      "sha256": "cceb950dfd6858865cd76f0ccf2637a930f274e75ae031e17bb4575b4e681427"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2022-10.zip",
+      "bytes": 1055224,
+      "sha256": "e6bba74c7ccb41dcd8a7ea1a65f40dc01de05e3128a265d77cd882898037780f"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2022-11.zip",
+      "bytes": 1076530,
+      "sha256": "da02544e804f995ad34dfd84f4cda4a8c62200fc465329817f2881d772689806"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2022-12.zip",
+      "bytes": 1062630,
+      "sha256": "03fe4fa0293236aba29e603e4bafcb128c3703f82bc7ef59bb385eb165f0b58a"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2023-01.zip",
+      "bytes": 1122553,
+      "sha256": "18abe5d64d97bf153d1d8f7f9b39f51c37454add602b6af8d51f267dd0f19094"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2023-02.zip",
+      "bytes": 996170,
+      "sha256": "f84b1b0c1524f381fadaaee37b7be4912cb21fe947106cf01d6a9f0248e38d78"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2023-03.zip",
+      "bytes": 1115182,
+      "sha256": "1debe8c9ac4d0e21ffb0715157bdb543577eff49ce0adf88793572ea48e4da65"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2023-04.zip",
+      "bytes": 978108,
+      "sha256": "f5a84258e4f0f62715f0c671b4807cee77ae21c7f2a42a45238728567762db00"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2023-05.zip",
+      "bytes": 1007316,
+      "sha256": "fa5ad18ee67b48ffde94a57c674900a7129c1f5078a3d82c02f4cd8ec3411e42"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2023-06.zip",
+      "bytes": 985612,
+      "sha256": "9e888715d55dc099083916b35e386f5d1002a1daedc62c5ac489b789f709cc28"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2023-07.zip",
+      "bytes": 974766,
+      "sha256": "0335045b48bb1409cafe0a2f01fb78f11537e7ac54ccc386bd674b1a5b0c857d"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2023-08.zip",
+      "bytes": 967108,
+      "sha256": "f1724cafea417a0c5915d060428bf51ee1f5dd7c7db1b22dedbaf1649775f69d"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2023-09.zip",
+      "bytes": 942916,
+      "sha256": "230cfd0e4356a816a4190428509ae938c47598985a39a55bc8f6149280304bc9"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2023-10.zip",
+      "bytes": 1029482,
+      "sha256": "515848caafbd72c51e60fada274af8fff339f74fb80fa9ca22e28e2837e2aaee"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2023-11.zip",
+      "bytes": 1038022,
+      "sha256": "15297e53a960de47f6880ad76f895b9c59573a546d1017c0c288b10434b2b01c"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2023-12.zip",
+      "bytes": 1057725,
+      "sha256": "6c5f2473e4cbb328b7ec271c075c2203ae9b3eb23b53a2cf36325bcb2d0e3741"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2024-01.zip",
+      "bytes": 1153812,
+      "sha256": "1607b1522928d2a698592019fef7c3fcc9bee2cd01674c72a27e7fc028fd66ca"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2024-02.zip",
+      "bytes": 990137,
+      "sha256": "2e6f24f3bc92a7d241d5dbcfc79c54a0aa24b26ad12b4988f61a8c8d93e867fc"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2024-03.zip",
+      "bytes": 1114957,
+      "sha256": "7efa90ed53f47100633253faf45838584d1b148081c57196abf0f884d8452986"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2024-04.zip",
+      "bytes": 1068558,
+      "sha256": "b4d3961b62d727db532222b2dc4519a8e7d8ff4b1ebab1de37458568db132b4f"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2024-05.zip",
+      "bytes": 1052574,
+      "sha256": "479435c79e0e56e3ded959ee47e3fb559720991732735211dd31c192c29924b3"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2024-06.zip",
+      "bytes": 1009828,
+      "sha256": "98fdafee41a7a051c2a5a7fd750e4957adaa3efc24e64bde87e006bc72afcf68"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2024-07.zip",
+      "bytes": 1073723,
+      "sha256": "2a5655b1b543306ead51639d3310e036c70c2655cbe36a7fa87299f8e39094ae"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2024-08.zip",
+      "bytes": 1068484,
+      "sha256": "e5be12f99523a72726e7235ad024465cc283b1ebbe1904e16674e130f373c362"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2024-09.zip",
+      "bytes": 1011306,
+      "sha256": "ce04d1a5f85a15a2bbef83236816d394ada0c4de8fe826b6b23cbc209c515f1a"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2024-10.zip",
+      "bytes": 1052266,
+      "sha256": "90aad4b8ab9fa46454d11ca5825e6688c57fa8813c93d6df3a7e49e7e92cc11a"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2024-11.zip",
+      "bytes": 1062869,
+      "sha256": "e7087d29fee5643844a9fafb77c263a28b7f5dcca788d891081a8d73c76c6b82"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2024-12.zip",
+      "bytes": 1094627,
+      "sha256": "e130a234850304431c747c6f832aae250586f953f015b92dbe4a51c4604d6a59"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2025-01.zip",
+      "bytes": 1077312,
+      "sha256": "c061f32b85c72aa8e588882bfd2b884968cfdea45308b3b74f8fb3ff44d9fdc6"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2025-02.zip",
+      "bytes": 947944,
+      "sha256": "f541de26d9c2c0dbf259f3583bc505916c9cd993da0d62a26d556f79bfc91a94"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2025-03.zip",
+      "bytes": 1064286,
+      "sha256": "5c5ee421ba6e062102de1860c89a52d9518633ec5e0c2a49e832744d6fae286d"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2025-04.zip",
+      "bytes": 1018081,
+      "sha256": "67ccab1f1585d297ec6985a197b47ddb45d325ed094525dbe432d19ea10f9e0a"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2025-05.zip",
+      "bytes": 1068933,
+      "sha256": "33f9130e9d92c6774b8438d857e838df5db26e7308fcbb2a178722a021be6d0f"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2025-06.zip",
+      "bytes": 1017240,
+      "sha256": "ffae55c885010290cc9aa8faabfdc3b204f7a0671c59b77cb77844da11844501"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2025-07.zip",
+      "bytes": 1061464,
+      "sha256": "33eaa2e5fe002aacdd2656af3457186965325fde98a014d2cef754eb3ce849ad"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2025-08.zip",
+      "bytes": 1046935,
+      "sha256": "b52004debc432af8cc44cd98884cc7c94458346be8adb13950b44edf8b646f9b"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2025-09.zip",
+      "bytes": 988213,
+      "sha256": "25b00a0726920d6a00b05fa6fe26966969964905f05ab917539b77a9066db5f1"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2025-10.zip",
+      "bytes": 1066369,
+      "sha256": "628766a37dca06405268f2d4269598198d5c822aa4477a6804a192212ffa1f6e"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2025-11.zip",
+      "bytes": 1042753,
+      "sha256": "1915d3d64c34b3b1e7309740091f39f525ff68ff543e7685518c0a0970636d66"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2025-12.zip",
+      "bytes": 1047037,
+      "sha256": "e1ed1dcd4ed9e7cf174a1c2e04f50f04e4fe52c787836cde8f6fadd32f3aef30"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2026-01.zip",
+      "bytes": 1034512,
+      "sha256": "aa48fc9892158909320230708e8d04d8750b1b7b97c936bc926144ad28ec9021"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2026-02.zip",
+      "bytes": 979761,
+      "sha256": "2205f17c1d774577a2aeeb1015787d9f966437eaf27090d477f16ae1bdddc4d1"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2026-03.zip",
+      "bytes": 1085521,
+      "sha256": "7731b4b15be1e59eb80422e7eee0067af124c42804c5e575e4cf5ed508d94687"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2026-04.zip",
+      "bytes": 1020190,
+      "sha256": "a1655f959e24c73a010b949649d45fcb2854bb9e2f5fe8e998269eb6ad4585e4"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2026-05.zip",
+      "bytes": 1036489,
+      "sha256": "c9e4475e8762b4e52b899785deca52bceb0efb9bf08bd411b3147cd5e1da5e25"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2026-06.zip",
+      "bytes": 999777,
+      "sha256": "5d5d8b86efbe709e034409634347a161183e7c0df3854f8d96c9778dc1c923ba"
+    },
+    {
+      "path": "mark_price/BTCUSDT-1m-2026-07.zip",
+      "bytes": 1022569,
+      "sha256": "5bb16a0707eef96d648480ab45943f25b27425154b2ccb881c200cfd51e594ed"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2020-01.zip",
+      "bytes": 825,
+      "sha256": "7f81b2f3694d13779e7e896b69d60cd61e9444d7b9f9e90df761935e1c1b76e2"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2020-02.zip",
+      "bytes": 885,
+      "sha256": "6599466d108d120c64a078824326c063ed2d4335b3292e52c5e572f79166533a"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2020-03.zip",
+      "bytes": 928,
+      "sha256": "eee845fde6336e29d25889563cba3d2cff2d4d640e51fb1f82ae9b28cedaee77"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2020-04.zip",
+      "bytes": 867,
+      "sha256": "d009ce034d08c3dcf3e7f874b0f8b0ec76ba507bc6bb4e007e541df537bafbce"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2020-05.zip",
+      "bytes": 839,
+      "sha256": "3f2b56dd6b9a42457009bb367d0adadd3cf7e2216cd325172d0089e3883125a8"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2020-06.zip",
+      "bytes": 791,
+      "sha256": "30b3470ff98576578973d75e3c157a5cbf1778b11e4c26b4b4ff70a3cbb348ec"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2020-07.zip",
+      "bytes": 712,
+      "sha256": "18dae7b11075fc0fba79ad47df46683415cba5d027caa69c66bc2a5c9d9b459a"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2020-08.zip",
+      "bytes": 854,
+      "sha256": "e6f6d1749f674c85d4766e0eb36af6ea40d91a0674234d30df80eb9876b094e3"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2020-09.zip",
+      "bytes": 838,
+      "sha256": "7ae9a3b6afb2dc06e46080582908ec8c27063b707a14c7f1e679dc991ff48032"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2020-10.zip",
+      "bytes": 828,
+      "sha256": "4c55b191c101f39c7fb193a6529665dd9e83302ca21876521e4c93b3902e9fb1"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2020-11.zip",
+      "bytes": 854,
+      "sha256": "676356a2d075caa51b4f8ada026e9430dc320ffd23d2343b13b7aa25324ed6d1"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2020-12.zip",
+      "bytes": 852,
+      "sha256": "d7390f90edf54cc4ad9bbe78e2f6b291ae06ad9539f591a2d0fce445873bbd63"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2021-01.zip",
+      "bytes": 981,
+      "sha256": "cff916dc4b638ec3de97828e8911cd91cf7d7a3d0836ec0175869c374e66823d"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2021-02.zip",
+      "bytes": 956,
+      "sha256": "819a7b107443686adb313fc5fc223302a29f3981e1d1bd9828ad0ade65a8a8af"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2021-03.zip",
+      "bytes": 918,
+      "sha256": "2125fd300848938c7b992b8f7b7b5007d5b277a4ff1ebda7da083b40242729da"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2021-04.zip",
+      "bytes": 914,
+      "sha256": "9cd888e3b0a1954813d0062c2e60426fdc8e34a7f258f6838371ec67f535b028"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2021-05.zip",
+      "bytes": 960,
+      "sha256": "ed934afb9cf84df6ecae742e755147333a84244836a66b51523abc66dd5f63af"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2021-06.zip",
+      "bytes": 883,
+      "sha256": "7b8d9bfb8816636b800764dafb2aa2307d19166c695bfa245adbf7d01d61f766"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2021-07.zip",
+      "bytes": 973,
+      "sha256": "8ab3df641d3bcf40527491f8e26d046ad2b662d1950ead9555ad32975571b7fe"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2021-08.zip",
+      "bytes": 781,
+      "sha256": "7eb681cc45b94176f4b9192a62c3a1925d79031ba001cea2d8dec6ff6e5b9c35"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2021-09.zip",
+      "bytes": 828,
+      "sha256": "03f25a7c25eef18d5f5b5b7bb0b664cab7a210b409f37e95a54e141808a0752d"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2021-10.zip",
+      "bytes": 951,
+      "sha256": "f25820d6add687addbca3ef43bee58f70853a6da53832a0c1bc22d00dc8ec64a"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2021-11.zip",
+      "bytes": 919,
+      "sha256": "e2e6b2d7218607e7e4a38137d50f553c2cfb901275c19edf567024c1cc6de85f"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2021-12.zip",
+      "bytes": 815,
+      "sha256": "bf3ce484faf41d7dccfd38c5cc3d8de34d8297df30ab10784e874cc10fd1b310"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2022-01.zip",
+      "bytes": 906,
+      "sha256": "22ee19079b620f5c6d820e7d7f8bafa7fde866d89bd664863b8bd527749c12cb"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2022-02.zip",
+      "bytes": 890,
+      "sha256": "fa95088258a905c79ab79e8984d2f6f66933ec2e814dbab4ef9da89b01ab484a"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2022-03.zip",
+      "bytes": 904,
+      "sha256": "4cf0883bc07f4ed4cdd3b0d8c0d166b4d15d21e666ab752f9f44401af4d6172f"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2022-04.zip",
+      "bytes": 926,
+      "sha256": "57e2776cc68b3169fc9f8632dad67278f470cd453407a8ebe6c87963c8a31357"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2022-05.zip",
+      "bytes": 915,
+      "sha256": "bced8a5013d09742b96682e6fd01ad4456213515a03d7586ec2b1f2689af5255"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2022-06.zip",
+      "bytes": 966,
+      "sha256": "0cd0708f8903829eb46f98cf60f4b2516c986e1ccddf6620a5912b48e16baf93"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2022-07.zip",
+      "bytes": 917,
+      "sha256": "29d58cce0cd45f74c6a112039835c6d9ee5a7e60e7c38c2503beb7930453a4fe"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2022-08.zip",
+      "bytes": 997,
+      "sha256": "6f4f0c6c84c05694b4b4a5c085776730fd4059723eecd98ee6ffeb3fde4da811"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2022-09.zip",
+      "bytes": 960,
+      "sha256": "d62cd4e13009de37add446dc4f63ead4c56dcc4955a1e60f6726bcadc5a68fa9"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2022-10.zip",
+      "bytes": 950,
+      "sha256": "ad9efed10d4ca1567b865d7a158790977cec1b925395634217069df6696c8bc9"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2022-11.zip",
+      "bytes": 1000,
+      "sha256": "8febe5bec1a029e993bbf27490761f8c47c32849bf7dd13441b2b2f6ec1ffb51"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2022-12.zip",
+      "bytes": 982,
+      "sha256": "4218c78331bcc4dbeb5768fa112242a880971c1f2cfd1d3f32aaa26ca34069af"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2023-01.zip",
+      "bytes": 863,
+      "sha256": "05e3df32f28d0d50f4c5a280adee9368b4a66fc68c6ddca1b3277087ac0d19f5"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2023-02.zip",
+      "bytes": 808,
+      "sha256": "5227accd9aaa59f71f5e682abffb58be5f99573ed208ab968b1704c81ac11345"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2023-03.zip",
+      "bytes": 956,
+      "sha256": "ab022adff9b853d2f33cf80154e77c770f57c3392f0bbc36564b2e2cdbd0e872"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2023-04.zip",
+      "bytes": 952,
+      "sha256": "2931039d26818edc65d4faefba84945fd1ba52989dd58fb127dc3cd7a12c7fbf"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2023-05.zip",
+      "bytes": 983,
+      "sha256": "5d026fece46df86293054c8c56c2c8de575d30161b82979b11831831217a246e"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2023-06.zip",
+      "bytes": 845,
+      "sha256": "3ffdde6f1dc9c3c065d77ae43f3ba64d19d4cb76512d4bc1d541933d4fb2e6f7"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2023-07.zip",
+      "bytes": 861,
+      "sha256": "0304baed9fd407293a8a8040b30a1b68bd344803b630d33530375b421733a930"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2023-08.zip",
+      "bytes": 846,
+      "sha256": "516a8f50631c6ede6a9642f6d1590b6a22c33ba09935501d2ace8dc1396501fd"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2023-09.zip",
+      "bytes": 914,
+      "sha256": "3fd9df6fd1eef33cf5fe625c27012359bc6d64a68c109305d7b44a0354f533c2"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2023-10.zip",
+      "bytes": 865,
+      "sha256": "03105cc140150bffca834bcccbddc6cfee245e079d2df1759653243bd6e92448"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2023-11.zip",
+      "bytes": 696,
+      "sha256": "8015d2997f8d5e757ff3707ee87800ca30a74da0129daa747b64117f07bcc186"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2023-12.zip",
+      "bytes": 810,
+      "sha256": "8f02fdd2a2da261bbf13ab301c74bdb57fae005f19d5088e9ece5f8824c1a2a7"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2024-01.zip",
+      "bytes": 696,
+      "sha256": "3e0d30870672aa8f0f937881056e3cfd55913ae5c780cd50b33f2763aa0ba58e"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2024-02.zip",
+      "bytes": 776,
+      "sha256": "daf1e4901e3d6436d82ad60f90d007eb5300be8047cfef121007203a7212cde6"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2024-03.zip",
+      "bytes": 939,
+      "sha256": "711dcaf2a341aedfd06447b4117b540f60adb0784c5e64a313c718e4cf092bc3"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2024-04.zip",
+      "bytes": 842,
+      "sha256": "6d220b8e2815362a11d294d35dbca28568370d8295351937eceec10f2b359b85"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2024-05.zip",
+      "bytes": 830,
+      "sha256": "aef8c5fdce1493fd570b5829a72f2f17c7e459483390f25544d16c2a30be592e"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2024-06.zip",
+      "bytes": 721,
+      "sha256": "43fc4473820d1fb4fe340d1b1951a87555f6841aa352e684fa95d6adffce04c6"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2024-07.zip",
+      "bytes": 847,
+      "sha256": "acab0593c1452660ce74a6c239fb215c1192b0a9c6e8c1689e6495de40a0174b"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2024-08.zip",
+      "bytes": 904,
+      "sha256": "7003d29a43dd5f9357f838da8766834954939e22c1d80af682d9f33984f67b71"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2024-09.zip",
+      "bytes": 924,
+      "sha256": "6ef23b02392b481ef9c3855434bf3644289fb6e228b4f7d9a0dfc6d3cdff1116"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2024-10.zip",
+      "bytes": 801,
+      "sha256": "26db65ac8020d80ece35df79c254c5f7e24427529bcceeb2972748c4fe2d2707"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2024-11.zip",
+      "bytes": 746,
+      "sha256": "e1b19cccfe2cdcba48b022790789b7b01edd86c075f39bc152e44c267d43bd51"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2024-12.zip",
+      "bytes": 808,
+      "sha256": "069409f525ebf6370ee1c7defe475167de4b97284c5ac8e68768652968cd3dc9"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2025-01.zip",
+      "bytes": 825,
+      "sha256": "df725010d55458866eb5a47e9ee708c6796c9d7e77b14c38342cea11f381815e"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2025-02.zip",
+      "bytes": 854,
+      "sha256": "e918b90fb33df3a3317feea13807a892047f1ec86eeac100bdb7b3dd83285d46"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2025-03.zip",
+      "bytes": 938,
+      "sha256": "a3b95cfb315641fbfddc61eb32adf2a2588afb7a3973a61f464aca007ad43e3f"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2025-04.zip",
+      "bytes": 929,
+      "sha256": "01dbb7bd0135f98bd63bdde6b943cde1accc1770cabf92f68a1ec0653ced3888"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2025-05.zip",
+      "bytes": 943,
+      "sha256": "e7355e2775b88009c984db1783bb8ed6b5f24ede2b52bb764151b5722d6a5e42"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2025-06.zip",
+      "bytes": 946,
+      "sha256": "a1f4a40953740fa83ee9ad97776ff8325d1958654a67f1325614071a983819d4"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2025-07.zip",
+      "bytes": 796,
+      "sha256": "b097dff828f6e43fece23db0d3cb98042a9d7bc19693b8cbfd051d88eb973b7b"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2025-08.zip",
+      "bytes": 927,
+      "sha256": "1180129860b6e196e8d70bb9719e81573aa6b4acb423ba5ee7f82f10c836f7ab"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2025-09.zip",
+      "bytes": 941,
+      "sha256": "21dc6570fc6bffad0e7b5f9e99211b82ad07c95ab4f18c3a2daa3b95ec98344c"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2025-10.zip",
+      "bytes": 944,
+      "sha256": "9ecdedab6344fc4cdb154763266b8e09627a71c3cc5574cf868158b541c259c2"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2025-11.zip",
+      "bytes": 941,
+      "sha256": "23735400405627d610123e3a43db3e98ae7addb93459cd670e65a7659a5f081b"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2025-12.zip",
+      "bytes": 963,
+      "sha256": "35318b789f020b0e04c9043112480743855554e52e1d188437cbdaa67246d51d"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2026-01.zip",
+      "bytes": 965,
+      "sha256": "fcdc796484f395830d418588a34a26baed8849dbef0ff2b56173247e493ff51f"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2026-02.zip",
+      "bytes": 937,
+      "sha256": "80df1dd669dc1e3afc360c9da8b9a949a127fce088eedbf5bf708bd37b0a1f58"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2026-03.zip",
+      "bytes": 1008,
+      "sha256": "5c069d5e9597a44fd0e213395082e59ff223fb99c9eab3a2a5a2a5622ba7867c"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2026-04.zip",
+      "bytes": 960,
+      "sha256": "51cdeb4de7d5ef1d4eece80b6115e391bdf7a2d0803bf9ad8371ab23340b22d3"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2026-05.zip",
+      "bytes": 980,
+      "sha256": "445b65fd6b17bfcfb5e4d035db29fad34f729fa078f0449024db42621be84e6e"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2026-06.zip",
+      "bytes": 964,
+      "sha256": "cff97ce688329592bccbbf5873b5c7021649e093f5f5806e332c5b4fb7fd6a00"
+    },
+    {
+      "path": "funding/BTCUSDT-fundingRate-2026-07.zip",
+      "bytes": 914,
+      "sha256": "e36fcc66f493d7d9ec348c852fc22e9f318c79cf7adae17398a3994ae0adc41e"
+    }
+  ]
+}

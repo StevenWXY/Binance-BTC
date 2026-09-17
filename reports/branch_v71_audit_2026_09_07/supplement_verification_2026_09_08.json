@@ -1,0 +1,8 @@
+{
+  "archive_hashes_verified": 316,
+  "v72_cases": 6,
+  "new_cases": 5,
+  "same_signal_source": "wzy_v72_signals.pkl",
+  "signal_sha256": "0d474217e4560c2b47ac20af503eabc53061e03786a03d21f92d5ed05c94b7c1",
+  "scope": "Fixed original commits and [2020-01-01, 2026-08-01); no retuning or new holdout"
+}

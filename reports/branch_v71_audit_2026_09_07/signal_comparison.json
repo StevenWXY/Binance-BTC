@@ -1,0 +1,52 @@
+{
+  "x_original": {
+    "bars": 14424,
+    "long_bars": 3106,
+    "short_bars": 2230,
+    "flat_bars": 9088,
+    "mean_absolute_target_leverage": 0.4571773134829043,
+    "max_absolute_target_leverage": 6.5,
+    "signal_changes": 1105
+  },
+  "x_ref": {
+    "bars": 14424,
+    "long_bars": 2720,
+    "short_bars": 1766,
+    "flat_bars": 9938,
+    "mean_absolute_target_leverage": 0.40159189129714185,
+    "max_absolute_target_leverage": 5.501453392075517,
+    "signal_changes": 1346
+  },
+  "wzy_live": {
+    "bars": 14424,
+    "long_bars": 1993,
+    "short_bars": 1393,
+    "flat_bars": 11038,
+    "mean_absolute_target_leverage": 0.2671064198966256,
+    "max_absolute_target_leverage": 4.732104749010572,
+    "signal_changes": 1230
+  },
+  "wzy_v72": {
+    "bars": 14424,
+    "long_bars": 2316,
+    "short_bars": 1735,
+    "flat_bars": 10373,
+    "mean_absolute_target_leverage": 0.21757037385919564,
+    "max_absolute_target_leverage": 5.583385869398313,
+    "signal_changes": 1368
+  },
+  "main_v43": {
+    "bars": 14424,
+    "long_bars": 3581,
+    "short_bars": 0,
+    "flat_bars": 10843,
+    "mean_absolute_target_leverage": 0.35313100243244433,
+    "max_absolute_target_leverage": 6.5,
+    "signal_changes": 1028
+  },
+  "original_vs_reference": {
+    "different_signal_bars": 2061,
+    "different_direction_bars": 876,
+    "first_difference": "2020-01-23 16:00:00+00:00"
+  }
+}
