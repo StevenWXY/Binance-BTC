@@ -5,6 +5,9 @@
 
 # Downloaded Binance archives and derived intrabar data are reproducible.
 data/raw/
+data/v8_verified/
+data/v8_verified_sources/
+data/v8_verified_*m.pkl
 
 # Local environment and editor files.
 .venv/

@@ -5,6 +5,9 @@ from .micro_backtest import MicroBacktestConfig, MicroBacktestResult, run_micro_
 from .v6 import V6Params, generate_v6_signals
 from .strategy import StrategyParams, generate_signals
 from .v43 import V43Params, generate_v43_signals
+from .range_grid import RangeGridParams, combine_range_overlay, generate_range_grid_signals
+from .v8 import V8Params, blend_v4_v8_signals, generate_v8_signals, route_v4_v8_signals
+from .v413 import V413Params, generate_v413_signals
 from .stress import (
     SCENARIOS,
     StressScenario,
@@ -25,6 +28,15 @@ __all__ = [
     "generate_signals",
     "V43Params",
     "generate_v43_signals",
+    "RangeGridParams",
+    "generate_range_grid_signals",
+    "combine_range_overlay",
+    "V8Params",
+    "generate_v8_signals",
+    "blend_v4_v8_signals",
+    "route_v4_v8_signals",
+    "V413Params",
+    "generate_v413_signals",
     "run_backtest",
     "run_micro_backtest",
     "V6Params",

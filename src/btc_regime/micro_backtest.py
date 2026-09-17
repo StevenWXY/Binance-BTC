@@ -54,6 +54,7 @@ class MicroBacktestConfig:
     maker_offset_bps: float = 0.5
     maker_order_timeout_minutes: int = 60
     maker_exit_enabled: bool = False
+    conservative_protection: bool = False
 
     def __post_init__(self) -> None:
         if self.taker_fee_bps < 0 or self.maker_fee_bps < 0:
@@ -173,6 +174,11 @@ def run_micro_backtest(
 ) -> MicroBacktestResult:
     events = _signal_events(signaled)
     protection_events = _protection_events(signaled)
+    cycle_ids = {
+        t + pd.Timedelta(hours=4): value for t, value in signaled.get("cycle_id", pd.Series(dtype=object)).items()
+    }
+    current_cycle_id = None
+    blocked_cycle_id = None
     funding_events = funding["funding_rate"].groupby(funding.index.floor("1min")).sum().to_dict()
     account = _Account(wallet=config.initial_cash)
     pending_signal: float | None = None
@@ -255,12 +261,25 @@ def run_micro_backtest(
         trigger_price: float,
         reason: str,
     ) -> None:
-        nonlocal cycle, pending_signal, pending_signal_time, pending_maker_counted, active_protection
+        nonlocal cycle, pending_signal, pending_signal_time, pending_maker_counted, active_protection, blocked_cycle_id
         if abs(account.quantity) < 1e-12:
             return
+        blocked_cycle_id = current_cycle_id
+        protective_slippage = config.base_slippage_bps
+        if config.conservative_protection and last_row is not None:
+            # A stop is a trigger, not a guaranteed fill at that price after
+            # a gap. Charge impact on urgent exits rather than maker costs.
+            if reason == "stop_loss":
+                trigger_price = (
+                    min(trigger_price, float(last_row.trade_open))
+                    if account.quantity > 0
+                    else max(trigger_price, float(last_row.trade_open))
+                )
+            participation = abs(account.quantity) * trigger_price / max(float(last_row.trade_quote_volume), 1.0)
+            protective_slippage += config.impact_bps * math.sqrt(participation)
         close_delta = -account.quantity
         execution_price = trigger_price * (
-            1 - math.copysign(config.base_slippage_bps / 10_000, account.quantity)
+            1 - math.copysign(protective_slippage / 10_000, account.quantity)
         )
         quantity = abs(account.quantity)
         equity_before = account.equity(trigger_price)
@@ -274,7 +293,7 @@ def run_micro_backtest(
             "trigger_price": trigger_price,
             "notional": quantity * execution_price,
             "fee": fee,
-            "slippage_bps": config.base_slippage_bps,
+            "slippage_bps": protective_slippage,
             "participation": np.nan,
             "realized_pnl": realized,
             "position_after": 0.0,
@@ -329,7 +348,10 @@ def run_micro_backtest(
                 })
 
             if timestamp in events:
+                current_cycle_id = cycle_ids.get(timestamp)
                 pending_signal = events[timestamp]
+                if current_cycle_id is not None and current_cycle_id == blocked_cycle_id:
+                    pending_signal = 0.0
                 pending_signal_time = timestamp
                 pending_maker_counted = False
 
@@ -549,6 +571,14 @@ def run_micro_backtest(
     liquidation_frame = pd.DataFrame.from_records(liquidations)
     funding_frame = pd.DataFrame.from_records(funding_records)
     metrics = calculate_metrics(equity, returns.iloc[1:], trade_frame, config.periods_per_year)
+    # Include protective/final fills as well as routine signal fills.
+    if not fill_frame.empty:
+        maker_mask = fill_frame["liquidity"].eq("maker")
+        maker_fill_count = int(maker_mask.sum())
+        taker_fill_count = int((~maker_mask).sum())
+        maker_filled_notional = float(fill_frame.loc[maker_mask, "notional"].sum())
+        taker_filled_notional = float(fill_frame.loc[~maker_mask, "notional"].sum())
+        order_notional = maker_filled_notional + taker_filled_notional
     metrics.update({
         "fill_count": float(len(fill_frame)),
         "liquidation_count": float(len(liquidation_frame)),

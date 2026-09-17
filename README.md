@@ -1,6 +1,6 @@
 # BTCUSDT U 本位行情切换策略
 
-这是一个只交易 Binance USDⓈ-M `BTCUSDT` 永续合约的研究/回测项目。策略在 4 小时级别上使用 ADX + EMA 判断趋势状态：上升趋势做多，下降趋势在当前推荐配置中空仓；非趋势状态只做布林带下轨 + RSI 超跌反弹多单。仓位按 ATR 波动率目标缩放，代码硬限制不超过 10 倍杠杆。当前正式版本命名为 V4、V4.1.1、V4.1.2、V4.2.1 和 V4.2.2；其中 V4.1.2 是原 V4.3 的新名称，V4.2.2 是增强版 V4.2。旧 V4.1/V4.2/V4.3 路径继续保留以保证历史报告可复现。
+这是一个只交易 Binance USDⓈ-M `BTCUSDT` 永续合约的研究/回测项目。策略在 4 小时级别上使用 ADX + EMA 判断趋势状态：上升趋势做多，下降趋势在当前推荐配置中空仓；非趋势状态只做布林带下轨 + RSI 超跌反弹多单。仓位按 ATR 波动率目标缩放，代码硬限制不超过 10 倍杠杆。当前正式版本命名为 V4、V4.1.1、V4.1.2、V4.1.3、V4.2.1 和 V4.2.2；其中 V4.1.2 是原 V4.3 的新名称，V4.1.3 是 V4.1.2 与增强 V8 的单账户互补版，V4.2.2 是增强版 V4.2。旧 V4.1/V4.2/V4.3 路径继续保留以保证历史报告可复现。
 
 提供多套参数：`configs/balanced_params.json` 目标波动率 35%、杠杆上限 3 倍；`configs/aggressive_params.json` 目标波动率 100%、趋势仓位乘数 1.25、杠杆上限 5 倍。**项目优先策略是 D，即 `configs/aggressive_adaptive_v3_params.json`**：它在波动率风险层和资金费拥挤因子之外，增加下行波动占比驱动的自适应资金分配，目标波动率 107.5%、杠杆上限 6.5 倍。`configs/default_params.json` 与 D 保持同步；命令行省略 `--params` 时默认运行 D。`configs/aggressive_adaptive_v4_short_params.json` 只是固定规则的谨慎做空实验 E，不作为优先策略。Aggressive 配置均是收益优先实验，不代表适合实盘。
 
@@ -128,6 +128,62 @@ ATR 年化波动代理 = ATR(20) / 收盘价 × sqrt(365 × 6)
 - 本地包含 2020-01 至 2026-07 连续 79 个月资金费归档；2023-09 文件已从 Binance 官方月度归档补齐并通过 ZIP 完整性检查。
 
 ## 使用
+
+### V8：震荡互补策略（研究版）
+
+V8 已实现独立信号、基准/增强/单层配置和 V4/V7 优先路由。最终研究结论与全部对照见
+[最终 V8 报告](reports/v8_final/README.md) 和 [可核查数据](reports/v8_final/report.json)。
+V8 在 V4 空仓时补充有限的均值回归机会；本轮尚未验证出能稳定提高净收益的中高频版本。
+
+- `configs/v8_params.json`：4h 震荡识别，24 根通道、边缘反转入场、最多三层等额仓位，固定初始 ATR 止损和整轮 0.75% 计划风险预算；目标杠杆上限 2 倍。
+- `configs/v8_enhanced_params.json`：将 V8 风险目标放大 50%，计划风险预算 1.125%，杠杆上限 3 倍。实际上限未触及，收益/回撤变化来自风险目标的放大。
+- `configs/v8_single_params.json`：相同整轮风险预算，一次建仓，不做逆势加仓。它的首笔风险是三层版首笔的三倍，不能只比绝对收益。
+- `route_v4_v8_signals`：V4/V7 非零目标优先，空仓时才由 V8 接管。使用选中策略的止损/止盈，保持单个净头寸和总杠杆限制。本轮只验证了 V4.1.2 组合，未验证 V7.1 组合。
+
+回测窗口统一为 **2020-01-01 至 2026-07-31 UTC**（`--end 2026-08-01` 为不包含的边界），
+4h 信号配合 1m 成交与标记价格。训练为 2020–2022，验证为 2023–2024，后段评估为
+2025–2026-07。早期探索已看过后段，不能称为严格未见盲测。
+手续费按 **40% 返佣**：项目基数 Taker 4 bps → 2.4 bps，Maker 0.2 bps → 0.12 bps，
+并保留滑点、冲击、真实资金费。实际账户费率仍需核实，报告包含较高 Maker 成本及全 Taker 对照。
+
+```bash
+# 单独修复月归档缺失的标记价，下载文件核对官方 SHA256；不覆盖 data/raw
+PYTHONPATH=src python3 scripts/prepare_v8_data.py
+
+# 开发期参数筛选及完整策略/杠杆/费用/组合对照
+PYTHONPATH=src python3 scripts/optimize_v8.py --output reports/v8_selection
+PYTHONPATH=src python3 scripts/evaluate_v8.py --raw-dir data/v8_verified
+
+# 增强版独立逐分钟执行回测
+PYTHONPATH=src python3 -m btc_regime.cli micro-backtest-v8 \
+  --raw-dir data/v8_verified --params configs/v8_enhanced_params.json \
+  --start 2020-01-01 --end 2026-08-01 --output reports/v8_enhanced_check
+
+# 较低周期单层均值回归的初筛（不是分钟成交级回测）
+PYTHONPATH=src python3 scripts/research_v8_intraday.py --bar-minutes 15
+PYTHONPATH=src python3 scripts/research_v8_intraday.py --bar-minutes 60
+```
+
+旧 `range-backtest` / `micro-backtest-range` 命令和历史 `range_grid` 配置保留供复现。
+早期 `reports/v8*` 探索目录使用过不同数据/风控模型，不能与最终 `reports/v8_final` 的结果混用。
+
+### V4.1.3：V4.1.2 + 增强 V8
+
+V4.1.3 将 V4.1.2 作为方向策略，将增强 V8 作为震荡互补策略合并到同一净账户。方向目标非零时由 V4.1.2 优先；方向仓变为空后，V8 必须出现新的入场事件才可接管，避免把旧的震荡仓位带入趋势行情。两套引擎不叠加保证金，账户总杠杆上限为 6.5 倍。V8 使用最多三层等额加仓、固定初始 ATR 风险、1.65 ATR 止损、突破/波动冲击/超时退出和同周期止损锁定，不使用无限倍数马丁。
+
+正式严格报告见 [V4.1.3 回测报告](reports/v4_1_3_40/README.md) 和 [机器可核查结果](reports/v4_1_3_40/report.json)，参数见 [`configs/v4_1_3_params.json`](configs/v4_1_3_params.json)。报告统一使用 2020-01-01 至 2026-07-31 UTC、4h 信号和 1m 执行，手续费按 40% 返佣后的 Taker 2.4 bps、Maker 0.12 bps 计算，并计入滑点、成交冲击、真实资金费和保护退出。
+
+```bash
+# 生成正式 V4.1.3 严格报告（包含 V4.1.2、V8 和全 Taker 对照）
+PYTHONPATH=src python3 scripts/backtest_v413.py \
+  --raw-dir data/v8_verified --params configs/v4_1_3_params.json \
+  --output reports/v4_1_3_40
+
+# 使用 CLI 复核同一策略
+PYTHONPATH=src python3 -m btc_regime.cli micro-backtest-v413 \
+  --raw-dir data/v8_verified --params configs/v4_1_3_params.json \
+  --output reports/v4_1_3_40_cli
+```
 
 ### V4.3 maker 执行与快速下跌保护
 

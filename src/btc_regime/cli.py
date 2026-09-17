@@ -28,6 +28,9 @@ from .stress import (
 )
 from .strategy import StrategyParams, generate_signals
 from .v43 import V43Params, generate_v43_signals
+from .range_grid import RangeGridParams, generate_range_grid_signals
+from .v8 import V8Params, generate_v8_signals
+from .v413 import V413Params, generate_v413_signals
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -42,6 +45,21 @@ def _load_strategy_params(path: str | Path | None = None) -> StrategyParams:
 def _load_v43_params(path: str | Path | None = None) -> V43Params:
     config_path = Path(path) if path else PROJECT_ROOT / "configs/v4_3_params.json"
     return V43Params(**json.loads(config_path.read_text(encoding="utf-8")))
+
+
+def _load_range_grid_params(path: str | Path | None = None) -> RangeGridParams:
+    config_path = Path(path) if path else PROJECT_ROOT / "configs/range_grid_params.json"
+    return RangeGridParams(**json.loads(config_path.read_text(encoding="utf-8")))
+
+
+def _load_v8_params(path: str | Path | None = None) -> V8Params:
+    config_path = Path(path) if path else PROJECT_ROOT / "configs/v8_params.json"
+    return V8Params(**json.loads(config_path.read_text(encoding="utf-8")))
+
+
+def _load_v413_params(path: str | Path | None = None) -> V413Params:
+    config_path = Path(path) if path else PROJECT_ROOT / "configs/v4_1_3_params.json"
+    return V413Params.from_dict(json.loads(config_path.read_text(encoding="utf-8")))
 
 
 def _load_market_with_warmup(raw_dir: str | Path, start: str, end: str) -> pd.DataFrame:
@@ -86,6 +104,34 @@ def _parse_args() -> argparse.Namespace:
     )
     run.add_argument("--fee-bps", type=float, default=4.0)
     run.add_argument("--slippage-bps", type=float, default=1.0)
+    range_run = sub.add_parser(
+        "range-backtest",
+        help="run the bounded range-inventory strategy",
+    )
+    range_run.add_argument("--start", default="2020-01-01")
+    range_run.add_argument("--end", default="2026-08-01")
+    range_run.add_argument("--raw-dir", default="data/raw")
+    range_run.add_argument("--output", default="reports/range_grid")
+    range_run.add_argument("--params")
+    range_run.add_argument("--fee-bps", type=float, default=4.0)
+    range_run.add_argument("--slippage-bps", type=float, default=1.0)
+    v8_run = sub.add_parser("v8-backtest", help="run the V8 bounded range strategy")
+    v8_run.add_argument("--start", default="2020-01-01")
+    v8_run.add_argument("--end", default="2026-08-01")
+    v8_run.add_argument("--raw-dir", default="data/raw")
+    v8_run.add_argument("--output", default="reports/v8")
+    v8_run.add_argument("--params")
+    v8_run.add_argument("--fee-bps", type=float, default=2.4)
+    v8_run.add_argument("--slippage-bps", type=float, default=1.0)
+    v413_run = sub.add_parser("v413-backtest", help="run the merged V4.1.3 strategy")
+    v413_run.add_argument("--start", default="2020-01-01")
+    v413_run.add_argument("--end", default="2026-08-01")
+    v413_run.add_argument("--raw-dir", default="data/v8_verified")
+    v413_run.add_argument("--output", default="reports/v4_1_3_40")
+    v413_run.add_argument("--params")
+    v413_run.add_argument("--taker-fee-bps", type=float, default=4.0)
+    v413_run.add_argument("--fee-rebate-rate", type=float, default=0.40)
+    v413_run.add_argument("--slippage-bps", type=float, default=1.0)
     optimize = sub.add_parser("optimize", help="rank a small in-sample parameter grid")
     optimize.add_argument("--start", default="2020-01-01")
     optimize.add_argument("--end", default="2024-01-01")
@@ -146,6 +192,59 @@ def _parse_args() -> argparse.Namespace:
     micro.add_argument("--impact-bps", type=float, default=8.0)
     micro.add_argument("--participation", type=float, default=0.02)
     micro.add_argument("--liquidation-fee-bps", type=float, default=50.0)
+    micro_range = sub.add_parser(
+        "micro-backtest-range",
+        help="run minute execution for the bounded range-inventory strategy",
+    )
+    micro_range.add_argument("--start", default="2020-01-01")
+    micro_range.add_argument("--end", default="2026-08-01")
+    micro_range.add_argument("--raw-dir", default="data/raw")
+    micro_range.add_argument("--output", default="reports/range_grid_micro")
+    micro_range.add_argument("--params")
+    micro_range.add_argument("--fee-bps", type=float, default=4.0)
+    micro_range.add_argument("--maker-fee-bps", type=float, default=0.2)
+    micro_range.add_argument("--maker-offset-bps", type=float, default=0.5)
+    micro_range.add_argument("--maker-timeout-minutes", type=int, default=60)
+    micro_range.add_argument("--slippage-bps", type=float, default=1.0)
+    micro_range.add_argument("--impact-bps", type=float, default=8.0)
+    micro_range.add_argument("--participation", type=float, default=0.02)
+    micro_range.add_argument("--liquidation-fee-bps", type=float, default=50.0)
+    micro_v8 = sub.add_parser(
+        "micro-backtest-v8",
+        help="run V8 minute execution with 40% rebate defaults",
+    )
+    micro_v8.add_argument("--start", default="2020-01-01")
+    micro_v8.add_argument("--end", default="2026-08-01")
+    micro_v8.add_argument("--raw-dir", default="data/raw")
+    micro_v8.add_argument("--output", default="reports/v8_micro")
+    micro_v8.add_argument("--params")
+    micro_v8.add_argument("--taker-only", action="store_true", help="disable maker fill assumptions")
+    micro_v8.add_argument("--fee-bps", type=float, default=2.4)
+    micro_v8.add_argument("--maker-fee-bps", type=float, default=0.12)
+    micro_v8.add_argument("--maker-offset-bps", type=float, default=0.5)
+    micro_v8.add_argument("--maker-timeout-minutes", type=int, default=60)
+    micro_v8.add_argument("--slippage-bps", type=float, default=1.0)
+    micro_v8.add_argument("--impact-bps", type=float, default=8.0)
+    micro_v8.add_argument("--participation", type=float, default=0.02)
+    micro_v8.add_argument("--liquidation-fee-bps", type=float, default=50.0)
+    micro_v413 = sub.add_parser(
+        "micro-backtest-v413",
+        help="run V4.1.3 minute execution with 40% rebate defaults",
+    )
+    micro_v413.add_argument("--start", default="2020-01-01")
+    micro_v413.add_argument("--end", default="2026-08-01")
+    micro_v413.add_argument("--raw-dir", default="data/v8_verified")
+    micro_v413.add_argument("--output", default="reports/v4_1_3_40")
+    micro_v413.add_argument("--params")
+    micro_v413.add_argument("--taker-fee-bps", type=float, default=4.0)
+    micro_v413.add_argument("--maker-fee-bps", type=float, default=0.2)
+    micro_v413.add_argument("--fee-rebate-rate", type=float, default=0.40)
+    micro_v413.add_argument("--maker-offset-bps", type=float, default=0.0)
+    micro_v413.add_argument("--maker-timeout-minutes", type=int, default=60)
+    micro_v413.add_argument("--slippage-bps", type=float, default=1.0)
+    micro_v413.add_argument("--impact-bps", type=float, default=8.0)
+    micro_v413.add_argument("--participation", type=float, default=0.02)
+    micro_v413.add_argument("--liquidation-fee-bps", type=float, default=50.0)
     micro_v43 = sub.add_parser(
         "micro-backtest-v43",
         help="run V4.3 maker-limit execution with fast downside protection",
@@ -229,6 +328,124 @@ def main() -> None:
                 int(params.maker_order_timeout_minutes) if is_v43 else 60
             ),
             maker_exit_enabled=bool(is_v43 and params.maker_exit_enabled),
+            base_slippage_bps=args.slippage_bps,
+            impact_bps=args.impact_bps,
+            max_minute_participation=args.participation,
+            liquidation_fee_bps=args.liquidation_fee_bps,
+        )
+        result = run_micro_backtest(
+            signaled,
+            iter_intrabar_months(args.raw_dir, start=args.start, end=args.end),
+            funding,
+            micro_config,
+        )
+        write_micro_report(result, params, micro_config, args.output)
+        print(json.dumps(result.metrics, indent=2))
+        return
+    if args.command == "range-backtest":
+        market = _load_market_with_warmup(args.raw_dir, args.start, args.end)
+        params = _load_range_grid_params(args.params)
+        result = run_backtest(
+            generate_range_grid_signals(market, params),
+            BacktestConfig(fee_bps=args.fee_bps, slippage_bps=args.slippage_bps),
+        )
+        write_report(result, params, args.output, "full")
+        print(json.dumps(result.metrics, indent=2))
+        return
+    if args.command == "v8-backtest":
+        market = _load_market_with_warmup(args.raw_dir, args.start, args.end)
+        params = _load_v8_params(args.params)
+        signaled = generate_v8_signals(market, params)
+        signaled = signaled.loc[(signaled.index >= pd.Timestamp(args.start, tz="UTC")) &
+                                (signaled.index < pd.Timestamp(args.end, tz="UTC"))]
+        result = run_backtest(
+            signaled,
+            BacktestConfig(fee_bps=args.fee_bps, slippage_bps=args.slippage_bps),
+        )
+        write_report(result, params, args.output, "full")
+        print(json.dumps(result.metrics, indent=2))
+        return
+    if args.command == "v413-backtest":
+        if not 0.0 <= args.fee_rebate_rate < 1.0:
+            raise ValueError("fee rebate rate must be in [0, 1)")
+        market = _load_market_with_warmup(args.raw_dir, args.start, args.end)
+        params = _load_v413_params(args.params)
+        result = run_backtest(
+            generate_v413_signals(market, params),
+            BacktestConfig(
+                fee_bps=args.taker_fee_bps * (1.0 - args.fee_rebate_rate),
+                slippage_bps=args.slippage_bps,
+            ),
+        )
+        write_report(result, params, args.output, "full")
+        print(json.dumps(result.metrics, indent=2))
+        return
+    if args.command == "micro-backtest-range":
+        params = _load_range_grid_params(args.params)
+        market = _load_market_with_warmup(args.raw_dir, args.start, args.end)
+        signaled = generate_range_grid_signals(market, params)
+        funding = load_funding(args.raw_dir, start=args.start, end=args.end)
+        micro_config = MicroBacktestConfig(
+            taker_fee_bps=args.fee_bps,
+            maker_fee_bps=args.maker_fee_bps,
+            maker_offset_bps=args.maker_offset_bps,
+            maker_order_timeout_minutes=args.maker_timeout_minutes,
+            maker_enabled=True,
+            maker_exit_enabled=False,
+            base_slippage_bps=args.slippage_bps,
+            impact_bps=args.impact_bps,
+            max_minute_participation=args.participation,
+            liquidation_fee_bps=args.liquidation_fee_bps,
+        )
+        result = run_micro_backtest(
+            signaled,
+            iter_intrabar_months(args.raw_dir, start=args.start, end=args.end),
+            funding,
+            micro_config,
+        )
+        write_micro_report(result, params, micro_config, args.output)
+        print(json.dumps(result.metrics, indent=2))
+        return
+    if args.command == "micro-backtest-v8":
+        params = _load_v8_params(args.params)
+        market = _load_market_with_warmup(args.raw_dir, args.start, args.end)
+        signaled = generate_v8_signals(market, params)
+        funding = load_funding(args.raw_dir, start=args.start, end=args.end)
+        micro_config = MicroBacktestConfig(
+            taker_fee_bps=args.fee_bps,
+            maker_fee_bps=args.maker_fee_bps,
+            maker_offset_bps=args.maker_offset_bps,
+            maker_order_timeout_minutes=args.maker_timeout_minutes,
+            maker_enabled=not args.taker_only,
+            conservative_protection=True,
+            base_slippage_bps=args.slippage_bps,
+            impact_bps=args.impact_bps,
+            max_minute_participation=args.participation,
+            liquidation_fee_bps=args.liquidation_fee_bps,
+        )
+        result = run_micro_backtest(
+            signaled,
+            iter_intrabar_months(args.raw_dir, start=args.start, end=args.end),
+            funding,
+            micro_config,
+        )
+        write_micro_report(result, params, micro_config, args.output)
+        print(json.dumps(result.metrics, indent=2))
+        return
+    if args.command == "micro-backtest-v413":
+        if not 0.0 <= args.fee_rebate_rate < 1.0:
+            raise ValueError("fee rebate rate must be in [0, 1)")
+        params = _load_v413_params(args.params)
+        market = _load_market_with_warmup(args.raw_dir, args.start, args.end)
+        signaled = generate_v413_signals(market, params)
+        funding = load_funding(args.raw_dir, start=args.start, end=args.end)
+        micro_config = MicroBacktestConfig(
+            taker_fee_bps=args.taker_fee_bps * (1.0 - args.fee_rebate_rate),
+            maker_fee_bps=args.maker_fee_bps * (1.0 - args.fee_rebate_rate),
+            maker_offset_bps=args.maker_offset_bps,
+            maker_order_timeout_minutes=args.maker_timeout_minutes,
+            maker_enabled=True,
+            conservative_protection=True,
             base_slippage_bps=args.slippage_bps,
             impact_bps=args.impact_bps,
             max_minute_participation=args.participation,

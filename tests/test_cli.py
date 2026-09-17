@@ -26,6 +26,11 @@ def test_default_config_matches_priority_strategy_d():
     ("command", "expected_output"),
     [
         ("backtest", "reports/aggressive_adaptive_v3"),
+        ("range-backtest", "reports/range_grid"),
+        ("v8-backtest", "reports/v8"),
+        ("micro-backtest-v8", "reports/v8_micro"),
+        ("v413-backtest", "reports/v4_1_3_40"),
+        ("micro-backtest-v413", "reports/v4_1_3_40"),
         ("walkforward", "reports/aggressive_adaptive_v3_walkforward.json"),
         ("micro-backtest", "reports/aggressive_adaptive_v3_micro"),
     ],
