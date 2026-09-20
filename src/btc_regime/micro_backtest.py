@@ -220,7 +220,15 @@ def _protection_events(
 def _signal_meta_events(signaled: pd.DataFrame) -> dict[pd.Timestamp, dict[str, object]]:
     meta_cols = [
         column
-        for column in ("v71_permission_reason", "v71_trend_quality_score", "v71_direction_context")
+        for column in (
+            "v71_permission_reason",
+            "v71_trend_quality_score",
+            "v71_direction_context",
+            "v8_permission_reason",
+            "v8_trend_quality_score",
+            "v8_direction_context",
+            "v8_signal_mode",
+        )
         if column in signaled.columns
     ]
     if not meta_cols:
@@ -295,6 +303,18 @@ def run_micro_backtest(
     maker_fee_rate = config.maker_fee_bps / 10_000
     liquidation_fee_rate = config.liquidation_fee_bps / 10_000
 
+    def _meta_value(payload: dict[str, object], *keys: str, default: object = "") -> object:
+        for key in keys:
+            value = payload.get(key, None)
+            if value is None:
+                continue
+            if isinstance(value, float) and not np.isfinite(value):
+                continue
+            if value == "":
+                continue
+            return value
+        return default
+
     def maybe_arm_long_loss_probe_cooldown(
         *,
         closed_cycle: dict[str, object] | None,
@@ -316,7 +336,10 @@ def run_micro_backtest(
         holding_minutes = (timestamp - entry_time).total_seconds() / 60
         if holding_minutes > config.long_loss_reentry_probe_max_holding_minutes:
             return
-        if closed_cycle.get("entry_permission_reason") != "confirmed_long":
+        if closed_cycle.get("entry_permission_reason") not in {
+            "confirmed_long",
+            "confirmed_breakout_long",
+        }:
             return
         quality = float(closed_cycle.get("entry_trend_quality", np.nan))
         if not np.isfinite(quality) or quality > config.long_loss_reentry_probe_quality_max:
@@ -604,9 +627,27 @@ def run_micro_backtest(
                                     "entry_time": timestamp,
                                     "side": "long" if new_side > 0 else "short",
                                     "equity_before": old_equity,
-                                    "entry_permission_reason": pending_signal_meta.get("v71_permission_reason", ""),
-                                    "entry_trend_quality": pending_signal_meta.get("v71_trend_quality_score", np.nan),
-                                    "entry_direction_context": pending_signal_meta.get("v71_direction_context", ""),
+                                    "entry_permission_reason": _meta_value(
+                                        pending_signal_meta,
+                                        "v8_permission_reason",
+                                        "v71_permission_reason",
+                                    ),
+                                    "entry_trend_quality": _meta_value(
+                                        pending_signal_meta,
+                                        "v8_trend_quality_score",
+                                        "v71_trend_quality_score",
+                                        default=np.nan,
+                                    ),
+                                    "entry_direction_context": _meta_value(
+                                        pending_signal_meta,
+                                        "v8_direction_context",
+                                        "v71_direction_context",
+                                    ),
+                                    "entry_signal_mode": _meta_value(
+                                        pending_signal_meta,
+                                        "v8_signal_mode",
+                                        default="",
+                                    ),
                                 }
                                 if (
                                     config.long_loss_reentry_probe_enabled
@@ -638,9 +679,27 @@ def run_micro_backtest(
                                     "entry_time": timestamp,
                                     "side": "long" if new_side > 0 else "short",
                                     "equity_before": account.equity(mark_open),
-                                    "entry_permission_reason": pending_signal_meta.get("v71_permission_reason", ""),
-                                    "entry_trend_quality": pending_signal_meta.get("v71_trend_quality_score", np.nan),
-                                    "entry_direction_context": pending_signal_meta.get("v71_direction_context", ""),
+                                    "entry_permission_reason": _meta_value(
+                                        pending_signal_meta,
+                                        "v8_permission_reason",
+                                        "v71_permission_reason",
+                                    ),
+                                    "entry_trend_quality": _meta_value(
+                                        pending_signal_meta,
+                                        "v8_trend_quality_score",
+                                        "v71_trend_quality_score",
+                                        default=np.nan,
+                                    ),
+                                    "entry_direction_context": _meta_value(
+                                        pending_signal_meta,
+                                        "v8_direction_context",
+                                        "v71_direction_context",
+                                    ),
+                                    "entry_signal_mode": _meta_value(
+                                        pending_signal_meta,
+                                        "v8_signal_mode",
+                                        default="",
+                                    ),
                                 }
                                 if (
                                     config.long_loss_reentry_probe_enabled

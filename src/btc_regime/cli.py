@@ -28,7 +28,7 @@ from .stress import (
 )
 from .strategy import StrategyParams, generate_signals
 from .v43 import V43Params, generate_v43_signals
-from .v73_hf import V73HFParams, generate_v73_hf_signals
+from .v8_hf import V8HFParams, generate_v8_hf_signals
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -45,9 +45,9 @@ def _load_v43_params(path: str | Path | None = None) -> V43Params:
     return V43Params(**json.loads(config_path.read_text(encoding="utf-8")))
 
 
-def _load_v73_hf_params(path: str | Path | None = None) -> V73HFParams:
-    config_path = Path(path) if path else PROJECT_ROOT / "configs/v73_hf_params.json"
-    return V73HFParams(**json.loads(config_path.read_text(encoding="utf-8")))
+def _load_v8_hf_params(path: str | Path | None = None) -> V8HFParams:
+    config_path = Path(path) if path else PROJECT_ROOT / "configs/v8_hf_params.json"
+    return V8HFParams(**json.loads(config_path.read_text(encoding="utf-8")))
 
 
 def _load_market_with_warmup(raw_dir: str | Path, start: str, end: str) -> pd.DataFrame:
@@ -169,31 +169,35 @@ def _parse_args() -> argparse.Namespace:
     micro_v43.add_argument("--impact-bps", type=float, default=8.0)
     micro_v43.add_argument("--participation", type=float, default=0.02)
     micro_v43.add_argument("--liquidation-fee-bps", type=float, default=50.0)
-    run_v73_hf = sub.add_parser(
-        "backtest-v73-hf",
-        help="run the higher-turnover V7.3 intraday strategy",
+    run_v8_hf = sub.add_parser(
+        "backtest-v8-hf",
+        help="run the higher-turnover V8 intraday strategy",
     )
-    run_v73_hf.add_argument("--start", default="2020-01-01")
-    run_v73_hf.add_argument("--end", default="2026-08-01")
-    run_v73_hf.add_argument("--raw-dir", default="data/raw")
-    run_v73_hf.add_argument("--output", default="reports/v7_3_hf")
-    run_v73_hf.add_argument("--params", default="configs/v73_hf_params.json")
-    run_v73_hf.add_argument("--fee-bps", type=float, default=4.0)
-    run_v73_hf.add_argument("--slippage-bps", type=float, default=1.0)
-    micro_v73_hf = sub.add_parser(
-        "micro-backtest-v73-hf",
-        help="run the higher-turnover V7.3 strategy with minute execution replay",
+    run_v8_hf.add_argument("--start", default="2020-01-01")
+    run_v8_hf.add_argument("--end", default="2026-08-01")
+    run_v8_hf.add_argument("--raw-dir", default="data/raw")
+    run_v8_hf.add_argument("--output", default="reports/v8_hf")
+    run_v8_hf.add_argument("--params", default="configs/v8_hf_params.json")
+    run_v8_hf.add_argument("--fee-bps", type=float, default=4.0)
+    run_v8_hf.add_argument("--slippage-bps", type=float, default=1.0)
+    micro_v8_hf = sub.add_parser(
+        "micro-backtest-v8-hf",
+        help="run the higher-turnover V8 strategy with minute execution replay",
     )
-    micro_v73_hf.add_argument("--start", default="2020-01-01")
-    micro_v73_hf.add_argument("--end", default="2026-08-01")
-    micro_v73_hf.add_argument("--raw-dir", default="data/raw")
-    micro_v73_hf.add_argument("--output", default="reports/v7_3_hf_micro")
-    micro_v73_hf.add_argument("--params", default="configs/v73_hf_params.json")
-    micro_v73_hf.add_argument("--fee-bps", type=float, default=4.0)
-    micro_v73_hf.add_argument("--slippage-bps", type=float, default=1.0)
-    micro_v73_hf.add_argument("--impact-bps", type=float, default=8.0)
-    micro_v73_hf.add_argument("--participation", type=float, default=0.02)
-    micro_v73_hf.add_argument("--liquidation-fee-bps", type=float, default=50.0)
+    micro_v8_hf.add_argument("--start", default="2020-01-01")
+    micro_v8_hf.add_argument("--end", default="2026-08-01")
+    micro_v8_hf.add_argument("--raw-dir", default="data/raw")
+    micro_v8_hf.add_argument("--output", default="reports/v8_hf_micro")
+    micro_v8_hf.add_argument("--params", default="configs/v8_hf_params.json")
+    micro_v8_hf.add_argument("--fee-bps", type=float, default=4.0)
+    micro_v8_hf.add_argument("--maker-fee-bps", type=float, default=0.2)
+    micro_v8_hf.add_argument("--maker-offset-bps", type=float, default=0.5)
+    micro_v8_hf.add_argument("--maker-timeout-minutes", type=int, default=45)
+    micro_v8_hf.add_argument("--maker-exit-enabled", action="store_true")
+    micro_v8_hf.add_argument("--slippage-bps", type=float, default=1.0)
+    micro_v8_hf.add_argument("--impact-bps", type=float, default=8.0)
+    micro_v8_hf.add_argument("--participation", type=float, default=0.02)
+    micro_v8_hf.add_argument("--liquidation-fee-bps", type=float, default=50.0)
     stress = sub.add_parser(
         "stress-test",
         help="run deterministic extreme-market stress tests, including liquidation and stop/take analysis",
@@ -300,13 +304,18 @@ def main() -> None:
         write_micro_report(result, params, micro_config, args.output)
         print(json.dumps(result.metrics, indent=2))
         return
-    if args.command == "micro-backtest-v73-hf":
-        params = _load_v73_hf_params(args.params)
+    if args.command == "micro-backtest-v8-hf":
+        params = _load_v8_hf_params(args.params)
         market = _load_market_with_warmup(args.raw_dir, args.start, args.end)
-        signaled = generate_v73_hf_signals(market, params)
+        signaled = generate_v8_hf_signals(market, params)
         funding = load_funding(args.raw_dir, start=args.start, end=args.end)
         micro_config = MicroBacktestConfig(
             taker_fee_bps=args.fee_bps,
+            maker_enabled=True,
+            maker_fee_bps=args.maker_fee_bps,
+            maker_offset_bps=args.maker_offset_bps,
+            maker_order_timeout_minutes=args.maker_timeout_minutes,
+            maker_exit_enabled=args.maker_exit_enabled,
             base_slippage_bps=args.slippage_bps,
             impact_bps=args.impact_bps,
             max_minute_participation=args.participation,
@@ -432,11 +441,11 @@ def main() -> None:
         Path(args.output).write_text(json.dumps(report, indent=2), encoding="utf-8")
         print(json.dumps(report, indent=2))
         return
-    if args.command == "backtest-v73-hf":
+    if args.command == "backtest-v8-hf":
         data = load_market_data(args.raw_dir, start=args.start, end=args.end)
-        params = _load_v73_hf_params(args.params)
-        result = run_backtest(generate_v73_hf_signals(data, params), config)
-        write_report(result, params, args.output, "v73_hf")
+        params = _load_v8_hf_params(args.params)
+        result = run_backtest(generate_v8_hf_signals(data, params), config)
+        write_report(result, params, args.output, "v8_hf")
         print(json.dumps(result.metrics, indent=2))
         return
     data = load_market_data(args.raw_dir, start=args.start, end=args.end)

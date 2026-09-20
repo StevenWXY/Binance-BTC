@@ -6,7 +6,7 @@ from .live_risk import AccountDrawdownGovernor
 from .v6 import V6Params, generate_v6_signals
 from .strategy import StrategyParams, generate_signals
 from .v43 import V43Params, generate_v43_signals
-from .v73_hf import V73HFParams, generate_v73_hf_signals
+from .v8_hf import V8HFParams, generate_v8_hf_signals
 from .v71_live import V71LiveParams, generate_v71_live_signals
 from .stress import (
     SCENARIOS,
@@ -29,8 +29,8 @@ __all__ = [
     "generate_signals",
     "V43Params",
     "generate_v43_signals",
-    "V73HFParams",
-    "generate_v73_hf_signals",
+    "V8HFParams",
+    "generate_v8_hf_signals",
     "V71LiveParams",
     "generate_v71_live_signals",
     "run_backtest",
