@@ -28,6 +28,7 @@ from .stress import (
 )
 from .strategy import StrategyParams, generate_signals
 from .v43 import V43Params, generate_v43_signals
+from .v73_hf import V73HFParams, generate_v73_hf_signals
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -42,6 +43,11 @@ def _load_strategy_params(path: str | Path | None = None) -> StrategyParams:
 def _load_v43_params(path: str | Path | None = None) -> V43Params:
     config_path = Path(path) if path else PROJECT_ROOT / "configs/v4_3_params.json"
     return V43Params(**json.loads(config_path.read_text(encoding="utf-8")))
+
+
+def _load_v73_hf_params(path: str | Path | None = None) -> V73HFParams:
+    config_path = Path(path) if path else PROJECT_ROOT / "configs/v73_hf_params.json"
+    return V73HFParams(**json.loads(config_path.read_text(encoding="utf-8")))
 
 
 def _load_market_with_warmup(raw_dir: str | Path, start: str, end: str) -> pd.DataFrame:
@@ -163,6 +169,31 @@ def _parse_args() -> argparse.Namespace:
     micro_v43.add_argument("--impact-bps", type=float, default=8.0)
     micro_v43.add_argument("--participation", type=float, default=0.02)
     micro_v43.add_argument("--liquidation-fee-bps", type=float, default=50.0)
+    run_v73_hf = sub.add_parser(
+        "backtest-v73-hf",
+        help="run the higher-turnover V7.3 intraday strategy",
+    )
+    run_v73_hf.add_argument("--start", default="2020-01-01")
+    run_v73_hf.add_argument("--end", default="2026-08-01")
+    run_v73_hf.add_argument("--raw-dir", default="data/raw")
+    run_v73_hf.add_argument("--output", default="reports/v7_3_hf")
+    run_v73_hf.add_argument("--params", default="configs/v73_hf_params.json")
+    run_v73_hf.add_argument("--fee-bps", type=float, default=4.0)
+    run_v73_hf.add_argument("--slippage-bps", type=float, default=1.0)
+    micro_v73_hf = sub.add_parser(
+        "micro-backtest-v73-hf",
+        help="run the higher-turnover V7.3 strategy with minute execution replay",
+    )
+    micro_v73_hf.add_argument("--start", default="2020-01-01")
+    micro_v73_hf.add_argument("--end", default="2026-08-01")
+    micro_v73_hf.add_argument("--raw-dir", default="data/raw")
+    micro_v73_hf.add_argument("--output", default="reports/v7_3_hf_micro")
+    micro_v73_hf.add_argument("--params", default="configs/v73_hf_params.json")
+    micro_v73_hf.add_argument("--fee-bps", type=float, default=4.0)
+    micro_v73_hf.add_argument("--slippage-bps", type=float, default=1.0)
+    micro_v73_hf.add_argument("--impact-bps", type=float, default=8.0)
+    micro_v73_hf.add_argument("--participation", type=float, default=0.02)
+    micro_v73_hf.add_argument("--liquidation-fee-bps", type=float, default=50.0)
     stress = sub.add_parser(
         "stress-test",
         help="run deterministic extreme-market stress tests, including liquidation and stop/take analysis",
@@ -255,6 +286,27 @@ def main() -> None:
             maker_order_timeout_minutes=args.maker_timeout_minutes,
             maker_enabled=True,
             maker_exit_enabled=params.maker_exit_enabled,
+            base_slippage_bps=args.slippage_bps,
+            impact_bps=args.impact_bps,
+            max_minute_participation=args.participation,
+            liquidation_fee_bps=args.liquidation_fee_bps,
+        )
+        result = run_micro_backtest(
+            signaled,
+            iter_intrabar_months(args.raw_dir, start=args.start, end=args.end),
+            funding,
+            micro_config,
+        )
+        write_micro_report(result, params, micro_config, args.output)
+        print(json.dumps(result.metrics, indent=2))
+        return
+    if args.command == "micro-backtest-v73-hf":
+        params = _load_v73_hf_params(args.params)
+        market = _load_market_with_warmup(args.raw_dir, args.start, args.end)
+        signaled = generate_v73_hf_signals(market, params)
+        funding = load_funding(args.raw_dir, start=args.start, end=args.end)
+        micro_config = MicroBacktestConfig(
+            taker_fee_bps=args.fee_bps,
             base_slippage_bps=args.slippage_bps,
             impact_bps=args.impact_bps,
             max_minute_participation=args.participation,
@@ -379,6 +431,13 @@ def main() -> None:
         Path(args.output).parent.mkdir(parents=True, exist_ok=True)
         Path(args.output).write_text(json.dumps(report, indent=2), encoding="utf-8")
         print(json.dumps(report, indent=2))
+        return
+    if args.command == "backtest-v73-hf":
+        data = load_market_data(args.raw_dir, start=args.start, end=args.end)
+        params = _load_v73_hf_params(args.params)
+        result = run_backtest(generate_v73_hf_signals(data, params), config)
+        write_report(result, params, args.output, "v73_hf")
+        print(json.dumps(result.metrics, indent=2))
         return
     data = load_market_data(args.raw_dir, start=args.start, end=args.end)
     params = _load_strategy_params(args.params)
