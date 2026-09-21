@@ -1,0 +1,62 @@
+{
+  "version": "V4.4.1",
+  "selected_id": "phase2_c01",
+  "params": {
+    "regime_fast": 12,
+    "regime_slow": 48,
+    "entry_mode": "reclaim",
+    "long_trailing_atr": 3.0,
+    "long_stop_atr": 2.5,
+    "long_target_vol": 0.9,
+    "long_risk_budget": 0.05,
+    "max_leverage": 3.0,
+    "long_max_hours": 240,
+    "cooldown_hours": 6,
+    "rebalance_hours": 24,
+    "rebalance_band": 0.25,
+    "short_enabled": false,
+    "short_max_leverage": 0.6,
+    "short_risk_budget": 0.0125,
+    "short_stop_atr": 1.8,
+    "short_trailing_atr": 2.0,
+    "short_take_atr": 4.0,
+    "short_max_hours": 48,
+    "funding_crowded": 0.0002,
+    "core_scale": 0.75,
+    "satellite_scale": 0.25
+  },
+  "development_score": 0.48349745897786944,
+  "legacy_heavy_counterfactual_id": "phase2_c01",
+  "development_end_exclusive": "2025-07-01 00:00:00+00:00",
+  "actual_periods": {
+    "legacy": [
+      "2020-01-01",
+      "2024-01-01"
+    ],
+    "recent_train": [
+      "2024-01-15",
+      "2025-01-01"
+    ],
+    "recent_validation": [
+      "2025-01-15",
+      "2025-07-01"
+    ],
+    "holdout": [
+      "2025-07-15",
+      "2026-08-01"
+    ],
+    "post2024": [
+      "2024-01-01",
+      "2026-08-01"
+    ]
+  },
+  "frozen_at_utc": "2026-09-20T20:03:00.438276+00:00",
+  "protocol_sha256": "53e594ac203ffa26200196bb8931f34e25c3b3d46a3643a7aeea7390cdff7476",
+  "candidate_table_sha256": "1b2b0f5f74355dbdfaa3bc2847f4d81a302722b675cc2aa183f721aaa1d1e7c1",
+  "source_sha256": {
+    "src/btc_regime/v441.py": "40cf413942d7e513614e9d5451bab81d8531b30f258250455dc929bf836dd369",
+    "src/btc_regime/v441_research.py": "c030b3460bb4b043b7838c9565922d63525069e37b2c107aabc2f2eb9d34249f",
+    "src/btc_regime/micro_backtest.py": "f761be84961e099146530fe6e65f15494a5e0104533c1dc6333a920539956888"
+  },
+  "holdout_used_for_selection": false
+}

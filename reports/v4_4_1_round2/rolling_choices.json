@@ -1,0 +1,98 @@
+[
+  {
+    "fold": 1,
+    "profile": {
+      "id": "r050",
+      "params": {
+        "family": "core",
+        "speed": "fast",
+        "risk": "original",
+        "protection": "tight",
+        "gate": "none",
+        "entry": 15.0,
+        "stop_atr": 2.0,
+        "hold_hours": 48,
+        "short": false,
+        "target_vol": 0.9,
+        "max_leverage": 4.0
+      }
+    },
+    "period": [
+      "2024-07-15",
+      "2025-01-01"
+    ],
+    "prior_score": 1.821913657560177
+  },
+  {
+    "fold": 2,
+    "profile": {
+      "id": "r026",
+      "params": {
+        "family": "core",
+        "speed": "medium",
+        "risk": "original",
+        "protection": "tight",
+        "gate": "none",
+        "entry": 15.0,
+        "stop_atr": 2.0,
+        "hold_hours": 48,
+        "short": false,
+        "target_vol": 0.9,
+        "max_leverage": 4.0
+      }
+    },
+    "period": [
+      "2025-01-15",
+      "2025-07-01"
+    ],
+    "prior_score": 1.5810843941223984
+  },
+  {
+    "fold": 3,
+    "profile": {
+      "id": "r110",
+      "params": {
+        "family": "continuation",
+        "speed": "medium",
+        "risk": "original",
+        "protection": "original",
+        "gate": "none",
+        "entry": 15.0,
+        "stop_atr": 3.0,
+        "hold_hours": 72,
+        "short": false,
+        "target_vol": 0.9,
+        "max_leverage": 4.0
+      }
+    },
+    "period": [
+      "2025-07-15",
+      "2026-01-01"
+    ],
+    "prior_score": 0.8613923245374164
+  },
+  {
+    "fold": 4,
+    "profile": {
+      "id": "r110",
+      "params": {
+        "family": "continuation",
+        "speed": "medium",
+        "risk": "original",
+        "protection": "original",
+        "gate": "none",
+        "entry": 15.0,
+        "stop_atr": 3.0,
+        "hold_hours": 72,
+        "short": false,
+        "target_vol": 0.9,
+        "max_leverage": 4.0
+      }
+    },
+    "period": [
+      "2026-01-15",
+      "2026-08-01"
+    ],
+    "prior_score": 1.0140309048807372
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "version": "V4.4.4",
+  "selected": "r025",
+  "status": "frozen_research_candidate_historical_sharpe_improvement",
+  "primary_sharpe_objectives_pass": true,
+  "paired_stress_sharpe_objectives_pass": true,
+  "full_return_improved": false,
+  "blind_oos_validated": false,
+  "multiple_testing_adjusted": false,
+  "promote_to_default": false,
+  "rebate_fraction": 0.4
+}

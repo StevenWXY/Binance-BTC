@@ -1,0 +1,18 @@
+{
+  "version": "V4.4.1-R2",
+  "status": "registered_before_round2_screen",
+  "development_end_exclusive": "2026-08-01",
+  "reserved_extension": ["2026-08-01", "2026-09-01"],
+  "extension_disclosure": "Excluded from round1 and round2 selection, but other repository studies may have seen August. One month is not sufficient evidence of robustness.",
+  "known_data_disclosure": "All history through July 2026 was viewed in round1; round2 rolling OOS is procedural, not historically blind.",
+  "candidate_families": {"core":72,"pullback":16,"breakout":8},
+  "total_initial_candidates":96,
+  "development_weights": {"2020_2023":0.15,"post2024":0.85},
+  "recent_folds": [["2024-01-01","2024-07-01"],["2024-07-01","2025-01-01"],["2025-01-01","2025-07-01"],["2025-07-01","2026-01-01"],["2026-01-01","2026-08-01"]],
+  "score": "0.15*legacy utility + 0.85*mean recent fold utility - 0.30*recent Sharpe std; utility=Sharpe+0.5*annual log growth-2*absolute max drawdown; no candidate with recent drawdown >35% or legacy drawdown >55%",
+  "walkforward": "At each half-year boundary choose using only prior return observations, with a 14-day evaluation embargo; use next fold equity for procedural OOS audit.",
+  "stage2": "Top 2 development core profiles and top 2 tactical profiles, if tactical annual growth positive, routed at allocations 0.25/0.5/1.0. Up to 12 fixed combinations. No parameter changes based on extension.",
+  "cost": "Hourly proxy: taker4bps+slippage2bps; final 1m: taker4bps+base1bps+impact8bps*sqrt(participation), no rebate, real funding, adverse gaps, margin checks",
+  "selection": "Freeze final choice after development-only minute verification of at most six finalists; reserve extension unopened until freeze.",
+  "leverage": "No leverage optimization; core cap4x, tactical pullback cap1.5x and breakout cap3x, short cap0.5x. Controls against original versions must use identical execution cost."
+}

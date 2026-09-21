@@ -1,0 +1,41 @@
+{
+  "id": "V4_1_3",
+  "period": "legacy",
+  "total_return": 17.714659981200857,
+  "cagr": 1.0799145127627738,
+  "annual_log_growth": 0.7323267932353317,
+  "sharpe": 1.7217020207526645,
+  "annual_volatility": 0.48891289327159815,
+  "max_drawdown": -0.26824222556586086,
+  "cycles": 188,
+  "short_cycles": 24,
+  "short_sum_trade_returns": 0.0019614469125682306,
+  "cycles_per_year": 47.0,
+  "days": 1461,
+  "execution": {
+    "initial_cash": 10000.0,
+    "taker_fee_bps": 2.4,
+    "base_slippage_bps": 1,
+    "impact_bps": 8,
+    "max_minute_participation": 0.02,
+    "liquidation_fee_bps": 50.0,
+    "liquidation_slippage_bps": 5.0,
+    "quantity_step": 0.001,
+    "min_notional": 5.0,
+    "periods_per_year": 8760,
+    "maker_enabled": false,
+    "maker_fee_bps": 0.2,
+    "maker_offset_bps": 0.5,
+    "maker_order_timeout_minutes": 60,
+    "maker_exit_enabled": false,
+    "conservative_protection": true,
+    "signal_interval_minutes": 240,
+    "equity_interval_minutes": 60,
+    "execution_bar_minutes": 1
+  },
+  "rebate": {
+    "published_taker_bps": 4.0,
+    "rebate_fraction": 0.4,
+    "effective_taker_bps": 2.4
+  }
+}

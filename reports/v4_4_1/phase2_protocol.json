@@ -1,0 +1,36 @@
+{
+  "reason": "Phase 1 did not beat V4.1.2 on either recent development window. Before any holdout evaluation, test a bounded core/satellite router using the phase-1-selected hourly profile.",
+  "holdout_seen": false,
+  "candidate_count_additional": 6,
+  "cumulative_candidate_count": 30,
+  "core_scale": [
+    0.75,
+    1.0
+  ],
+  "satellite_scale": [
+    0.25,
+    0.5,
+    1.0
+  ],
+  "core_profile": "Frozen V4.1.2; max account target remains 3x; core priority, new hourly entries only when core is flat; no additive leverage.",
+  "selection": "Same 20/40/40 weights, score and admission rules as phase 1. Compare six new profiles and frozen phase-1 winner; no additional short tuning.",
+  "periods": {
+    "legacy": [
+      "2020-01-01",
+      "2024-01-01"
+    ],
+    "recent_train": [
+      "2024-01-15",
+      "2025-01-01"
+    ],
+    "recent_validation": [
+      "2025-01-15",
+      "2025-07-01"
+    ],
+    "holdout": [
+      "2025-07-15",
+      "2026-08-01"
+    ]
+  },
+  "costs": "Same hourly proxy all-taker 4bps + 2bps slippage; final minute audit at identical fees and risk assumptions for all strategies."
+}

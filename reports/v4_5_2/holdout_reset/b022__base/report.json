@@ -1,0 +1,148 @@
+{
+  "profile": {
+    "id": "b022",
+    "kind": "v452",
+    "params": {
+      "short_enabled": true,
+      "gate": "structural",
+      "entry": "break8",
+      "confirmation": "activity",
+      "adx_min": 32.0,
+      "protection": "base",
+      "cooldown_hours": 3,
+      "risk": "higher"
+    },
+    "selectable": true
+  },
+  "stress": "base",
+  "window": [
+    "2026-01-15",
+    "2026-09-01"
+  ],
+  "metrics": {
+    "total_return": 0.9975219352347608,
+    "cagr": 2.0149316618209,
+    "annual_log_growth": 1.10357716385955,
+    "sharpe": 2.1884194358296556,
+    "annual_volatility": 0.572519363577616,
+    "max_drawdown": -0.14972158047630346,
+    "cycles": 52,
+    "short_cycles": 17,
+    "short_sum_trade_returns": 0.25531971888579913,
+    "cycles_per_year": 82.93886462882097,
+    "days": 229
+  },
+  "windows": {
+    "later_audit": {
+      "total_return": 0.9975219352347608,
+      "cagr": 2.0149316618209,
+      "annual_log_growth": 1.10357716385955,
+      "sharpe": 2.1884194358296556,
+      "annual_volatility": 0.572519363577616,
+      "max_drawdown": -0.14972158047630346,
+      "cycles": 52,
+      "short_cycles": 17,
+      "short_sum_trade_returns": 0.25531971888579913,
+      "cycles_per_year": 82.93886462882097,
+      "days": 229
+    }
+  },
+  "yearly": {
+    "2026": {
+      "total_return": 0.9975219352347608,
+      "cagr": 2.0149316618209,
+      "annual_log_growth": 1.10357716385955,
+      "sharpe": 2.1884194358296556,
+      "annual_volatility": 0.572519363577616,
+      "max_drawdown": -0.14972158047630346,
+      "cycles": 52,
+      "short_cycles": 17,
+      "short_sum_trade_returns": 0.25531971888579913,
+      "cycles_per_year": 82.93886462882097,
+      "days": 229
+    }
+  },
+  "shorts": {
+    "later_audit": {
+      "cycles": 17,
+      "sum_cycle_returns": 0.25531971888579913,
+      "mean_cycle_return": 0.015018806993282301,
+      "win_rate": 0.7058823529411765
+    }
+  },
+  "execution": {
+    "initial_cash": 10000.0,
+    "taker_fee_bps": 2.4,
+    "base_slippage_bps": 1,
+    "impact_bps": 8,
+    "max_minute_participation": 0.02,
+    "liquidation_fee_bps": 50.0,
+    "liquidation_slippage_bps": 5.0,
+    "quantity_step": 0.001,
+    "min_notional": 5.0,
+    "periods_per_year": 8760,
+    "maker_enabled": false,
+    "maker_fee_bps": 0.2,
+    "maker_offset_bps": 0.5,
+    "maker_order_timeout_minutes": 60,
+    "maker_exit_enabled": false,
+    "conservative_protection": true,
+    "signal_interval_minutes": 60,
+    "equity_interval_minutes": 60,
+    "execution_bar_minutes": 1
+  },
+  "execution_metrics": {
+    "total_return": 0.9975219352347608,
+    "cagr": 2.0149316618209,
+    "annualized_volatility": 0.4446391618438966,
+    "sharpe": 2.696439657419112,
+    "sortino": 5.226227176990958,
+    "max_drawdown": -0.14972158047630346,
+    "trade_count": 52.0,
+    "win_rate": 0.4230769230769231,
+    "final_equity": 19975.21935234761,
+    "fill_count": 139.0,
+    "liquidation_count": 0.0,
+    "fees_paid": 440.78735293330794,
+    "funding_paid": 72.47329657523204,
+    "realized_pnl": 10488.480001856164,
+    "order_notional": 1836613.970555449,
+    "max_leverage_observed": 4.089317052529818,
+    "max_margin_ratio": 0.016358377548220417,
+    "minimum_margin_buffer": 9179.710192726447,
+    "max_minute_participation_observed": 0.018505857793908835,
+    "maker_enabled": 0.0,
+    "maker_order_count": 0.0,
+    "maker_cancel_count": 0.0,
+    "maker_fill_count": 0.0,
+    "taker_fill_count": 139.0,
+    "maker_filled_notional": 0.0,
+    "taker_filled_notional": 1836613.970555449,
+    "maker_fill_ratio": 0.0,
+    "maker_fill_events_per_order": 0.0,
+    "maker_fee_saved_vs_taker": 0.0
+  },
+  "short_entry_leverage": {
+    "all": {
+      "count": 17.0,
+      "mean": 1.2111378830010051,
+      "std": 0.374393490886015,
+      "min": 0.7273821124366551,
+      "25%": 0.9679266424613443,
+      "50%": 1.2091336090895222,
+      "75%": 1.304541877411055,
+      "max": 2.0
+    },
+    "recent": {
+      "count": 17.0,
+      "mean": 1.2111378830010051,
+      "std": 0.374393490886015,
+      "min": 0.7273821124366551,
+      "25%": 0.9679266424613443,
+      "50%": 1.2091336090895222,
+      "75%": 1.304541877411055,
+      "max": 2.0
+    }
+  },
+  "saved_equity_sampling_minutes": 60
+}

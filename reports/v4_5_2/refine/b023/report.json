@@ -1,0 +1,209 @@
+{
+  "profile": {
+    "id": "b023",
+    "kind": "v452",
+    "params": {
+      "short_enabled": true,
+      "gate": "structural",
+      "entry": "break8",
+      "confirmation": "activity",
+      "adx_min": 32.0,
+      "protection": "base",
+      "cooldown_hours": 6,
+      "risk": "higher"
+    },
+    "selectable": true
+  },
+  "metrics": {
+    "total_return": 26.969457675420255,
+    "cagr": 0.7420435542427506,
+    "annual_log_growth": 0.5550588805533183,
+    "sharpe": 1.5687131549857525,
+    "annual_volatility": 0.4028886960635176,
+    "max_drawdown": -0.32097887670602965,
+    "cycles": 446,
+    "short_cycles": 80,
+    "short_sum_trade_returns": 0.1703405792886616,
+    "cycles_per_year": 74.31637773722628,
+    "days": 2192
+  },
+  "windows": {
+    "legacy": {
+      "total_return": 6.927921347100064,
+      "cagr": 0.6779917962351895,
+      "annual_log_growth": 0.5175977190194693,
+      "sharpe": 1.477936542212041,
+      "annual_volatility": 0.40193373523107334,
+      "max_drawdown": -0.32097887670602965,
+      "cycles": 308,
+      "short_cycles": 56,
+      "short_sum_trade_returns": -0.11901634765629862,
+      "cycles_per_year": 77.0,
+      "days": 1461
+    },
+    "train_recent": {
+      "total_return": 0.6107202340668889,
+      "cagr": 0.6091476407280265,
+      "annual_log_growth": 0.4757046231095223,
+      "sharpe": 1.34116649316248,
+      "annual_volatility": 0.4158584790116818,
+      "max_drawdown": -0.2261614645664871,
+      "cycles": 75,
+      "short_cycles": 10,
+      "short_sum_trade_returns": 0.17339725728693103,
+      "cycles_per_year": 74.84631147540983,
+      "days": 366
+    },
+    "validation": {
+      "total_return": 1.0389728541485006,
+      "cagr": 1.0988094914979323,
+      "annual_log_growth": 0.7413702751653112,
+      "sharpe": 2.0884405738698315,
+      "annual_volatility": 0.3895092553247931,
+      "max_drawdown": -0.15813913967945525,
+      "cycles": 62,
+      "short_cycles": 14,
+      "short_sum_trade_returns": 0.11595966965802917,
+      "cycles_per_year": 64.51709401709401,
+      "days": 351
+    },
+    "recent": {
+      "total_return": 2.5279686125608625,
+      "cagr": 0.877479070696402,
+      "annual_log_growth": 0.6299299571620101,
+      "sharpe": 1.7478231562481445,
+      "annual_volatility": 0.405037156235816,
+      "max_drawdown": -0.2261614645664871,
+      "cycles": 138,
+      "short_cycles": 24,
+      "short_sum_trade_returns": 0.2893569269449602,
+      "cycles_per_year": 68.95280437756497,
+      "days": 731
+    }
+  },
+  "folds": [
+    {
+      "total_return": 0.1819480921796084,
+      "cagr": 0.39860611703506127,
+      "annual_log_growth": 0.3354761099625074,
+      "sharpe": 1.018623169185935,
+      "annual_volatility": 0.4059541067344543,
+      "max_drawdown": -0.2261614645664871,
+      "cycles": 33,
+      "short_cycles": 1,
+      "short_sum_trade_returns": 0.0026231325811689092,
+      "cycles_per_year": 66.22664835164835,
+      "days": 182
+    },
+    {
+      "total_return": 0.36276732009151935,
+      "cagr": 0.8485636151758245,
+      "annual_log_growth": 0.6144089132875481,
+      "sharpe": 1.6425441692551555,
+      "annual_volatility": 0.42640499325945846,
+      "max_drawdown": -0.18593559670372384,
+      "cycles": 42,
+      "short_cycles": 9,
+      "short_sum_trade_returns": 0.17077412470576211,
+      "cycles_per_year": 83.37228260869566,
+      "days": 184
+    },
+    {
+      "total_return": 0.2644051770001512,
+      "cagr": 0.6704676684332268,
+      "annual_log_growth": 0.5131036282024882,
+      "sharpe": 1.4885746260973618,
+      "annual_volatility": 0.3937818156669844,
+      "max_drawdown": -0.12430464095140181,
+      "cycles": 32,
+      "short_cycles": 4,
+      "short_sum_trade_returns": 0.075578315589068,
+      "cycles_per_year": 69.9880239520958,
+      "days": 167
+    },
+    {
+      "total_return": 0.6125945157754262,
+      "cagr": 1.5819555291812215,
+      "annual_log_growth": 0.9485470688761346,
+      "sharpe": 2.6394887275939443,
+      "annual_volatility": 0.3863476703017883,
+      "max_drawdown": -0.12821168716537157,
+      "cycles": 30,
+      "short_cycles": 10,
+      "short_sum_trade_returns": 0.04038135406896117,
+      "cycles_per_year": 59.551630434782616,
+      "days": 184
+    }
+  ],
+  "shorts": {
+    "legacy": {
+      "cycles": 56,
+      "sum_cycle_returns": -0.11901634765629862,
+      "mean_cycle_return": -0.002125291922433904,
+      "win_rate": 0.39285714285714285
+    },
+    "train_recent": {
+      "cycles": 10,
+      "sum_cycle_returns": 0.17339725728693103,
+      "mean_cycle_return": 0.017339725728693103,
+      "win_rate": 0.6
+    },
+    "validation": {
+      "cycles": 14,
+      "sum_cycle_returns": 0.11595966965802917,
+      "mean_cycle_return": 0.008282833547002084,
+      "win_rate": 0.5
+    },
+    "recent": {
+      "cycles": 24,
+      "sum_cycle_returns": 0.2893569269449602,
+      "mean_cycle_return": 0.012056538622706675,
+      "win_rate": 0.5416666666666666
+    }
+  },
+  "score": 1.9136611970719506,
+  "execution": {
+    "initial_cash": 10000.0,
+    "taker_fee_bps": 2.4,
+    "base_slippage_bps": 2,
+    "impact_bps": 0,
+    "max_minute_participation": 0.02,
+    "liquidation_fee_bps": 50.0,
+    "liquidation_slippage_bps": 5.0,
+    "quantity_step": 0.001,
+    "min_notional": 5.0,
+    "periods_per_year": 8760,
+    "maker_enabled": false,
+    "maker_fee_bps": 0.2,
+    "maker_offset_bps": 0.5,
+    "maker_order_timeout_minutes": 60,
+    "maker_exit_enabled": false,
+    "conservative_protection": true,
+    "signal_interval_minutes": 60,
+    "equity_interval_minutes": 60,
+    "execution_bar_minutes": 60
+  },
+  "signal_signature": "a455b85e037e78f28d0389040593b546e53b89b57a9d374b1e856ef0d2baff65",
+  "short_entry_leverage": {
+    "all": {
+      "count": 80.0,
+      "mean": 0.9680752172106573,
+      "std": 0.38407242935470887,
+      "min": 0.266263447712722,
+      "25%": 0.6754805952984512,
+      "50%": 0.9835436400004307,
+      "75%": 1.1449534825112033,
+      "max": 1.9660098536397972
+    },
+    "recent": {
+      "count": 24.0,
+      "mean": 1.152994071536871,
+      "std": 0.23768483171067323,
+      "min": 0.6402524643997186,
+      "25%": 1.0228921793175725,
+      "50%": 1.1351893926330017,
+      "75%": 1.3021617987397378,
+      "max": 1.737007557272793
+    }
+  }
+}

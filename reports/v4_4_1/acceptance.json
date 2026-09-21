@@ -1,0 +1,10 @@
+{
+  "version": "V4.4.1",
+  "status": "research_rejected",
+  "promote_to_default": false,
+  "reason": "Did not improve both post-2024 return and Sharpe versus V4.1.2/V4.1.3; chronological holdout lost money.",
+  "holdout_was_not_used_to_retune": true,
+  "unique_candidate_count": 30,
+  "post2024_return": 0.78265076678673,
+  "holdout_return": -0.044456389122260354
+}

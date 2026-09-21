@@ -1,0 +1,14 @@
+{
+  "reason":"Prior core locks the same signal cycle after intrabar protection, potentially missing recovery; test fresh-event re-entry after cooldown with new protective levels.",
+  "registered_before_continuation_screen":true,
+  "reserved_extension_seen":false,
+  "additional_candidates":24,
+  "speeds":["original","medium","fast"],
+  "initial_stop_atr":[2,3],
+  "trailing_atr":[2,3],
+  "max_hours":[72,168],
+  "cooldown_hours":6,
+  "entry":"Core raw long is positive and either new core regime, hourly EMA20 reclaim or prior6h high breakout. No same-hour reentry after stop.",
+  "risk":"Keep old core risk layers, 4x hard target cap. No leverage search. Stop against completed hourly mark low when present.",
+  "selection":"Same weighted fold scoring and drawdown constraints; include all prior candidates in final ranking. At most six minute finalists. No change after extension."
+}

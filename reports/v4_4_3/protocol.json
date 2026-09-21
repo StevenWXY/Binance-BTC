@@ -1,0 +1,13 @@
+{
+  "version": "V4.4.3",
+  "baseline": "V4.4.2 (previously named V4.4.1-R2)",
+  "development_end_exclusive": "2026-08-01",
+  "reserved_extension": ["2026-08-01", "2026-09-01"],
+  "candidate_count": 162,
+  "candidate_grid": {"speed": ["medium", "fast"], "initial_stop_atr": [1.5, 2.0, 3.0], "trail_atr": [1.5, 2.5, 3.0], "hold_hours": [24, 48, 72], "entry_mode": ["all", "reclaim", "breakout"]},
+  "frequency": "hourly signal updates; 4h regime anchor; 3h post-exit cooldown",
+  "selection": "15% legacy utility + 85% mean recent fold utility - 0.30 recent fold Sharpe dispersion; recent drawdown <=35%, legacy <=55%, at least 30 recent cycles",
+  "fee": {"published_taker_bps": 4.0, "rebate_fraction": 0.4, "effective_taker_bps": 2.4},
+  "execution": "1m fills, 1bps base slippage, 8bps*sqrt(participation) impact, real funding, no maker credit, conservative protection",
+  "disclosure": "All data through July 2026 was previously viewed. August 2026 is reserved for post-freeze evaluation and is not used for candidate selection. This is a procedural holdout, not a historically blind test."
+}

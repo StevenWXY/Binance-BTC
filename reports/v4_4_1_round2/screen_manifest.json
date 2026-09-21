@@ -1,0 +1,8 @@
+{
+  "candidates_evaluated": 108,
+  "source_sha256": {
+    "src/btc_regime/v441_r2.py": "297922b635942465a6ce4574583f4de748107496095c12a0bd01d3f6da6b400d",
+    "/Users/weixinyu/Desktop/Private Project/Binance-BTC/scripts/research_v441_round2.py": "76d4cc5ae1a8b3be2c9cbbf55eb6c84dd2b364e36d09356f6c4d6d79a09e732a",
+    "reports/v4_4_1_round2/protocol.json": "c9c47850fd57bbc99b31fc9e25dbe0cdb9b8f511ee81b970262187a9a4547780"
+  }
+}

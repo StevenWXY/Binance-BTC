@@ -1,0 +1,16 @@
+{
+  "version": "V4.4.4",
+  "stage": "Continuous account verification of eight phase1 finalists",
+  "baseline": "V4.4.3 frozen config",
+  "window": ["2020-01-01", "2026-09-01"],
+  "recent_window": ["2024-01-01", "2026-09-01"],
+  "recent_without_august": ["2024-01-01", "2026-08-01"],
+  "account": "10000 USDT at 2020-01-01; no account reset at year or 2024 boundaries; forced close only at the final end",
+  "primary_objective": "Require both full-window daily Sharpe and post-2024 daily Sharpe to exceed baseline; also require post-2024-through-July Sharpe to exceed baseline so August alone cannot qualify a candidate.",
+  "ranking": "0.35 full Sharpe + 0.65 post-2024-through-July Sharpe + 0.5 full max_drawdown (negative); constrain full drawdown >= -45% and post2024 drawdown >= -35%; keep at least 70% of baseline total return in full and recent windows.",
+  "candidate_count": 8,
+  "fee": {"taker_base_bps": 4.0, "rebate_fraction": 0.4, "effective_taker_bps": 2.4},
+  "data_disclosure": "All dates through August 2026 were already observed before selection. This is development on known history. No blind OOS claim is made. Baseline full-history analysis preceded this protocol.",
+  "robustness": "After freeze: double net fees and impact with 3bps base slip, no-rebate costs, 1h signal delay, fee-matched V443; procedural rolling selection from eight finalists using only each boundary's prior returns, 14-day cash embargo. Candidate-family design is retrospective.",
+  "history_disclosure": "Initial 96 candidate trials contained a reclaim-mode defect; corrected 96 and expanded 192 configuration evaluations followed. These are adaptive repeated searches, not independent preregistered trials. Superseded exploration is excluded. Final profile count is 192, not the count of all research attempts."
+}

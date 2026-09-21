@@ -1,0 +1,42 @@
+{
+  "profile": {
+    "id": "r110",
+    "params": {
+      "family": "continuation",
+      "speed": "medium",
+      "risk": "original",
+      "protection": "original",
+      "gate": "none",
+      "entry": 15.0,
+      "stop_atr": 3.0,
+      "hold_hours": 72,
+      "short": false,
+      "target_vol": 0.9,
+      "max_leverage": 4.0
+    }
+  },
+  "frozen_at_utc": "2026-09-20T20:33:25.647313+00:00",
+  "reserved_extension_returns_seen": false,
+  "minute_selection_score": 0.6444466158252744,
+  "source_sha256": {
+    "src/btc_regime/v441_r2.py": "49fbbadf13aaf8813289639b928c62d73e6778f64ccc4d1652b375432a9a28bc",
+    "src/btc_regime/v441.py": "40cf413942d7e513614e9d5451bab81d8531b30f258250455dc929bf836dd369",
+    "src/btc_regime/micro_backtest.py": "f761be84961e099146530fe6e65f15494a5e0104533c1dc6333a920539956888",
+    "src/btc_regime/strategy.py": "f88e518067cabc4763c98c6d6dd6ae36c95a8b403830e15040214853db3448f1",
+    "src/btc_regime/v43.py": "c84a5e96ec93f147be30fb67530f045cc2a04e5e37ce56f315ec455e765873c1",
+    "src/btc_regime/v441_research.py": "c030b3460bb4b043b7838c9565922d63525069e37b2c107aabc2f2eb9d34249f",
+    "scripts/evaluate_v441_round2.py": "4bf6d2a8f1cc56cdb13675160d26b403e4f4b48b27c8b35746e0dca57814094b",
+    "scripts/research_v441_round2.py": "c12fbccac4643d557b4f665098876d431597c5c1bbc486db4479ea92c5f9b53b",
+    "reports/v4_4_1_round2/protocol.json": "c9c47850fd57bbc99b31fc9e25dbe0cdb9b8f511ee81b970262187a9a4547780",
+    "reports/v4_4_1_round2/continuation_protocol.json": "7aff966dea5ab0fb29469cc1e1ac39d2c97ba7a967d5ffdbd55fe2a3492a3e12",
+    "scripts/evaluate_v441.py": "65a8bbd7efeb1b36793b413b42e73deddb71018ee089932dde12579148e712a9",
+    "src/btc_regime/indicators.py": "3b463d2cc3081b574aea42e4dee4e14b9c1814cdb96ca2f77026686f85c4891f",
+    "src/btc_regime/data.py": "1b64b63b4717177323004c177201221a768659268d75466d077058dcf466de07",
+    "src/btc_regime/v413.py": "681df6a540548fce6b2f445d4c05e6ec107b5192840d51badb01e574bd6149f8",
+    "reports/v4_4_1_round2/minute_finalists.json": "cb2a14b2e1a5b80ddd7d0279786ddbcb1df615fe233855540f12111839dc587f",
+    "reports/v4_4_1_round2/screen.json": "84a7fe51c6a2bca9973957605f0f60fa20fd9f3b28f0364e3543a67d34b54095",
+    "data/v441/hourly.pkl": "b35821057c937eafcfd34768d0738b45691fcaa2261fe4bd62fe62825af19cb8",
+    "data/v441/funding.pkl": "325228e6c217318446e37390c0d27e3b9205bd846f2f6470e2b7b9c3df19ea52",
+    "data/v441/round2/extension_minutes.pkl": "47f770641aacfc551b476ec7d544b40558c073c246bd2ab88ab3657c59978753"
+  }
+}

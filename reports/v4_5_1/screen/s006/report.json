@@ -1,0 +1,169 @@
+{
+  "profile": {
+    "id": "s006",
+    "params": {
+      "short_enabled": true,
+      "gate": "trend",
+      "entry": "break12",
+      "protection": "swing",
+      "adx_min": 28.0,
+      "risk": "small"
+    }
+  },
+  "metrics": {
+    "total_return": 12.133251949413246,
+    "cagr": 0.5974564263978631,
+    "annual_log_growth": 0.4684126307772792,
+    "sharpe": 1.3680955488732314,
+    "annual_volatility": 0.39675360587765823,
+    "max_drawdown": -0.3103774455726005,
+    "cycles": 487,
+    "short_cycles": 141,
+    "short_sum_trade_returns": -0.16795264593066794,
+    "cycles_per_year": 88.5840388446215,
+    "days": 2008
+  },
+  "windows": {
+    "legacy": {
+      "total_return": 6.759227350070892,
+      "cagr": 0.6689934000482044,
+      "annual_log_growth": 0.5122206902370107,
+      "sharpe": 1.486012641357582,
+      "annual_volatility": 0.39403219885377555,
+      "max_drawdown": -0.3103774455726005,
+      "cycles": 357,
+      "short_cycles": 105,
+      "short_sum_trade_returns": -0.1544991281712639,
+      "cycles_per_year": 89.25,
+      "days": 1461
+    },
+    "train_recent": {
+      "total_return": 0.37241352046384746,
+      "cagr": 0.3715235096648344,
+      "annual_log_growth": 0.3159221728197574,
+      "sharpe": 0.9641009320664962,
+      "annual_volatility": 0.41019143524498414,
+      "max_drawdown": -0.2594208862042866,
+      "cycles": 91,
+      "short_cycles": 26,
+      "short_sum_trade_returns": 0.00946771481900095,
+      "cycles_per_year": 90.81352459016394,
+      "days": 366
+    },
+    "validation": {
+      "total_return": 0.15869269886543047,
+      "cagr": 0.38008759206846443,
+      "annual_log_growth": 0.3221469696681986,
+      "sharpe": 1.0226065971903675,
+      "annual_volatility": 0.38187505818242323,
+      "max_drawdown": -0.14940336418983802,
+      "cycles": 36,
+      "short_cycles": 8,
+      "short_sum_trade_returns": -0.013786515057356518,
+      "cycles_per_year": 78.73652694610779,
+      "days": 167
+    },
+    "recent": {
+      "total_return": 0.6925979040030648,
+      "cagr": 0.4210616984540992,
+      "annual_log_growth": 0.35140426721115936,
+      "sharpe": 1.0603723437877532,
+      "annual_volatility": 0.4042365231867229,
+      "max_drawdown": -0.2594208862042866,
+      "cycles": 130,
+      "short_cycles": 36,
+      "short_sum_trade_returns": -0.013453517759404052,
+      "cycles_per_year": 86.80530164533822,
+      "days": 547
+    }
+  },
+  "folds": [
+    {
+      "total_return": 0.18194020075774242,
+      "cagr": 0.39858737703201685,
+      "annual_log_growth": 0.33546271081576656,
+      "sharpe": 1.0134364886668055,
+      "annual_volatility": 0.4093837479572559,
+      "max_drawdown": -0.23354624570229798,
+      "cycles": 43,
+      "short_cycles": 11,
+      "short_sum_trade_returns": 0.00311933912060516,
+      "cycles_per_year": 86.29532967032966,
+      "days": 182
+    },
+    {
+      "total_return": 0.16115309351859985,
+      "cagr": 0.34526905235707717,
+      "annual_log_growth": 0.29659403197587897,
+      "sharpe": 0.9130199334002886,
+      "annual_volatility": 0.4121033054665602,
+      "max_drawdown": -0.19847231039082103,
+      "cycles": 48,
+      "short_cycles": 15,
+      "short_sum_trade_returns": 0.006348375698395787,
+      "cycles_per_year": 95.28260869565219,
+      "days": 184
+    },
+    {
+      "total_return": 0.15869269886543047,
+      "cagr": 0.38008759206846443,
+      "annual_log_growth": 0.3221469696681986,
+      "sharpe": 1.0226065971903675,
+      "annual_volatility": 0.38187505818242323,
+      "max_drawdown": -0.14940336418983802,
+      "cycles": 36,
+      "short_cycles": 8,
+      "short_sum_trade_returns": -0.013786515057356518,
+      "cycles_per_year": 78.73652694610779,
+      "days": 167
+    }
+  ],
+  "shorts": {
+    "legacy": {
+      "cycles": 105,
+      "sum_cycle_returns": -0.1544991281712639,
+      "mean_cycle_return": -0.0014714202682977514,
+      "win_rate": 0.3904761904761905
+    },
+    "train_recent": {
+      "cycles": 26,
+      "sum_cycle_returns": 0.00946771481900095,
+      "mean_cycle_return": 0.0003641428776538827,
+      "win_rate": 0.5384615384615384
+    },
+    "validation": {
+      "cycles": 8,
+      "sum_cycle_returns": -0.013786515057356518,
+      "mean_cycle_return": -0.0017233143821695648,
+      "win_rate": 0.375
+    },
+    "recent": {
+      "cycles": 36,
+      "sum_cycle_returns": -0.013453517759404052,
+      "mean_cycle_return": -0.00037370882665011256,
+      "win_rate": 0.5
+    }
+  },
+  "score": 1.0351883274737304,
+  "execution": {
+    "initial_cash": 10000.0,
+    "taker_fee_bps": 2.4,
+    "base_slippage_bps": 2,
+    "impact_bps": 0,
+    "max_minute_participation": 0.02,
+    "liquidation_fee_bps": 50.0,
+    "liquidation_slippage_bps": 5.0,
+    "quantity_step": 0.001,
+    "min_notional": 5.0,
+    "periods_per_year": 8760,
+    "maker_enabled": false,
+    "maker_fee_bps": 0.2,
+    "maker_offset_bps": 0.5,
+    "maker_order_timeout_minutes": 60,
+    "maker_exit_enabled": false,
+    "conservative_protection": true,
+    "signal_interval_minutes": 60,
+    "equity_interval_minutes": 60,
+    "execution_bar_minutes": 60
+  }
+}

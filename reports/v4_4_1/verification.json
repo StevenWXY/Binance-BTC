@@ -1,0 +1,18 @@
+{
+  "verified_at_utc": "2026-09-20T20:13:37.415382+00:00",
+  "branch": "main",
+  "checks": {
+    "src/btc_regime/v441.py": true,
+    "src/btc_regime/v441_research.py": true,
+    "src/btc_regime/micro_backtest.py": true,
+    "candidate_table": true,
+    "parameters": true
+  },
+  "selection_reproduction": "phase2 rerun succeeded; identical candidate table hash and original freeze timestamp preserved",
+  "test_command": "PYTHONPATH=src python3 -m pytest -q",
+  "python": "3.14.3",
+  "numpy": "2.4.3",
+  "pandas": "2.3.3",
+  "visual_inspection": "equity_drawdown.png inspected; labels and layout readable",
+  "strategy_changed_after_holdout": false
+}

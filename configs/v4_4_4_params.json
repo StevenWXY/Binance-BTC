@@ -1,0 +1,21 @@
+{
+  "version": "V4.4.4",
+  "id": "r025",
+  "params": {
+    "speed": "medium",
+    "stop_atr": 1.5,
+    "trail_atr": 3.0,
+    "hold_hours": 72,
+    "cooldown_hours": 3,
+    "entry_mode": "all",
+    "gate": "none",
+    "risk": "defensive",
+    "breakout_hours": 6,
+    "max_leverage": 4.0
+  },
+  "fee": {
+    "published_taker_bps": 4.0,
+    "rebate_fraction": 0.4,
+    "effective_taker_bps": 2.4
+  }
+}

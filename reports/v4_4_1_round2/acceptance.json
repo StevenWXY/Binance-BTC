@@ -1,0 +1,10 @@
+{
+  "status": "historical_improvement_robustness_unproven",
+  "promote_to_default": false,
+  "selected": "r110",
+  "development_return_and_sharpe_improved": true,
+  "stress_dominance": false,
+  "rolling_dominance": false,
+  "unseen_market_regimes_sufficient": false,
+  "parameter_trials": 132
+}

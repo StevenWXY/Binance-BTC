@@ -1,0 +1,167 @@
+[
+  {
+    "fold": 0,
+    "training_end": "2024-01-01",
+    "evaluation": [
+      "2024-01-15",
+      "2024-07-01"
+    ],
+    "profile": {
+      "id": "r029",
+      "params": {
+        "speed": "medium",
+        "stop_atr": 1.5,
+        "trail_atr": 3.0,
+        "hold_hours": 72,
+        "cooldown_hours": 3,
+        "entry_mode": "reclaim",
+        "gate": "none",
+        "risk": "defensive",
+        "breakout_hours": 6,
+        "max_leverage": 4.0
+      }
+    },
+    "prior_scores": {
+      "r025": 1.296444728496803,
+      "r029": 1.336218514931716,
+      "r024": 1.1830195850236693,
+      "r057": 1.2614641903162265,
+      "r061": 1.2141988474118013,
+      "r093": 1.1999432465753483,
+      "r089": 1.2317494494642924,
+      "r009": 1.1427147253414445
+    }
+  },
+  {
+    "fold": 1,
+    "training_end": "2024-07-01",
+    "evaluation": [
+      "2024-07-15",
+      "2025-01-01"
+    ],
+    "profile": {
+      "id": "r029",
+      "params": {
+        "speed": "medium",
+        "stop_atr": 1.5,
+        "trail_atr": 3.0,
+        "hold_hours": 72,
+        "cooldown_hours": 3,
+        "entry_mode": "reclaim",
+        "gate": "none",
+        "risk": "defensive",
+        "breakout_hours": 6,
+        "max_leverage": 4.0
+      }
+    },
+    "prior_scores": {
+      "r025": 1.3966062650183666,
+      "r029": 1.4211444987358084,
+      "r024": 1.3039494381435524,
+      "r057": 1.311738893723692,
+      "r061": 1.2732948306305694,
+      "r093": 1.2550345643210818,
+      "r089": 1.2576023235431377,
+      "r009": 1.2227225254295826
+    }
+  },
+  {
+    "fold": 2,
+    "training_end": "2025-01-01",
+    "evaluation": [
+      "2025-01-15",
+      "2025-07-01"
+    ],
+    "profile": {
+      "id": "r029",
+      "params": {
+        "speed": "medium",
+        "stop_atr": 1.5,
+        "trail_atr": 3.0,
+        "hold_hours": 72,
+        "cooldown_hours": 3,
+        "entry_mode": "reclaim",
+        "gate": "none",
+        "risk": "defensive",
+        "breakout_hours": 6,
+        "max_leverage": 4.0
+      }
+    },
+    "prior_scores": {
+      "r025": 1.5356312071424962,
+      "r029": 1.580896781398947,
+      "r024": 1.440230862749598,
+      "r057": 1.410235980352113,
+      "r061": 1.428734829138075,
+      "r093": 1.449208407560514,
+      "r089": 1.3935836522801592,
+      "r009": 1.4005266679544333
+    }
+  },
+  {
+    "fold": 3,
+    "training_end": "2025-07-01",
+    "evaluation": [
+      "2025-07-15",
+      "2026-01-01"
+    ],
+    "profile": {
+      "id": "r025",
+      "params": {
+        "speed": "medium",
+        "stop_atr": 1.5,
+        "trail_atr": 3.0,
+        "hold_hours": 72,
+        "cooldown_hours": 3,
+        "entry_mode": "all",
+        "gate": "none",
+        "risk": "defensive",
+        "breakout_hours": 6,
+        "max_leverage": 4.0
+      }
+    },
+    "prior_scores": {
+      "r025": 1.1917321078993242,
+      "r029": 1.0724291207246568,
+      "r024": 1.1236493001400323,
+      "r057": 1.0631382893672523,
+      "r061": 1.0084153359608587,
+      "r093": 0.9925687019194849,
+      "r089": 1.0395682881626667,
+      "r009": 1.1603005769605703
+    }
+  },
+  {
+    "fold": 4,
+    "training_end": "2026-01-01",
+    "evaluation": [
+      "2026-01-15",
+      "2026-09-01"
+    ],
+    "profile": {
+      "id": "r025",
+      "params": {
+        "speed": "medium",
+        "stop_atr": 1.5,
+        "trail_atr": 3.0,
+        "hold_hours": 72,
+        "cooldown_hours": 3,
+        "entry_mode": "all",
+        "gate": "none",
+        "risk": "defensive",
+        "breakout_hours": 6,
+        "max_leverage": 4.0
+      }
+    },
+    "prior_scores": {
+      "r025": 1.332255439407212,
+      "r029": 1.2897929183917334,
+      "r024": 1.240872513678625,
+      "r057": 1.2247731579040622,
+      "r061": 1.2582515174470852,
+      "r093": 1.2494051224279907,
+      "r089": 1.2050296671424776,
+      "r009": 1.2912470520157688
+    }
+  }
+]

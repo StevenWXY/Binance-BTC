@@ -1,0 +1,3406 @@
+{
+  "version": "V4.4.1",
+  "evaluated_at_utc": "2026-09-20T20:05:29.186840+00:00",
+  "selection_lock": {
+    "version": "V4.4.1",
+    "selected_id": "phase2_c01",
+    "params": {
+      "regime_fast": 12,
+      "regime_slow": 48,
+      "entry_mode": "reclaim",
+      "long_trailing_atr": 3.0,
+      "long_stop_atr": 2.5,
+      "long_target_vol": 0.9,
+      "long_risk_budget": 0.05,
+      "max_leverage": 3.0,
+      "long_max_hours": 240,
+      "cooldown_hours": 6,
+      "rebalance_hours": 24,
+      "rebalance_band": 0.25,
+      "short_enabled": false,
+      "short_max_leverage": 0.6,
+      "short_risk_budget": 0.0125,
+      "short_stop_atr": 1.8,
+      "short_trailing_atr": 2.0,
+      "short_take_atr": 4.0,
+      "short_max_hours": 48,
+      "funding_crowded": 0.0002,
+      "core_scale": 0.75,
+      "satellite_scale": 0.25
+    },
+    "development_score": 0.48349745897786944,
+    "legacy_heavy_counterfactual_id": "phase2_c01",
+    "development_end_exclusive": "2025-07-01 00:00:00+00:00",
+    "actual_periods": {
+      "legacy": [
+        "2020-01-01",
+        "2024-01-01"
+      ],
+      "recent_train": [
+        "2024-01-15",
+        "2025-01-01"
+      ],
+      "recent_validation": [
+        "2025-01-15",
+        "2025-07-01"
+      ],
+      "holdout": [
+        "2025-07-15",
+        "2026-08-01"
+      ],
+      "post2024": [
+        "2024-01-01",
+        "2026-08-01"
+      ]
+    },
+    "frozen_at_utc": "2026-09-20T20:03:00.438276+00:00",
+    "protocol_sha256": "53e594ac203ffa26200196bb8931f34e25c3b3d46a3643a7aeea7390cdff7476",
+    "candidate_table_sha256": "1b2b0f5f74355dbdfaa3bc2847f4d81a302722b675cc2aa183f721aaa1d1e7c1",
+    "source_sha256": {
+      "src/btc_regime/v441.py": "40cf413942d7e513614e9d5451bab81d8531b30f258250455dc929bf836dd369",
+      "src/btc_regime/v441_research.py": "c030b3460bb4b043b7838c9565922d63525069e37b2c107aabc2f2eb9d34249f",
+      "src/btc_regime/micro_backtest.py": "f761be84961e099146530fe6e65f15494a5e0104533c1dc6333a920539956888"
+    },
+    "holdout_used_for_selection": false
+  },
+  "params": {
+    "regime_fast": 12,
+    "regime_slow": 48,
+    "entry_mode": "reclaim",
+    "long_trailing_atr": 3.0,
+    "long_stop_atr": 2.5,
+    "long_target_vol": 0.9,
+    "long_risk_budget": 0.05,
+    "max_leverage": 3.0,
+    "long_max_hours": 240,
+    "cooldown_hours": 6,
+    "rebalance_hours": 24,
+    "rebalance_band": 0.25,
+    "short_enabled": false,
+    "short_max_leverage": 0.6,
+    "short_risk_budget": 0.0125,
+    "short_stop_atr": 1.8,
+    "short_trailing_atr": 2.0,
+    "short_take_atr": 4.0,
+    "short_max_hours": 48,
+    "funding_crowded": 0.0002,
+    "core_scale": 0.75,
+    "satellite_scale": 0.25
+  },
+  "cases": {
+    "V441__post2024__base": {
+      "case": "V441",
+      "period": "post2024",
+      "stress": "base",
+      "start": "2024-01-01",
+      "end_exclusive": "2026-08-01",
+      "total_return": 0.78265076678673,
+      "cagr": 0.2509642983561785,
+      "annual_log_growth": 0.22391469259327404,
+      "sharpe": 0.8747560111195783,
+      "annual_volatility": 0.308032016591723,
+      "max_drawdown": -0.21024902469226248,
+      "cycles": 126,
+      "short_cycles": 0,
+      "short_sum_trade_returns": 0.0,
+      "cycles_per_year": 48.80328738069989,
+      "days": 943,
+      "execution": {
+        "initial_cash": 10000.0,
+        "taker_fee_bps": 4,
+        "base_slippage_bps": 1,
+        "impact_bps": 8,
+        "max_minute_participation": 0.02,
+        "liquidation_fee_bps": 50.0,
+        "liquidation_slippage_bps": 5.0,
+        "quantity_step": 0.001,
+        "min_notional": 5.0,
+        "periods_per_year": 8760,
+        "maker_enabled": false,
+        "maker_fee_bps": 0.2,
+        "maker_offset_bps": 0.5,
+        "maker_order_timeout_minutes": 60,
+        "maker_exit_enabled": false,
+        "conservative_protection": true,
+        "signal_interval_minutes": 60,
+        "equity_interval_minutes": 60,
+        "execution_bar_minutes": 1
+      },
+      "execution_metrics": {
+        "total_return": 0.78265076678673,
+        "cagr": 0.2509642983561786,
+        "annualized_volatility": 0.2878800558666514,
+        "sharpe": 0.9205664027010969,
+        "sortino": 1.455893391349231,
+        "max_drawdown": -0.21024902469226248,
+        "trade_count": 126.0,
+        "win_rate": 0.2857142857142857,
+        "final_equity": 17826.5076678673,
+        "fill_count": 465.0,
+        "liquidation_count": 0.0,
+        "fees_paid": 1914.6825229919364,
+        "funding_paid": 879.8566481934516,
+        "realized_pnl": 10621.046839052642,
+        "order_notional": 4786706.307479842,
+        "max_leverage_observed": 3.06824919088402,
+        "max_margin_ratio": 0.012767430962030823,
+        "minimum_margin_buffer": 9235.930355262857,
+        "max_minute_participation_observed": 0.015795329486614152,
+        "maker_enabled": 0.0,
+        "maker_order_count": 0.0,
+        "maker_cancel_count": 0.0,
+        "maker_fill_count": 0.0,
+        "taker_fill_count": 465.0,
+        "maker_filled_notional": 0.0,
+        "taker_filled_notional": 4786706.307479842,
+        "maker_fill_ratio": 0.0,
+        "maker_fill_events_per_order": 0.0,
+        "maker_fee_saved_vs_taker": 0.0
+      },
+      "attribution": {
+        "core": {
+          "cycles": 68,
+          "sum_cycle_return": 0.5661253147206199,
+          "pnl_usdt": 5615.1799712697375
+        },
+        "satellite": {
+          "cycles": 58,
+          "sum_cycle_return": 0.13027083860302502,
+          "pnl_usdt": 2211.327696597562
+        }
+      },
+      "yearly": {
+        "2024": {
+          "total_return": 0.44885043278798875,
+          "cagr": 0.4477500498216428,
+          "annual_log_growth": 0.3700106615369149,
+          "sharpe": 1.179458437765277,
+          "annual_volatility": 0.36827376122049577,
+          "max_drawdown": -0.21024902469226248,
+          "cycles": 56,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 55.885245901639344,
+          "days": 366
+        },
+        "2025": {
+          "total_return": 0.33697869620396914,
+          "cagr": 0.3372446645345857,
+          "annual_log_growth": 0.29061127654247104,
+          "sharpe": 1.1205436033009994,
+          "annual_volatility": 0.2974832873751139,
+          "max_drawdown": -0.17393001010961995,
+          "cycles": 44,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 44.03013698630137,
+          "days": 365
+        },
+        "2026": {
+          "total_return": -0.07972371994152339,
+          "cagr": -0.13336638088311792,
+          "annual_log_growth": -0.14313897615592144,
+          "sharpe": -0.6624581740820092,
+          "annual_volatility": 0.18907013293426198,
+          "max_drawdown": -0.16594451865316373,
+          "cycles": 26,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 44.79481132075472,
+          "days": 212
+        }
+      }
+    },
+    "V4__post2024__base": {
+      "case": "V4",
+      "period": "post2024",
+      "stress": "base",
+      "start": "2024-01-01",
+      "end_exclusive": "2026-08-01",
+      "total_return": 0.9107496910275512,
+      "cagr": 0.2850440468512561,
+      "annual_log_growth": 0.2507929954649737,
+      "sharpe": 0.7745889454056243,
+      "annual_volatility": 0.4450431855822707,
+      "max_drawdown": -0.29165123814171856,
+      "cycles": 96,
+      "short_cycles": 0,
+      "short_sum_trade_returns": 0.0,
+      "cycles_per_year": 37.183457051961824,
+      "days": 943,
+      "execution": {
+        "initial_cash": 10000.0,
+        "taker_fee_bps": 4,
+        "base_slippage_bps": 1,
+        "impact_bps": 8,
+        "max_minute_participation": 0.02,
+        "liquidation_fee_bps": 50.0,
+        "liquidation_slippage_bps": 5.0,
+        "quantity_step": 0.001,
+        "min_notional": 5.0,
+        "periods_per_year": 8760,
+        "maker_enabled": false,
+        "maker_fee_bps": 0.2,
+        "maker_offset_bps": 0.5,
+        "maker_order_timeout_minutes": 60,
+        "maker_exit_enabled": false,
+        "conservative_protection": true,
+        "signal_interval_minutes": 240,
+        "equity_interval_minutes": 60,
+        "execution_bar_minutes": 1
+      },
+      "execution_metrics": {
+        "total_return": 0.9107496910275512,
+        "cagr": 0.28504404685125606,
+        "annualized_volatility": 0.41453966258486036,
+        "sharpe": 0.8106696542917875,
+        "sortino": 1.2669828267884997,
+        "max_drawdown": -0.29165123814171856,
+        "trade_count": 96.0,
+        "win_rate": 0.3020833333333333,
+        "final_equity": 19107.496910275513,
+        "fill_count": 391.0,
+        "liquidation_count": 0.0,
+        "fees_paid": 3075.5443314192116,
+        "funding_paid": 1380.0368475862424,
+        "realized_pnl": 13563.07808928098,
+        "order_notional": 7688860.828548035,
+        "max_leverage_observed": 4.5278602492833055,
+        "max_margin_ratio": 0.020141606234482304,
+        "minimum_margin_buffer": 8579.055271201525,
+        "max_minute_participation_observed": 0.019992486035926328,
+        "maker_enabled": 0.0,
+        "maker_order_count": 0.0,
+        "maker_cancel_count": 0.0,
+        "maker_fill_count": 0.0,
+        "taker_fill_count": 391.0,
+        "maker_filled_notional": 0.0,
+        "taker_filled_notional": 7688860.828548035,
+        "maker_fill_ratio": 0.0,
+        "maker_fill_events_per_order": 0.0,
+        "maker_fee_saved_vs_taker": 0.0
+      },
+      "yearly": {
+        "2024": {
+          "total_return": 0.5292823943264953,
+          "cagr": 0.5279517501576978,
+          "annual_log_growth": 0.4239281131238354,
+          "sharpe": 1.0779458249224734,
+          "annual_volatility": 0.5030731584577497,
+          "max_drawdown": -0.28504613380919464,
+          "cycles": 41,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 40.915983606557376,
+          "days": 366
+        },
+        "2025": {
+          "total_return": 0.5069762213892686,
+          "cagr": 0.5073995813223874,
+          "annual_log_growth": 0.41038603467900986,
+          "sharpe": 1.126510167163904,
+          "annual_volatility": 0.44968390915704,
+          "max_drawdown": -0.220360154944379,
+          "cycles": 35,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 35.023972602739725,
+          "days": 365
+        },
+        "2026": {
+          "total_return": -0.17089466514788754,
+          "cagr": -0.27594007415489114,
+          "annual_log_growth": -0.3228811195174159,
+          "sharpe": -0.8864622250659668,
+          "annual_volatility": 0.3102202180201498,
+          "max_drawdown": -0.2728690808714118,
+          "cycles": 20,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 34.45754716981132,
+          "days": 212
+        }
+      }
+    },
+    "V4_1_2__post2024__base": {
+      "case": "V4_1_2",
+      "period": "post2024",
+      "stress": "base",
+      "start": "2024-01-01",
+      "end_exclusive": "2026-08-01",
+      "total_return": 1.2171333237764195,
+      "cagr": 0.36124011338518464,
+      "annual_log_growth": 0.30839613234439534,
+      "sharpe": 0.9536336484637569,
+      "annual_volatility": 0.40469434096723184,
+      "max_drawdown": -0.25034757546150643,
+      "cycles": 96,
+      "short_cycles": 0,
+      "short_sum_trade_returns": 0.0,
+      "cycles_per_year": 37.183457051961824,
+      "days": 943,
+      "execution": {
+        "initial_cash": 10000.0,
+        "taker_fee_bps": 4,
+        "base_slippage_bps": 1,
+        "impact_bps": 8,
+        "max_minute_participation": 0.02,
+        "liquidation_fee_bps": 50.0,
+        "liquidation_slippage_bps": 5.0,
+        "quantity_step": 0.001,
+        "min_notional": 5.0,
+        "periods_per_year": 8760,
+        "maker_enabled": false,
+        "maker_fee_bps": 0.2,
+        "maker_offset_bps": 0.5,
+        "maker_order_timeout_minutes": 60,
+        "maker_exit_enabled": false,
+        "conservative_protection": true,
+        "signal_interval_minutes": 240,
+        "equity_interval_minutes": 60,
+        "execution_bar_minutes": 1
+      },
+      "execution_metrics": {
+        "total_return": 1.2171333237764195,
+        "cagr": 0.3612401133851846,
+        "annualized_volatility": 0.3808709519407322,
+        "sharpe": 0.9982923700046263,
+        "sortino": 1.583286597389443,
+        "max_drawdown": -0.25034757546150643,
+        "trade_count": 96.0,
+        "win_rate": 0.3020833333333333,
+        "final_equity": 22171.333237764193,
+        "fill_count": 374.0,
+        "liquidation_count": 0.0,
+        "fees_paid": 2728.3278795439323,
+        "funding_paid": 1214.266046349454,
+        "realized_pnl": 16113.927163657543,
+        "order_notional": 6820819.6988598285,
+        "max_leverage_observed": 4.526922093763538,
+        "max_margin_ratio": 0.02022761990874227,
+        "minimum_margin_buffer": 8996.645065176623,
+        "max_minute_participation_observed": 0.019992486035926328,
+        "maker_enabled": 0.0,
+        "maker_order_count": 0.0,
+        "maker_cancel_count": 0.0,
+        "maker_fill_count": 0.0,
+        "taker_fill_count": 374.0,
+        "maker_filled_notional": 0.0,
+        "taker_filled_notional": 6820819.6988598285,
+        "maker_fill_ratio": 0.0,
+        "maker_fill_events_per_order": 0.0,
+        "maker_fee_saved_vs_taker": 0.0
+      },
+      "yearly": {
+        "2024": {
+          "total_return": 0.573528306435795,
+          "cagr": 0.5720672791499729,
+          "annual_log_growth": 0.45239149153264624,
+          "sharpe": 1.159896801321165,
+          "annual_volatility": 0.48427207411673456,
+          "max_drawdown": -0.25034757546150643,
+          "cycles": 44,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 43.90983606557377,
+          "days": 366
+        },
+        "2025": {
+          "total_return": 0.5523501679909655,
+          "cagr": 0.5528178254499752,
+          "annual_log_growth": 0.4400712323598233,
+          "sharpe": 1.309282759563593,
+          "annual_volatility": 0.3922512305597507,
+          "max_drawdown": -0.22958983982804282,
+          "cycles": 33,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 33.022602739726025,
+          "days": 365
+        },
+        "2026": {
+          "total_return": -0.09233088810053569,
+          "cagr": -0.15371948855815581,
+          "annual_log_growth": -0.1669044005260343,
+          "sharpe": -0.5647782573318805,
+          "annual_volatility": 0.24307732439223018,
+          "max_drawdown": -0.2005769647322465,
+          "cycles": 19,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 32.73466981132076,
+          "days": 212
+        }
+      }
+    },
+    "V4_1_3__post2024__base": {
+      "case": "V4_1_3",
+      "period": "post2024",
+      "stress": "base",
+      "start": "2024-01-01",
+      "end_exclusive": "2026-08-01",
+      "total_return": 1.2773628474410987,
+      "cagr": 0.37544552942610043,
+      "annual_log_growth": 0.31877770003573774,
+      "sharpe": 0.9793042341384129,
+      "annual_volatility": 0.4047048169143464,
+      "max_drawdown": -0.2414551283752101,
+      "cycles": 130,
+      "short_cycles": 18,
+      "short_sum_trade_returns": 0.010996768179515356,
+      "cycles_per_year": 50.3525980911983,
+      "days": 943,
+      "execution": {
+        "initial_cash": 10000.0,
+        "taker_fee_bps": 4,
+        "base_slippage_bps": 1,
+        "impact_bps": 8,
+        "max_minute_participation": 0.02,
+        "liquidation_fee_bps": 50.0,
+        "liquidation_slippage_bps": 5.0,
+        "quantity_step": 0.001,
+        "min_notional": 5.0,
+        "periods_per_year": 8760,
+        "maker_enabled": false,
+        "maker_fee_bps": 0.2,
+        "maker_offset_bps": 0.5,
+        "maker_order_timeout_minutes": 60,
+        "maker_exit_enabled": false,
+        "conservative_protection": true,
+        "signal_interval_minutes": 240,
+        "equity_interval_minutes": 60,
+        "execution_bar_minutes": 1
+      },
+      "execution_metrics": {
+        "total_return": 1.2773628474410987,
+        "cagr": 0.37544552942610054,
+        "annualized_volatility": 0.3809799038323898,
+        "sharpe": 1.0253462051537932,
+        "sortino": 1.6268379931945913,
+        "max_drawdown": -0.2414551283752101,
+        "trade_count": 130.0,
+        "win_rate": 0.38461538461538464,
+        "final_equity": 22773.628474410987,
+        "fill_count": 447.0,
+        "liquidation_count": 0.0,
+        "fees_paid": 2869.2244975847448,
+        "funding_paid": 1228.111416074218,
+        "realized_pnl": 16870.964388069944,
+        "order_notional": 7173061.2439618595,
+        "max_leverage_observed": 4.528596601377109,
+        "max_margin_ratio": 0.02027636441616102,
+        "minimum_margin_buffer": 9009.15741725863,
+        "max_minute_participation_observed": 0.019992486035926328,
+        "maker_enabled": 0.0,
+        "maker_order_count": 0.0,
+        "maker_cancel_count": 0.0,
+        "maker_fill_count": 0.0,
+        "taker_fill_count": 447.0,
+        "maker_filled_notional": 0.0,
+        "taker_filled_notional": 7173061.2439618595,
+        "maker_fill_ratio": 0.0,
+        "maker_fill_events_per_order": 0.0,
+        "maker_fee_saved_vs_taker": 0.0
+      },
+      "yearly": {
+        "2024": {
+          "total_return": 0.6007678109138768,
+          "cagr": 0.5992252458690117,
+          "annual_log_growth": 0.46951929064085984,
+          "sharpe": 1.195397752895098,
+          "annual_volatility": 0.48422100319290357,
+          "max_drawdown": -0.2414551283752101,
+          "cycles": 54,
+          "short_cycles": 4,
+          "short_sum_trade_returns": 0.007011970743239278,
+          "cycles_per_year": 53.88934426229508,
+          "days": 366
+        },
+        "2025": {
+          "total_return": 0.5587904012914593,
+          "cagr": 0.5592644205145926,
+          "annual_log_growth": 0.4442141847472695,
+          "sharpe": 1.3198020877383265,
+          "annual_volatility": 0.39228009197207153,
+          "max_drawdown": -0.22545589052038184,
+          "cycles": 50,
+          "short_cycles": 10,
+          "short_sum_trade_returns": 0.0019922144087140504,
+          "cycles_per_year": 50.034246575342465,
+          "days": 365
+        },
+        "2026": {
+          "total_return": -0.08732497618064361,
+          "cagr": -0.14566220284771655,
+          "annual_log_growth": -0.1574286163849404,
+          "sharpe": -0.5253059138853552,
+          "annual_volatility": 0.24323708965935048,
+          "max_drawdown": -0.20284239592817266,
+          "cycles": 26,
+          "short_cycles": 4,
+          "short_sum_trade_returns": 0.001992583027562029,
+          "cycles_per_year": 44.79481132075472,
+          "days": 212
+        }
+      }
+    },
+    "V441_core_only__post2024__base": {
+      "case": "V441_core_only",
+      "period": "post2024",
+      "stress": "base",
+      "start": "2024-01-01",
+      "end_exclusive": "2026-08-01",
+      "total_return": 0.8262217576781776,
+      "cagr": 0.26271957958343206,
+      "annual_log_growth": 0.2332677914667994,
+      "sharpe": 0.9192105345120165,
+      "annual_volatility": 0.30108835308824106,
+      "max_drawdown": -0.1935152924867256,
+      "cycles": 96,
+      "short_cycles": 0,
+      "short_sum_trade_returns": 0.0,
+      "cycles_per_year": 37.183457051961824,
+      "days": 943,
+      "execution": {
+        "initial_cash": 10000.0,
+        "taker_fee_bps": 4,
+        "base_slippage_bps": 1,
+        "impact_bps": 8,
+        "max_minute_participation": 0.02,
+        "liquidation_fee_bps": 50.0,
+        "liquidation_slippage_bps": 5.0,
+        "quantity_step": 0.001,
+        "min_notional": 5.0,
+        "periods_per_year": 8760,
+        "maker_enabled": false,
+        "maker_fee_bps": 0.2,
+        "maker_offset_bps": 0.5,
+        "maker_order_timeout_minutes": 60,
+        "maker_exit_enabled": false,
+        "conservative_protection": true,
+        "signal_interval_minutes": 60,
+        "equity_interval_minutes": 60,
+        "execution_bar_minutes": 1
+      },
+      "execution_metrics": {
+        "total_return": 0.8262217576781776,
+        "cagr": 0.26271957958343206,
+        "annualized_volatility": 0.284291673003924,
+        "sharpe": 0.9614528763050295,
+        "sortino": 1.5154136509023055,
+        "max_drawdown": -0.1935152924867256,
+        "trade_count": 96.0,
+        "win_rate": 0.3020833333333333,
+        "final_equity": 18262.217576781775,
+        "fill_count": 369.0,
+        "liquidation_count": 0.0,
+        "fees_paid": 1778.4948581981773,
+        "funding_paid": 809.820612694823,
+        "realized_pnl": 10850.533047674782,
+        "order_notional": 4446237.1454954455,
+        "max_leverage_observed": 3.0706594071312683,
+        "max_margin_ratio": 0.012711850385539259,
+        "minimum_margin_buffer": 9243.69062223805,
+        "max_minute_participation_observed": 0.015930044450252652,
+        "maker_enabled": 0.0,
+        "maker_order_count": 0.0,
+        "maker_cancel_count": 0.0,
+        "maker_fill_count": 0.0,
+        "taker_fill_count": 369.0,
+        "maker_filled_notional": 0.0,
+        "taker_filled_notional": 4446237.1454954455,
+        "maker_fill_ratio": 0.0,
+        "maker_fill_events_per_order": 0.0,
+        "maker_fee_saved_vs_taker": 0.0
+      },
+      "attribution": {
+        "core": {
+          "cycles": 96,
+          "sum_cycle_return": 0.7146171205496709,
+          "pnl_usdt": 8262.217576781775
+        }
+      },
+      "yearly": {
+        "2024": {
+          "total_return": 0.4299816841778763,
+          "cagr": 0.42893401571433487,
+          "annual_log_growth": 0.35692872273420406,
+          "sharpe": 1.1561589737241276,
+          "annual_volatility": 0.3626456791831774,
+          "max_drawdown": -0.1935152924867256,
+          "cycles": 44,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 43.90983606557377,
+          "days": 366
+        },
+        "2025": {
+          "total_return": 0.36545522334767533,
+          "cagr": 0.3657465713703953,
+          "annual_log_growth": 0.3117012178533397,
+          "sharpe": 1.2211205371347136,
+          "annual_volatility": 0.28811075663339364,
+          "max_drawdown": -0.1777588866903137,
+          "cycles": 33,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 33.022602739726025,
+          "days": 365
+        },
+        "2026": {
+          "total_return": -0.06471154252923594,
+          "cagr": -0.10886646256376212,
+          "annual_log_growth": -0.11526098907545225,
+          "sharpe": -0.5379974051303796,
+          "annual_volatility": 0.18307350617592194,
+          "max_drawdown": -0.15255511993038884,
+          "cycles": 19,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 32.73466981132076,
+          "days": 212
+        }
+      }
+    },
+    "V441_short__post2024__base": {
+      "case": "V441_short",
+      "period": "post2024",
+      "stress": "base",
+      "start": "2024-01-01",
+      "end_exclusive": "2026-08-01",
+      "total_return": 0.7571530622743099,
+      "cagr": 0.2440032970562312,
+      "annual_log_growth": 0.21833464468022082,
+      "sharpe": 0.8562849178957783,
+      "annual_volatility": 0.3082286239907621,
+      "max_drawdown": -0.21256858450019822,
+      "cycles": 222,
+      "short_cycles": 96,
+      "short_sum_trade_returns": -0.013381683654550917,
+      "cycles_per_year": 85.98674443266172,
+      "days": 943,
+      "execution": {
+        "initial_cash": 10000.0,
+        "taker_fee_bps": 4,
+        "base_slippage_bps": 1,
+        "impact_bps": 8,
+        "max_minute_participation": 0.02,
+        "liquidation_fee_bps": 50.0,
+        "liquidation_slippage_bps": 5.0,
+        "quantity_step": 0.001,
+        "min_notional": 5.0,
+        "periods_per_year": 8760,
+        "maker_enabled": false,
+        "maker_fee_bps": 0.2,
+        "maker_offset_bps": 0.5,
+        "maker_order_timeout_minutes": 60,
+        "maker_exit_enabled": false,
+        "conservative_protection": true,
+        "signal_interval_minutes": 60,
+        "equity_interval_minutes": 60,
+        "execution_bar_minutes": 1
+      },
+      "execution_metrics": {
+        "total_return": 0.7571530622743099,
+        "cagr": 0.24400329705623114,
+        "annualized_volatility": 0.2881600895480407,
+        "sharpe": 0.9006002276433607,
+        "sortino": 1.4258861254803317,
+        "max_drawdown": -0.21256858450019822,
+        "trade_count": 222.0,
+        "win_rate": 0.2747747747747748,
+        "final_equity": 17571.5306227431,
+        "fill_count": 656.0,
+        "liquidation_count": 0.0,
+        "fees_paid": 2035.3241050799672,
+        "funding_paid": 863.371704129442,
+        "realized_pnl": 10470.226431952502,
+        "order_notional": 5088310.262699919,
+        "max_leverage_observed": 3.0672380732414424,
+        "max_margin_ratio": 0.012719480049978792,
+        "minimum_margin_buffer": 9235.930355262857,
+        "max_minute_participation_observed": 0.015593257041156402,
+        "maker_enabled": 0.0,
+        "maker_order_count": 0.0,
+        "maker_cancel_count": 0.0,
+        "maker_fill_count": 0.0,
+        "taker_fill_count": 656.0,
+        "maker_filled_notional": 0.0,
+        "taker_filled_notional": 5088310.262699919,
+        "maker_fill_ratio": 0.0,
+        "maker_fill_events_per_order": 0.0,
+        "maker_fee_saved_vs_taker": 0.0
+      },
+      "attribution": {
+        "core": {
+          "cycles": 69,
+          "sum_cycle_return": 0.5518620698882313,
+          "pnl_usdt": 5353.241903215518
+        },
+        "satellite": {
+          "cycles": 153,
+          "sum_cycle_return": 0.13024245988836355,
+          "pnl_usdt": 2218.2887195275816
+        }
+      },
+      "yearly": {
+        "2024": {
+          "total_return": 0.4439905537302462,
+          "cagr": 0.4429037963093739,
+          "annual_log_growth": 0.3666576083449692,
+          "sharpe": 1.1702735262597102,
+          "annual_volatility": 0.3683072242173474,
+          "max_drawdown": -0.21256858450019822,
+          "cycles": 72,
+          "short_cycles": 16,
+          "short_sum_trade_returns": -0.002712924848571007,
+          "cycles_per_year": 71.85245901639344,
+          "days": 366
+        },
+        "2025": {
+          "total_return": 0.31139899157929807,
+          "cagr": 0.3116425162791952,
+          "annual_log_growth": 0.2712801810463884,
+          "sharpe": 1.055267104814714,
+          "annual_volatility": 0.29758201745169366,
+          "max_drawdown": -0.17392379182916928,
+          "cycles": 81,
+          "short_cycles": 37,
+          "short_sum_trade_returns": -0.0187812383104407,
+          "cycles_per_year": 81.0554794520548,
+          "days": 365
+        },
+        "2026": {
+          "total_return": -0.07208029756549461,
+          "cagr": -0.12092810136005032,
+          "annual_log_growth": -0.12888858869218048,
+          "sharpe": -0.5823461899115345,
+          "annual_volatility": 0.19023869662301474,
+          "max_drawdown": -0.16491322217878357,
+          "cycles": 69,
+          "short_cycles": 43,
+          "short_sum_trade_returns": 0.00811247950446079,
+          "cycles_per_year": 118.87853773584905,
+          "days": 212
+        }
+      }
+    },
+    "V441_tactical_only__post2024__base": {
+      "case": "V441_tactical_only",
+      "period": "post2024",
+      "stress": "base",
+      "start": "2024-01-01",
+      "end_exclusive": "2026-08-01",
+      "total_return": 0.07363177142194344,
+      "cagr": 0.027900631664545043,
+      "annual_log_growth": 0.027518500556002752,
+      "sharpe": 0.25997200189923036,
+      "annual_volatility": 0.3840947098724041,
+      "max_drawdown": -0.48340172905289147,
+      "cycles": 101,
+      "short_cycles": 0,
+      "short_sum_trade_returns": 0.0,
+      "cycles_per_year": 39.12009544008484,
+      "days": 943,
+      "execution": {
+        "initial_cash": 10000.0,
+        "taker_fee_bps": 4,
+        "base_slippage_bps": 1,
+        "impact_bps": 8,
+        "max_minute_participation": 0.02,
+        "liquidation_fee_bps": 50.0,
+        "liquidation_slippage_bps": 5.0,
+        "quantity_step": 0.001,
+        "min_notional": 5.0,
+        "periods_per_year": 8760,
+        "maker_enabled": false,
+        "maker_fee_bps": 0.2,
+        "maker_offset_bps": 0.5,
+        "maker_order_timeout_minutes": 60,
+        "maker_exit_enabled": false,
+        "conservative_protection": true,
+        "signal_interval_minutes": 60,
+        "equity_interval_minutes": 60,
+        "execution_bar_minutes": 1
+      },
+      "execution_metrics": {
+        "total_return": 0.07363177142194344,
+        "cagr": 0.02790063166454515,
+        "annualized_volatility": 0.3627263754158156,
+        "sharpe": 0.2569804206366125,
+        "sortino": 0.3885008558580397,
+        "max_drawdown": -0.48340172905289147,
+        "trade_count": 101.0,
+        "win_rate": 0.38613861386138615,
+        "final_equity": 10736.317714219434,
+        "fill_count": 239.0,
+        "liquidation_count": 0.0,
+        "fees_paid": 1772.7129713610423,
+        "funding_paid": 1286.4388310015222,
+        "realized_pnl": 3795.4695165819903,
+        "order_notional": 4431782.428402605,
+        "max_leverage_observed": 2.7370074393903017,
+        "max_margin_ratio": 0.010966174024808413,
+        "minimum_margin_buffer": 9016.465718339765,
+        "max_minute_participation_observed": 0.01996850761436678,
+        "maker_enabled": 0.0,
+        "maker_order_count": 0.0,
+        "maker_cancel_count": 0.0,
+        "maker_fill_count": 0.0,
+        "taker_fill_count": 239.0,
+        "maker_filled_notional": 0.0,
+        "taker_filled_notional": 4431782.428402605,
+        "maker_fill_ratio": 0.0,
+        "maker_fill_events_per_order": 0.0,
+        "maker_fee_saved_vs_taker": 0.0
+      },
+      "yearly": {
+        "2024": {
+          "total_return": 0.38082133658314343,
+          "cagr": 0.37990860282748473,
+          "annual_log_growth": 0.322017267140665,
+          "sharpe": 1.00070834586194,
+          "annual_volatility": 0.3994084409180423,
+          "max_drawdown": -0.28360492561404527,
+          "cycles": 43,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 42.911885245901644,
+          "days": 366
+        },
+        "2025": {
+          "total_return": 0.04090689055940877,
+          "cagr": 0.04093547478504506,
+          "annual_log_growth": 0.0401198038357146,
+          "sharpe": 0.2920382044404199,
+          "annual_volatility": 0.3839443606731575,
+          "max_drawdown": -0.30841276916890725,
+          "cycles": 35,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 35.023972602739725,
+          "days": 365
+        },
+        "2026": {
+          "total_return": -0.25302514575594015,
+          "cagr": -0.3950468460402748,
+          "annual_log_growth": -0.5026042554207953,
+          "sharpe": -1.2309373520033424,
+          "annual_volatility": 0.3565735693274562,
+          "max_drawdown": -0.32990530594922884,
+          "cycles": 23,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 39.62617924528302,
+          "days": 212
+        }
+      }
+    },
+    "V441__holdout__base": {
+      "case": "V441",
+      "period": "holdout",
+      "stress": "base",
+      "start": "2025-07-15",
+      "end_exclusive": "2026-08-01",
+      "total_return": -0.044456389122260354,
+      "cagr": -0.04254914392027901,
+      "annual_log_growth": -0.0434808844876326,
+      "sharpe": -0.15089987866274104,
+      "annual_volatility": 0.18053866882868194,
+      "max_drawdown": -0.19863926222936712,
+      "cycles": 41,
+      "short_cycles": 0,
+      "short_sum_trade_returns": 0.0,
+      "cycles_per_year": 39.20222513089005,
+      "days": 382,
+      "execution": {
+        "initial_cash": 10000.0,
+        "taker_fee_bps": 4,
+        "base_slippage_bps": 1,
+        "impact_bps": 8,
+        "max_minute_participation": 0.02,
+        "liquidation_fee_bps": 50.0,
+        "liquidation_slippage_bps": 5.0,
+        "quantity_step": 0.001,
+        "min_notional": 5.0,
+        "periods_per_year": 8760,
+        "maker_enabled": false,
+        "maker_fee_bps": 0.2,
+        "maker_offset_bps": 0.5,
+        "maker_order_timeout_minutes": 60,
+        "maker_exit_enabled": false,
+        "conservative_protection": true,
+        "signal_interval_minutes": 60,
+        "equity_interval_minutes": 60,
+        "execution_bar_minutes": 1
+      },
+      "execution_metrics": {
+        "total_return": -0.044456389122260354,
+        "cagr": -0.042549143920278976,
+        "annualized_volatility": 0.22272171516829442,
+        "sharpe": -0.08415416941211781,
+        "sortino": -0.1298857934902115,
+        "max_drawdown": -0.19863926222936712,
+        "trade_count": 41.0,
+        "win_rate": 0.24390243902439024,
+        "final_equity": 9555.436108777396,
+        "fill_count": 132.0,
+        "liquidation_count": 0.0,
+        "fees_paid": 382.59456468141633,
+        "funding_paid": 88.6070947858326,
+        "realized_pnl": 26.637768244647837,
+        "order_notional": 956486.411703541,
+        "max_leverage_observed": 3.069299458975032,
+        "max_margin_ratio": 0.012290060884079348,
+        "minimum_margin_buffer": 9465.298928427494,
+        "max_minute_participation_observed": 0.00845336396831589,
+        "maker_enabled": 0.0,
+        "maker_order_count": 0.0,
+        "maker_cancel_count": 0.0,
+        "maker_fill_count": 0.0,
+        "taker_fill_count": 132.0,
+        "maker_filled_notional": 0.0,
+        "taker_filled_notional": 956486.411703541,
+        "maker_fill_ratio": 0.0,
+        "maker_fill_events_per_order": 0.0,
+        "maker_fee_saved_vs_taker": 0.0
+      },
+      "attribution": {
+        "core": {
+          "cycles": 18,
+          "sum_cycle_return": -0.05712567972231082,
+          "pnl_usdt": -591.0440828815117
+        },
+        "satellite": {
+          "cycles": 23,
+          "sum_cycle_return": 0.023022267840268756,
+          "pnl_usdt": 146.48019165890764
+        }
+      },
+      "yearly": {
+        "2025": {
+          "total_return": 0.037671483493885605,
+          "cagr": 0.08269250087420416,
+          "annual_log_growth": 0.07945099499153031,
+          "sharpe": 0.5506896598410141,
+          "annual_volatility": 0.17019828858153335,
+          "max_drawdown": -0.12635821743886355,
+          "cycles": 15,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 32.22794117647059,
+          "days": 170
+        },
+        "2026": {
+          "total_return": -0.07914631357085944,
+          "cagr": -0.13242935473547127,
+          "annual_log_growth": -0.14205833501337645,
+          "sharpe": -0.6585521064881396,
+          "annual_volatility": 0.18866733156940524,
+          "max_drawdown": -0.1657237270883043,
+          "cycles": 26,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 44.79481132075472,
+          "days": 212
+        }
+      }
+    },
+    "V4__holdout__base": {
+      "case": "V4",
+      "period": "holdout",
+      "stress": "base",
+      "start": "2025-07-15",
+      "end_exclusive": "2026-08-01",
+      "total_return": -0.10467295882163052,
+      "cagr": -0.10032176140256642,
+      "annual_log_growth": -0.10571809225023493,
+      "sharpe": -0.2059571880638179,
+      "annual_volatility": 0.29834055077813826,
+      "max_drawdown": -0.2905616645446416,
+      "cycles": 33,
+      "short_cycles": 0,
+      "short_sum_trade_returns": 0.0,
+      "cycles_per_year": 31.553010471204185,
+      "days": 382,
+      "execution": {
+        "initial_cash": 10000.0,
+        "taker_fee_bps": 4,
+        "base_slippage_bps": 1,
+        "impact_bps": 8,
+        "max_minute_participation": 0.02,
+        "liquidation_fee_bps": 50.0,
+        "liquidation_slippage_bps": 5.0,
+        "quantity_step": 0.001,
+        "min_notional": 5.0,
+        "periods_per_year": 8760,
+        "maker_enabled": false,
+        "maker_fee_bps": 0.2,
+        "maker_offset_bps": 0.5,
+        "maker_order_timeout_minutes": 60,
+        "maker_exit_enabled": false,
+        "conservative_protection": true,
+        "signal_interval_minutes": 240,
+        "equity_interval_minutes": 60,
+        "execution_bar_minutes": 1
+      },
+      "execution_metrics": {
+        "total_return": -0.10467295882163052,
+        "cagr": -0.10032176140256643,
+        "annualized_volatility": 0.34496512695459497,
+        "sharpe": -0.13454747361162928,
+        "sortino": -0.2046376415892563,
+        "max_drawdown": -0.2905616645446416,
+        "trade_count": 33.0,
+        "win_rate": 0.2727272727272727,
+        "final_equity": 8953.270411783695,
+        "fill_count": 112.0,
+        "liquidation_count": 0.0,
+        "fees_paid": 631.0722992804418,
+        "funding_paid": 147.66074307458712,
+        "realized_pnl": -267.996545861264,
+        "order_notional": 1577680.7482011043,
+        "max_leverage_observed": 4.526891926441358,
+        "max_margin_ratio": 0.018107622241538893,
+        "minimum_margin_buffer": 8509.177985405799,
+        "max_minute_participation_observed": 0.011619165613820646,
+        "maker_enabled": 0.0,
+        "maker_order_count": 0.0,
+        "maker_cancel_count": 0.0,
+        "maker_fill_count": 0.0,
+        "taker_fill_count": 112.0,
+        "maker_filled_notional": 0.0,
+        "taker_filled_notional": 1577680.7482011043,
+        "maker_fill_ratio": 0.0,
+        "maker_fill_events_per_order": 0.0,
+        "maker_fee_saved_vs_taker": 0.0
+      },
+      "yearly": {
+        "2025": {
+          "total_return": 0.07834953130549094,
+          "cagr": 0.17593919253261384,
+          "annual_log_growth": 0.16206714110949033,
+          "sharpe": 0.7119455142324492,
+          "annual_volatility": 0.28375523471998676,
+          "max_drawdown": -0.12405734456566653,
+          "cycles": 13,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 27.93088235294118,
+          "days": 170
+        },
+        "2026": {
+          "total_return": -0.16972464383190067,
+          "cagr": -0.2741787699612194,
+          "annual_log_growth": -0.32045153409529764,
+          "sharpe": -0.880393743542316,
+          "annual_volatility": 0.30976299193811474,
+          "max_drawdown": -0.2719721628793492,
+          "cycles": 20,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 34.45754716981132,
+          "days": 212
+        }
+      }
+    },
+    "V4_1_2__holdout__base": {
+      "case": "V4_1_2",
+      "period": "holdout",
+      "stress": "base",
+      "start": "2025-07-15",
+      "end_exclusive": "2026-08-01",
+      "total_return": 0.008436477200113535,
+      "cagr": 0.008065065489287182,
+      "annual_log_growth": 0.00803271666248865,
+      "sharpe": 0.14993510991616732,
+      "annual_volatility": 0.23085961999951746,
+      "max_drawdown": -0.1999131927231843,
+      "cycles": 28,
+      "short_cycles": 0,
+      "short_sum_trade_returns": 0.0,
+      "cycles_per_year": 26.772251308900522,
+      "days": 382,
+      "execution": {
+        "initial_cash": 10000.0,
+        "taker_fee_bps": 4,
+        "base_slippage_bps": 1,
+        "impact_bps": 8,
+        "max_minute_participation": 0.02,
+        "liquidation_fee_bps": 50.0,
+        "liquidation_slippage_bps": 5.0,
+        "quantity_step": 0.001,
+        "min_notional": 5.0,
+        "periods_per_year": 8760,
+        "maker_enabled": false,
+        "maker_fee_bps": 0.2,
+        "maker_offset_bps": 0.5,
+        "maker_order_timeout_minutes": 60,
+        "maker_exit_enabled": false,
+        "conservative_protection": true,
+        "signal_interval_minutes": 240,
+        "equity_interval_minutes": 60,
+        "execution_bar_minutes": 1
+      },
+      "execution_metrics": {
+        "total_return": 0.008436477200113535,
+        "cagr": 0.008065065489287093,
+        "annualized_volatility": 0.2943421067662918,
+        "sharpe": 0.17363366203408925,
+        "sortino": 0.2681450853070271,
+        "max_drawdown": -0.1999131927231843,
+        "trade_count": 28.0,
+        "win_rate": 0.25,
+        "final_equity": 10084.364772001136,
+        "fill_count": 93.0,
+        "liquidation_count": 0.0,
+        "fees_paid": 481.77806914021426,
+        "funding_paid": 100.16653941290942,
+        "realized_pnl": 666.3093805542638,
+        "order_notional": 1204445.1728505355,
+        "max_leverage_observed": 4.530615132547423,
+        "max_margin_ratio": 0.01812251516843574,
+        "minimum_margin_buffer": 9263.258550486707,
+        "max_minute_participation_observed": 0.012090667986555394,
+        "maker_enabled": 0.0,
+        "maker_order_count": 0.0,
+        "maker_cancel_count": 0.0,
+        "maker_fill_count": 0.0,
+        "taker_fill_count": 93.0,
+        "maker_filled_notional": 0.0,
+        "taker_filled_notional": 1204445.1728505355,
+        "maker_fill_ratio": 0.0,
+        "maker_fill_events_per_order": 0.0,
+        "maker_fee_saved_vs_taker": 0.0
+      },
+      "yearly": {
+        "2025": {
+          "total_return": 0.10968999347100628,
+          "cagr": 0.25059623569165573,
+          "annual_log_growth": 0.2236204261446559,
+          "sharpe": 1.1446526997172706,
+          "annual_volatility": 0.21537495125614176,
+          "max_drawdown": -0.1430185450221838,
+          "cycles": 9,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 19.336764705882352,
+          "days": 170
+        },
+        "2026": {
+          "total_return": -0.09124486736532722,
+          "cagr": -0.15197420090032396,
+          "annual_log_growth": -0.16484422018641914,
+          "sharpe": -0.5575474719503885,
+          "annual_volatility": 0.24270278408007345,
+          "max_drawdown": -0.1999131927231843,
+          "cycles": 19,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 32.73466981132076,
+          "days": 212
+        }
+      }
+    },
+    "V4_1_3__holdout__base": {
+      "case": "V4_1_3",
+      "period": "holdout",
+      "stress": "base",
+      "start": "2025-07-15",
+      "end_exclusive": "2026-08-01",
+      "total_return": 0.019911346547171416,
+      "cagr": 0.019030016559237622,
+      "annual_log_growth": 0.018851210685287695,
+      "sharpe": 0.19681164671416768,
+      "annual_volatility": 0.23093562345082216,
+      "max_drawdown": -0.20204412437014052,
+      "cycles": 44,
+      "short_cycles": 9,
+      "short_sum_trade_returns": 0.004981638250297604,
+      "cycles_per_year": 42.07068062827225,
+      "days": 382,
+      "execution": {
+        "initial_cash": 10000.0,
+        "taker_fee_bps": 4,
+        "base_slippage_bps": 1,
+        "impact_bps": 8,
+        "max_minute_participation": 0.02,
+        "liquidation_fee_bps": 50.0,
+        "liquidation_slippage_bps": 5.0,
+        "quantity_step": 0.001,
+        "min_notional": 5.0,
+        "periods_per_year": 8760,
+        "maker_enabled": false,
+        "maker_fee_bps": 0.2,
+        "maker_offset_bps": 0.5,
+        "maker_order_timeout_minutes": 60,
+        "maker_exit_enabled": false,
+        "conservative_protection": true,
+        "signal_interval_minutes": 240,
+        "equity_interval_minutes": 60,
+        "execution_bar_minutes": 1
+      },
+      "execution_metrics": {
+        "total_return": 0.019911346547171416,
+        "cagr": 0.01903001655923764,
+        "annualized_volatility": 0.29441065813482414,
+        "sharpe": 0.2103847537577582,
+        "sortino": 0.3250840112894128,
+        "max_drawdown": -0.20204412437014052,
+        "trade_count": 44.0,
+        "win_rate": 0.36363636363636365,
+        "final_equity": 10199.113465471713,
+        "fill_count": 130.0,
+        "liquidation_count": 0.0,
+        "fees_paid": 514.460454256419,
+        "funding_paid": 99.58113437086959,
+        "realized_pnl": 813.1550540989886,
+        "order_notional": 1286151.1356410473,
+        "max_leverage_observed": 4.524286074888694,
+        "max_margin_ratio": 0.018097198763664567,
+        "minimum_margin_buffer": 9276.456217268475,
+        "max_minute_participation_observed": 0.01225906169110352,
+        "maker_enabled": 0.0,
+        "maker_order_count": 0.0,
+        "maker_cancel_count": 0.0,
+        "maker_fill_count": 0.0,
+        "taker_fill_count": 130.0,
+        "maker_filled_notional": 0.0,
+        "taker_filled_notional": 1286151.1356410473,
+        "maker_fill_ratio": 0.0,
+        "maker_fill_events_per_order": 0.0,
+        "maker_fee_saved_vs_taker": 0.0
+      },
+      "yearly": {
+        "2025": {
+          "total_return": 0.11582007033823505,
+          "cagr": 0.26548636894983013,
+          "annual_log_growth": 0.23545652966872144,
+          "sharpe": 1.1992338515378453,
+          "annual_volatility": 0.21546620833990673,
+          "max_drawdown": -0.14211594448864284,
+          "cycles": 18,
+          "short_cycles": 5,
+          "short_sum_trade_returns": 0.0028376020360435447,
+          "cycles_per_year": 38.673529411764704,
+          "days": 170
+        },
+        "2026": {
+          "total_return": -0.08595357472104903,
+          "cagr": -0.14344927019929474,
+          "annual_log_growth": -0.15484173378256014,
+          "sharpe": -0.516161138092898,
+          "annual_volatility": 0.2427648870751291,
+          "max_drawdown": -0.20204412437014052,
+          "cycles": 26,
+          "short_cycles": 4,
+          "short_sum_trade_returns": 0.0021440362142540596,
+          "cycles_per_year": 44.79481132075472,
+          "days": 212
+        }
+      }
+    },
+    "V441_core_only__holdout__base": {
+      "case": "V441_core_only",
+      "period": "holdout",
+      "stress": "base",
+      "start": "2025-07-15",
+      "end_exclusive": "2026-08-01",
+      "total_return": 0.004191807345083287,
+      "cagr": 0.004007636468669359,
+      "annual_log_growth": 0.003999627285103036,
+      "sharpe": 0.10853916573153495,
+      "annual_volatility": 0.17038159080515763,
+      "max_drawdown": -0.15207618327571926,
+      "cycles": 28,
+      "short_cycles": 0,
+      "short_sum_trade_returns": 0.0,
+      "cycles_per_year": 26.772251308900522,
+      "days": 382,
+      "execution": {
+        "initial_cash": 10000.0,
+        "taker_fee_bps": 4,
+        "base_slippage_bps": 1,
+        "impact_bps": 8,
+        "max_minute_participation": 0.02,
+        "liquidation_fee_bps": 50.0,
+        "liquidation_slippage_bps": 5.0,
+        "quantity_step": 0.001,
+        "min_notional": 5.0,
+        "periods_per_year": 8760,
+        "maker_enabled": false,
+        "maker_fee_bps": 0.2,
+        "maker_offset_bps": 0.5,
+        "maker_order_timeout_minutes": 60,
+        "maker_exit_enabled": false,
+        "conservative_protection": true,
+        "signal_interval_minutes": 60,
+        "equity_interval_minutes": 60,
+        "execution_bar_minutes": 1
+      },
+      "execution_metrics": {
+        "total_return": 0.004191807345083287,
+        "cagr": 0.004007636468669418,
+        "annualized_volatility": 0.21791940790941358,
+        "sharpe": 0.12687053365360043,
+        "sortino": 0.19483500037741203,
+        "max_drawdown": -0.15207618327571926,
+        "trade_count": 28.0,
+        "win_rate": 0.25,
+        "final_equity": 10041.918073450834,
+        "fill_count": 93.0,
+        "liquidation_count": 0.0,
+        "fees_paid": 348.9026414356692,
+        "funding_paid": 71.58399010904218,
+        "realized_pnl": 462.40470499553567,
+        "order_notional": 872256.6035891734,
+        "max_leverage_observed": 3.062303198017254,
+        "max_margin_ratio": 0.012258046747259424,
+        "minimum_margin_buffer": 9508.357001412289,
+        "max_minute_participation_observed": 0.008756472636502515,
+        "maker_enabled": 0.0,
+        "maker_order_count": 0.0,
+        "maker_cancel_count": 0.0,
+        "maker_fill_count": 0.0,
+        "taker_fill_count": 93.0,
+        "maker_filled_notional": 0.0,
+        "taker_filled_notional": 872256.6035891734,
+        "maker_fill_ratio": 0.0,
+        "maker_fill_events_per_order": 0.0,
+        "maker_fee_saved_vs_taker": 0.0
+      },
+      "attribution": {
+        "core": {
+          "cycles": 28,
+          "sum_cycle_return": 0.012189011431997064,
+          "pnl_usdt": 41.91807345083362
+        }
+      },
+      "yearly": {
+        "2025": {
+          "total_return": 0.0733656381457477,
+          "cagr": 0.16429306882827968,
+          "annual_log_growth": 0.15211409496253273,
+          "sharpe": 1.0655199377191873,
+          "annual_volatility": 0.15377052366859095,
+          "max_drawdown": -0.10569172409640004,
+          "cycles": 9,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 19.336764705882352,
+          "days": 170
+        },
+        "2026": {
+          "total_return": -0.06444572878275001,
+          "cagr": -0.10843007373693321,
+          "annual_log_growth": -0.11477140811660916,
+          "sharpe": -0.5366082044653591,
+          "annual_volatility": 0.18274629402675,
+          "max_drawdown": -0.15207618327571926,
+          "cycles": 19,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 32.73466981132076,
+          "days": 212
+        }
+      }
+    },
+    "V441_short__holdout__base": {
+      "case": "V441_short",
+      "period": "holdout",
+      "stress": "base",
+      "start": "2025-07-15",
+      "end_exclusive": "2026-08-01",
+      "total_return": -0.04515501965993263,
+      "cagr": -0.04321848482868633,
+      "annual_log_growth": -0.04418021540036716,
+      "sharpe": -0.15321315404615707,
+      "annual_volatility": 0.18138275674111148,
+      "max_drawdown": -0.19751420761754868,
+      "cycles": 109,
+      "short_cycles": 68,
+      "short_sum_trade_returns": -0.0006545868938574702,
+      "cycles_per_year": 104.22054973821989,
+      "days": 382,
+      "execution": {
+        "initial_cash": 10000.0,
+        "taker_fee_bps": 4,
+        "base_slippage_bps": 1,
+        "impact_bps": 8,
+        "max_minute_participation": 0.02,
+        "liquidation_fee_bps": 50.0,
+        "liquidation_slippage_bps": 5.0,
+        "quantity_step": 0.001,
+        "min_notional": 5.0,
+        "periods_per_year": 8760,
+        "maker_enabled": false,
+        "maker_fee_bps": 0.2,
+        "maker_offset_bps": 0.5,
+        "maker_order_timeout_minutes": 60,
+        "maker_exit_enabled": false,
+        "conservative_protection": true,
+        "signal_interval_minutes": 60,
+        "equity_interval_minutes": 60,
+        "execution_bar_minutes": 1
+      },
+      "execution_metrics": {
+        "total_return": -0.04515501965993263,
+        "cagr": -0.04321848482868629,
+        "annualized_volatility": 0.223436492006257,
+        "sharpe": -0.08629923267874143,
+        "sortino": -0.1335215703008144,
+        "max_drawdown": -0.19751420761754868,
+        "trade_count": 109.0,
+        "win_rate": 0.28440366972477066,
+        "final_equity": 9548.449803400674,
+        "fill_count": 267.0,
+        "liquidation_count": 0.0,
+        "fees_paid": 441.92810477171923,
+        "funding_paid": 83.15709935595861,
+        "realized_pnl": 73.53500752835772,
+        "order_notional": 1104820.261929298,
+        "max_leverage_observed": 3.069299458975032,
+        "max_margin_ratio": 0.012290060884079348,
+        "minimum_margin_buffer": 9478.661809088202,
+        "max_minute_participation_observed": 0.00845336396831589,
+        "maker_enabled": 0.0,
+        "maker_order_count": 0.0,
+        "maker_cancel_count": 0.0,
+        "maker_fill_count": 0.0,
+        "taker_fill_count": 267.0,
+        "maker_filled_notional": 0.0,
+        "taker_filled_notional": 1104820.261929298,
+        "maker_fill_ratio": 0.0,
+        "maker_fill_events_per_order": 0.0,
+        "maker_fee_saved_vs_taker": 0.0
+      },
+      "attribution": {
+        "core": {
+          "cycles": 19,
+          "sum_cycle_return": -0.07049673419004071,
+          "pnl_usdt": -720.4665633406439
+        },
+        "satellite": {
+          "cycles": 90,
+          "sum_cycle_return": 0.035803052260816426,
+          "pnl_usdt": 268.9163667413177
+        }
+      },
+      "yearly": {
+        "2025": {
+          "total_return": 0.028593142354283563,
+          "cagr": 0.06244336198882808,
+          "annual_log_growth": 0.06057131403214423,
+          "sharpe": 0.4389164359667491,
+          "annual_volatility": 0.1707160880496497,
+          "max_drawdown": -0.1340015017172319,
+          "cycles": 40,
+          "short_cycles": 25,
+          "short_sum_trade_returns": -0.00878146376855313,
+          "cycles_per_year": 85.94117647058825,
+          "days": 170
+        },
+        "2026": {
+          "total_return": -0.0716980883670083,
+          "cagr": -0.12030417383057383,
+          "annual_log_growth": -0.1281790833415319,
+          "sharpe": -0.5804198047766406,
+          "annual_volatility": 0.18979416658964934,
+          "max_drawdown": -0.1645180929841461,
+          "cycles": 69,
+          "short_cycles": 43,
+          "short_sum_trade_returns": 0.008126876874695663,
+          "cycles_per_year": 118.87853773584905,
+          "days": 212
+        }
+      }
+    },
+    "V441_tactical_only__holdout__base": {
+      "case": "V441_tactical_only",
+      "period": "holdout",
+      "stress": "base",
+      "start": "2025-07-15",
+      "end_exclusive": "2026-08-01",
+      "total_return": -0.36807255164986197,
+      "cagr": -0.3552258807402418,
+      "annual_log_growth": -0.438855226219699,
+      "sharpe": -1.150178575864363,
+      "annual_volatility": 0.3333437357383794,
+      "max_drawdown": -0.4825993317594195,
+      "cycles": 37,
+      "short_cycles": 0,
+      "short_sum_trade_returns": 0.0,
+      "cycles_per_year": 35.377617801047116,
+      "days": 382,
+      "execution": {
+        "initial_cash": 10000.0,
+        "taker_fee_bps": 4,
+        "base_slippage_bps": 1,
+        "impact_bps": 8,
+        "max_minute_participation": 0.02,
+        "liquidation_fee_bps": 50.0,
+        "liquidation_slippage_bps": 5.0,
+        "quantity_step": 0.001,
+        "min_notional": 5.0,
+        "periods_per_year": 8760,
+        "maker_enabled": false,
+        "maker_fee_bps": 0.2,
+        "maker_offset_bps": 0.5,
+        "maker_order_timeout_minutes": 60,
+        "maker_exit_enabled": false,
+        "conservative_protection": true,
+        "signal_interval_minutes": 60,
+        "equity_interval_minutes": 60,
+        "execution_bar_minutes": 1
+      },
+      "execution_metrics": {
+        "total_return": -0.36807255164986197,
+        "cagr": -0.35522588074024186,
+        "annualized_volatility": 0.3332898199596628,
+        "sharpe": -1.1493773999501777,
+        "sortino": -1.7041093683929271,
+        "max_drawdown": -0.4825993317594195,
+        "trade_count": 37.0,
+        "win_rate": 0.3783783783783784,
+        "final_equity": 6319.27448350138,
+        "fill_count": 81.0,
+        "liquidation_count": 0.0,
+        "fees_paid": 478.3171042825994,
+        "funding_paid": 178.30712339523686,
+        "realized_pnl": -3024.1012888207842,
+        "order_notional": 1195792.7607064985,
+        "max_leverage_observed": 2.7336463396768154,
+        "max_margin_ratio": 0.010952672220488648,
+        "minimum_margin_buffer": 6263.121900019263,
+        "max_minute_participation_observed": 0.016152928109927103,
+        "maker_enabled": 0.0,
+        "maker_order_count": 0.0,
+        "maker_cancel_count": 0.0,
+        "maker_fill_count": 0.0,
+        "taker_fill_count": 81.0,
+        "maker_filled_notional": 0.0,
+        "taker_filled_notional": 1195792.7607064985,
+        "maker_fill_ratio": 0.0,
+        "maker_fill_events_per_order": 0.0,
+        "maker_fee_saved_vs_taker": 0.0
+      },
+      "yearly": {
+        "2025": {
+          "total_return": -0.1548425507765927,
+          "cagr": -0.30333605358331117,
+          "annual_log_growth": -0.36145212736405324,
+          "sharpe": -1.0397616593457424,
+          "annual_volatility": 0.3038831850345529,
+          "max_drawdown": -0.30801387067712116,
+          "cycles": 14,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 30.079411764705885,
+          "days": 170
+        },
+        "2026": {
+          "total_return": -0.2522961858399292,
+          "cagr": -0.39402936360890173,
+          "annual_log_growth": -0.5009237488869622,
+          "sharpe": -1.2292398677017407,
+          "annual_volatility": 0.3558972243444749,
+          "max_drawdown": -0.3291486970277423,
+          "cycles": 23,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 39.62617924528302,
+          "days": 212
+        }
+      }
+    },
+    "V441__holdout__double_cost": {
+      "case": "V441",
+      "period": "holdout",
+      "stress": "double_cost",
+      "start": "2025-07-15",
+      "end_exclusive": "2026-08-01",
+      "total_return": -0.09925155614678094,
+      "cagr": -0.09511357518119028,
+      "annual_log_growth": -0.0999458405954526,
+      "sharpe": -0.4557666269289382,
+      "annual_volatility": 0.18271114430681315,
+      "max_drawdown": -0.22691172894946876,
+      "cycles": 41,
+      "short_cycles": 0,
+      "short_sum_trade_returns": 0.0,
+      "cycles_per_year": 39.20222513089005,
+      "days": 382,
+      "execution": {
+        "initial_cash": 10000.0,
+        "taker_fee_bps": 8,
+        "base_slippage_bps": 3,
+        "impact_bps": 16,
+        "max_minute_participation": 0.02,
+        "liquidation_fee_bps": 50.0,
+        "liquidation_slippage_bps": 5.0,
+        "quantity_step": 0.001,
+        "min_notional": 5.0,
+        "periods_per_year": 8760,
+        "maker_enabled": false,
+        "maker_fee_bps": 0.2,
+        "maker_offset_bps": 0.5,
+        "maker_order_timeout_minutes": 60,
+        "maker_exit_enabled": false,
+        "conservative_protection": true,
+        "signal_interval_minutes": 60,
+        "equity_interval_minutes": 60,
+        "execution_bar_minutes": 1
+      },
+      "execution_metrics": {
+        "total_return": -0.09925155614678094,
+        "cagr": -0.09511357518119024,
+        "annualized_volatility": 0.22363457300978784,
+        "sharpe": -0.3352073046961449,
+        "sortino": -0.5148591227691739,
+        "max_drawdown": -0.22691172894946876,
+        "trade_count": 41.0,
+        "win_rate": 0.24390243902439024,
+        "final_equity": 9007.48443853219,
+        "fill_count": 132.0,
+        "liquidation_count": 0.0,
+        "fees_paid": 743.7843281770406,
+        "funding_paid": 87.28369848511133,
+        "realized_pnl": -161.44753480565393,
+        "order_notional": 929730.4102213008,
+        "max_leverage_observed": 3.070767717893532,
+        "max_margin_ratio": 0.012284598777766689,
+        "minimum_margin_buffer": 8932.024174458084,
+        "max_minute_participation_observed": 0.008150255300129264,
+        "maker_enabled": 0.0,
+        "maker_order_count": 0.0,
+        "maker_cancel_count": 0.0,
+        "maker_fill_count": 0.0,
+        "taker_fill_count": 132.0,
+        "maker_filled_notional": 0.0,
+        "taker_filled_notional": 929730.4102213008,
+        "maker_fill_ratio": 0.0,
+        "maker_fill_events_per_order": 0.0,
+        "maker_fee_saved_vs_taker": 0.0
+      },
+      "attribution": {
+        "core": {
+          "cycles": 18,
+          "sum_cycle_return": -0.08060021102765495,
+          "pnl_usdt": -802.6712990801934
+        },
+        "satellite": {
+          "cycles": 23,
+          "sum_cycle_return": -0.012719204228179178,
+          "pnl_usdt": -189.84426238761625
+        }
+      },
+      "yearly": {
+        "2025": {
+          "total_return": 0.009489470672956912,
+          "cagr": 0.02049956491025706,
+          "annual_log_growth": 0.020292276918094924,
+          "sharpe": 0.20301751405598864,
+          "annual_volatility": 0.1711060512641955,
+          "max_drawdown": -0.13115048838544185,
+          "cycles": 15,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 32.22794117647059,
+          "days": 170
+        },
+        "2026": {
+          "total_return": -0.10771883212139666,
+          "cagr": -0.17828626511544776,
+          "annual_log_growth": -0.19636319897895763,
+          "sharpe": -0.9277105833416452,
+          "annual_volatility": 0.19176803779707344,
+          "max_drawdown": -0.18222724256610545,
+          "cycles": 26,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 44.79481132075472,
+          "days": 212
+        }
+      }
+    },
+    "V441__holdout__delay_1h": {
+      "case": "V441",
+      "period": "holdout",
+      "stress": "delay_1h",
+      "start": "2025-07-15",
+      "end_exclusive": "2026-08-01",
+      "total_return": -0.043576425104055905,
+      "cagr": -0.04170610235223047,
+      "annual_log_growth": -0.04260076554608027,
+      "sharpe": -0.14760072554540565,
+      "annual_volatility": 0.17964347950531553,
+      "max_drawdown": -0.1929781959150254,
+      "cycles": 41,
+      "short_cycles": 0,
+      "short_sum_trade_returns": 0.0,
+      "cycles_per_year": 39.20222513089005,
+      "days": 382,
+      "execution": {
+        "initial_cash": 10000.0,
+        "taker_fee_bps": 4,
+        "base_slippage_bps": 1,
+        "impact_bps": 8,
+        "max_minute_participation": 0.02,
+        "liquidation_fee_bps": 50.0,
+        "liquidation_slippage_bps": 5.0,
+        "quantity_step": 0.001,
+        "min_notional": 5.0,
+        "periods_per_year": 8760,
+        "maker_enabled": false,
+        "maker_fee_bps": 0.2,
+        "maker_offset_bps": 0.5,
+        "maker_order_timeout_minutes": 60,
+        "maker_exit_enabled": false,
+        "conservative_protection": true,
+        "signal_interval_minutes": 60,
+        "equity_interval_minutes": 60,
+        "execution_bar_minutes": 1
+      },
+      "execution_metrics": {
+        "total_return": -0.043576425104055905,
+        "cagr": -0.04170610235223049,
+        "annualized_volatility": 0.2230438204135647,
+        "sharpe": -0.07975416707936772,
+        "sortino": -0.1225914957870303,
+        "max_drawdown": -0.1929781959150254,
+        "trade_count": 41.0,
+        "win_rate": 0.2926829268292683,
+        "final_equity": 9564.235748959441,
+        "fill_count": 132.0,
+        "liquidation_count": 0.0,
+        "fees_paid": 379.53600493814565,
+        "funding_paid": 88.12302344886669,
+        "realized_pnl": 31.89477734646232,
+        "order_notional": 948840.0123453639,
+        "max_leverage_observed": 3.132327715000156,
+        "max_margin_ratio": 0.012535565549326977,
+        "minimum_margin_buffer": 9352.784287727876,
+        "max_minute_participation_observed": 0.012525680418155265,
+        "maker_enabled": 0.0,
+        "maker_order_count": 0.0,
+        "maker_cancel_count": 0.0,
+        "maker_fill_count": 0.0,
+        "taker_fill_count": 132.0,
+        "maker_filled_notional": 0.0,
+        "taker_filled_notional": 948840.0123453639,
+        "maker_fill_ratio": 0.0,
+        "maker_fill_events_per_order": 0.0,
+        "maker_fee_saved_vs_taker": 0.0
+      },
+      "attribution": {
+        "core": {
+          "cycles": 18,
+          "sum_cycle_return": -0.02859951211091314,
+          "pnl_usdt": -302.4242115797624
+        },
+        "satellite": {
+          "cycles": 23,
+          "sum_cycle_return": -0.00480939651524709,
+          "pnl_usdt": -133.3400394607961
+        }
+      },
+      "yearly": {
+        "2025": {
+          "total_return": 0.020674707056928643,
+          "cagr": 0.044948143995398725,
+          "annual_log_growth": 0.04396726121460366,
+          "sharpe": 0.34341872938278645,
+          "annual_volatility": 0.1692158586500614,
+          "max_drawdown": -0.13382824511267355,
+          "cycles": 15,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 32.22794117647059,
+          "days": 170
+        },
+        "2026": {
+          "total_return": -0.06294966625189513,
+          "cagr": -0.1059723025976805,
+          "annual_log_growth": -0.11201852285417578,
+          "sharpe": -0.5022480276060796,
+          "annual_volatility": 0.18790935860230665,
+          "max_drawdown": -0.15046294254759196,
+          "cycles": 26,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 44.79481132075472,
+          "days": 212
+        }
+      }
+    },
+    "V4_1_2__holdout__double_cost": {
+      "case": "V4_1_2",
+      "period": "holdout",
+      "stress": "double_cost",
+      "start": "2025-07-15",
+      "end_exclusive": "2026-08-01",
+      "total_return": -0.06174861148377642,
+      "cagr": -0.0591227503218925,
+      "annual_log_growth": -0.06094259458142749,
+      "sharpe": -0.14390198330092346,
+      "annual_volatility": 0.2336969180566628,
+      "max_drawdown": -0.2229805963039787,
+      "cycles": 28,
+      "short_cycles": 0,
+      "short_sum_trade_returns": 0.0,
+      "cycles_per_year": 26.772251308900522,
+      "days": 382,
+      "execution": {
+        "initial_cash": 10000.0,
+        "taker_fee_bps": 8,
+        "base_slippage_bps": 3,
+        "impact_bps": 16,
+        "max_minute_participation": 0.02,
+        "liquidation_fee_bps": 50.0,
+        "liquidation_slippage_bps": 5.0,
+        "quantity_step": 0.001,
+        "min_notional": 5.0,
+        "periods_per_year": 8760,
+        "maker_enabled": false,
+        "maker_fee_bps": 0.2,
+        "maker_offset_bps": 0.5,
+        "maker_order_timeout_minutes": 60,
+        "maker_exit_enabled": false,
+        "conservative_protection": true,
+        "signal_interval_minutes": 240,
+        "equity_interval_minutes": 60,
+        "execution_bar_minutes": 1
+      },
+      "execution_metrics": {
+        "total_return": -0.06174861148377642,
+        "cagr": -0.059122750321892514,
+        "annualized_volatility": 0.2955229518542634,
+        "sharpe": -0.059112364595773355,
+        "sortino": -0.09082796052504107,
+        "max_drawdown": -0.2229805963039787,
+        "trade_count": 28.0,
+        "win_rate": 0.21428571428571427,
+        "final_equity": 9382.513885162236,
+        "fill_count": 93.0,
+        "liquidation_count": 0.0,
+        "fees_paid": 929.8253783574432,
+        "funding_paid": 98.59405879797453,
+        "realized_pnl": 410.9333223176665,
+        "order_notional": 1162281.7229468036,
+        "max_leverage_observed": 4.54210127986751,
+        "max_margin_ratio": 0.018168460074442304,
+        "minimum_margin_buffer": 8986.266732357537,
+        "max_minute_participation_observed": 0.01151812939109177,
+        "maker_enabled": 0.0,
+        "maker_order_count": 0.0,
+        "maker_cancel_count": 0.0,
+        "maker_fill_count": 0.0,
+        "taker_fill_count": 93.0,
+        "maker_filled_notional": 0.0,
+        "taker_filled_notional": 1162281.7229468036,
+        "maker_fill_ratio": 0.0,
+        "maker_fill_events_per_order": 0.0,
+        "maker_fee_saved_vs_taker": 0.0
+      },
+      "yearly": {
+        "2025": {
+          "total_return": 0.07231450608948498,
+          "cagr": 0.16184474467286128,
+          "annual_log_growth": 0.15000903906661392,
+          "sharpe": 0.7994369640806372,
+          "annual_volatility": 0.21666639701294763,
+          "max_drawdown": -0.16043858003219802,
+          "cycles": 9,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 19.336764705882352,
+          "days": 170
+        },
+        "2026": {
+          "total_return": -0.12502219900219635,
+          "cagr": -0.20554737497586326,
+          "annual_log_growth": -0.2301019234501401,
+          "sharpe": -0.8087401142795495,
+          "annual_volatility": 0.24667031229571942,
+          "max_drawdown": -0.21912236426839482,
+          "cycles": 19,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 32.73466981132076,
+          "days": 212
+        }
+      }
+    },
+    "V4_1_2__holdout__delay_1h": {
+      "case": "V4_1_2",
+      "period": "holdout",
+      "stress": "delay_1h",
+      "start": "2025-07-15",
+      "end_exclusive": "2026-08-01",
+      "total_return": 0.00021324937848254955,
+      "cagr": 0.00020389783079050673,
+      "annual_log_growth": 0.0002038770464530124,
+      "sharpe": 0.11585365427904369,
+      "annual_volatility": 0.23035959766419772,
+      "max_drawdown": -0.18665847860489704,
+      "cycles": 28,
+      "short_cycles": 0,
+      "short_sum_trade_returns": 0.0,
+      "cycles_per_year": 26.772251308900522,
+      "days": 382,
+      "execution": {
+        "initial_cash": 10000.0,
+        "taker_fee_bps": 4,
+        "base_slippage_bps": 1,
+        "impact_bps": 8,
+        "max_minute_participation": 0.02,
+        "liquidation_fee_bps": 50.0,
+        "liquidation_slippage_bps": 5.0,
+        "quantity_step": 0.001,
+        "min_notional": 5.0,
+        "periods_per_year": 8760,
+        "maker_enabled": false,
+        "maker_fee_bps": 0.2,
+        "maker_offset_bps": 0.5,
+        "maker_order_timeout_minutes": 60,
+        "maker_exit_enabled": false,
+        "conservative_protection": true,
+        "signal_interval_minutes": 240,
+        "equity_interval_minutes": 60,
+        "execution_bar_minutes": 1
+      },
+      "execution_metrics": {
+        "total_return": 0.00021324937848254955,
+        "cagr": 0.0002038978307905559,
+        "annualized_volatility": 0.29497676027886205,
+        "sharpe": 0.14740582395677318,
+        "sortino": 0.2263696716672817,
+        "max_drawdown": -0.18665847860489704,
+        "trade_count": 28.0,
+        "win_rate": 0.32142857142857145,
+        "final_equity": 10002.132493784826,
+        "fill_count": 93.0,
+        "liquidation_count": 0.0,
+        "fees_paid": 473.5562360105205,
+        "funding_paid": 97.81547820966452,
+        "realized_pnl": 573.5042080050098,
+        "order_notional": 1183890.590026301,
+        "max_leverage_observed": 4.5506231153967205,
+        "max_margin_ratio": 0.01821762822288922,
+        "minimum_margin_buffer": 9005.193841452416,
+        "max_minute_participation_observed": 0.019964011762954134,
+        "maker_enabled": 0.0,
+        "maker_order_count": 0.0,
+        "maker_cancel_count": 0.0,
+        "maker_fill_count": 0.0,
+        "taker_fill_count": 93.0,
+        "maker_filled_notional": 0.0,
+        "taker_filled_notional": 1183890.590026301,
+        "maker_fill_ratio": 0.0,
+        "maker_fill_events_per_order": 0.0,
+        "maker_fee_saved_vs_taker": 0.0
+      },
+      "yearly": {
+        "2025": {
+          "total_return": 0.07909183352756544,
+          "cagr": 0.1776790714518092,
+          "annual_log_growth": 0.16354561301187975,
+          "sharpe": 0.8672729896811117,
+          "annual_volatility": 0.21496958992008694,
+          "max_drawdown": -0.1595660326819146,
+          "cycles": 9,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 19.336764705882352,
+          "days": 170
+        },
+        "2026": {
+          "total_return": -0.07309719311953988,
+          "cagr": -0.12258720165059347,
+          "annual_log_growth": -0.13077770368054004,
+          "sharpe": -0.4185578779563922,
+          "annual_volatility": 0.24229114338231172,
+          "max_drawdown": -0.18665847860489704,
+          "cycles": 19,
+          "short_cycles": 0,
+          "short_sum_trade_returns": 0.0,
+          "cycles_per_year": 32.73466981132076,
+          "days": 212
+        }
+      }
+    }
+  },
+  "bootstrap": {
+    "post2024_vs_V4": {
+      "block_days": 14,
+      "repeats": 2000,
+      "seed": 441,
+      "sharpe_difference_95pct": [
+        -0.26848264195249083,
+        0.48160614680268227
+      ],
+      "annual_log_growth_difference_95pct": [
+        -0.2116869087715897,
+        0.16025276275692557
+      ],
+      "bootstrap_fraction_sharpe_improved": 0.718,
+      "interpretation": "Conditional uncertainty after selection; not a multiple-testing-adjusted p-value."
+    },
+    "post2024_vs_V4_1_2": {
+      "block_days": 14,
+      "repeats": 2000,
+      "seed": 441,
+      "sharpe_difference_95pct": [
+        -0.2972273979465798,
+        0.11571771450341334
+      ],
+      "annual_log_growth_difference_95pct": [
+        -0.22358352389886524,
+        0.03888364309498819
+      ],
+      "bootstrap_fraction_sharpe_improved": 0.235,
+      "interpretation": "Conditional uncertainty after selection; not a multiple-testing-adjusted p-value."
+    },
+    "post2024_vs_V4_1_3": {
+      "block_days": 14,
+      "repeats": 2000,
+      "seed": 441,
+      "sharpe_difference_95pct": [
+        -0.31910706033243713,
+        0.09051090144743286
+      ],
+      "annual_log_growth_difference_95pct": [
+        -0.23438290141678794,
+        0.029713924197381406
+      ],
+      "bootstrap_fraction_sharpe_improved": 0.163,
+      "interpretation": "Conditional uncertainty after selection; not a multiple-testing-adjusted p-value."
+    },
+    "post2024_vs_V441_core_only": {
+      "block_days": 14,
+      "repeats": 2000,
+      "seed": 441,
+      "sharpe_difference_95pct": [
+        -0.26134576755095296,
+        0.15752365788046982
+      ],
+      "annual_log_growth_difference_95pct": [
+        -0.07084557293176988,
+        0.053752632904703425
+      ],
+      "bootstrap_fraction_sharpe_improved": 0.3435,
+      "interpretation": "Conditional uncertainty after selection; not a multiple-testing-adjusted p-value."
+    },
+    "holdout_vs_V4": {
+      "block_days": 14,
+      "repeats": 2000,
+      "seed": 441,
+      "sharpe_difference_95pct": [
+        -1.0083904884870787,
+        0.8002238352678874
+      ],
+      "annual_log_growth_difference_95pct": [
+        -0.1639471035951907,
+        0.29300623034291623
+      ],
+      "bootstrap_fraction_sharpe_improved": 0.509,
+      "interpretation": "Conditional uncertainty after selection; not a multiple-testing-adjusted p-value."
+    },
+    "holdout_vs_V4_1_2": {
+      "block_days": 14,
+      "repeats": 2000,
+      "seed": 441,
+      "sharpe_difference_95pct": [
+        -0.9842568544847418,
+        0.12436889546672518
+      ],
+      "annual_log_growth_difference_95pct": [
+        -0.16368889649650878,
+        0.05692258607202384
+      ],
+      "bootstrap_fraction_sharpe_improved": 0.1035,
+      "interpretation": "Conditional uncertainty after selection; not a multiple-testing-adjusted p-value."
+    },
+    "holdout_vs_V4_1_3": {
+      "block_days": 14,
+      "repeats": 2000,
+      "seed": 441,
+      "sharpe_difference_95pct": [
+        -1.0692590624278009,
+        0.09436714011452996
+      ],
+      "annual_log_growth_difference_95pct": [
+        -0.17345189181207268,
+        0.04865452031631023
+      ],
+      "bootstrap_fraction_sharpe_improved": 0.075,
+      "interpretation": "Conditional uncertainty after selection; not a multiple-testing-adjusted p-value."
+    },
+    "holdout_vs_V441_core_only": {
+      "block_days": 14,
+      "repeats": 2000,
+      "seed": 441,
+      "sharpe_difference_95pct": [
+        -0.9775467002664254,
+        0.18042092916848584
+      ],
+      "annual_log_growth_difference_95pct": [
+        -0.13653480208338248,
+        0.046247507634019254
+      ],
+      "bootstrap_fraction_sharpe_improved": 0.1485,
+      "interpretation": "Conditional uncertainty after selection; not a multiple-testing-adjusted p-value."
+    }
+  },
+  "cost_policy": "All taker, no rebate: 4bps + 1bps base slippage + 8bps*sqrt(participation).",
+  "sharpe_policy": "Daily UTC equity returns, sqrt(365.25), zero risk-free rate.",
+  "holdout_disclosure": "Frozen within this search; 2025-2026 was seen by earlier repository research.",
+  "data_audit": {
+    "start": "2020-01-01 00:00:00+00:00",
+    "end_exclusive": "2026-08-01 00:00:00+00:00",
+    "hourly_rows": 57696,
+    "funding_events": 7212,
+    "funding_months": [
+      "2020-01",
+      "2020-02",
+      "2020-03",
+      "2020-04",
+      "2020-05",
+      "2020-06",
+      "2020-07",
+      "2020-08",
+      "2020-09",
+      "2020-10",
+      "2020-11",
+      "2020-12",
+      "2021-01",
+      "2021-02",
+      "2021-03",
+      "2021-04",
+      "2021-05",
+      "2021-06",
+      "2021-07",
+      "2021-08",
+      "2021-09",
+      "2021-10",
+      "2021-11",
+      "2021-12",
+      "2022-01",
+      "2022-02",
+      "2022-03",
+      "2022-04",
+      "2022-05",
+      "2022-06",
+      "2022-07",
+      "2022-08",
+      "2022-09",
+      "2022-10",
+      "2022-11",
+      "2022-12",
+      "2023-01",
+      "2023-02",
+      "2023-03",
+      "2023-04",
+      "2023-05",
+      "2023-06",
+      "2023-07",
+      "2023-08",
+      "2023-09",
+      "2023-10",
+      "2023-11",
+      "2023-12",
+      "2024-01",
+      "2024-02",
+      "2024-03",
+      "2024-04",
+      "2024-05",
+      "2024-06",
+      "2024-07",
+      "2024-08",
+      "2024-09",
+      "2024-10",
+      "2024-11",
+      "2024-12",
+      "2025-01",
+      "2025-02",
+      "2025-03",
+      "2025-04",
+      "2025-05",
+      "2025-06",
+      "2025-07",
+      "2025-08",
+      "2025-09",
+      "2025-10",
+      "2025-11",
+      "2025-12",
+      "2026-01",
+      "2026-02",
+      "2026-03",
+      "2026-04",
+      "2026-05",
+      "2026-06",
+      "2026-07"
+    ],
+    "original_archives_modified": false,
+    "repair_enabled": true,
+    "months": [
+      {
+        "month": "2020-01",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44611,
+        "missing_mark_before": 29,
+        "missing_paired_minutes": 29,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [
+          {
+            "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2020-01-19.zip",
+            "sha256": "dab38bf9e866a0c8af6711b03e15518d4c9933c28273dd4e54e1b11ad1463f69"
+          }
+        ],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2020-01.zip": "b4e13ea185ba96c413ac9167cfbb6e238eb5eae119a7a77f41f4c61c5e099d03",
+          "data/raw/mark_price/BTCUSDT-1m-2020-01.zip": "04a7ae26d01cdcc75edb917fafba70f2b2b026a64ce2e66d25dc7cef0f722531"
+        }
+      },
+      {
+        "month": "2020-02",
+        "expected_minutes": 41760,
+        "trade_minutes": 41760,
+        "paired_minutes": 41760,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2020-02.zip": "f32b20168ea590cd7d04a2995bc5ec500ea06331c8174f7fd14f29c1078e5ed2",
+          "data/raw/mark_price/BTCUSDT-1m-2020-02.zip": "8e99768235c8bd120ee25e7020ad3106488440eb41bbabe2935324dc1632a3db"
+        }
+      },
+      {
+        "month": "2020-03",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2020-03.zip": "15790b4b031cbc5f59cae30e523fb8341588d279fe3839ba1224c7fe8a6bc929",
+          "data/raw/mark_price/BTCUSDT-1m-2020-03.zip": "93d4d8ca217dbd21e0079448e324e906df835e4e552b1256a55de768f8da8588"
+        }
+      },
+      {
+        "month": "2020-04",
+        "expected_minutes": 43200,
+        "trade_minutes": 43200,
+        "paired_minutes": 43200,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2020-04.zip": "f45228183c21030fc3a787109eada99187d9ba8c4d5d7ea5c178967150fa7467",
+          "data/raw/mark_price/BTCUSDT-1m-2020-04.zip": "1999cc84238930a1d2b85eafbcbd60a62257b6bb8744ee737d8a5e8c56e16532"
+        }
+      },
+      {
+        "month": "2020-05",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2020-05.zip": "bc5bdae217f9ef6a32ffcc7653e3d45e007a2d9b2e93b752bdc7805254446821",
+          "data/raw/mark_price/BTCUSDT-1m-2020-05.zip": "8fa6f2fc5fc1d710e2ee27e409e0ac7fa4deab05a66739825aa0d8c9e1dfa098"
+        }
+      },
+      {
+        "month": "2020-06",
+        "expected_minutes": 43200,
+        "trade_minutes": 43200,
+        "paired_minutes": 43200,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2020-06.zip": "91f18492445c0a9609d70bd4603c73c8588a88c06105ade34082417f8b2e7e6d",
+          "data/raw/mark_price/BTCUSDT-1m-2020-06.zip": "823896788de2a12ef2cfbb73f9a40f8a641272b5967b4f607355feae794779dc"
+        }
+      },
+      {
+        "month": "2020-07",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2020-07.zip": "4cb7dcf6e1adb17e8ab8787c459f3f645b7070633f530485f0f93dd45a9de693",
+          "data/raw/mark_price/BTCUSDT-1m-2020-07.zip": "b8ee8e08290ceeac9fddbb57217ff3d920e505cc4aea1a24c79940cad745a17b"
+        }
+      },
+      {
+        "month": "2020-08",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2020-08.zip": "7596de0f26df44d782713475f97af34f27a287faf084c73bdcc61819215b060a",
+          "data/raw/mark_price/BTCUSDT-1m-2020-08.zip": "ea98a513d0a77dd4598b12b2df757a24879ef33574616ac5f9c82af1b058e21b"
+        }
+      },
+      {
+        "month": "2020-09",
+        "expected_minutes": 43200,
+        "trade_minutes": 43200,
+        "paired_minutes": 43200,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2020-09.zip": "9f2d575ffc17a14320bc08a99d51a5580fd7f058f1495cfec598fbbd959792c2",
+          "data/raw/mark_price/BTCUSDT-1m-2020-09.zip": "491e3ec2b9aa21eef52c8206567bfb23b351ceba3052c5f80ad02c930f75a1f7"
+        }
+      },
+      {
+        "month": "2020-10",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2020-10.zip": "f35bc01dc1bba142c87033b33055c34a0ba37c2a2abd6c115af6a9c4f238dd03",
+          "data/raw/mark_price/BTCUSDT-1m-2020-10.zip": "93b2a35009518db9fb7572b41dd0efe3a94d867606d6633c1f4f502f9a7c1323"
+        }
+      },
+      {
+        "month": "2020-11",
+        "expected_minutes": 43200,
+        "trade_minutes": 43200,
+        "paired_minutes": 43200,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2020-11.zip": "8eb55b2a547c35d792f88186168774804346426b82289bc9b1633406c0ff9e40",
+          "data/raw/mark_price/BTCUSDT-1m-2020-11.zip": "2a7816860dbb997d9a5adf12b93d32678c0e92611e580327bd9b10fb47079436"
+        }
+      },
+      {
+        "month": "2020-12",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44616,
+        "missing_mark_before": 24,
+        "missing_paired_minutes": 24,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [
+          {
+            "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2020-12-17.zip",
+            "sha256": "05fbc735ee001291c062bb443368728ff2b5e0e2b9832e779504c7823b41788b"
+          }
+        ],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2020-12.zip": "72cfa1e9aeb851871af0168eb7ee22d334b5efb3aa4a76d7382754dac5e885d8",
+          "data/raw/mark_price/BTCUSDT-1m-2020-12.zip": "cd3edb99a29714eab9f0b128c23a965b562e08170f4e1b95cce3486d5fde0740"
+        }
+      },
+      {
+        "month": "2021-01",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2021-01.zip": "ba7aeda6a99e0828b39da1b0605aaefcb40882fe9d44034598c4404f8a07783f",
+          "data/raw/mark_price/BTCUSDT-1m-2021-01.zip": "883021211d84d5d0996bb6c946e82163b508d02f7e7d53e50c399f4622f4a3dc"
+        }
+      },
+      {
+        "month": "2021-02",
+        "expected_minutes": 40320,
+        "trade_minutes": 40320,
+        "paired_minutes": 40320,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2021-02.zip": "0a270f354b15b053824a7bb87c652aa95acb4a255fc968fe0a24bdc9e785223e",
+          "data/raw/mark_price/BTCUSDT-1m-2021-02.zip": "b090f44eb2b24486e89c387db83533f309800aa44931d73964bfc211846205bf"
+        }
+      },
+      {
+        "month": "2021-03",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2021-03.zip": "15a2676410d5104fac1ea15f7302addbf4d0de14f6db8ce10a4930c3f5d5e7fa",
+          "data/raw/mark_price/BTCUSDT-1m-2021-03.zip": "6e25031ed12e52dbd7ddc854e829e9c53df4c1fd621eda00db18ad3cc6c4b439"
+        }
+      },
+      {
+        "month": "2021-04",
+        "expected_minutes": 43200,
+        "trade_minutes": 43200,
+        "paired_minutes": 43200,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2021-04.zip": "d957fcde82f9b5a9a05264a9602e5deae03472aa0d424ddb0f27a04e58723217",
+          "data/raw/mark_price/BTCUSDT-1m-2021-04.zip": "8f8067c9b653c09fad49545daf1e3438190ec59ad8582b9f52f8395cee038c6a"
+        }
+      },
+      {
+        "month": "2021-05",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2021-05.zip": "dcf7c567cbde49a5e564b29f01be95e28d32f12cb68c40b2a14da75930187dc8",
+          "data/raw/mark_price/BTCUSDT-1m-2021-05.zip": "9f5a9515e9ee59519cdce2d8b6ea2a81a21fe377ad524214a292cc51a1d55482"
+        }
+      },
+      {
+        "month": "2021-06",
+        "expected_minutes": 43200,
+        "trade_minutes": 43200,
+        "paired_minutes": 43200,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2021-06.zip": "a640c7f935a1136d2f65f28f9606f0e063185c500f982aec273bb2ed3f61bfc5",
+          "data/raw/mark_price/BTCUSDT-1m-2021-06.zip": "0bb4c8f4bfb11d662095277164bd6dbf645d8ef4470786f07be8342f4ccc52fd"
+        }
+      },
+      {
+        "month": "2021-07",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 7200,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [
+          {
+            "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2021-07-01.zip",
+            "sha256": "237538cdaff73b91a76edcbaee1797c59942751db36b0ed82d400d902cbed0a4"
+          },
+          {
+            "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2021-07-24.zip",
+            "sha256": "fc5569b14323e908f74b73c74f51c4152fcd7f8ca9e9be1f1e1d641c4dd1275a"
+          },
+          {
+            "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2021-07-25.zip",
+            "sha256": "9d92c79a0b84c86d4e2834305045b403088870de2403c8ef612b9ee40a6d14b2"
+          },
+          {
+            "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2021-07-26.zip",
+            "sha256": "d89bd409d52eac110a54fcfe68abcf1cc0bb2b03515b19557128d42cbcb8929b"
+          },
+          {
+            "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2021-07-27.zip",
+            "sha256": "851624bc74228bab9dbbc0140e701ba11b978f899c8121d496679a9430e9339b"
+          }
+        ],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2021-07.zip": "1367b5cd230474b0ecc6031b9e18cffe66e011c8fdd01c3325985a39c5d5ed48",
+          "data/raw/mark_price/BTCUSDT-1m-2021-07.zip": "f803d5e91d9a932bee0b816abc7c6fdedcd9cf9c327474b195ef72d0c9693a06"
+        }
+      },
+      {
+        "month": "2021-08",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2021-08.zip": "a864bdf38c9d06b7a6a1dc07c5593bbe7387cec3b869e9ebee020da053d94f37",
+          "data/raw/mark_price/BTCUSDT-1m-2021-08.zip": "a4dd146ec0ef0f17f63940e3f32a22433fa9e093856f4ebfb8b9c12f0dccdec0"
+        }
+      },
+      {
+        "month": "2021-09",
+        "expected_minutes": 43200,
+        "trade_minutes": 43200,
+        "paired_minutes": 43200,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2021-09.zip": "6e7bbfe650e6c56e189e78d521b3714feffd38468d1268b706a6626737326676",
+          "data/raw/mark_price/BTCUSDT-1m-2021-09.zip": "70167cdb73095e89095038631e94f0629c453abb45a6e9f8f6de0f7429ec4723"
+        }
+      },
+      {
+        "month": "2021-10",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2021-10.zip": "4b78dd0174890c975effca2ed078163d6e9b4f7437f692e2c430c724b7eafc24",
+          "data/raw/mark_price/BTCUSDT-1m-2021-10.zip": "4301f4ae15eec9c9ae241b973ddda311e964fb3c87eeb2f8c4d8c26e7b10c507"
+        }
+      },
+      {
+        "month": "2021-11",
+        "expected_minutes": 43200,
+        "trade_minutes": 43200,
+        "paired_minutes": 43200,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2021-11.zip": "67da3342f014166d2af97321599e0011453c4bd5a9282ef12c1a6131efd12993",
+          "data/raw/mark_price/BTCUSDT-1m-2021-11.zip": "48b6337e60328c2a48c8664198b0ce01700a7aa3208d86c7eb0035edb06faa53"
+        }
+      },
+      {
+        "month": "2021-12",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2021-12.zip": "c905c5c8ff36d0dfac3a0581225ab305f72d1e11e634953d8d3a136161d10956",
+          "data/raw/mark_price/BTCUSDT-1m-2021-12.zip": "b7d4014d14c149012c7b64423f1a683ab0364269945e02c1789dcdbe44ebce61"
+        }
+      },
+      {
+        "month": "2022-01",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2022-01.zip": "9cdbcf68903434c850f9bec60d8174c2cfd105dd24a7566965b442ec15124e04",
+          "data/raw/mark_price/BTCUSDT-1m-2022-01.zip": "620ec2bfdaed255236b7daa113488a4b2eada7bf3384b1fe640d40dd85d9c4bb"
+        }
+      },
+      {
+        "month": "2022-02",
+        "expected_minutes": 40320,
+        "trade_minutes": 40320,
+        "paired_minutes": 40320,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2022-02.zip": "63672d552f98ec125ac4d90d82154313fb9832b7e1aaed196101816bd61bfb89",
+          "data/raw/mark_price/BTCUSDT-1m-2022-02.zip": "9554d65c02469ef76ba92b7e8646d2ab606238ca83f23b73957a44c78c7674fd"
+        }
+      },
+      {
+        "month": "2022-03",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2022-03.zip": "4532faf2f92d205fac79b7d25327d2045843b60a4494e00b0962e6b7f028bc06",
+          "data/raw/mark_price/BTCUSDT-1m-2022-03.zip": "8cc7cd5451a9c9eaef4a82cb80ef96cabda957fb64943b3620e19bb467d71f49"
+        }
+      },
+      {
+        "month": "2022-04",
+        "expected_minutes": 43200,
+        "trade_minutes": 43200,
+        "paired_minutes": 43200,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2022-04.zip": "0f509e296da62eed5f4e903507ced0de9738ea96a7a885e76dd2394b8049e689",
+          "data/raw/mark_price/BTCUSDT-1m-2022-04.zip": "89d70dc94e4336f71380497008dd3de4831c8eb2b0cf25aa139c042204efb67c"
+        }
+      },
+      {
+        "month": "2022-05",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2022-05.zip": "768bdbbd11b08d935b3753ecfee7f1e351a346c71b11cf68a4a51296d694f368",
+          "data/raw/mark_price/BTCUSDT-1m-2022-05.zip": "589544c8c2971e42d7b54d3d42c3dee01474b5bb8f03fe6884304b86af194e68"
+        }
+      },
+      {
+        "month": "2022-06",
+        "expected_minutes": 43200,
+        "trade_minutes": 43200,
+        "paired_minutes": 43200,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2022-06.zip": "8587319eaf1b1f6d73fd34446acdecdc72c47b23ecfd2d88e2a6dd2a35470565",
+          "data/raw/mark_price/BTCUSDT-1m-2022-06.zip": "7a4aadc8beebd88105f564c1e4c6db4d2ba3d768638926429aa0b109643b440a"
+        }
+      },
+      {
+        "month": "2022-07",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2022-07.zip": "6fc45fa135a6be85679a6ab0b1268fbd1f8258079295cd134b9a4c535c6b6b65",
+          "data/raw/mark_price/BTCUSDT-1m-2022-07.zip": "4fbff8924152d1d8f9994d888847fec0d20f7075c4f244c77a0f032ef58410d3"
+        }
+      },
+      {
+        "month": "2022-08",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2022-08.zip": "806ee1d6efa856984fe79453d17f04c0fb5e447413fe828cbd3ec2df9a1f5fc4",
+          "data/raw/mark_price/BTCUSDT-1m-2022-08.zip": "fc15588d80e2fea766ce86906c5b7f1975f00a03637483f6606e26f1769a3675"
+        }
+      },
+      {
+        "month": "2022-09",
+        "expected_minutes": 43200,
+        "trade_minutes": 43200,
+        "paired_minutes": 43200,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2022-09.zip": "fa1adecbe41b530c12f481882115511297ac7b78a9a7ae9d9d21b11c745649a4",
+          "data/raw/mark_price/BTCUSDT-1m-2022-09.zip": "cceb950dfd6858865cd76f0ccf2637a930f274e75ae031e17bb4575b4e681427"
+        }
+      },
+      {
+        "month": "2022-10",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 1440,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [
+          {
+            "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2022-10-02.zip",
+            "sha256": "1824ddc3736ebfe8f481e60529fa2f8870af7cabd8bd8fe660c229553a8a21f7"
+          }
+        ],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2022-10.zip": "0f2d2cd67b30ab186bf3db5a07acfe835f1d74335c6493c80e9e4f0598e29b2c",
+          "data/raw/mark_price/BTCUSDT-1m-2022-10.zip": "e6bba74c7ccb41dcd8a7ea1a65f40dc01de05e3128a265d77cd882898037780f"
+        }
+      },
+      {
+        "month": "2022-11",
+        "expected_minutes": 43200,
+        "trade_minutes": 43200,
+        "paired_minutes": 43200,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2022-11.zip": "96916aba47f230a9bc68cd3fd98d0d352e1fd8f23c16c515107c4d965a2067a3",
+          "data/raw/mark_price/BTCUSDT-1m-2022-11.zip": "da02544e804f995ad34dfd84f4cda4a8c62200fc465329817f2881d772689806"
+        }
+      },
+      {
+        "month": "2022-12",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2022-12.zip": "0f4788019cdb29f4db7b03d9efefce099d7adf49c0daf70a144b814b292bf577",
+          "data/raw/mark_price/BTCUSDT-1m-2022-12.zip": "03fe4fa0293236aba29e603e4bafcb128c3703f82bc7ef59bb385eb165f0b58a"
+        }
+      },
+      {
+        "month": "2023-01",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2023-01.zip": "b7b04483464b36c89f519bf35d6461d278c709577562108b6a00fb786b92e6a6",
+          "data/raw/mark_price/BTCUSDT-1m-2023-01.zip": "18abe5d64d97bf153d1d8f7f9b39f51c37454add602b6af8d51f267dd0f19094"
+        }
+      },
+      {
+        "month": "2023-02",
+        "expected_minutes": 40320,
+        "trade_minutes": 40320,
+        "paired_minutes": 40320,
+        "missing_mark_before": 1440,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [
+          {
+            "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2023-02-24.zip",
+            "sha256": "ca3745ada0d946c65407cb010a2a5fcac37bf2e2cceebbb19dc9cb30ecd2473e"
+          }
+        ],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2023-02.zip": "b62ca5df57b1715109cb1fd57097529b28410fb36b0db5bd41dbefe7e070db68",
+          "data/raw/mark_price/BTCUSDT-1m-2023-02.zip": "f84b1b0c1524f381fadaaee37b7be4912cb21fe947106cf01d6a9f0248e38d78"
+        }
+      },
+      {
+        "month": "2023-03",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2023-03.zip": "1cb47aae71e941d3e9d333f9c96723eb35c8b4a7ec90e819c59a7c02f89b03bb",
+          "data/raw/mark_price/BTCUSDT-1m-2023-03.zip": "1debe8c9ac4d0e21ffb0715157bdb543577eff49ce0adf88793572ea48e4da65"
+        }
+      },
+      {
+        "month": "2023-04",
+        "expected_minutes": 43200,
+        "trade_minutes": 43200,
+        "paired_minutes": 43200,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2023-04.zip": "2c22e2e460bf0e41884bf71031eebf60224ba470b25777a4d17ddc9298390650",
+          "data/raw/mark_price/BTCUSDT-1m-2023-04.zip": "f5a84258e4f0f62715f0c671b4807cee77ae21c7f2a42a45238728567762db00"
+        }
+      },
+      {
+        "month": "2023-05",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2023-05.zip": "cf9e0ab390e3872ddb9d807ad161933a28e374e09dbee2b9addf659856d1e656",
+          "data/raw/mark_price/BTCUSDT-1m-2023-05.zip": "fa5ad18ee67b48ffde94a57c674900a7129c1f5078a3d82c02f4cd8ec3411e42"
+        }
+      },
+      {
+        "month": "2023-06",
+        "expected_minutes": 43200,
+        "trade_minutes": 43200,
+        "paired_minutes": 43200,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2023-06.zip": "8dac3fe301198e752b257817542a7ded393dbe00b604f67aba6bc0090778ae95",
+          "data/raw/mark_price/BTCUSDT-1m-2023-06.zip": "9e888715d55dc099083916b35e386f5d1002a1daedc62c5ac489b789f709cc28"
+        }
+      },
+      {
+        "month": "2023-07",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2023-07.zip": "5cc84c767c9f4d1fa3cb3d33bd009a0b5e3a445e9c89ad2ef259c90b0365cbc3",
+          "data/raw/mark_price/BTCUSDT-1m-2023-07.zip": "0335045b48bb1409cafe0a2f01fb78f11537e7ac54ccc386bd674b1a5b0c857d"
+        }
+      },
+      {
+        "month": "2023-08",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2023-08.zip": "8d77e6f898fba3aa5bf643d128e0aaa1b722ea6881cd26a3d19088705117a1d7",
+          "data/raw/mark_price/BTCUSDT-1m-2023-08.zip": "f1724cafea417a0c5915d060428bf51ee1f5dd7c7db1b22dedbaf1649775f69d"
+        }
+      },
+      {
+        "month": "2023-09",
+        "expected_minutes": 43200,
+        "trade_minutes": 43200,
+        "paired_minutes": 43200,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2023-09.zip": "ea43f6e612b54e165c47ea30955b8d9e825b1d3ad1846f12c03ad0f0fced9029",
+          "data/raw/mark_price/BTCUSDT-1m-2023-09.zip": "230cfd0e4356a816a4190428509ae938c47598985a39a55bc8f6149280304bc9"
+        }
+      },
+      {
+        "month": "2023-10",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2023-10.zip": "153f1322695d16a12cab261b7798045323d9f893b19d35d95ffe94a62530b4de",
+          "data/raw/mark_price/BTCUSDT-1m-2023-10.zip": "515848caafbd72c51e60fada274af8fff339f74fb80fa9ca22e28e2837e2aaee"
+        }
+      },
+      {
+        "month": "2023-11",
+        "expected_minutes": 43200,
+        "trade_minutes": 43200,
+        "paired_minutes": 43200,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2023-11.zip": "63aa156170b2316927ae4c4928cc78866934a02b4bbc14c730b5fe4790383a80",
+          "data/raw/mark_price/BTCUSDT-1m-2023-11.zip": "15297e53a960de47f6880ad76f895b9c59573a546d1017c0c288b10434b2b01c"
+        }
+      },
+      {
+        "month": "2023-12",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2023-12.zip": "947ea9b1c5dfa301f1d5ff89d28f3ee49bc73eef2cfa1f0dc4024048458eb60b",
+          "data/raw/mark_price/BTCUSDT-1m-2023-12.zip": "6c5f2473e4cbb328b7ec271c075c2203ae9b3eb23b53a2cf36325bcb2d0e3741"
+        }
+      },
+      {
+        "month": "2024-01",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2024-01.zip": "21eeac04a76a7a35b10467e5e752fb2f8cff77cdeb57df6b50a23ce8d69bb190",
+          "data/raw/mark_price/BTCUSDT-1m-2024-01.zip": "1607b1522928d2a698592019fef7c3fcc9bee2cd01674c72a27e7fc028fd66ca"
+        }
+      },
+      {
+        "month": "2024-02",
+        "expected_minutes": 41760,
+        "trade_minutes": 41760,
+        "paired_minutes": 41760,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2024-02.zip": "1407acbf8ad99911bdf582805699b7e85fdbc346dbe12618ce8b6369f0d8058d",
+          "data/raw/mark_price/BTCUSDT-1m-2024-02.zip": "2e6f24f3bc92a7d241d5dbcfc79c54a0aa24b26ad12b4988f61a8c8d93e867fc"
+        }
+      },
+      {
+        "month": "2024-03",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2024-03.zip": "040b8e448e4243072b88b0d9908dfebed91bba943b75f4e831fa5337a2e1dab9",
+          "data/raw/mark_price/BTCUSDT-1m-2024-03.zip": "7efa90ed53f47100633253faf45838584d1b148081c57196abf0f884d8452986"
+        }
+      },
+      {
+        "month": "2024-04",
+        "expected_minutes": 43200,
+        "trade_minutes": 43200,
+        "paired_minutes": 43200,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2024-04.zip": "6a41f002da0c8e3f60bd46c841ea4ed766fb195764ad3b6b10e4f508d29c2eb7",
+          "data/raw/mark_price/BTCUSDT-1m-2024-04.zip": "b4d3961b62d727db532222b2dc4519a8e7d8ff4b1ebab1de37458568db132b4f"
+        }
+      },
+      {
+        "month": "2024-05",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2024-05.zip": "42de617ed643def54b5a2c3fceb7cd2edec91aafaa01104a097b2ded5c5122d4",
+          "data/raw/mark_price/BTCUSDT-1m-2024-05.zip": "479435c79e0e56e3ded959ee47e3fb559720991732735211dd31c192c29924b3"
+        }
+      },
+      {
+        "month": "2024-06",
+        "expected_minutes": 43200,
+        "trade_minutes": 43200,
+        "paired_minutes": 43200,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2024-06.zip": "93499da4990fec5471bb0d73c91116e7d20a8b2697d7a4491665d6d1b8e85c85",
+          "data/raw/mark_price/BTCUSDT-1m-2024-06.zip": "98fdafee41a7a051c2a5a7fd750e4957adaa3efc24e64bde87e006bc72afcf68"
+        }
+      },
+      {
+        "month": "2024-07",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2024-07.zip": "97f9cd5104a33828c5c2d8d03a2796d600102ab88737d1c6da515b9609540c3c",
+          "data/raw/mark_price/BTCUSDT-1m-2024-07.zip": "2a5655b1b543306ead51639d3310e036c70c2655cbe36a7fa87299f8e39094ae"
+        }
+      },
+      {
+        "month": "2024-08",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44638,
+        "missing_mark_before": 2,
+        "missing_paired_minutes": 2,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [
+          {
+            "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2024-08-12.zip",
+            "sha256": "139f800b758d844744b51a2d2fa1e0391447091faba2cccedb17028acb34d8cc"
+          }
+        ],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2024-08.zip": "f69dbcebfd7108dc97825bd6c35d8d9a51745082f66617cb69de888e867e8e89",
+          "data/raw/mark_price/BTCUSDT-1m-2024-08.zip": "e5be12f99523a72726e7235ad024465cc283b1ebbe1904e16674e130f373c362"
+        }
+      },
+      {
+        "month": "2024-09",
+        "expected_minutes": 43200,
+        "trade_minutes": 43200,
+        "paired_minutes": 43200,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2024-09.zip": "16fe2e13728236bfbd3efee99671612daadeea3b62dfd55d8874feae9faa4946",
+          "data/raw/mark_price/BTCUSDT-1m-2024-09.zip": "ce04d1a5f85a15a2bbef83236816d394ada0c4de8fe826b6b23cbc209c515f1a"
+        }
+      },
+      {
+        "month": "2024-10",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2024-10.zip": "aa8c79ad120a8d870e23276d1ad5966f99f59bc0a1886ef5927a3808a5efee36",
+          "data/raw/mark_price/BTCUSDT-1m-2024-10.zip": "90aad4b8ab9fa46454d11ca5825e6688c57fa8813c93d6df3a7e49e7e92cc11a"
+        }
+      },
+      {
+        "month": "2024-11",
+        "expected_minutes": 43200,
+        "trade_minutes": 43200,
+        "paired_minutes": 43200,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2024-11.zip": "9c3dad038f4b043ec51d4200f57d15a0a07b3fc32b3ea3dca6a96543b9624941",
+          "data/raw/mark_price/BTCUSDT-1m-2024-11.zip": "e7087d29fee5643844a9fafb77c263a28b7f5dcca788d891081a8d73c76c6b82"
+        }
+      },
+      {
+        "month": "2024-12",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2024-12.zip": "bfce141d2a152c2b94d85b797fe18ebfa195fa0e6091a7ccc06663ae1309466f",
+          "data/raw/mark_price/BTCUSDT-1m-2024-12.zip": "e130a234850304431c747c6f832aae250586f953f015b92dbe4a51c4604d6a59"
+        }
+      },
+      {
+        "month": "2025-01",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2025-01.zip": "b69ca5b2c2d1ae00d68d2790d09138cb2a44085ff19e0da5dc98b569ea7e489e",
+          "data/raw/mark_price/BTCUSDT-1m-2025-01.zip": "c061f32b85c72aa8e588882bfd2b884968cfdea45308b3b74f8fb3ff44d9fdc6"
+        }
+      },
+      {
+        "month": "2025-02",
+        "expected_minutes": 40320,
+        "trade_minutes": 40320,
+        "paired_minutes": 40320,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2025-02.zip": "d84ca981d06ee6491e16597f8d43955f62cab399a9f4b6efc2ee1b4d3a37f0fc",
+          "data/raw/mark_price/BTCUSDT-1m-2025-02.zip": "f541de26d9c2c0dbf259f3583bc505916c9cd993da0d62a26d556f79bfc91a94"
+        }
+      },
+      {
+        "month": "2025-03",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2025-03.zip": "4837163333c9c9978255b8870a5a6de1bc48bd22a6c72fef54665a8d4e70b4df",
+          "data/raw/mark_price/BTCUSDT-1m-2025-03.zip": "5c5ee421ba6e062102de1860c89a52d9518633ec5e0c2a49e832744d6fae286d"
+        }
+      },
+      {
+        "month": "2025-04",
+        "expected_minutes": 43200,
+        "trade_minutes": 43200,
+        "paired_minutes": 43200,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2025-04.zip": "87bca047ca7e8b1d27913091255018e121210276726c5aa445e85da6f56e2dcc",
+          "data/raw/mark_price/BTCUSDT-1m-2025-04.zip": "67ccab1f1585d297ec6985a197b47ddb45d325ed094525dbe432d19ea10f9e0a"
+        }
+      },
+      {
+        "month": "2025-05",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2025-05.zip": "7acab7e40a74db53a2d6c35373ebe327eefa85b98f8c92fbe58755881e3841ee",
+          "data/raw/mark_price/BTCUSDT-1m-2025-05.zip": "33f9130e9d92c6774b8438d857e838df5db26e7308fcbb2a178722a021be6d0f"
+        }
+      },
+      {
+        "month": "2025-06",
+        "expected_minutes": 43200,
+        "trade_minutes": 43200,
+        "paired_minutes": 43200,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2025-06.zip": "78872b32c4d0bbc2d89a0459539b90cff47de08a9a56fdf8d233943a32e78efc",
+          "data/raw/mark_price/BTCUSDT-1m-2025-06.zip": "ffae55c885010290cc9aa8faabfdc3b204f7a0671c59b77cb77844da11844501"
+        }
+      },
+      {
+        "month": "2025-07",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2025-07.zip": "cf5fe0891c80e68d2d613eb5457100b7d886eee8cc913ccdd96ef45e757a5aaf",
+          "data/raw/mark_price/BTCUSDT-1m-2025-07.zip": "33eaa2e5fe002aacdd2656af3457186965325fde98a014d2cef754eb3ce849ad"
+        }
+      },
+      {
+        "month": "2025-08",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2025-08.zip": "eaf41354fc1aa96eac94ee50b3fda603cd595f95030ebf30b2ab5bea7a4462c3",
+          "data/raw/mark_price/BTCUSDT-1m-2025-08.zip": "b52004debc432af8cc44cd98884cc7c94458346be8adb13950b44edf8b646f9b"
+        }
+      },
+      {
+        "month": "2025-09",
+        "expected_minutes": 43200,
+        "trade_minutes": 43200,
+        "paired_minutes": 43200,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2025-09.zip": "c296ba45c215934e9750ca82846c7b5d14be661649d8e4423eac834cf57330dc",
+          "data/raw/mark_price/BTCUSDT-1m-2025-09.zip": "25b00a0726920d6a00b05fa6fe26966969964905f05ab917539b77a9066db5f1"
+        }
+      },
+      {
+        "month": "2025-10",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2025-10.zip": "bb7f53350fe27b6d8e38b5856ffc43f9ecda9d568d5bf31d0db0cd011da7100f",
+          "data/raw/mark_price/BTCUSDT-1m-2025-10.zip": "628766a37dca06405268f2d4269598198d5c822aa4477a6804a192212ffa1f6e"
+        }
+      },
+      {
+        "month": "2025-11",
+        "expected_minutes": 43200,
+        "trade_minutes": 43200,
+        "paired_minutes": 43200,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2025-11.zip": "981da0b054f99b959fe6245fb363336b46908d358f37251d59bad308f375bc54",
+          "data/raw/mark_price/BTCUSDT-1m-2025-11.zip": "1915d3d64c34b3b1e7309740091f39f525ff68ff543e7685518c0a0970636d66"
+        }
+      },
+      {
+        "month": "2025-12",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2025-12.zip": "2d5b2e1887dac1dfe450010877de7203a72e19df7a771067b980bbb07ad3069c",
+          "data/raw/mark_price/BTCUSDT-1m-2025-12.zip": "e1ed1dcd4ed9e7cf174a1c2e04f50f04e4fe52c787836cde8f6fadd32f3aef30"
+        }
+      },
+      {
+        "month": "2026-01",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2026-01.zip": "58e9c620a6acda209d25766b3cf4262f3104649f5c26f247d933e0da8bb7946f",
+          "data/raw/mark_price/BTCUSDT-1m-2026-01.zip": "aa48fc9892158909320230708e8d04d8750b1b7b97c936bc926144ad28ec9021"
+        }
+      },
+      {
+        "month": "2026-02",
+        "expected_minutes": 40320,
+        "trade_minutes": 40320,
+        "paired_minutes": 40320,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2026-02.zip": "805626ad2dc5b704d52c211996d12e9e4b1be234998f3dba4b3d34ff79be0337",
+          "data/raw/mark_price/BTCUSDT-1m-2026-02.zip": "2205f17c1d774577a2aeeb1015787d9f966437eaf27090d477f16ae1bdddc4d1"
+        }
+      },
+      {
+        "month": "2026-03",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2026-03.zip": "c472a865f230bf1b5b17e124770a83c083144e3e11a115733288fb8f3e3b8baa",
+          "data/raw/mark_price/BTCUSDT-1m-2026-03.zip": "7731b4b15be1e59eb80422e7eee0067af124c42804c5e575e4cf5ed508d94687"
+        }
+      },
+      {
+        "month": "2026-04",
+        "expected_minutes": 43200,
+        "trade_minutes": 43200,
+        "paired_minutes": 43200,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2026-04.zip": "515b86570f0c6924f6dc2cf90589d3db90f3de9c6bfd9a22dde0429995dc5405",
+          "data/raw/mark_price/BTCUSDT-1m-2026-04.zip": "a1655f959e24c73a010b949649d45fcb2854bb9e2f5fe8e998269eb6ad4585e4"
+        }
+      },
+      {
+        "month": "2026-05",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2026-05.zip": "d91548e94220d5211bb32447cc4b604ee266d145f2092edc5ec613328cbbc20a",
+          "data/raw/mark_price/BTCUSDT-1m-2026-05.zip": "c9e4475e8762b4e52b899785deca52bceb0efb9bf08bd411b3147cd5e1da5e25"
+        }
+      },
+      {
+        "month": "2026-06",
+        "expected_minutes": 43200,
+        "trade_minutes": 43200,
+        "paired_minutes": 43200,
+        "missing_mark_before": 1440,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [
+          {
+            "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-06-29.zip",
+            "sha256": "200e2ef30a86e9f91c011dae30d864f73c8480fddecc73ea227958596f6cd11c"
+          }
+        ],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2026-06.zip": "9b214199eb5063585c7ed0f59ba19323326d68ac024b85106713989399204490",
+          "data/raw/mark_price/BTCUSDT-1m-2026-06.zip": "5d5d8b86efbe709e034409634347a161183e7c0df3854f8d96c9778dc1c923ba"
+        }
+      },
+      {
+        "month": "2026-07",
+        "expected_minutes": 44640,
+        "trade_minutes": 44640,
+        "paired_minutes": 44640,
+        "missing_mark_before": 0,
+        "missing_paired_minutes": 0,
+        "incomplete_trade_hours": 0,
+        "repair_sources": [],
+        "local_sha256": {
+          "data/raw/klines/BTCUSDT-1m-2026-07.zip": "f18440bb58f0c7e1ff63cbb906132002877c4914540c8aebab920da6937cff73",
+          "data/raw/mark_price/BTCUSDT-1m-2026-07.zip": "5bb16a0707eef96d648480ab45943f25b27425154b2ccb881c200cfd51e594ed"
+        }
+      }
+    ]
+  }
+}

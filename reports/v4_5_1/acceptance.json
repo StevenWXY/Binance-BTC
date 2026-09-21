@@ -1,0 +1,12 @@
+{
+  "version": "V4.5.1",
+  "selected": "s051",
+  "status": "frozen_research_candidate",
+  "development_pass": true,
+  "recent_return_and_sharpe_pass": true,
+  "later_reset_audit_return_and_sharpe_pass": true,
+  "recent_stress_pass": true,
+  "historically_blind_oos": false,
+  "multiple_testing_adjusted": false,
+  "promote_to_default": false
+}

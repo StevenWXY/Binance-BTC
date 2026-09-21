@@ -1,0 +1,18 @@
+{
+  "version": "V4.5.1",
+  "baseline": "Frozen V4.4.4 r025 longs, unchanged",
+  "candidate_count": 72,
+  "grid": {"gate": ["trend", "tactical", "structural"], "entry": ["break12", "break24", "reject"], "protection": ["quick", "swing"], "adx_min": [20, 28], "risk": ["small", "medium"]},
+  "train_legacy": ["2020-01-01", "2024-01-01"],
+  "train_recent": ["2024-01-01", "2025-01-01"],
+  "validation": ["2025-01-15", "2025-07-01"],
+  "post_freeze_audit": ["2025-07-15", "2026-09-01"],
+  "selection": "20% legacy + 40% 2024 + 40% 2025-H1 utility (Sharpe + 0.5 annual log growth + max_drawdown); subtract 0.2 dispersion of recent-half-year Sharpe; promote only if recent aggregate Sharpe/return both improve, positive summed short cycle return in both 2024 and 2025-H1, at least 5/3 short cycles in those windows, legacy Sharpe no more than 0.15 below baseline, full DD <=40%, recent DD <=35%.",
+  "minute_finalists": 6,
+  "selection_data_end_exclusive": "2025-07-01",
+  "fee": {"published_taker_bps": 4, "rebate_fraction": 0.4, "effective_taker_bps": 2.4},
+  "execution": "Hourly completed signals; 1m final fills, 1bps base slip, 8bps sqrt(participation), actual funding and mark-price protections. Proxy uses 1h bars, 2bps slip and zero volume impact.",
+  "short_risk": "Long priority; short only while the long target is zero. Small risk: cap 0.75x, 1% stop-distance risk budget, 40% vol target; medium: 1.25x, 1.5%, 55%. No averaging down. Fresh event required after 6h cooldown. Funding entry floor -2bps; exit at -4bps. No RSI<=25 or vol_ratio>=2 chasing.",
+  "robustness_after_freeze": ["paired full/recent continuous account", "no rebate", "higher fee/slippage/impact", "1h signal delay", "short disabled ablation", "short-only attribution", "14-day paired bootstrap"],
+  "disclosure": "All historical data through August 2026 was used by prior V4.4 research. Here the short-module search is restricted to data before July 2025; the later audit is a procedural holdout, not a wholly blind sample. Candidate designs are retrospective. No retuning on the post-freeze audit."
+}

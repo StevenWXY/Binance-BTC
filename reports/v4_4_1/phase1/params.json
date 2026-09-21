@@ -1,0 +1,22 @@
+{
+  "regime_fast": 12,
+  "regime_slow": 48,
+  "entry_mode": "reclaim",
+  "long_trailing_atr": 3.0,
+  "long_stop_atr": 2.5,
+  "long_target_vol": 0.9,
+  "long_risk_budget": 0.05,
+  "max_leverage": 3.0,
+  "long_max_hours": 240,
+  "cooldown_hours": 6,
+  "rebalance_hours": 24,
+  "rebalance_band": 0.25,
+  "short_enabled": false,
+  "short_max_leverage": 0.6,
+  "short_risk_budget": 0.0125,
+  "short_stop_atr": 1.8,
+  "short_trailing_atr": 2.0,
+  "short_take_atr": 4.0,
+  "short_max_hours": 48,
+  "funding_crowded": 0.0002
+}

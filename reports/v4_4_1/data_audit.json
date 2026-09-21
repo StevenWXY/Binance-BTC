@@ -1,0 +1,1248 @@
+{
+  "start": "2020-01-01 00:00:00+00:00",
+  "end_exclusive": "2026-08-01 00:00:00+00:00",
+  "hourly_rows": 57696,
+  "funding_events": 7212,
+  "funding_months": [
+    "2020-01",
+    "2020-02",
+    "2020-03",
+    "2020-04",
+    "2020-05",
+    "2020-06",
+    "2020-07",
+    "2020-08",
+    "2020-09",
+    "2020-10",
+    "2020-11",
+    "2020-12",
+    "2021-01",
+    "2021-02",
+    "2021-03",
+    "2021-04",
+    "2021-05",
+    "2021-06",
+    "2021-07",
+    "2021-08",
+    "2021-09",
+    "2021-10",
+    "2021-11",
+    "2021-12",
+    "2022-01",
+    "2022-02",
+    "2022-03",
+    "2022-04",
+    "2022-05",
+    "2022-06",
+    "2022-07",
+    "2022-08",
+    "2022-09",
+    "2022-10",
+    "2022-11",
+    "2022-12",
+    "2023-01",
+    "2023-02",
+    "2023-03",
+    "2023-04",
+    "2023-05",
+    "2023-06",
+    "2023-07",
+    "2023-08",
+    "2023-09",
+    "2023-10",
+    "2023-11",
+    "2023-12",
+    "2024-01",
+    "2024-02",
+    "2024-03",
+    "2024-04",
+    "2024-05",
+    "2024-06",
+    "2024-07",
+    "2024-08",
+    "2024-09",
+    "2024-10",
+    "2024-11",
+    "2024-12",
+    "2025-01",
+    "2025-02",
+    "2025-03",
+    "2025-04",
+    "2025-05",
+    "2025-06",
+    "2025-07",
+    "2025-08",
+    "2025-09",
+    "2025-10",
+    "2025-11",
+    "2025-12",
+    "2026-01",
+    "2026-02",
+    "2026-03",
+    "2026-04",
+    "2026-05",
+    "2026-06",
+    "2026-07"
+  ],
+  "original_archives_modified": false,
+  "repair_enabled": true,
+  "months": [
+    {
+      "month": "2020-01",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44611,
+      "missing_mark_before": 29,
+      "missing_paired_minutes": 29,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [
+        {
+          "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2020-01-19.zip",
+          "sha256": "dab38bf9e866a0c8af6711b03e15518d4c9933c28273dd4e54e1b11ad1463f69"
+        }
+      ],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2020-01.zip": "b4e13ea185ba96c413ac9167cfbb6e238eb5eae119a7a77f41f4c61c5e099d03",
+        "data/raw/mark_price/BTCUSDT-1m-2020-01.zip": "04a7ae26d01cdcc75edb917fafba70f2b2b026a64ce2e66d25dc7cef0f722531"
+      }
+    },
+    {
+      "month": "2020-02",
+      "expected_minutes": 41760,
+      "trade_minutes": 41760,
+      "paired_minutes": 41760,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2020-02.zip": "f32b20168ea590cd7d04a2995bc5ec500ea06331c8174f7fd14f29c1078e5ed2",
+        "data/raw/mark_price/BTCUSDT-1m-2020-02.zip": "8e99768235c8bd120ee25e7020ad3106488440eb41bbabe2935324dc1632a3db"
+      }
+    },
+    {
+      "month": "2020-03",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2020-03.zip": "15790b4b031cbc5f59cae30e523fb8341588d279fe3839ba1224c7fe8a6bc929",
+        "data/raw/mark_price/BTCUSDT-1m-2020-03.zip": "93d4d8ca217dbd21e0079448e324e906df835e4e552b1256a55de768f8da8588"
+      }
+    },
+    {
+      "month": "2020-04",
+      "expected_minutes": 43200,
+      "trade_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2020-04.zip": "f45228183c21030fc3a787109eada99187d9ba8c4d5d7ea5c178967150fa7467",
+        "data/raw/mark_price/BTCUSDT-1m-2020-04.zip": "1999cc84238930a1d2b85eafbcbd60a62257b6bb8744ee737d8a5e8c56e16532"
+      }
+    },
+    {
+      "month": "2020-05",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2020-05.zip": "bc5bdae217f9ef6a32ffcc7653e3d45e007a2d9b2e93b752bdc7805254446821",
+        "data/raw/mark_price/BTCUSDT-1m-2020-05.zip": "8fa6f2fc5fc1d710e2ee27e409e0ac7fa4deab05a66739825aa0d8c9e1dfa098"
+      }
+    },
+    {
+      "month": "2020-06",
+      "expected_minutes": 43200,
+      "trade_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2020-06.zip": "91f18492445c0a9609d70bd4603c73c8588a88c06105ade34082417f8b2e7e6d",
+        "data/raw/mark_price/BTCUSDT-1m-2020-06.zip": "823896788de2a12ef2cfbb73f9a40f8a641272b5967b4f607355feae794779dc"
+      }
+    },
+    {
+      "month": "2020-07",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2020-07.zip": "4cb7dcf6e1adb17e8ab8787c459f3f645b7070633f530485f0f93dd45a9de693",
+        "data/raw/mark_price/BTCUSDT-1m-2020-07.zip": "b8ee8e08290ceeac9fddbb57217ff3d920e505cc4aea1a24c79940cad745a17b"
+      }
+    },
+    {
+      "month": "2020-08",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2020-08.zip": "7596de0f26df44d782713475f97af34f27a287faf084c73bdcc61819215b060a",
+        "data/raw/mark_price/BTCUSDT-1m-2020-08.zip": "ea98a513d0a77dd4598b12b2df757a24879ef33574616ac5f9c82af1b058e21b"
+      }
+    },
+    {
+      "month": "2020-09",
+      "expected_minutes": 43200,
+      "trade_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2020-09.zip": "9f2d575ffc17a14320bc08a99d51a5580fd7f058f1495cfec598fbbd959792c2",
+        "data/raw/mark_price/BTCUSDT-1m-2020-09.zip": "491e3ec2b9aa21eef52c8206567bfb23b351ceba3052c5f80ad02c930f75a1f7"
+      }
+    },
+    {
+      "month": "2020-10",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2020-10.zip": "f35bc01dc1bba142c87033b33055c34a0ba37c2a2abd6c115af6a9c4f238dd03",
+        "data/raw/mark_price/BTCUSDT-1m-2020-10.zip": "93b2a35009518db9fb7572b41dd0efe3a94d867606d6633c1f4f502f9a7c1323"
+      }
+    },
+    {
+      "month": "2020-11",
+      "expected_minutes": 43200,
+      "trade_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2020-11.zip": "8eb55b2a547c35d792f88186168774804346426b82289bc9b1633406c0ff9e40",
+        "data/raw/mark_price/BTCUSDT-1m-2020-11.zip": "2a7816860dbb997d9a5adf12b93d32678c0e92611e580327bd9b10fb47079436"
+      }
+    },
+    {
+      "month": "2020-12",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44616,
+      "missing_mark_before": 24,
+      "missing_paired_minutes": 24,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [
+        {
+          "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2020-12-17.zip",
+          "sha256": "05fbc735ee001291c062bb443368728ff2b5e0e2b9832e779504c7823b41788b"
+        }
+      ],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2020-12.zip": "72cfa1e9aeb851871af0168eb7ee22d334b5efb3aa4a76d7382754dac5e885d8",
+        "data/raw/mark_price/BTCUSDT-1m-2020-12.zip": "cd3edb99a29714eab9f0b128c23a965b562e08170f4e1b95cce3486d5fde0740"
+      }
+    },
+    {
+      "month": "2021-01",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2021-01.zip": "ba7aeda6a99e0828b39da1b0605aaefcb40882fe9d44034598c4404f8a07783f",
+        "data/raw/mark_price/BTCUSDT-1m-2021-01.zip": "883021211d84d5d0996bb6c946e82163b508d02f7e7d53e50c399f4622f4a3dc"
+      }
+    },
+    {
+      "month": "2021-02",
+      "expected_minutes": 40320,
+      "trade_minutes": 40320,
+      "paired_minutes": 40320,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2021-02.zip": "0a270f354b15b053824a7bb87c652aa95acb4a255fc968fe0a24bdc9e785223e",
+        "data/raw/mark_price/BTCUSDT-1m-2021-02.zip": "b090f44eb2b24486e89c387db83533f309800aa44931d73964bfc211846205bf"
+      }
+    },
+    {
+      "month": "2021-03",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2021-03.zip": "15a2676410d5104fac1ea15f7302addbf4d0de14f6db8ce10a4930c3f5d5e7fa",
+        "data/raw/mark_price/BTCUSDT-1m-2021-03.zip": "6e25031ed12e52dbd7ddc854e829e9c53df4c1fd621eda00db18ad3cc6c4b439"
+      }
+    },
+    {
+      "month": "2021-04",
+      "expected_minutes": 43200,
+      "trade_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2021-04.zip": "d957fcde82f9b5a9a05264a9602e5deae03472aa0d424ddb0f27a04e58723217",
+        "data/raw/mark_price/BTCUSDT-1m-2021-04.zip": "8f8067c9b653c09fad49545daf1e3438190ec59ad8582b9f52f8395cee038c6a"
+      }
+    },
+    {
+      "month": "2021-05",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2021-05.zip": "dcf7c567cbde49a5e564b29f01be95e28d32f12cb68c40b2a14da75930187dc8",
+        "data/raw/mark_price/BTCUSDT-1m-2021-05.zip": "9f5a9515e9ee59519cdce2d8b6ea2a81a21fe377ad524214a292cc51a1d55482"
+      }
+    },
+    {
+      "month": "2021-06",
+      "expected_minutes": 43200,
+      "trade_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2021-06.zip": "a640c7f935a1136d2f65f28f9606f0e063185c500f982aec273bb2ed3f61bfc5",
+        "data/raw/mark_price/BTCUSDT-1m-2021-06.zip": "0bb4c8f4bfb11d662095277164bd6dbf645d8ef4470786f07be8342f4ccc52fd"
+      }
+    },
+    {
+      "month": "2021-07",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 7200,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [
+        {
+          "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2021-07-01.zip",
+          "sha256": "237538cdaff73b91a76edcbaee1797c59942751db36b0ed82d400d902cbed0a4"
+        },
+        {
+          "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2021-07-24.zip",
+          "sha256": "fc5569b14323e908f74b73c74f51c4152fcd7f8ca9e9be1f1e1d641c4dd1275a"
+        },
+        {
+          "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2021-07-25.zip",
+          "sha256": "9d92c79a0b84c86d4e2834305045b403088870de2403c8ef612b9ee40a6d14b2"
+        },
+        {
+          "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2021-07-26.zip",
+          "sha256": "d89bd409d52eac110a54fcfe68abcf1cc0bb2b03515b19557128d42cbcb8929b"
+        },
+        {
+          "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2021-07-27.zip",
+          "sha256": "851624bc74228bab9dbbc0140e701ba11b978f899c8121d496679a9430e9339b"
+        }
+      ],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2021-07.zip": "1367b5cd230474b0ecc6031b9e18cffe66e011c8fdd01c3325985a39c5d5ed48",
+        "data/raw/mark_price/BTCUSDT-1m-2021-07.zip": "f803d5e91d9a932bee0b816abc7c6fdedcd9cf9c327474b195ef72d0c9693a06"
+      }
+    },
+    {
+      "month": "2021-08",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2021-08.zip": "a864bdf38c9d06b7a6a1dc07c5593bbe7387cec3b869e9ebee020da053d94f37",
+        "data/raw/mark_price/BTCUSDT-1m-2021-08.zip": "a4dd146ec0ef0f17f63940e3f32a22433fa9e093856f4ebfb8b9c12f0dccdec0"
+      }
+    },
+    {
+      "month": "2021-09",
+      "expected_minutes": 43200,
+      "trade_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2021-09.zip": "6e7bbfe650e6c56e189e78d521b3714feffd38468d1268b706a6626737326676",
+        "data/raw/mark_price/BTCUSDT-1m-2021-09.zip": "70167cdb73095e89095038631e94f0629c453abb45a6e9f8f6de0f7429ec4723"
+      }
+    },
+    {
+      "month": "2021-10",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2021-10.zip": "4b78dd0174890c975effca2ed078163d6e9b4f7437f692e2c430c724b7eafc24",
+        "data/raw/mark_price/BTCUSDT-1m-2021-10.zip": "4301f4ae15eec9c9ae241b973ddda311e964fb3c87eeb2f8c4d8c26e7b10c507"
+      }
+    },
+    {
+      "month": "2021-11",
+      "expected_minutes": 43200,
+      "trade_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2021-11.zip": "67da3342f014166d2af97321599e0011453c4bd5a9282ef12c1a6131efd12993",
+        "data/raw/mark_price/BTCUSDT-1m-2021-11.zip": "48b6337e60328c2a48c8664198b0ce01700a7aa3208d86c7eb0035edb06faa53"
+      }
+    },
+    {
+      "month": "2021-12",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2021-12.zip": "c905c5c8ff36d0dfac3a0581225ab305f72d1e11e634953d8d3a136161d10956",
+        "data/raw/mark_price/BTCUSDT-1m-2021-12.zip": "b7d4014d14c149012c7b64423f1a683ab0364269945e02c1789dcdbe44ebce61"
+      }
+    },
+    {
+      "month": "2022-01",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2022-01.zip": "9cdbcf68903434c850f9bec60d8174c2cfd105dd24a7566965b442ec15124e04",
+        "data/raw/mark_price/BTCUSDT-1m-2022-01.zip": "620ec2bfdaed255236b7daa113488a4b2eada7bf3384b1fe640d40dd85d9c4bb"
+      }
+    },
+    {
+      "month": "2022-02",
+      "expected_minutes": 40320,
+      "trade_minutes": 40320,
+      "paired_minutes": 40320,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2022-02.zip": "63672d552f98ec125ac4d90d82154313fb9832b7e1aaed196101816bd61bfb89",
+        "data/raw/mark_price/BTCUSDT-1m-2022-02.zip": "9554d65c02469ef76ba92b7e8646d2ab606238ca83f23b73957a44c78c7674fd"
+      }
+    },
+    {
+      "month": "2022-03",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2022-03.zip": "4532faf2f92d205fac79b7d25327d2045843b60a4494e00b0962e6b7f028bc06",
+        "data/raw/mark_price/BTCUSDT-1m-2022-03.zip": "8cc7cd5451a9c9eaef4a82cb80ef96cabda957fb64943b3620e19bb467d71f49"
+      }
+    },
+    {
+      "month": "2022-04",
+      "expected_minutes": 43200,
+      "trade_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2022-04.zip": "0f509e296da62eed5f4e903507ced0de9738ea96a7a885e76dd2394b8049e689",
+        "data/raw/mark_price/BTCUSDT-1m-2022-04.zip": "89d70dc94e4336f71380497008dd3de4831c8eb2b0cf25aa139c042204efb67c"
+      }
+    },
+    {
+      "month": "2022-05",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2022-05.zip": "768bdbbd11b08d935b3753ecfee7f1e351a346c71b11cf68a4a51296d694f368",
+        "data/raw/mark_price/BTCUSDT-1m-2022-05.zip": "589544c8c2971e42d7b54d3d42c3dee01474b5bb8f03fe6884304b86af194e68"
+      }
+    },
+    {
+      "month": "2022-06",
+      "expected_minutes": 43200,
+      "trade_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2022-06.zip": "8587319eaf1b1f6d73fd34446acdecdc72c47b23ecfd2d88e2a6dd2a35470565",
+        "data/raw/mark_price/BTCUSDT-1m-2022-06.zip": "7a4aadc8beebd88105f564c1e4c6db4d2ba3d768638926429aa0b109643b440a"
+      }
+    },
+    {
+      "month": "2022-07",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2022-07.zip": "6fc45fa135a6be85679a6ab0b1268fbd1f8258079295cd134b9a4c535c6b6b65",
+        "data/raw/mark_price/BTCUSDT-1m-2022-07.zip": "4fbff8924152d1d8f9994d888847fec0d20f7075c4f244c77a0f032ef58410d3"
+      }
+    },
+    {
+      "month": "2022-08",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2022-08.zip": "806ee1d6efa856984fe79453d17f04c0fb5e447413fe828cbd3ec2df9a1f5fc4",
+        "data/raw/mark_price/BTCUSDT-1m-2022-08.zip": "fc15588d80e2fea766ce86906c5b7f1975f00a03637483f6606e26f1769a3675"
+      }
+    },
+    {
+      "month": "2022-09",
+      "expected_minutes": 43200,
+      "trade_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2022-09.zip": "fa1adecbe41b530c12f481882115511297ac7b78a9a7ae9d9d21b11c745649a4",
+        "data/raw/mark_price/BTCUSDT-1m-2022-09.zip": "cceb950dfd6858865cd76f0ccf2637a930f274e75ae031e17bb4575b4e681427"
+      }
+    },
+    {
+      "month": "2022-10",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 1440,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [
+        {
+          "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2022-10-02.zip",
+          "sha256": "1824ddc3736ebfe8f481e60529fa2f8870af7cabd8bd8fe660c229553a8a21f7"
+        }
+      ],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2022-10.zip": "0f2d2cd67b30ab186bf3db5a07acfe835f1d74335c6493c80e9e4f0598e29b2c",
+        "data/raw/mark_price/BTCUSDT-1m-2022-10.zip": "e6bba74c7ccb41dcd8a7ea1a65f40dc01de05e3128a265d77cd882898037780f"
+      }
+    },
+    {
+      "month": "2022-11",
+      "expected_minutes": 43200,
+      "trade_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2022-11.zip": "96916aba47f230a9bc68cd3fd98d0d352e1fd8f23c16c515107c4d965a2067a3",
+        "data/raw/mark_price/BTCUSDT-1m-2022-11.zip": "da02544e804f995ad34dfd84f4cda4a8c62200fc465329817f2881d772689806"
+      }
+    },
+    {
+      "month": "2022-12",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2022-12.zip": "0f4788019cdb29f4db7b03d9efefce099d7adf49c0daf70a144b814b292bf577",
+        "data/raw/mark_price/BTCUSDT-1m-2022-12.zip": "03fe4fa0293236aba29e603e4bafcb128c3703f82bc7ef59bb385eb165f0b58a"
+      }
+    },
+    {
+      "month": "2023-01",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2023-01.zip": "b7b04483464b36c89f519bf35d6461d278c709577562108b6a00fb786b92e6a6",
+        "data/raw/mark_price/BTCUSDT-1m-2023-01.zip": "18abe5d64d97bf153d1d8f7f9b39f51c37454add602b6af8d51f267dd0f19094"
+      }
+    },
+    {
+      "month": "2023-02",
+      "expected_minutes": 40320,
+      "trade_minutes": 40320,
+      "paired_minutes": 40320,
+      "missing_mark_before": 1440,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [
+        {
+          "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2023-02-24.zip",
+          "sha256": "ca3745ada0d946c65407cb010a2a5fcac37bf2e2cceebbb19dc9cb30ecd2473e"
+        }
+      ],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2023-02.zip": "b62ca5df57b1715109cb1fd57097529b28410fb36b0db5bd41dbefe7e070db68",
+        "data/raw/mark_price/BTCUSDT-1m-2023-02.zip": "f84b1b0c1524f381fadaaee37b7be4912cb21fe947106cf01d6a9f0248e38d78"
+      }
+    },
+    {
+      "month": "2023-03",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2023-03.zip": "1cb47aae71e941d3e9d333f9c96723eb35c8b4a7ec90e819c59a7c02f89b03bb",
+        "data/raw/mark_price/BTCUSDT-1m-2023-03.zip": "1debe8c9ac4d0e21ffb0715157bdb543577eff49ce0adf88793572ea48e4da65"
+      }
+    },
+    {
+      "month": "2023-04",
+      "expected_minutes": 43200,
+      "trade_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2023-04.zip": "2c22e2e460bf0e41884bf71031eebf60224ba470b25777a4d17ddc9298390650",
+        "data/raw/mark_price/BTCUSDT-1m-2023-04.zip": "f5a84258e4f0f62715f0c671b4807cee77ae21c7f2a42a45238728567762db00"
+      }
+    },
+    {
+      "month": "2023-05",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2023-05.zip": "cf9e0ab390e3872ddb9d807ad161933a28e374e09dbee2b9addf659856d1e656",
+        "data/raw/mark_price/BTCUSDT-1m-2023-05.zip": "fa5ad18ee67b48ffde94a57c674900a7129c1f5078a3d82c02f4cd8ec3411e42"
+      }
+    },
+    {
+      "month": "2023-06",
+      "expected_minutes": 43200,
+      "trade_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2023-06.zip": "8dac3fe301198e752b257817542a7ded393dbe00b604f67aba6bc0090778ae95",
+        "data/raw/mark_price/BTCUSDT-1m-2023-06.zip": "9e888715d55dc099083916b35e386f5d1002a1daedc62c5ac489b789f709cc28"
+      }
+    },
+    {
+      "month": "2023-07",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2023-07.zip": "5cc84c767c9f4d1fa3cb3d33bd009a0b5e3a445e9c89ad2ef259c90b0365cbc3",
+        "data/raw/mark_price/BTCUSDT-1m-2023-07.zip": "0335045b48bb1409cafe0a2f01fb78f11537e7ac54ccc386bd674b1a5b0c857d"
+      }
+    },
+    {
+      "month": "2023-08",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2023-08.zip": "8d77e6f898fba3aa5bf643d128e0aaa1b722ea6881cd26a3d19088705117a1d7",
+        "data/raw/mark_price/BTCUSDT-1m-2023-08.zip": "f1724cafea417a0c5915d060428bf51ee1f5dd7c7db1b22dedbaf1649775f69d"
+      }
+    },
+    {
+      "month": "2023-09",
+      "expected_minutes": 43200,
+      "trade_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2023-09.zip": "ea43f6e612b54e165c47ea30955b8d9e825b1d3ad1846f12c03ad0f0fced9029",
+        "data/raw/mark_price/BTCUSDT-1m-2023-09.zip": "230cfd0e4356a816a4190428509ae938c47598985a39a55bc8f6149280304bc9"
+      }
+    },
+    {
+      "month": "2023-10",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2023-10.zip": "153f1322695d16a12cab261b7798045323d9f893b19d35d95ffe94a62530b4de",
+        "data/raw/mark_price/BTCUSDT-1m-2023-10.zip": "515848caafbd72c51e60fada274af8fff339f74fb80fa9ca22e28e2837e2aaee"
+      }
+    },
+    {
+      "month": "2023-11",
+      "expected_minutes": 43200,
+      "trade_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2023-11.zip": "63aa156170b2316927ae4c4928cc78866934a02b4bbc14c730b5fe4790383a80",
+        "data/raw/mark_price/BTCUSDT-1m-2023-11.zip": "15297e53a960de47f6880ad76f895b9c59573a546d1017c0c288b10434b2b01c"
+      }
+    },
+    {
+      "month": "2023-12",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2023-12.zip": "947ea9b1c5dfa301f1d5ff89d28f3ee49bc73eef2cfa1f0dc4024048458eb60b",
+        "data/raw/mark_price/BTCUSDT-1m-2023-12.zip": "6c5f2473e4cbb328b7ec271c075c2203ae9b3eb23b53a2cf36325bcb2d0e3741"
+      }
+    },
+    {
+      "month": "2024-01",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2024-01.zip": "21eeac04a76a7a35b10467e5e752fb2f8cff77cdeb57df6b50a23ce8d69bb190",
+        "data/raw/mark_price/BTCUSDT-1m-2024-01.zip": "1607b1522928d2a698592019fef7c3fcc9bee2cd01674c72a27e7fc028fd66ca"
+      }
+    },
+    {
+      "month": "2024-02",
+      "expected_minutes": 41760,
+      "trade_minutes": 41760,
+      "paired_minutes": 41760,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2024-02.zip": "1407acbf8ad99911bdf582805699b7e85fdbc346dbe12618ce8b6369f0d8058d",
+        "data/raw/mark_price/BTCUSDT-1m-2024-02.zip": "2e6f24f3bc92a7d241d5dbcfc79c54a0aa24b26ad12b4988f61a8c8d93e867fc"
+      }
+    },
+    {
+      "month": "2024-03",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2024-03.zip": "040b8e448e4243072b88b0d9908dfebed91bba943b75f4e831fa5337a2e1dab9",
+        "data/raw/mark_price/BTCUSDT-1m-2024-03.zip": "7efa90ed53f47100633253faf45838584d1b148081c57196abf0f884d8452986"
+      }
+    },
+    {
+      "month": "2024-04",
+      "expected_minutes": 43200,
+      "trade_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2024-04.zip": "6a41f002da0c8e3f60bd46c841ea4ed766fb195764ad3b6b10e4f508d29c2eb7",
+        "data/raw/mark_price/BTCUSDT-1m-2024-04.zip": "b4d3961b62d727db532222b2dc4519a8e7d8ff4b1ebab1de37458568db132b4f"
+      }
+    },
+    {
+      "month": "2024-05",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2024-05.zip": "42de617ed643def54b5a2c3fceb7cd2edec91aafaa01104a097b2ded5c5122d4",
+        "data/raw/mark_price/BTCUSDT-1m-2024-05.zip": "479435c79e0e56e3ded959ee47e3fb559720991732735211dd31c192c29924b3"
+      }
+    },
+    {
+      "month": "2024-06",
+      "expected_minutes": 43200,
+      "trade_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2024-06.zip": "93499da4990fec5471bb0d73c91116e7d20a8b2697d7a4491665d6d1b8e85c85",
+        "data/raw/mark_price/BTCUSDT-1m-2024-06.zip": "98fdafee41a7a051c2a5a7fd750e4957adaa3efc24e64bde87e006bc72afcf68"
+      }
+    },
+    {
+      "month": "2024-07",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2024-07.zip": "97f9cd5104a33828c5c2d8d03a2796d600102ab88737d1c6da515b9609540c3c",
+        "data/raw/mark_price/BTCUSDT-1m-2024-07.zip": "2a5655b1b543306ead51639d3310e036c70c2655cbe36a7fa87299f8e39094ae"
+      }
+    },
+    {
+      "month": "2024-08",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44638,
+      "missing_mark_before": 2,
+      "missing_paired_minutes": 2,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [
+        {
+          "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2024-08-12.zip",
+          "sha256": "139f800b758d844744b51a2d2fa1e0391447091faba2cccedb17028acb34d8cc"
+        }
+      ],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2024-08.zip": "f69dbcebfd7108dc97825bd6c35d8d9a51745082f66617cb69de888e867e8e89",
+        "data/raw/mark_price/BTCUSDT-1m-2024-08.zip": "e5be12f99523a72726e7235ad024465cc283b1ebbe1904e16674e130f373c362"
+      }
+    },
+    {
+      "month": "2024-09",
+      "expected_minutes": 43200,
+      "trade_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2024-09.zip": "16fe2e13728236bfbd3efee99671612daadeea3b62dfd55d8874feae9faa4946",
+        "data/raw/mark_price/BTCUSDT-1m-2024-09.zip": "ce04d1a5f85a15a2bbef83236816d394ada0c4de8fe826b6b23cbc209c515f1a"
+      }
+    },
+    {
+      "month": "2024-10",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2024-10.zip": "aa8c79ad120a8d870e23276d1ad5966f99f59bc0a1886ef5927a3808a5efee36",
+        "data/raw/mark_price/BTCUSDT-1m-2024-10.zip": "90aad4b8ab9fa46454d11ca5825e6688c57fa8813c93d6df3a7e49e7e92cc11a"
+      }
+    },
+    {
+      "month": "2024-11",
+      "expected_minutes": 43200,
+      "trade_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2024-11.zip": "9c3dad038f4b043ec51d4200f57d15a0a07b3fc32b3ea3dca6a96543b9624941",
+        "data/raw/mark_price/BTCUSDT-1m-2024-11.zip": "e7087d29fee5643844a9fafb77c263a28b7f5dcca788d891081a8d73c76c6b82"
+      }
+    },
+    {
+      "month": "2024-12",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2024-12.zip": "bfce141d2a152c2b94d85b797fe18ebfa195fa0e6091a7ccc06663ae1309466f",
+        "data/raw/mark_price/BTCUSDT-1m-2024-12.zip": "e130a234850304431c747c6f832aae250586f953f015b92dbe4a51c4604d6a59"
+      }
+    },
+    {
+      "month": "2025-01",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2025-01.zip": "b69ca5b2c2d1ae00d68d2790d09138cb2a44085ff19e0da5dc98b569ea7e489e",
+        "data/raw/mark_price/BTCUSDT-1m-2025-01.zip": "c061f32b85c72aa8e588882bfd2b884968cfdea45308b3b74f8fb3ff44d9fdc6"
+      }
+    },
+    {
+      "month": "2025-02",
+      "expected_minutes": 40320,
+      "trade_minutes": 40320,
+      "paired_minutes": 40320,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2025-02.zip": "d84ca981d06ee6491e16597f8d43955f62cab399a9f4b6efc2ee1b4d3a37f0fc",
+        "data/raw/mark_price/BTCUSDT-1m-2025-02.zip": "f541de26d9c2c0dbf259f3583bc505916c9cd993da0d62a26d556f79bfc91a94"
+      }
+    },
+    {
+      "month": "2025-03",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2025-03.zip": "4837163333c9c9978255b8870a5a6de1bc48bd22a6c72fef54665a8d4e70b4df",
+        "data/raw/mark_price/BTCUSDT-1m-2025-03.zip": "5c5ee421ba6e062102de1860c89a52d9518633ec5e0c2a49e832744d6fae286d"
+      }
+    },
+    {
+      "month": "2025-04",
+      "expected_minutes": 43200,
+      "trade_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2025-04.zip": "87bca047ca7e8b1d27913091255018e121210276726c5aa445e85da6f56e2dcc",
+        "data/raw/mark_price/BTCUSDT-1m-2025-04.zip": "67ccab1f1585d297ec6985a197b47ddb45d325ed094525dbe432d19ea10f9e0a"
+      }
+    },
+    {
+      "month": "2025-05",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2025-05.zip": "7acab7e40a74db53a2d6c35373ebe327eefa85b98f8c92fbe58755881e3841ee",
+        "data/raw/mark_price/BTCUSDT-1m-2025-05.zip": "33f9130e9d92c6774b8438d857e838df5db26e7308fcbb2a178722a021be6d0f"
+      }
+    },
+    {
+      "month": "2025-06",
+      "expected_minutes": 43200,
+      "trade_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2025-06.zip": "78872b32c4d0bbc2d89a0459539b90cff47de08a9a56fdf8d233943a32e78efc",
+        "data/raw/mark_price/BTCUSDT-1m-2025-06.zip": "ffae55c885010290cc9aa8faabfdc3b204f7a0671c59b77cb77844da11844501"
+      }
+    },
+    {
+      "month": "2025-07",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2025-07.zip": "cf5fe0891c80e68d2d613eb5457100b7d886eee8cc913ccdd96ef45e757a5aaf",
+        "data/raw/mark_price/BTCUSDT-1m-2025-07.zip": "33eaa2e5fe002aacdd2656af3457186965325fde98a014d2cef754eb3ce849ad"
+      }
+    },
+    {
+      "month": "2025-08",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2025-08.zip": "eaf41354fc1aa96eac94ee50b3fda603cd595f95030ebf30b2ab5bea7a4462c3",
+        "data/raw/mark_price/BTCUSDT-1m-2025-08.zip": "b52004debc432af8cc44cd98884cc7c94458346be8adb13950b44edf8b646f9b"
+      }
+    },
+    {
+      "month": "2025-09",
+      "expected_minutes": 43200,
+      "trade_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2025-09.zip": "c296ba45c215934e9750ca82846c7b5d14be661649d8e4423eac834cf57330dc",
+        "data/raw/mark_price/BTCUSDT-1m-2025-09.zip": "25b00a0726920d6a00b05fa6fe26966969964905f05ab917539b77a9066db5f1"
+      }
+    },
+    {
+      "month": "2025-10",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2025-10.zip": "bb7f53350fe27b6d8e38b5856ffc43f9ecda9d568d5bf31d0db0cd011da7100f",
+        "data/raw/mark_price/BTCUSDT-1m-2025-10.zip": "628766a37dca06405268f2d4269598198d5c822aa4477a6804a192212ffa1f6e"
+      }
+    },
+    {
+      "month": "2025-11",
+      "expected_minutes": 43200,
+      "trade_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2025-11.zip": "981da0b054f99b959fe6245fb363336b46908d358f37251d59bad308f375bc54",
+        "data/raw/mark_price/BTCUSDT-1m-2025-11.zip": "1915d3d64c34b3b1e7309740091f39f525ff68ff543e7685518c0a0970636d66"
+      }
+    },
+    {
+      "month": "2025-12",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2025-12.zip": "2d5b2e1887dac1dfe450010877de7203a72e19df7a771067b980bbb07ad3069c",
+        "data/raw/mark_price/BTCUSDT-1m-2025-12.zip": "e1ed1dcd4ed9e7cf174a1c2e04f50f04e4fe52c787836cde8f6fadd32f3aef30"
+      }
+    },
+    {
+      "month": "2026-01",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2026-01.zip": "58e9c620a6acda209d25766b3cf4262f3104649f5c26f247d933e0da8bb7946f",
+        "data/raw/mark_price/BTCUSDT-1m-2026-01.zip": "aa48fc9892158909320230708e8d04d8750b1b7b97c936bc926144ad28ec9021"
+      }
+    },
+    {
+      "month": "2026-02",
+      "expected_minutes": 40320,
+      "trade_minutes": 40320,
+      "paired_minutes": 40320,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2026-02.zip": "805626ad2dc5b704d52c211996d12e9e4b1be234998f3dba4b3d34ff79be0337",
+        "data/raw/mark_price/BTCUSDT-1m-2026-02.zip": "2205f17c1d774577a2aeeb1015787d9f966437eaf27090d477f16ae1bdddc4d1"
+      }
+    },
+    {
+      "month": "2026-03",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2026-03.zip": "c472a865f230bf1b5b17e124770a83c083144e3e11a115733288fb8f3e3b8baa",
+        "data/raw/mark_price/BTCUSDT-1m-2026-03.zip": "7731b4b15be1e59eb80422e7eee0067af124c42804c5e575e4cf5ed508d94687"
+      }
+    },
+    {
+      "month": "2026-04",
+      "expected_minutes": 43200,
+      "trade_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2026-04.zip": "515b86570f0c6924f6dc2cf90589d3db90f3de9c6bfd9a22dde0429995dc5405",
+        "data/raw/mark_price/BTCUSDT-1m-2026-04.zip": "a1655f959e24c73a010b949649d45fcb2854bb9e2f5fe8e998269eb6ad4585e4"
+      }
+    },
+    {
+      "month": "2026-05",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2026-05.zip": "d91548e94220d5211bb32447cc4b604ee266d145f2092edc5ec613328cbbc20a",
+        "data/raw/mark_price/BTCUSDT-1m-2026-05.zip": "c9e4475e8762b4e52b899785deca52bceb0efb9bf08bd411b3147cd5e1da5e25"
+      }
+    },
+    {
+      "month": "2026-06",
+      "expected_minutes": 43200,
+      "trade_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_mark_before": 1440,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [
+        {
+          "url": "https://data.binance.vision/data/futures/um/daily/markPriceKlines/BTCUSDT/1m/BTCUSDT-1m-2026-06-29.zip",
+          "sha256": "200e2ef30a86e9f91c011dae30d864f73c8480fddecc73ea227958596f6cd11c"
+        }
+      ],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2026-06.zip": "9b214199eb5063585c7ed0f59ba19323326d68ac024b85106713989399204490",
+        "data/raw/mark_price/BTCUSDT-1m-2026-06.zip": "5d5d8b86efbe709e034409634347a161183e7c0df3854f8d96c9778dc1c923ba"
+      }
+    },
+    {
+      "month": "2026-07",
+      "expected_minutes": 44640,
+      "trade_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_mark_before": 0,
+      "missing_paired_minutes": 0,
+      "incomplete_trade_hours": 0,
+      "repair_sources": [],
+      "local_sha256": {
+        "data/raw/klines/BTCUSDT-1m-2026-07.zip": "f18440bb58f0c7e1ff63cbb906132002877c4914540c8aebab920da6937cff73",
+        "data/raw/mark_price/BTCUSDT-1m-2026-07.zip": "5bb16a0707eef96d648480ab45943f25b27425154b2ccb881c200cfd51e594ed"
+      }
+    }
+  ]
+}

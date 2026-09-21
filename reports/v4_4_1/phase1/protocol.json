@@ -1,0 +1,29 @@
+{
+  "version": "V4.4.1",
+  "locked_before_candidate_evaluation": true,
+  "data_end_exclusive": "2026-08-01",
+  "development_end_exclusive": "2025-07-01",
+  "recent_train": ["2024-01-01", "2025-01-01"],
+  "recent_validation": ["2025-01-01", "2025-07-01"],
+  "holdout": ["2025-07-01", "2026-08-01"],
+  "legacy_stress": ["2020-01-01", "2024-01-01"],
+  "embargo_days": 14,
+  "candidate_grid": {
+    "regime_fast_slow": [[8,32], [12,48], [20,80]],
+    "long_trailing_atr": [3.0,4.0],
+    "entry_mode": ["trend","reclaim"],
+    "short_enabled": [false,true]
+  },
+  "candidate_count": 24,
+  "selection_weights": {"legacy":0.2,"recent_train":0.4,"recent_validation":0.4},
+  "score": "weighted daily Sharpe + 0.25*weighted annualized log growth - 0.5*recent Sharpe dispersion - 2*worst absolute drawdown",
+  "minimum_recent_train_cycles": 20,
+  "minimum_recent_validation_cycles": 8,
+  "maximum_development_drawdown": 0.45,
+  "short_admission": "At least 8 development short cycles, positive aggregate development short PnL and no deterioration of recent-validation return or Sharpe versus the identical long-only profile.",
+  "tie_break": "Prefer long-only, then slower regime, when scores differ by less than 0.05.",
+  "selection_execution": "1h OHLC proxy, previous-bar targets, stop-first, adverse gaps, 4 bps taker plus 2 bps slippage each way; true funding events; no maker fee advantage",
+  "final_execution": "1m contract and mark prices, funding, impact, quantity rounding, margin checks; baseline and new strategy use identical fee assumptions; daily Sharpe",
+  "holdout_policy": "Freeze selected parameters before calculating any holdout metrics. Never rerank or tune using holdout outcomes.",
+  "disclosure": "2025-2026 was viewed by earlier repository research. This is a chronological holdout from this search, not historically unseen data. Increased trading frequency does not create independent market regimes. ETF causation is not established."
+}

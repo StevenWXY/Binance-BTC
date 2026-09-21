@@ -1,0 +1,730 @@
+{
+  "start": "2020-01-01",
+  "end_exclusive": "2026-09-01",
+  "expected_minutes": 3506400,
+  "paired_minutes": 3506345,
+  "missing_minutes": 55,
+  "months": [
+    {
+      "month": "2020-01",
+      "expected_minutes": 44640,
+      "paired_minutes": 44611,
+      "missing_minutes": 29,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 30,
+      "nan_cells": 0
+    },
+    {
+      "month": "2020-02",
+      "expected_minutes": 41760,
+      "paired_minutes": 41760,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2020-03",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2020-04",
+      "expected_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2020-05",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2020-06",
+      "expected_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2020-07",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2020-08",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2020-09",
+      "expected_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2020-10",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2020-11",
+      "expected_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2020-12",
+      "expected_minutes": 44640,
+      "paired_minutes": 44616,
+      "missing_minutes": 24,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 25,
+      "nan_cells": 0
+    },
+    {
+      "month": "2021-01",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2021-02",
+      "expected_minutes": 40320,
+      "paired_minutes": 40320,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2021-03",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2021-04",
+      "expected_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2021-05",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2021-06",
+      "expected_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2021-07",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2021-08",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2021-09",
+      "expected_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2021-10",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2021-11",
+      "expected_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2021-12",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2022-01",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2022-02",
+      "expected_minutes": 40320,
+      "paired_minutes": 40320,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2022-03",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2022-04",
+      "expected_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2022-05",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2022-06",
+      "expected_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2022-07",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2022-08",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2022-09",
+      "expected_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2022-10",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2022-11",
+      "expected_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2022-12",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2023-01",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2023-02",
+      "expected_minutes": 40320,
+      "paired_minutes": 40320,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2023-03",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2023-04",
+      "expected_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2023-05",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2023-06",
+      "expected_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2023-07",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2023-08",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2023-09",
+      "expected_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2023-10",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2023-11",
+      "expected_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2023-12",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2024-01",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2024-02",
+      "expected_minutes": 41760,
+      "paired_minutes": 41760,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2024-03",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2024-04",
+      "expected_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2024-05",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2024-06",
+      "expected_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2024-07",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2024-08",
+      "expected_minutes": 44640,
+      "paired_minutes": 44638,
+      "missing_minutes": 2,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 3,
+      "nan_cells": 0
+    },
+    {
+      "month": "2024-09",
+      "expected_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2024-10",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2024-11",
+      "expected_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2024-12",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2025-01",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2025-02",
+      "expected_minutes": 40320,
+      "paired_minutes": 40320,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2025-03",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2025-04",
+      "expected_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2025-05",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2025-06",
+      "expected_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2025-07",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2025-08",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2025-09",
+      "expected_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2025-10",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2025-11",
+      "expected_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2025-12",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2026-01",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2026-02",
+      "expected_minutes": 40320,
+      "paired_minutes": 40320,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2026-03",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2026-04",
+      "expected_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2026-05",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2026-06",
+      "expected_minutes": 43200,
+      "paired_minutes": 43200,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2026-07",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    },
+    {
+      "month": "2026-08",
+      "expected_minutes": 44640,
+      "paired_minutes": 44640,
+      "missing_minutes": 0,
+      "duplicate_timestamps": 0,
+      "max_internal_gap_minutes": 1,
+      "nan_cells": 0
+    }
+  ],
+  "note": "Paired actual trade/mark minutes; gaps not filled. Input/cache hashes: selection_lock.json."
+}

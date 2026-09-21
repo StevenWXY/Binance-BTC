@@ -1,0 +1,78 @@
+[
+  {
+    "chosen": "r050",
+    "selected_using_folds": 1,
+    "evaluation_start": "2024-07-15",
+    "evaluation_end": "2025-01-01",
+    "metrics": {
+      "total_return": 0.26559692591194906,
+      "cagr": 0.658764376061618,
+      "annual_log_growth": 0.5060729734310149,
+      "sharpe": 1.5491113273428614,
+      "annual_volatility": 0.36948626620983727,
+      "max_drawdown": -0.18976591517287367,
+      "cycles": 0,
+      "short_cycles": 0,
+      "short_sum_trade_returns": 0.0,
+      "cycles_per_year": 0.0,
+      "days": 170
+    }
+  },
+  {
+    "chosen": "r026",
+    "selected_using_folds": 2,
+    "evaluation_start": "2025-01-15",
+    "evaluation_end": "2025-07-01",
+    "metrics": {
+      "total_return": -0.16651129521387598,
+      "cagr": -0.3285746438710993,
+      "annual_log_growth": -0.39835242909495694,
+      "sharpe": -1.485147776477655,
+      "annual_volatility": 0.24793242044240246,
+      "max_drawdown": -0.179324268450325,
+      "cycles": 0,
+      "short_cycles": 0,
+      "short_sum_trade_returns": 0.0,
+      "cycles_per_year": 0.0,
+      "days": 167
+    }
+  },
+  {
+    "chosen": "r024",
+    "selected_using_folds": 3,
+    "evaluation_start": "2025-07-15",
+    "evaluation_end": "2026-01-01",
+    "metrics": {
+      "total_return": 0.1392383904022818,
+      "cagr": 0.3232385904555202,
+      "annual_log_growth": 0.28008220935379197,
+      "sharpe": 1.0769755615425236,
+      "annual_volatility": 0.29996546060647594,
+      "max_drawdown": -0.15153313890870113,
+      "cycles": 0,
+      "short_cycles": 0,
+      "short_sum_trade_returns": 0.0,
+      "cycles_per_year": 0.0,
+      "days": 170
+    }
+  },
+  {
+    "chosen": "r000",
+    "selected_using_folds": 4,
+    "evaluation_start": "2026-01-15",
+    "evaluation_end": "2026-08-01",
+    "metrics": {
+      "total_return": -0.13842232294497903,
+      "cagr": -0.2403074873814809,
+      "annual_log_growth": -0.27484151622967806,
+      "sharpe": -1.0306967640954512,
+      "annual_volatility": 0.2387868599395027,
+      "max_drawdown": -0.20108941716164608,
+      "cycles": 0,
+      "short_cycles": 0,
+      "short_sum_trade_returns": 0.0,
+      "cycles_per_year": 0.0,
+      "days": 198
+    }
+  }
+]

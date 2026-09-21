@@ -1,0 +1,16 @@
+{
+  "id": "r110",
+  "params": {
+    "family": "continuation",
+    "speed": "medium",
+    "risk": "original",
+    "protection": "original",
+    "gate": "none",
+    "entry": 15.0,
+    "stop_atr": 3.0,
+    "hold_hours": 72,
+    "short": false,
+    "target_vol": 0.9,
+    "max_leverage": 4.0
+  }
+}

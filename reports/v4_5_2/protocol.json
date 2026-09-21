@@ -1,0 +1,14 @@
+{
+  "version": "V4.5.2",
+  "baseline": "Frozen V4.5.1; frozen V4.4.4 longs remain unchanged",
+  "phase_a": "72 signal combinations at V4.5.1 sizing/protection: 2 structural/hybrid gates, 4 break8/break12/break24/mixed entries, 3 none/strength/activity confirmations, 3 ADX thresholds 24/28/32.",
+  "phase_b": "Always include V4.5.1 signal seed plus the top 3 distinct qualifying phase-A signal profiles; fill from score ranking if fewer than 3 qualify. For each seed evaluate 3 coherent protection profiles, 3 risk profiles and 2 cooldowns: 72 refinement trials. Candidate overlaps across stages are retained in the audit, not counted as independent tests.",
+  "risk_profiles": {"base": {"cap": 1.25, "stop_risk_budget": 0.015, "target_vol": 0.55}, "elevated": {"cap": 1.75, "stop_risk_budget": 0.02, "target_vol": 0.75}, "higher": {"cap": 2.0, "stop_risk_budget": 0.025, "target_vol": 0.9}},
+  "development_end_exclusive": "2026-01-01",
+  "windows": {"legacy": ["2020-01-01", "2024-01-01"], "train_recent": ["2024-01-01", "2025-01-01"], "validation": ["2025-01-15", "2026-01-01"], "later_audit": ["2026-01-15", "2026-09-01"]},
+  "selection": "Utility=Sharpe + 0.65 annual log growth + 0.5 max_drawdown; weight legacy 15%, 2024 35%, 2025 validation 50%; subtract 0.2 dispersion across four recent half-year Sharpe values. Require development post2024 return and Sharpe to exceed V4.5.1, post2024 DD <=30%, full DD <=45%, legacy Sharpe not lower by more than 0.20, positive short cycle return sum in 2024 and 2025 validation with >=5 cycles in each. Target 30% is a measured historical drawdown constraint, not a guaranteed live stop.",
+  "minute_finalists": "Top 8 qualifying refinements, otherwise top 8 research alternatives; append fixed V4.5.1 signal with elevated/higher sizing as attribution controls if not already present. Only ranked finalist IDs are eligible for selection; attribution controls cannot replace the frozen choice after audit.",
+  "fee": {"taker_bps": 4.0, "rebate_fraction": 0.4, "effective_taker_bps": 2.4},
+  "after_freeze": ["Full 2020-2026Aug continuous minute comparison", "2024+ excluding August", "2026Jan15-Aug reset-account audit", "no rebate", "higher costs", "1h delay", "V4.5.1 signal with selected higher risk only", "selected signals with original risk only", "short-only attribution", "paired 14-day bootstrap", "Verify the 30% recent drawdown bound using minute-close equity as well as standard hourly snapshots"],
+  "disclosure": "All data through August 2026 was already viewed in prior V4.4/V4.5.1 work. This iteration explicitly moves the old 2025H2 holdout into development and holds 2026 back from new selection. The frozen long and short baselines used later data in earlier rounds. No historically blind OOS claim. No retuning on this round's post-freeze audit."
+}

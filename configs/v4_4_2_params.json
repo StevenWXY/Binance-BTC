@@ -1,0 +1,18 @@
+{
+  "version": "V4.4.2",
+  "previous_name": "V4.4.1-R2",
+  "params": {
+    "family": "continuation",
+    "speed": "medium",
+    "risk": "original",
+    "protection": "original",
+    "gate": "none",
+    "entry": 15.0,
+    "stop_atr": 3.0,
+    "hold_hours": 72,
+    "short": false,
+    "target_vol": 0.9,
+    "max_leverage": 4.0
+  },
+  "execution_fee": {"published_taker_bps": 4.0, "rebate_fraction": 0.4, "effective_taker_bps": 2.4}
+}

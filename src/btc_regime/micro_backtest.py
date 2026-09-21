@@ -55,8 +55,15 @@ class MicroBacktestConfig:
     maker_order_timeout_minutes: int = 60
     maker_exit_enabled: bool = False
     conservative_protection: bool = False
+    signal_interval_minutes: int = 240
+    equity_interval_minutes: int = 240
+    # 1 is the production execution model; larger values are OHLC research proxies.
+    execution_bar_minutes: int = 1
 
     def __post_init__(self) -> None:
+        for value in (self.signal_interval_minutes, self.equity_interval_minutes, self.execution_bar_minutes):
+            if not isinstance(value, int) or value < 1 or 1440 % value:
+                raise ValueError("signal/equity intervals must be positive integer divisors of 1440")
         if self.taker_fee_bps < 0 or self.maker_fee_bps < 0:
             raise ValueError("fees must be non-negative")
         if self.base_slippage_bps < 0 or self.impact_bps < 0:
@@ -144,15 +151,16 @@ def _liquidation_price(account: _Account, adverse_price: float) -> float:
     return max(numerator / (absolute_quantity * (1 + rate)), 0.0)
 
 
-def _signal_events(signaled: pd.DataFrame) -> dict[pd.Timestamp, float]:
+def _signal_events(signaled: pd.DataFrame, interval_minutes: int = 240) -> dict[pd.Timestamp, float]:
     signal = signaled["signal"].fillna(0.0).clip(-10, 10)
     changed = signal.ne(signal.shift(1)).fillna(True)
-    # Kline indices are opens; their completed-close signal can trade at the next 4h boundary.
-    return {(timestamp + pd.Timedelta(hours=4)): float(value) for timestamp, value in signal[changed].items()}
+    # Kline indices are opens; a completed-close signal trades at the next boundary.
+    return {(timestamp + pd.Timedelta(minutes=interval_minutes)): float(value) for timestamp, value in signal[changed].items()}
 
 
 def _protection_events(
     signaled: pd.DataFrame,
+    interval_minutes: int = 240,
 ) -> dict[pd.Timestamp, tuple[float, float]]:
     """Return causal stop/take-profit levels when supplied by a strategy."""
     required = {"stop_price", "take_profit_price"}
@@ -162,7 +170,7 @@ def _protection_events(
     for timestamp, row in signaled.iterrows():
         stop = float(row["stop_price"]) if pd.notna(row["stop_price"]) else np.nan
         take = float(row["take_profit_price"]) if pd.notna(row["take_profit_price"]) else np.nan
-        levels[timestamp + pd.Timedelta(hours=4)] = (stop, take)
+        levels[timestamp + pd.Timedelta(minutes=interval_minutes)] = (stop, take)
     return levels
 
 
@@ -172,10 +180,10 @@ def run_micro_backtest(
     funding: pd.DataFrame,
     config: MicroBacktestConfig = MicroBacktestConfig(),
 ) -> MicroBacktestResult:
-    events = _signal_events(signaled)
-    protection_events = _protection_events(signaled)
+    events = _signal_events(signaled, config.signal_interval_minutes)
+    protection_events = _protection_events(signaled, config.signal_interval_minutes)
     cycle_ids = {
-        t + pd.Timedelta(hours=4): value for t, value in signaled.get("cycle_id", pd.Series(dtype=object)).items()
+        t + pd.Timedelta(minutes=config.signal_interval_minutes): value for t, value in signaled.get("cycle_id", pd.Series(dtype=object)).items()
     }
     current_cycle_id = None
     blocked_cycle_id = None
@@ -525,8 +533,8 @@ def run_micro_backtest(
                 max_leverage = max(max_leverage, leverage)
                 min_margin_buffer = min(min_margin_buffer, close_equity - maintenance)
 
-            boundary = timestamp + pd.Timedelta(minutes=1)
-            if boundary.minute == 0 and boundary.hour % 4 == 0:
+            boundary = timestamp + pd.Timedelta(minutes=config.execution_bar_minutes)
+            if (boundary.hour * 60 + boundary.minute) % config.equity_interval_minutes == 0:
                 equity_times.append(boundary)
                 equity_values.append(close_equity)
 

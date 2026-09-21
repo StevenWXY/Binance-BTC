@@ -1,0 +1,11 @@
+{
+  "version": "V4.4.3",
+  "status": "frozen_candidate",
+  "promote_to_default": false,
+  "selected": "r024",
+  "rebate_fraction": 0.4,
+  "post2024_return": 1.6908629932138988,
+  "post2024_sharpe": 1.1274176341889077,
+  "extension_cycles": 6,
+  "robustness_unproven": true
+}

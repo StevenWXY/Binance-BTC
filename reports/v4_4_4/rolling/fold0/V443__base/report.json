@@ -1,0 +1,103 @@
+{
+  "id": "V443",
+  "profile": {
+    "id": "V443",
+    "params": {
+      "speed": "medium",
+      "stop_atr": 1.5,
+      "trail_atr": 3.0,
+      "hold_hours": 72,
+      "cooldown_hours": 3,
+      "entry_mode": "all",
+      "breakout_hours": 6,
+      "max_leverage": 4.0
+    }
+  },
+  "window": [
+    "2024-01-15",
+    "2024-07-01"
+  ],
+  "stress": "base",
+  "metrics": {
+    "total_return": 0.24492951207500302,
+    "cagr": 0.61010762784625,
+    "annual_log_growth": 0.47630102635598115,
+    "sharpe": 1.2136987457447261,
+    "annual_volatility": 0.4827378837841516,
+    "max_drawdown": -0.24162485114842502,
+    "cycles": 30,
+    "short_cycles": 0,
+    "short_sum_trade_returns": 0.0,
+    "cycles_per_year": 65.22321428571429,
+    "days": 168
+  },
+  "windows": {},
+  "yearly": {
+    "2024": {
+      "total_return": 0.24492951207500302,
+      "cagr": 0.61010762784625,
+      "annual_log_growth": 0.47630102635598115,
+      "sharpe": 1.2136987457447261,
+      "annual_volatility": 0.4827378837841516,
+      "max_drawdown": -0.24162485114842502,
+      "cycles": 30,
+      "short_cycles": 0,
+      "short_sum_trade_returns": 0.0,
+      "cycles_per_year": 65.22321428571429,
+      "days": 168
+    }
+  },
+  "execution": {
+    "initial_cash": 10000.0,
+    "taker_fee_bps": 2.4,
+    "base_slippage_bps": 1,
+    "impact_bps": 8,
+    "max_minute_participation": 0.02,
+    "liquidation_fee_bps": 50.0,
+    "liquidation_slippage_bps": 5.0,
+    "quantity_step": 0.001,
+    "min_notional": 5.0,
+    "periods_per_year": 8760,
+    "maker_enabled": false,
+    "maker_fee_bps": 0.2,
+    "maker_offset_bps": 0.5,
+    "maker_order_timeout_minutes": 60,
+    "maker_exit_enabled": false,
+    "conservative_protection": true,
+    "signal_interval_minutes": 60,
+    "equity_interval_minutes": 60,
+    "execution_bar_minutes": 1
+  },
+  "execution_metrics": {
+    "total_return": 0.24492951207500302,
+    "cagr": 0.6101076278462498,
+    "annualized_volatility": 0.4633432170530383,
+    "sharpe": 1.2583250999714288,
+    "sortino": 2.0003773153480453,
+    "max_drawdown": -0.24162485114842502,
+    "trade_count": 30.0,
+    "win_rate": 0.4,
+    "final_equity": 12449.29512075003,
+    "fill_count": 122.0,
+    "liquidation_count": 0.0,
+    "fees_paid": 384.7978160557097,
+    "funding_paid": 407.2024824172437,
+    "realized_pnl": 3241.2954192229768,
+    "order_notional": 1603324.2335654565,
+    "max_leverage_observed": 3.6906857697895887,
+    "max_margin_ratio": 0.01477880660905914,
+    "minimum_margin_buffer": 9467.95690157033,
+    "max_minute_participation_observed": 0.007589123724741809,
+    "maker_enabled": 0.0,
+    "maker_order_count": 0.0,
+    "maker_cancel_count": 0.0,
+    "maker_fill_count": 0.0,
+    "taker_fill_count": 122.0,
+    "maker_filled_notional": 0.0,
+    "taker_filled_notional": 1603324.2335654565,
+    "maker_fill_ratio": 0.0,
+    "maker_fill_events_per_order": 0.0,
+    "maker_fee_saved_vs_taker": 0.0
+  },
+  "fee_policy": "4bps * (1-40% rebate) = 2.4bps net; rebate credited at fill, no discount on funding/slippage/liquidation"
+}

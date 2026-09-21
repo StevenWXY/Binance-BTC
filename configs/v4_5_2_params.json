@@ -1,0 +1,33 @@
+{
+  "version": "V4.5.2",
+  "id": "b022",
+  "long_version": "V4.4.4",
+  "long_params": {
+    "speed": "medium",
+    "stop_atr": 1.5,
+    "trail_atr": 3.0,
+    "hold_hours": 72,
+    "cooldown_hours": 3,
+    "entry_mode": "all",
+    "gate": "none",
+    "risk": "defensive",
+    "breakout_hours": 6,
+    "max_leverage": 4.0
+  },
+  "short_params": {
+    "short_enabled": true,
+    "gate": "structural",
+    "entry": "break8",
+    "confirmation": "activity",
+    "adx_min": 32.0,
+    "protection": "base",
+    "cooldown_hours": 3,
+    "risk": "higher"
+  },
+  "fee": {
+    "published_taker_bps": 4.0,
+    "rebate_fraction": 0.4,
+    "effective_taker_bps": 2.4
+  },
+  "post2024_max_drawdown_limit": 0.3
+}
