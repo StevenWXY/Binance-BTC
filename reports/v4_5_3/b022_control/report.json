@@ -1,0 +1,75 @@
+{
+  "item": {
+    "id": "b022_control",
+    "mode": "control"
+  },
+  "metrics": {
+    "total_return": 60.806260251393645,
+    "cagr": 0.8563286604757927,
+    "annual_log_growth": 0.6186006986849298,
+    "sharpe": 1.6650374493166282,
+    "annual_volatility": 0.4218352606962655,
+    "max_drawdown": -0.294041641695133,
+    "cycles": 501,
+    "short_cycles": 98,
+    "short_sum_trade_returns": 0.4789824723332909,
+    "cycles_per_year": 75.14999999999999,
+    "days": 2435
+  },
+  "windows": {
+    "full": {
+      "total_return": 60.806260251393645,
+      "cagr": 0.8563286604757927,
+      "annual_log_growth": 0.6186006986849298,
+      "sharpe": 1.6650374493166282,
+      "annual_volatility": 0.4218352606962655,
+      "max_drawdown": -0.294041641695133,
+      "cycles": 501,
+      "short_cycles": 98,
+      "short_sum_trade_returns": 0.4789824723332909,
+      "cycles_per_year": 75.14999999999999,
+      "days": 2435
+    },
+    "recent": {
+      "total_return": 6.337552219118686,
+      "cagr": 1.1114543769132432,
+      "annual_log_growth": 0.747376988202824,
+      "sharpe": 1.8716067406480663,
+      "annual_volatility": 0.4498891549995681,
+      "max_drawdown": -0.22435674177354625,
+      "cycles": 192,
+      "short_cycles": 41,
+      "short_sum_trade_returns": 0.5631295476364196,
+      "cycles_per_year": 72.0,
+      "days": 974
+    },
+    "recent_jul": {
+      "total_return": 3.427213967686882,
+      "cagr": 0.7793616685269905,
+      "annual_log_growth": 0.5762546867998237,
+      "sharpe": 1.6821898645795428,
+      "annual_volatility": 0.3845881233261527,
+      "max_drawdown": -0.22435674177354625,
+      "cycles": 186,
+      "short_cycles": 41,
+      "short_sum_trade_returns": 0.5631295476364196,
+      "cycles_per_year": 72.04294803817604,
+      "days": 943
+    },
+    "later": {
+      "total_return": 0.9843265848480853,
+      "cagr": 1.9832282123776699,
+      "annual_log_growth": 1.0930060069233252,
+      "sharpe": 2.1470724159921817,
+      "annual_volatility": 0.5802567344286889,
+      "max_drawdown": -0.1535257128292662,
+      "cycles": 52,
+      "short_cycles": 17,
+      "short_sum_trade_returns": 0.25566140589013653,
+      "cycles_per_year": 82.93886462882097,
+      "days": 229
+    }
+  },
+  "trades": 501,
+  "shorts": 98
+}

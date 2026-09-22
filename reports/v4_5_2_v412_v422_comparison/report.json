@@ -1,0 +1,450 @@
+{
+  "window": [
+    "2020-01-01T00:00:00+00:00",
+    "2026-08-01T00:00:00+00:00"
+  ],
+  "recent_window": [
+    "2024-01-01T00:00:00+00:00",
+    "2026-08-01T00:00:00+00:00"
+  ],
+  "execution": {
+    "published_taker_bps": 4.0,
+    "rebate_fraction": 0.4,
+    "effective_taker_bps": 2.4,
+    "published_maker_bps": 0.2,
+    "effective_maker_bps": 0.12,
+    "base_slippage_bps": 1.0,
+    "impact_bps": 8.0,
+    "max_minute_participation": 0.02
+  },
+  "strategies": {
+    "V4.1.2": {
+      "full": {
+        "metrics": {
+          "total_return": 50.015428281035966,
+          "cagr": 0.817432947748604,
+          "sharpe": 1.5133578527285125,
+          "annualized_volatility": 0.45920432518047255,
+          "max_drawdown": -0.23653007414008476,
+          "days": 2404
+        },
+        "frequency": {
+          "cycles": 233,
+          "cycles_per_year": 35.400686356073216,
+          "entries_per_month": 2.9500571963394346,
+          "fills": 1679,
+          "fills_per_year": 255.097649750416,
+          "median_holding_hours": 36.0,
+          "median_entry_gap_days": 5.833333333333333,
+          "short_cycles": 0,
+          "long_cycles": 233
+        }
+      },
+      "post2024": {
+        "metrics": {
+          "total_return": 1.4337829148690884,
+          "cagr": 0.4112944941543777,
+          "sharpe": 1.0395225908872026,
+          "annualized_volatility": 0.40670818789222296,
+          "max_drawdown": -0.2202473635196288,
+          "days": 943
+        },
+        "frequency": {
+          "cycles": 88,
+          "cycles_per_year": 34.084835630965,
+          "entries_per_month": 2.8404029692470836,
+          "fills": 918,
+          "fills_per_year": 355.5668080593849,
+          "median_holding_hours": 36.8,
+          "median_entry_gap_days": 5.833333333333333,
+          "short_cycles": 0,
+          "long_cycles": 88
+        }
+      },
+      "post2026_01_15": {
+        "metrics": {
+          "total_return": -0.1336899826783089,
+          "cagr": -0.23259222971314908,
+          "sharpe": -0.9828974119068902,
+          "annualized_volatility": 0.23987795910179632,
+          "max_drawdown": -0.19536545647271153,
+          "days": 198
+        },
+        "frequency": {
+          "cycles": 17,
+          "cycles_per_year": 31.35984848484848,
+          "entries_per_month": 2.4595959595959593,
+          "fills": 220,
+          "fills_per_year": 405.8333333333333,
+          "median_holding_hours": 28.0,
+          "median_entry_gap_days": 5.333333333333333,
+          "short_cycles": 0,
+          "long_cycles": 17
+        }
+      }
+    },
+    "V4.2.2": {
+      "full": {
+        "metrics": {
+          "total_return": 21.657688010720936,
+          "cagr": 0.6065849715579441,
+          "sharpe": 1.5447937020335487,
+          "annualized_volatility": 0.3440870131491778,
+          "max_drawdown": -0.1839424079927393,
+          "days": 2396
+        },
+        "frequency": {
+          "cycles": 261,
+          "cycles_per_year": 39.65484608985025,
+          "entries_per_month": 3.3045705074875213,
+          "fills": 1159,
+          "fills_per_year": 176.09182612312813,
+          "median_holding_hours": 29.783333333333335,
+          "median_entry_gap_days": 5.416666666666666,
+          "short_cycles": 0,
+          "long_cycles": 261,
+          "neutral_state_changes": 26
+        }
+      },
+      "post2024": {
+        "metrics": {
+          "total_return": 1.132950918777314,
+          "cagr": 0.3409833737890977,
+          "sharpe": 1.107956300350681,
+          "annualized_volatility": 0.3055286880977081,
+          "max_drawdown": -0.17051386511876465,
+          "days": 942
+        },
+        "frequency": {
+          "cycles": 103,
+          "cycles_per_year": 39.89475079533404,
+          "entries_per_month": 3.3245625662778364,
+          "fills": 482,
+          "fills_per_year": 186.69194061505831,
+          "median_holding_hours": 33.333333333333336,
+          "median_entry_gap_days": 5.583333333333334,
+          "short_cycles": 0,
+          "long_cycles": 103,
+          "neutral_state_changes": 5
+        }
+      },
+      "post2026_01_15": {
+        "metrics": {
+          "total_return": -0.0897706692004343,
+          "cagr": -0.15929108586745344,
+          "sharpe": -0.8748992631360787,
+          "annualized_volatility": 0.1806206800360406,
+          "max_drawdown": -0.14395838655200877,
+          "days": 197
+        },
+        "frequency": {
+          "cycles": 19,
+          "cycles_per_year": 35.04924242424242,
+          "entries_per_month": 2.767045454545454,
+          "fills": 82,
+          "fills_per_year": 151.2651515151515,
+          "median_holding_hours": 28.0,
+          "median_entry_gap_days": 5.333333333333333,
+          "short_cycles": 0,
+          "long_cycles": 19
+        }
+      }
+    },
+    "V4.5.2": {
+      "full": {
+        "metrics": {
+          "total_return": 36.29166491823974,
+          "cagr": 0.7329327016770937,
+          "sharpe": 1.5788318945225301,
+          "annualized_volatility": 0.3952630309463813,
+          "max_drawdown": -0.29404164169513314,
+          "days": 2404
+        },
+        "frequency": {
+          "cycles": 495,
+          "cycles_per_year": 75.2074667221298,
+          "entries_per_month": 6.267288893510816,
+          "fills": 1967,
+          "fills_per_year": 298.85472129783693,
+          "median_holding_hours": 24.0,
+          "median_entry_gap_days": 3.2083333333333335,
+          "short_cycles": 98,
+          "long_cycles": 397
+        }
+      },
+      "post2024": {
+        "metrics": {
+          "total_return": 3.427213967686882,
+          "cagr": 0.7793616685269906,
+          "sharpe": 1.6821898645795426,
+          "annualized_volatility": 0.3845881233261527,
+          "max_drawdown": -0.22435674177354603,
+          "days": 943
+        },
+        "frequency": {
+          "cycles": 186,
+          "cycles_per_year": 72.04294803817604,
+          "entries_per_month": 6.003579003181335,
+          "fills": 906,
+          "fills_per_year": 350.9188759278897,
+          "median_holding_hours": 24.0,
+          "median_entry_gap_days": 3.2083333333333335,
+          "short_cycles": 41,
+          "long_cycles": 145
+        }
+      },
+      "post2026_01_15": {
+        "metrics": {
+          "total_return": 0.1972709850025467,
+          "cagr": 0.3939313639820756,
+          "sharpe": 1.2159440133833894,
+          "annualized_volatility": 0.31256131782648167,
+          "max_drawdown": -0.1491215246413824,
+          "days": 198
+        },
+        "frequency": {
+          "cycles": 46,
+          "cycles_per_year": 84.8560606060606,
+          "entries_per_month": 6.917613636363636,
+          "fills": 290,
+          "fills_per_year": 534.9621212121211,
+          "median_holding_hours": 20.016666666666666,
+          "median_entry_gap_days": 3.125,
+          "short_cycles": 17,
+          "long_cycles": 29
+        }
+      }
+    },
+    "V4.5.3": {
+      "full": {
+        "metrics": {
+          "total_return": 47.17500081455857,
+          "cagr": 0.8016826718810313,
+          "sharpe": 1.673780440266594,
+          "annualized_volatility": 0.39634035317802174,
+          "max_drawdown": -0.2727252239028457,
+          "days": 2404
+        },
+        "frequency": {
+          "cycles": 493,
+          "cycles_per_year": 74.90359816971714,
+          "entries_per_month": 6.241966514143096,
+          "fills": 2117,
+          "fills_per_year": 321.64486272878537,
+          "median_holding_hours": 24.0,
+          "median_entry_gap_days": 3.2083333333333335,
+          "short_cycles": 98,
+          "long_cycles": 395
+        }
+      },
+      "post2024": {
+        "metrics": {
+          "total_return": 3.9484663284386414,
+          "cagr": 0.8577518062019063,
+          "sharpe": 1.789613642478316,
+          "annualized_volatility": 0.3858717421877544,
+          "max_drawdown": -0.21661270372932784,
+          "days": 943
+        },
+        "frequency": {
+          "cycles": 184,
+          "cycles_per_year": 71.26829268292683,
+          "entries_per_month": 5.939024390243902,
+          "fills": 1041,
+          "fills_per_year": 403.20811240721105,
+          "median_holding_hours": 24.008333333333333,
+          "median_entry_gap_days": 3.2083333333333335,
+          "short_cycles": 41,
+          "long_cycles": 143
+        }
+      },
+      "post2026_01_15": {
+        "metrics": {
+          "total_return": 0.21999142215147516,
+          "cagr": 0.44311880217978183,
+          "sharpe": 1.3215316068179923,
+          "annualized_volatility": 0.31422243883805895,
+          "max_drawdown": -0.14742344325312529,
+          "days": 198
+        },
+        "frequency": {
+          "cycles": 45,
+          "cycles_per_year": 83.01136363636363,
+          "entries_per_month": 6.763888888888888,
+          "fills": 353,
+          "fills_per_year": 651.1780303030303,
+          "median_holding_hours": 20.0,
+          "median_entry_gap_days": 3.125,
+          "short_cycles": 17,
+          "long_cycles": 28
+        }
+      }
+    }
+  },
+  "future_function_audit": {
+    "static": {
+      "files": [
+        "src/btc_regime/strategy.py",
+        "src/btc_regime/v42.py",
+        "src/btc_regime/v43.py",
+        "src/btc_regime/v452.py",
+        "src/btc_regime/v453.py"
+      ],
+      "forbidden_future_patterns": [],
+      "status": "pass"
+    },
+    "real_data_prefix": {
+      "cuts": [
+        {
+          "cut": "2023-01-01T00:00:00+00:00",
+          "v4_5_2_signal_prefix_equal": true,
+          "v4_1_2_signal_prefix_equal": true,
+          "v4_2_2_signal_prefix_equal": true,
+          "v4_2_neutral_prefix_equal": true
+        },
+        {
+          "cut": "2024-01-01T00:00:00+00:00",
+          "v4_5_2_signal_prefix_equal": true,
+          "v4_1_2_signal_prefix_equal": true,
+          "v4_2_2_signal_prefix_equal": true,
+          "v4_2_neutral_prefix_equal": true
+        },
+        {
+          "cut": "2025-07-01T00:00:00+00:00",
+          "v4_5_2_signal_prefix_equal": true,
+          "v4_1_2_signal_prefix_equal": true,
+          "v4_2_2_signal_prefix_equal": true,
+          "v4_2_neutral_prefix_equal": true
+        },
+        {
+          "cut": "2026-01-01T00:00:00+00:00",
+          "v4_5_2_signal_prefix_equal": true,
+          "v4_1_2_signal_prefix_equal": true,
+          "v4_2_2_signal_prefix_equal": true,
+          "v4_2_neutral_prefix_equal": true
+        }
+      ],
+      "status": "pass"
+    }
+  },
+  "overfit_audit": {
+    "selection_rows": 11,
+    "selectable_rows": 8,
+    "winner": "b022",
+    "winner_score": 1.9538068299684797,
+    "next_score": 1.928390478067318,
+    "winner_score_gap": 0.02541635190116165,
+    "top_profiles": [
+      {
+        "id": "b022",
+        "score": 1.9538068299684797,
+        "recent_return": 2.6184834103860744,
+        "recent_sharpe": 1.7794336811214893
+      },
+      {
+        "id": "b023",
+        "score": 1.928390478067318,
+        "recent_return": 2.558400851384146,
+        "recent_sharpe": 1.758628553537307
+      },
+      {
+        "id": "b058",
+        "score": 1.9075060260952164,
+        "recent_return": 2.4120145343001034,
+        "recent_sharpe": 1.7156875711898847
+      },
+      {
+        "id": "b041",
+        "score": 1.898265803031026,
+        "recent_return": 2.3865333381778155,
+        "recent_sharpe": 1.706597471899386
+      },
+      {
+        "id": "b020",
+        "score": 1.897978747512738,
+        "recent_return": 2.417828971444404,
+        "recent_sharpe": 1.724052456122831
+      },
+      {
+        "id": "b040",
+        "score": 1.895331402717118,
+        "recent_return": 2.377922446067657,
+        "recent_sharpe": 1.703717452304211
+      },
+      {
+        "id": "b021",
+        "score": 1.8774983881573875,
+        "recent_return": 2.372513746471063,
+        "recent_sharpe": 1.7072514260802332
+      },
+      {
+        "id": "b059",
+        "score": 1.8766408272168722,
+        "recent_return": 2.3339215307611103,
+        "recent_sharpe": 1.6859156237780653
+      }
+    ],
+    "yearly_fixed_parameter_audit": {
+      "2020": {
+        "total_return": 1.5815301550888217,
+        "sharpe": 2.2203183155171318,
+        "max_drawdown": -0.174182175122105,
+        "cycles": 77,
+        "short_cycles": 3
+      },
+      "2021": {
+        "total_return": 0.3387341197871807,
+        "sharpe": 1.177610493965173,
+        "max_drawdown": -0.22577354496868995,
+        "cycles": 71,
+        "short_cycles": 17
+      },
+      "2022": {
+        "total_return": -0.227955904326141,
+        "sharpe": -0.9754302018846482,
+        "max_drawdown": -0.25524743126589855,
+        "cycles": 85,
+        "short_cycles": 33
+      },
+      "2023": {
+        "total_return": 2.1569493970216813,
+        "sharpe": 2.407354497120337,
+        "max_drawdown": -0.27866461172404056,
+        "cycles": 76,
+        "short_cycles": 4
+      },
+      "2024": {
+        "total_return": 0.6260794599653963,
+        "sharpe": 1.3645030345521374,
+        "max_drawdown": -0.22435674177354625,
+        "cycles": 75,
+        "short_cycles": 10
+      },
+      "2025": {
+        "total_return": 1.2252808054429747,
+        "sharpe": 2.21741847763774,
+        "max_drawdown": -0.1585925561683289,
+        "cycles": 63,
+        "short_cycles": 14
+      },
+      "2026": {
+        "total_return": 1.0277976674033735,
+        "sharpe": 2.13884435744346,
+        "max_drawdown": -0.1535257128292662,
+        "cycles": 54,
+        "short_cycles": 17
+      }
+    },
+    "warnings": [
+      "All August 2026 data and earlier V4.5 rounds were previously viewed; this is not blind OOS.",
+      "The winner score gap is small relative to the number of tried profiles; no multiple-testing correction was applied.",
+      "Recent gains are concentrated in 2024-2026; 2020-2023 short sleeve contribution is negative."
+    ],
+    "status": "selection_bias_possible"
+  },
+  "limitations": [
+    "V4.1.2 and V4.2.2 use the archived 2020-01 to 2026-07 1m coverage; V4.5.2 is sliced at the same boundary.",
+    "V4.2.2 frequency counts direction cycles; its funding-neutral sleeve has separate state changes, not exchange trade cycles.",
+    "Maker fills are deterministic OHLC-touch proxies and do not model queue position."
+  ]
+}

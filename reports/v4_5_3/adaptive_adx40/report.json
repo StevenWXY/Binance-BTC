@@ -1,0 +1,76 @@
+{
+  "item": {
+    "id": "adaptive_adx40",
+    "mode": "adx",
+    "threshold": 40.0
+  },
+  "metrics": {
+    "total_return": 60.26624710116681,
+    "cagr": 0.8538867125906401,
+    "annual_log_growth": 0.6172843609566753,
+    "sharpe": 1.6658002427060694,
+    "annual_volatility": 0.4205264505257351,
+    "max_drawdown": -0.28787215576063996,
+    "cycles": 500,
+    "short_cycles": 98,
+    "short_sum_trade_returns": 0.466365326434319,
+    "cycles_per_year": 75.0,
+    "days": 2435
+  },
+  "windows": {
+    "full": {
+      "total_return": 60.26624710116681,
+      "cagr": 0.8538867125906401,
+      "annual_log_growth": 0.6172843609566753,
+      "sharpe": 1.6658002427060694,
+      "annual_volatility": 0.4205264505257351,
+      "max_drawdown": -0.28787215576063996,
+      "cycles": 500,
+      "short_cycles": 98,
+      "short_sum_trade_returns": 0.466365326434319,
+      "cycles_per_year": 75.0,
+      "days": 2435
+    },
+    "recent": {
+      "total_return": 6.176006636695157,
+      "cagr": 1.093900602592376,
+      "annual_log_growth": 0.7390286436007889,
+      "sharpe": 1.8573104596296997,
+      "annual_volatility": 0.4485272201717991,
+      "max_drawdown": -0.22436786377688567,
+      "cycles": 191,
+      "short_cycles": 41,
+      "short_sum_trade_returns": 0.5389017629722825,
+      "cycles_per_year": 71.625,
+      "days": 974
+    },
+    "recent_jul": {
+      "total_return": 3.3301807328925648,
+      "cagr": 0.7641536183994414,
+      "annual_log_growth": 0.5676710390533527,
+      "sharpe": 1.6652766673763453,
+      "annual_volatility": 0.382966285763142,
+      "max_drawdown": -0.22436786377688567,
+      "cycles": 185,
+      "short_cycles": 41,
+      "short_sum_trade_returns": 0.5389017629722825,
+      "cycles_per_year": 71.65562036055144,
+      "days": 943
+    },
+    "later": {
+      "total_return": 0.9640221370187363,
+      "cagr": 1.9346889254580997,
+      "annual_log_growth": 1.0766014597440676,
+      "sharpe": 2.124659196436789,
+      "annual_volatility": 0.5780598773262791,
+      "max_drawdown": -0.15644592843486083,
+      "cycles": 51,
+      "short_cycles": 17,
+      "short_sum_trade_returns": 0.24445197541213282,
+      "cycles_per_year": 81.3438864628821,
+      "days": 229
+    }
+  },
+  "trades": 500,
+  "shorts": 98
+}

@@ -1,0 +1,159 @@
+{
+  "strategy": "V4.5.3",
+  "stress": "delay_1h",
+  "metrics": {
+    "total_return": 49.373205569781476,
+    "cagr": 0.8002380564276922,
+    "annual_log_growth": 0.5879189097283266,
+    "sharpe": 1.5896322567356274,
+    "annual_volatility": 0.42276771678369934,
+    "max_drawdown": -0.35438950282016624,
+    "cycles": 498,
+    "short_cycles": 98,
+    "short_sum_trade_returns": 0.4636853552325698,
+    "cycles_per_year": 74.7,
+    "days": 2435
+  },
+  "windows": {
+    "full": {
+      "metrics": {
+        "total_return": 49.373205569781476,
+        "cagr": 0.8002380564276922,
+        "annual_log_growth": 0.5879189097283266,
+        "sharpe": 1.5896322567356274,
+        "annual_volatility": 0.42276771678369934,
+        "max_drawdown": -0.35438950282016624,
+        "cycles": 498,
+        "short_cycles": 98,
+        "short_sum_trade_returns": 0.4636853552325698,
+        "cycles_per_year": 74.7,
+        "days": 2435
+      },
+      "frequency": {
+        "cycles": 498,
+        "cycles_per_year": 74.7,
+        "short_cycles": 98,
+        "long_cycles": 400,
+        "median_holding_hours": 24.0
+      }
+    },
+    "recent": {
+      "metrics": {
+        "total_return": 6.395595207574698,
+        "cagr": 1.117702379658531,
+        "annual_log_growth": 0.7503317177863149,
+        "sharpe": 1.9146543673359384,
+        "annual_volatility": 0.4391649745891149,
+        "max_drawdown": -0.22785978918945748,
+        "cycles": 190,
+        "short_cycles": 41,
+        "short_sum_trade_returns": 0.6625955292933303,
+        "cycles_per_year": 71.25,
+        "days": 974
+      },
+      "frequency": {
+        "cycles": 190,
+        "cycles_per_year": 71.25,
+        "short_cycles": 41,
+        "long_cycles": 149,
+        "median_holding_hours": 24.0
+      }
+    },
+    "recent_jul": {
+      "metrics": {
+        "total_return": 3.521874775366607,
+        "cagr": 0.7940023384503032,
+        "annual_log_growth": 0.5844490671197589,
+        "sharpe": 1.7515305698971981,
+        "annual_volatility": 0.37155374513973755,
+        "max_drawdown": -0.22785978918945748,
+        "cycles": 185,
+        "short_cycles": 41,
+        "short_sum_trade_returns": 0.6625955292933303,
+        "cycles_per_year": 71.65562036055144,
+        "days": 943
+      },
+      "frequency": {
+        "cycles": 185,
+        "cycles_per_year": 71.65562036055144,
+        "short_cycles": 41,
+        "long_cycles": 144,
+        "median_holding_hours": 24.0
+      }
+    },
+    "later": {
+      "metrics": {
+        "total_return": 1.0972333479247962,
+        "cagr": 2.2585136980583096,
+        "annual_log_growth": 1.1812711705740997,
+        "sharpe": 2.294057691769944,
+        "annual_volatility": 0.5823374278179944,
+        "max_drawdown": -0.14346504953255712,
+        "cycles": 51,
+        "short_cycles": 17,
+        "short_sum_trade_returns": 0.3262901577342415,
+        "cycles_per_year": 81.3438864628821,
+        "days": 229
+      },
+      "frequency": {
+        "cycles": 51,
+        "cycles_per_year": 81.3438864628821,
+        "short_cycles": 17,
+        "long_cycles": 34,
+        "median_holding_hours": 20.816666666666666
+      }
+    }
+  },
+  "execution": {
+    "initial_cash": 10000.0,
+    "taker_fee_bps": 2.4,
+    "base_slippage_bps": 1,
+    "impact_bps": 8,
+    "max_minute_participation": 0.02,
+    "liquidation_fee_bps": 50.0,
+    "liquidation_slippage_bps": 5.0,
+    "quantity_step": 0.001,
+    "min_notional": 5.0,
+    "periods_per_year": 8760,
+    "maker_enabled": true,
+    "maker_fee_bps": 0.12,
+    "maker_offset_bps": 0.0,
+    "maker_order_timeout_minutes": 60,
+    "maker_exit_enabled": false,
+    "conservative_protection": true,
+    "signal_interval_minutes": 60,
+    "equity_interval_minutes": 60,
+    "execution_bar_minutes": 1
+  },
+  "execution_metrics": {
+    "total_return": 49.373205569781476,
+    "cagr": 0.8002380564276923,
+    "annualized_volatility": 0.3875527913360062,
+    "sharpe": 1.7076977814565324,
+    "sortino": 2.7891631727940296,
+    "max_drawdown": -0.35438950282016624,
+    "trade_count": 498.0,
+    "win_rate": 0.37751004016064255,
+    "final_equity": 503732.05569781474,
+    "fill_count": 2143.0,
+    "liquidation_count": 0.0,
+    "fees_paid": 16192.754637337031,
+    "funding_paid": 15493.701559509316,
+    "realized_pnl": 525418.5118946623,
+    "order_notional": 128262172.33658683,
+    "max_leverage_observed": 4.21735158039649,
+    "max_margin_ratio": 0.05797717659229243,
+    "minimum_margin_buffer": 9803.327970354112,
+    "max_minute_participation_observed": 0.019999989577279106,
+    "maker_enabled": 1.0,
+    "maker_order_count": 756.0,
+    "maker_cancel_count": 3.0,
+    "maker_fill_count": 1108.0,
+    "taker_fill_count": 1035.0,
+    "maker_filled_notional": 63991959.31335,
+    "taker_filled_notional": 64270213.023236826,
+    "maker_fill_ratio": 0.4989152931654836,
+    "maker_fill_events_per_order": 1.4656084656084656,
+    "maker_fee_saved_vs_taker": 14590.166723443797
+  }
+}
