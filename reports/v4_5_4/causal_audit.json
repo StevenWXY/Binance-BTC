@@ -1,0 +1,36 @@
+{
+  "static": {
+    "files": [
+      "src/btc_regime/v42.py",
+      "src/btc_regime/v453.py",
+      "src/btc_regime/v454.py"
+    ],
+    "forbidden_future_patterns": [],
+    "status": "pass"
+  },
+  "real_data_prefix": {
+    "cuts": [
+      {
+        "cut": "2023-01-01T00:00:00+00:00",
+        "signal_prefix_equal": true,
+        "neutral_prefix_equal": true
+      },
+      {
+        "cut": "2024-01-01T00:00:00+00:00",
+        "signal_prefix_equal": true,
+        "neutral_prefix_equal": true
+      },
+      {
+        "cut": "2025-07-01T00:00:00+00:00",
+        "signal_prefix_equal": true,
+        "neutral_prefix_equal": true
+      },
+      {
+        "cut": "2026-01-01T00:00:00+00:00",
+        "signal_prefix_equal": true,
+        "neutral_prefix_equal": true
+      }
+    ],
+    "status": "pass"
+  }
+}
