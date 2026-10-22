@@ -1,0 +1,47 @@
+{
+  "created_at": "2026-09-25T01:31:12.700485+00:00",
+  "data_manifest": {
+    "created_at": "2026-09-25T01:27:02.205581+00:00",
+    "symbol": "BTCUSDT",
+    "product_type": "USDT-FUTURES",
+    "interval": "5m",
+    "requested_start": "2020-01-01T00:00:00+00:00",
+    "requested_end_exclusive": "2026-08-01T00:00:00+00:00",
+    "observed_start": "2020-01-01T00:00:00+00:00",
+    "observed_end": "2026-07-31T23:55:00+00:00",
+    "candle_rows": 692352,
+    "funding_rows": 104,
+    "funding_observed_start": "2026-06-27T08:00:00+00:00",
+    "funding_observed_end": "2026-07-31T16:00:00+00:00",
+    "funding_missing_before_observed_start": true,
+    "funding_endpoint_note": "Bitget v2 history-fund-rate returned only the available recent pages; older funding is absent from the public endpoint and is not fabricated.",
+    "mark_price_source": "history-mark-candles",
+    "trade_price_source": "history-candles"
+  },
+  "strategies": [
+    "V4.1.2",
+    "V4.2.2",
+    "V4.5.2",
+    "V4.5.3",
+    "V4.5.4"
+  ],
+  "window": [
+    "2020-01-01T00:00:00+00:00",
+    "2026-08-01T00:00:00+00:00"
+  ],
+  "bar_resolution": "5m execution; hourly V4.5 signals; 4h V4.1/V4.2 signals",
+  "fee_policy": {
+    "bitget_published_taker_bps": 6.0,
+    "bitget_published_maker_bps": 2.0,
+    "rebate_fraction": 0.6,
+    "effective_taker_bps": 2.4,
+    "effective_maker_bps": 0.8
+  },
+  "funding_policy": "Only funding settlements returned by the public Bitget endpoint are used; missing earlier rates are zero for direction signals and absent from the neutral sleeve.",
+  "data_hash": "fa3df8527e862cde0364fdd7f38ef58a809f91fcd2670d2211c58b6ecb2cfdac",
+  "limits": [
+    "Bitget public v3 funding history is last 90 days; this run does not fabricate older funding.",
+    "Five-minute OHLC execution is a coarser proxy than the repository's original one-minute Binance replay.",
+    "Maker fills, impact and liquidation brackets remain deterministic research assumptions."
+  ]
+}

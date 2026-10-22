@@ -1,0 +1,36 @@
+{
+  "data": {
+    "directory": "/Users/weixinyu/Desktop/Private Project/Binance-BTC/data/bitget_20261011",
+    "observed_end": "2026-10-11T07:55:00+00:00",
+    "five_minute_rows": 712896,
+    "funding_start": "2026-06-27T08:00:00+00:00",
+    "funding_end": "2026-10-11T08:00:00+00:00",
+    "funding_rows": 319
+  },
+  "window": [
+    "2026-09-01T00:00:00+00:00",
+    "2026-10-11T08:00:00+00:00"
+  ],
+  "signal_params": {
+    "short_enabled": true,
+    "gate": "structural",
+    "entry": "break8",
+    "confirmation": "activity",
+    "adx_min": 32.0,
+    "protection": "base",
+    "cooldown_hours": 3,
+    "risk": "higher"
+  },
+  "selection_evidence": {
+    "winner": "b022",
+    "selectable_profiles": 8,
+    "next_score_gap": 0.0254163517,
+    "selection_file": "reports/v4_5_2/minute_selection.json"
+  },
+  "notes": [
+    "V4.5.3 signal is exactly V4.5.2 b022; only routine execution adds Maker.",
+    "Maker fills are an OHLC touch proxy and cannot model queue priority.",
+    "The complete historical cache was available during research; the current window is not a blind OOS test.",
+    "The last available candle is 2026-10-11 07:55 UTC (15:55 Asia/Shanghai); no later candles are fabricated."
+  ]
+}

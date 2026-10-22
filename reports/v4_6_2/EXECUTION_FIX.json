@@ -1,0 +1,11 @@
+{
+  "reason": "Resting timeout at zero liquidity incorrectly discarded the Taker fallback.",
+  "original_candidate": "control_maker",
+  "original_selection_passed": false,
+  "original_selection_lock_sha256": "ca344916c4cefc85e07fcea5c6b4c36321a3253cf9ed40a1fce40cb11e592356",
+  "additional_parameter_candidates": 0,
+  "policy": "Replay the same eight candidates after a correctness repair; keep the original diagnostic candidate.",
+  "first_equity_difference_utc": "2020-12-17 04:30:00+00:00",
+  "old_cagr": 0.520438874477466,
+  "repaired_cagr": 0.5209218349830078
+}

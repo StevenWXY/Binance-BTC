@@ -1,0 +1,54 @@
+{
+  "version": "V4.6.1",
+  "based_on": "V4.5.3 b022 + V4.5.3-stable risk overlay",
+  "status": "research_candidate_all_taker_primary",
+  "selection_policy": {
+    "signal_family": "frozen V4.5.3 b022",
+    "candidate_overlay_count": 8,
+    "selected_overlay": "F",
+    "selection_windows": [
+      "2020-01-01 to 2023-12-31",
+      "2024-01-01 to 2025-12-31",
+      "2026-01-01 to 2026-08-31"
+    ],
+    "diagnostic_window": "2026-09-01 onward",
+    "rule": "Prefer a simple candidate with positive historical folds, target CAGR above 50%, and lower monthly dispersion; do not use the diagnostic window for selection.",
+    "selection_rationale": "The factor family and overlay shape were frozen without using the diagnostic window. F is the smallest coarse exposure step whose full replay meets both user targets; H has a higher historical score but materially higher monthly dispersion."
+  },
+  "factor_subset": [
+    "4h trend EMA/ADX/DI",
+    "hourly breakout and reclaim",
+    "structural short trend",
+    "short activity confirmation",
+    "settled funding filter",
+    "ATR and volatility sizing"
+  ],
+  "base_signal_params": {
+    "short_enabled": true,
+    "gate": "structural",
+    "entry": "break8",
+    "confirmation": "activity",
+    "adx_min": 32.0,
+    "protection": "base",
+    "cooldown_hours": 3,
+    "risk": "higher"
+  },
+  "risk_overlay": {
+    "exposure_scale": 0.90,
+    "monthly_soft_loss": -0.05,
+    "monthly_hard_loss": -0.10,
+    "monthly_profit_lock": 0.06,
+    "soft_loss_scale": 0.75,
+    "hard_loss_scale": 0.50,
+    "profit_lock_scale": 0.50
+  },
+  "execution": {
+    "published_taker_bps": 6.0,
+    "rebate_fraction": 0.60,
+    "effective_taker_bps": 2.4,
+    "maker_used_for_primary_result": false,
+    "base_slippage_bps": 1.0,
+    "impact_bps": 8.0,
+    "max_minute_participation": 0.02
+  }
+}

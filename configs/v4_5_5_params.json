@@ -1,0 +1,44 @@
+{
+  "version": "V4.5.5",
+  "based_on": "V4.5.3, Bitget-specific constrained tuning",
+  "platform": "Bitget BTCUSDT USDT-FUTURES",
+  "selected_candidate": "bg_d",
+  "signal_params": {
+    "short_enabled": true,
+    "gate": "structural",
+    "entry": "break12",
+    "confirmation": "activity",
+    "adx_min": 32.0,
+    "protection": "base",
+    "cooldown_hours": 3,
+    "risk": "higher"
+  },
+  "execution": {
+    "initial_cash": 10000.0,
+    "taker_fee_bps": 2.4,
+    "base_slippage_bps": 1.0,
+    "impact_bps": 8.0,
+    "max_minute_participation": 0.02,
+    "liquidation_fee_bps": 50.0,
+    "liquidation_slippage_bps": 5.0,
+    "quantity_step": 0.001,
+    "min_notional": 5.0,
+    "periods_per_year": 8760,
+    "maker_enabled": true,
+    "maker_fee_bps": 0.8,
+    "maker_offset_bps": 0.0,
+    "maker_order_timeout_minutes": 60,
+    "maker_exit_enabled": false,
+    "conservative_protection": true,
+    "signal_interval_minutes": 60,
+    "equity_interval_minutes": 60,
+    "execution_bar_minutes": 5
+  },
+  "selection_policy": "Candidate must improve validation Sharpe, post-2024 Sharpe and post-2024 return versus the Bitget baseline; holdout drawdown must remain within 30%; robust score is the mean validation and holdout Sharpe.",
+  "rebate_fraction": 0.6,
+  "funding_coverage": {
+    "start": "2026-06-27T08:00:00+00:00",
+    "end": "2026-07-31T16:00:00+00:00",
+    "rows": 104
+  }
+}

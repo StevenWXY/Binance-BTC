@@ -1,0 +1,52 @@
+{
+  "version": "V4.6.3",
+  "based_on": "V4.6.1",
+  "status": "research_candidate_robust_overlay",
+  "promoted_to_default": false,
+  "selection_policy": {
+    "signal_family": "frozen V4.5.3/b022, with a small predeclared neighborhood check",
+    "candidate_count": 8,
+    "selection_windows": [
+      "2020-01-01 to 2023-12-31",
+      "2024-01-01 to 2025-12-31",
+      "2026-01-01 to 2026-08-31"
+    ],
+    "diagnostic_window": "2026-09-01 onward",
+    "rule": "Require positive CAGR in every historical fold and historical drawdown no more than one percentage point worse than the V4.6.1 control; select the simplest candidate within 0.15 score points of the best historical score after Sharpe dispersion and monthly-volatility penalties. The diagnostic window is reported only.",
+    "diagnostics_used_for_selection": false
+  },
+  "base_signal_params": {
+    "short_enabled": true,
+    "gate": "structural",
+    "entry": "break8",
+    "confirmation": "activity",
+    "adx_min": 32.0,
+    "protection": "base",
+    "cooldown_hours": 3,
+    "risk": "higher"
+  },
+  "risk_overlay": {
+    "exposure_scale": 1.0,
+    "monthly_soft_loss": -0.10,
+    "monthly_hard_loss": -0.15,
+    "monthly_profit_lock": 0.06,
+    "soft_loss_scale": 0.50,
+    "hard_loss_scale": 0.50,
+    "profit_lock_scale": 0.35
+  },
+  "execution": {
+    "published_taker_bps": 6.0,
+    "rebate_fraction": 0.60,
+    "effective_taker_bps": 2.4,
+    "maker_used_for_primary_result": false,
+    "base_slippage_bps": 1.0,
+    "impact_bps": 8.0,
+    "max_minute_participation": 0.02
+  },
+  "limitations": [
+    "Historical data were already visible during research; the diagnostic window is not a blind out-of-sample proof.",
+    "The primary replay uses five-minute OHLC execution and all-Taker fills.",
+    "The cached public funding history begins on 2026-06-27; earlier settlements are not fabricated.",
+    "Month-to-date controls use the completed hourly BTC close as a causal risk budget proxy."
+  ]
+}

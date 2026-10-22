@@ -54,6 +54,15 @@ class MicroBacktestConfig:
     maker_offset_bps: float = 0.5
     maker_order_timeout_minutes: int = 60
     maker_exit_enabled: bool = False
+    # Opt-in resting-order model; defaults preserve historical replays.
+    maker_resting_mode: bool = False
+    maker_min_rest_bars: int = 1
+    maker_fill_penetration_bps: float = 0.0
+    maker_fill_capacity_fraction: float = 1.0
+    maker_timeout_taker: bool = False
+    # False: preserve urgent first exposure; only existing-position additions
+    # may rest. The initial instruction remains taker across partial fills.
+    maker_new_position_enabled: bool = True
     conservative_protection: bool = False
     signal_interval_minutes: int = 240
     equity_interval_minutes: int = 240
@@ -72,6 +81,14 @@ class MicroBacktestConfig:
             raise ValueError("maker_offset_bps must be non-negative")
         if self.maker_order_timeout_minutes < 1:
             raise ValueError("maker_order_timeout_minutes must be positive")
+        if self.maker_resting_mode and self.maker_offset_bps <= 0:
+            raise ValueError("resting Maker quotes require a positive offset")
+        if not isinstance(self.maker_min_rest_bars, int) or self.maker_min_rest_bars < 1:
+            raise ValueError("maker_min_rest_bars must be a positive integer")
+        if not np.isfinite(self.maker_fill_penetration_bps) or self.maker_fill_penetration_bps < 0:
+            raise ValueError("maker_fill_penetration_bps must be finite and nonnegative")
+        if not 0 < self.maker_fill_capacity_fraction <= 1:
+            raise ValueError("maker_fill_capacity_fraction must be in (0, 1]")
 
 
 @dataclass
@@ -192,6 +209,12 @@ def run_micro_backtest(
     pending_signal: float | None = None
     pending_signal_time: pd.Timestamp | None = None
     pending_maker_counted = False
+    pending_started_flat = True
+    resting_limit = np.nan
+    resting_target = None
+    resting_started = None
+    resting_expired = False
+    maker_timeout_fallback_count = 0
     active_protection: tuple[float, float] | None = None
     fills: list[dict[str, object]] = []
     liquidations: list[dict[str, object]] = []
@@ -356,18 +379,27 @@ def run_micro_backtest(
                 })
 
             if timestamp in events:
+                if config.maker_resting_mode and pending_signal is not None and pending_maker_counted and not resting_expired:
+                    maker_cancel_count += 1
                 current_cycle_id = cycle_ids.get(timestamp)
                 pending_signal = events[timestamp]
                 if current_cycle_id is not None and current_cycle_id == blocked_cycle_id:
                     pending_signal = 0.0
                 pending_signal_time = timestamp
                 pending_maker_counted = False
+                pending_started_flat = abs(account.quantity) < 1e-12
+                resting_limit = np.nan
+                resting_target = None
+                resting_started = None
+                resting_expired = False
 
             if pending_signal is not None and account.wallet > 0:
                 pre_fill_equity = max(account.equity(mark_open), 0.0)
                 target_quantity = _round_toward_zero(
                     pending_signal * pre_fill_equity / float(row.trade_open), config.quantity_step
                 )
+                if config.maker_resting_mode and resting_target is not None:
+                    target_quantity = resting_target
                 desired_delta = target_quantity - account.quantity
                 desired_notional = abs(desired_delta) * float(row.trade_open)
                 if desired_notional < config.min_notional:
@@ -398,8 +430,29 @@ def run_micro_backtest(
                         )
                         use_maker = config.maker_enabled and (
                             config.maker_exit_enabled or not reducing
-                        )
-                        if use_maker and not pending_maker_counted:
+                        ) and (config.maker_new_position_enabled or not pending_started_flat)
+                        resting_cancelled = False
+                        if use_maker and config.maker_resting_mode:
+                            if resting_started is None:
+                                resting_started = timestamp
+                                resting_target = target_quantity
+                                resting_limit = float(row.trade_open) * (
+                                    1 - math.copysign(config.maker_offset_bps / 10_000, delta)
+                                )
+                            elapsed = (timestamp - resting_started).total_seconds() / 60
+                            if elapsed >= config.maker_order_timeout_minutes:
+                                if not resting_expired:
+                                    maker_cancel_count += 1
+                                    maker_timeout_fallback_count += int(config.maker_timeout_taker)
+                                resting_expired = True
+                                if config.maker_timeout_taker:
+                                    use_maker = False
+                                else:
+                                    resting_cancelled = True
+                                    pending_signal = None
+                                    pending_signal_time = None
+                                    pending_maker_counted = False
+                        if use_maker and not pending_maker_counted and not resting_cancelled:
                             maker_order_count += 1
                             pending_maker_counted = True
                         limit_price = np.nan
@@ -413,9 +466,26 @@ def run_micro_backtest(
                                 if delta > 0
                                 else float(row.trade_high) >= limit_price
                             )
+                            if config.maker_resting_mode:
+                                limit_price = resting_limit
+                                ready = (timestamp - resting_started).total_seconds() / 60 >= (
+                                    config.maker_min_rest_bars * config.execution_bar_minutes
+                                )
+                                penetration = config.maker_fill_penetration_bps / 10_000
+                                touched = ready and not resting_cancelled and (
+                                    float(row.trade_low) < limit_price * (1 - penetration)
+                                    if delta > 0 else float(row.trade_high) > limit_price * (1 + penetration)
+                                )
+                                capacity = capacity_quantity * config.maker_fill_capacity_fraction
+                                fill_quantity = abs(_round_toward_zero(min(abs(desired_delta), capacity), config.quantity_step))
+                                delta = math.copysign(fill_quantity, desired_delta)
+                                fill_notional = fill_quantity * limit_price
+                                participation = fill_notional / max(available_quote, fill_notional)
+                                touched = touched and fill_quantity >= config.quantity_step
                         if not touched:
                             if (
-                                pending_signal_time is not None
+                                not config.maker_resting_mode
+                                and pending_signal_time is not None
                                 and (timestamp - pending_signal_time).total_seconds() / 60
                                 >= config.maker_order_timeout_minutes
                             ):
@@ -428,6 +498,8 @@ def run_micro_backtest(
                             if use_maker:
                                 execution_price = limit_price
                                 slippage_bps = -config.maker_offset_bps
+                                if config.maker_resting_mode:
+                                    slippage_bps = (execution_price / float(row.trade_open) - 1) * np.sign(delta) * 10_000
                                 execution_fee_rate = maker_fee_rate
                                 liquidity = "maker"
                             else:
@@ -490,6 +562,7 @@ def run_micro_backtest(
                                 pending_maker_counted = False
                     elif (
                         config.maker_enabled
+                        and not config.maker_resting_mode
                         and pending_signal_time is not None
                         and (timestamp - pending_signal_time).total_seconds() / 60
                         >= config.maker_order_timeout_minutes
@@ -601,6 +674,7 @@ def run_micro_backtest(
         "maker_enabled": float(config.maker_enabled),
         "maker_order_count": float(maker_order_count),
         "maker_cancel_count": float(maker_cancel_count),
+        "maker_timeout_fallback_count": float(maker_timeout_fallback_count),
         "maker_fill_count": float(maker_fill_count),
         "taker_fill_count": float(taker_fill_count),
         "maker_filled_notional": float(maker_filled_notional),

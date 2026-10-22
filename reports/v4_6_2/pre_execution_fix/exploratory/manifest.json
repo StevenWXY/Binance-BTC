@@ -1,0 +1,68 @@
+{
+  "phase": "one_post_screen_exploratory_execution_hypothesis",
+  "candidate_count": 1,
+  "selection_bias_warning": "generated after seeing the original screen and 2026 diagnostic",
+  "params": {
+    "risk": {
+      "base": {
+        "short_enabled": true,
+        "gate": "structural",
+        "entry": "break8",
+        "confirmation": "activity",
+        "adx_min": 32.0,
+        "protection": "base",
+        "cooldown_hours": 3,
+        "risk": "higher"
+      },
+      "exposure_scale": 0.9,
+      "monthly_soft_loss": -0.05,
+      "monthly_hard_loss": -0.1,
+      "monthly_profit_lock": 0.06,
+      "soft_loss_scale": 0.75,
+      "hard_loss_scale": 0.5,
+      "profit_lock_scale": 0.5
+    },
+    "long": {
+      "speed": "medium",
+      "stop_atr": 1.5,
+      "trail_atr": 3.0,
+      "hold_hours": 72,
+      "cooldown_hours": 3,
+      "entry_mode": "all",
+      "gate": "none",
+      "risk": "defensive",
+      "breakout_hours": 6,
+      "max_leverage": 4.0
+    }
+  },
+  "execution": {
+    "initial_cash": 10000,
+    "taker_fee_bps": 2.4000000000000004,
+    "base_slippage_bps": 1.0,
+    "impact_bps": 8.0,
+    "max_minute_participation": 0.02,
+    "liquidation_fee_bps": 50.0,
+    "liquidation_slippage_bps": 5.0,
+    "quantity_step": 0.001,
+    "min_notional": 5.0,
+    "periods_per_year": 105120,
+    "maker_enabled": true,
+    "maker_fee_bps": 0.8,
+    "maker_offset_bps": 1.0,
+    "maker_order_timeout_minutes": 15,
+    "maker_exit_enabled": false,
+    "maker_resting_mode": true,
+    "maker_min_rest_bars": 1,
+    "maker_fill_penetration_bps": 1.0,
+    "maker_fill_capacity_fraction": 0.25,
+    "maker_timeout_taker": true,
+    "maker_new_position_enabled": false,
+    "conservative_protection": true,
+    "signal_interval_minutes": 60,
+    "equity_interval_minutes": 5,
+    "execution_bar_minutes": 5
+  },
+  "protocol_sha256": "b1f31625ad243087ef869bcf853ae8bf9307a1b7c15e3d12297c624ad3e774db",
+  "previous_lock_sha256": "ca344916c4cefc85e07fcea5c6b4c36321a3253cf9ed40a1fce40cb11e592356",
+  "funding_sha256": "9400d7daf730a955df10029d362a3b41658a604f5fa3562514fab545fbd2abce"
+}

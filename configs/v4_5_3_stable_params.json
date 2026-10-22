@@ -1,0 +1,41 @@
+{
+  "version": "V4.5.3-stable",
+  "based_on": "V4.5.3 / V4.5.2 b022",
+  "factor_subset": [
+    "4h trend EMA/ADX/DI",
+    "hourly breakout and reclaim",
+    "structural short trend",
+    "short activity confirmation",
+    "settled funding filter",
+    "ATR and volatility sizing"
+  ],
+  "base_signal_params": {
+    "short_enabled": true,
+    "gate": "structural",
+    "entry": "break8",
+    "confirmation": "activity",
+    "adx_min": 32.0,
+    "protection": "base",
+    "cooldown_hours": 3,
+    "risk": "higher"
+  },
+  "risk_overlay": {
+    "exposure_scale": 0.25,
+    "monthly_soft_loss": -0.05,
+    "monthly_hard_loss": -0.10,
+    "monthly_profit_lock": 0.06,
+    "soft_loss_scale": 0.50,
+    "hard_loss_scale": 0.20,
+    "profit_lock_scale": 0.25
+  },
+  "execution": {
+    "published_taker_bps": 6.0,
+    "rebate_fraction": 0.60,
+    "effective_taker_bps": 2.4,
+    "maker_used_for_primary_result": false,
+    "base_slippage_bps": 1.0,
+    "impact_bps": 8.0,
+    "max_minute_participation": 0.02
+  },
+  "status": "research_candidate_all_taker_primary"
+}

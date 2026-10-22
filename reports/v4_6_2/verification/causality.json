@@ -1,0 +1,21 @@
+{
+  "control_matches_v461": true,
+  "real_market_prefixes": [
+    {
+      "last_open": "2024-05-13 13:00:00+00:00",
+      "prefix_matches_full": true,
+      "rows": 38270
+    },
+    {
+      "last_open": "2026-07-17 17:00:00+00:00",
+      "prefix_matches_full": true,
+      "rows": 57354
+    },
+    {
+      "last_open": "2026-10-10 07:00:00+00:00",
+      "prefix_matches_full": true,
+      "rows": 59384
+    }
+  ],
+  "funding_start": "2026-06-27 08:00:00+00:00"
+}

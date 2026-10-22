@@ -1,0 +1,47 @@
+{
+  "created_at": "2026-09-24T03:29:32.277679+00:00",
+  "strategies": [
+    "V4.1.2",
+    "V4.2.2",
+    "V4.5.2",
+    "V4.5.3",
+    "V4.5.4"
+  ],
+  "rebates": [
+    0.4,
+    0.6
+  ],
+  "window": [
+    "2020-01-01",
+    "2026-08-01"
+  ],
+  "parameter_search": false,
+  "initial_cash": 10000,
+  "signal_signatures": {
+    "V4.1.2": "25d060868f616d79b6aa6a36c52384f09ad09dfc5c5b108d35d5ba89e5bf16b5",
+    "V4.2.2": "99d81a2ee501ab01dd05ce0d720715802664a10b32136ec911cb6197ed091a42",
+    "V4.5.2": "7641656c123b42b2b6939706ce41bdc2ce2a58eec4521a9406e7684262b0b4ef",
+    "V4.5.3": "7641656c123b42b2b6939706ce41bdc2ce2a58eec4521a9406e7684262b0b4ef",
+    "V4.5.4": "63c848e13696efa86adaa5441b0c1b55c6d7e9543aecccdf77b689260f0c34e1"
+  },
+  "minute_data_sha256": "c7da5242a1818ff0b40d83ce1ede0b58270d95eeee91c09a81daca77def1fd42",
+  "funding_sha256": "4c3e501bd6b6b467493fe8e593ddb9f0c753253c4c5b3c9466c71bd3d2519b67",
+  "coverage": {
+    "expected_minutes": 3461760,
+    "observed_minutes": 3461705,
+    "missing_minutes": 55
+  },
+  "fee_policy": {
+    "published_taker_bps": 4.0,
+    "published_maker_bps": 0.2,
+    "rebate_applies_to": "trading fees only; neutral spot/futures transition fees follow legacy policy",
+    "slippage_funding_liquidation_rebated": false
+  },
+  "accounting": "Completion timestamps preserved; neutral settlements booked at the next equity observation, allocation lagged one observation.",
+  "limits": [
+    "Historical research data, not blind OOS",
+    "Maker OHLC-touch proxy lacks order queues",
+    "Neutral proxy omits basis PnL and recall/redeployment trading costs; idle APY 4% is assumed",
+    "V4.2.2 preserves its archived non-conservative protective fill configuration; compare fee pairs, not execution realism across strategies"
+  ]
+}

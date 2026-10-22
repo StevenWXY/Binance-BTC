@@ -1,0 +1,47 @@
+{
+  "report_scope": {
+    "requested_end": "2026-10-06",
+    "observed_end_exclusive": "2026-08-01T00:00:00+00:00",
+    "observed_last_candle": "2026-07-31T23:55:00+00:00"
+  },
+  "data_manifest": {
+    "created_at": "2026-09-25T01:27:02.205581+00:00",
+    "symbol": "BTCUSDT",
+    "product_type": "USDT-FUTURES",
+    "interval": "5m",
+    "requested_start": "2020-01-01T00:00:00+00:00",
+    "requested_end_exclusive": "2026-08-01T00:00:00+00:00",
+    "observed_start": "2020-01-01T00:00:00+00:00",
+    "observed_end": "2026-07-31T23:55:00+00:00",
+    "candle_rows": 692352,
+    "funding_rows": 104,
+    "funding_observed_start": "2026-06-27T08:00:00+00:00",
+    "funding_observed_end": "2026-07-31T16:00:00+00:00",
+    "funding_missing_before_observed_start": true,
+    "funding_endpoint_note": "Bitget v2 history-fund-rate returned only the available recent pages; older funding is absent from the public endpoint and is not fabricated.",
+    "mark_price_source": "history-mark-candles",
+    "trade_price_source": "history-candles"
+  },
+  "strategies": [
+    "V4.1.2",
+    "V4.5.3",
+    "V7.1.2"
+  ],
+  "fee_policy": {
+    "published_taker_bps": 6.0,
+    "published_maker_bps": 2.0,
+    "rebate_fraction": 0.6,
+    "effective_taker_bps": 2.4000000000000004,
+    "effective_maker_bps": 0.8
+  },
+  "execution": "5m OHLC execution and mark-price proxy; maker touch model; protective exits taker; participation cap 2%; deterministic impact/slippage",
+  "funding": "Only public Bitget funding records in local cache are applied; earlier missing settlements are not fabricated.",
+  "parameter_search": false,
+  "limits": [
+    "Local Bitget candle cache ends 2026-07-31 23:55 UTC; 2026-08-01 to 2026-10-06 is not represented in the replay.",
+    "Public data-download UI can expose 1m files, but browser policy blocked automated retrieval in this run.",
+    "Five-minute OHLC execution is a coarser proxy than tick/order-book replay; maker queue priority is not observed.",
+    "Historical maintenance-margin brackets and funding coverage are explicit model assumptions."
+  ],
+  "data_sha256": "fa3df8527e862cde0364fdd7f38ef58a809f91fcd2670d2211c58b6ecb2cfdac"
+}

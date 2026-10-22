@@ -1,0 +1,44 @@
+{
+  "pytest_passed": 124,
+  "baseline_equity_and_fills_exactly_unchanged": true,
+  "repaired_maker_repeat_equity_and_fills_exactly_equal": true,
+  "fixed_eight_candidates_retained_and_all_failed": true,
+  "original_selection_unchanged": true,
+  "complete_months": 81,
+  "all_fee_records_match_60pct_rebate": true,
+  "protective_and_final_exits_taker": true,
+  "report_metrics_match_replay_objects": true,
+  "zero_simulated_liquidations": true,
+  "synthetic_funding_charges_nonnegative": true,
+  "source_sha256": {
+    "src/btc_regime/micro_backtest.py": "9d1138e1b7bc399873f36606613f1ef745775e7cbcc31c1f3415eac3fda52999",
+    "src/btc_regime/v462.py": "e5bd271a5e83598c4905f8b9fa808c5a67738907b55617ca7d8ae7eeaeb921de",
+    "scripts/research_v462.py": "29019fd4bf798fb3ce25dbb087cfe584c0c790e5ebafc3238ed26e6ca1b5f044",
+    "scripts/research_v462_selective.py": "ca15eb787ddc22f0b83cf3c7e8d5910f55d52dcd894b79cb312e0893b1d876ec",
+    "scripts/render_v462_report.py": "17631ea31ef3a22a3abe7416b93419bc765819fab2e734089c3756b775ec0fa5",
+    "scripts/replay_v462_execution_fix.py": "d1efd7d09f2e13867ddbd42202c21fe4dcac41471cb5be8dc132ab9cbe44d3ce",
+    "scripts/verify_v462.py": "845377c7d33819bf268f93ef76546367f17bef46a496af2004e6e8c77b2810af",
+    "tests/test_v462.py": "c7278386a58e2f95f3011800c128c869e0bee26132f942aa561fb3fd21afa274"
+  },
+  "causality": {
+    "control_matches_v461": true,
+    "real_market_prefixes": [
+      {
+        "last_open": "2024-05-13 13:00:00+00:00",
+        "prefix_matches_full": true,
+        "rows": 38270
+      },
+      {
+        "last_open": "2026-07-17 17:00:00+00:00",
+        "prefix_matches_full": true,
+        "rows": 57354
+      },
+      {
+        "last_open": "2026-10-10 07:00:00+00:00",
+        "prefix_matches_full": true,
+        "rows": 59384
+      }
+    ],
+    "funding_start": "2026-06-27 08:00:00+00:00"
+  }
+}

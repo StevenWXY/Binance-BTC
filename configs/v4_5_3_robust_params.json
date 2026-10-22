@@ -1,0 +1,56 @@
+{
+  "version": "V4.5.3-robust-candidate",
+  "based_on": "V4.5.3 b022",
+  "status": "frozen_robust_candidate",
+  "selected_candidate": "baseline_b022",
+  "signal_params": {
+    "short_enabled": true,
+    "gate": "structural",
+    "entry": "break8",
+    "confirmation": "activity",
+    "adx_min": 32.0,
+    "protection": "base",
+    "cooldown_hours": 3,
+    "risk": "higher"
+  },
+  "execution": {
+    "initial_cash": 10000.0,
+    "taker_fee_bps": 2.4000000000000004,
+    "base_slippage_bps": 1.0,
+    "impact_bps": 8.0,
+    "max_minute_participation": 0.02,
+    "liquidation_fee_bps": 50.0,
+    "liquidation_slippage_bps": 5.0,
+    "quantity_step": 0.001,
+    "min_notional": 5.0,
+    "periods_per_year": 8760,
+    "maker_enabled": true,
+    "maker_fee_bps": 0.8,
+    "maker_offset_bps": 0.0,
+    "maker_order_timeout_minutes": 60,
+    "maker_exit_enabled": false,
+    "conservative_protection": true,
+    "signal_interval_minutes": 60,
+    "equity_interval_minutes": 60,
+    "execution_bar_minutes": 5
+  },
+  "selection_policy": {
+    "candidate_count": 10,
+    "selection_data_end_exclusive": "2026-09-01T00:00:00+00:00",
+    "holdout_start": "2026-09-01T00:00:00+00:00",
+    "historical_guard": "At least two of three historical folds positive; each historical drawdown <=35%; validation and pre-holdout Sharpe within 0.15 of b022; select the simplest candidate within 0.05 of the best robust score.",
+    "score": "median Sharpe - 0.35*Sharpe dispersion + 0.10*positive-fold count - drawdown penalty"
+  },
+  "data": {
+    "observed_end": "2026-10-11T07:55:00+00:00",
+    "five_minute_rows": 712896,
+    "funding_rows": 319,
+    "funding_start": "2026-06-27T08:00:00+00:00",
+    "funding_end": "2026-10-11T08:00:00+00:00"
+  },
+  "limits": [
+    "The Bitget public funding cache is incomplete before 2026-06-27.",
+    "Maker fills are an OHLC-touch proxy.",
+    "Historical data were already available during research; the 2026-09 onward window is a diagnostic holdout, not a blind OOS test."
+  ]
+}

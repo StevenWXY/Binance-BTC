@@ -1,0 +1,76 @@
+{
+  "created_at": "2026-10-07T16:32:10.618940+00:00",
+  "report_scope": {
+    "requested_start": "2020-01-01T00:00:00+00:00",
+    "requested_end_exclusive": "2026-10-07T00:00:00+00:00",
+    "as_of_date": "2026-10-06",
+    "observed_last_candle": "2026-10-06T23:55:00+00:00"
+  },
+  "data_manifest": {
+    "created_at": "2026-10-07T16:16:34.518388+00:00",
+    "symbol": "BTCUSDT",
+    "product_type": "USDT-FUTURES",
+    "interval": "5m",
+    "requested_start": "2020-01-01T00:00:00+00:00",
+    "requested_end_exclusive": "2026-10-07T00:00:00+00:00",
+    "observed_start": "2020-01-01T00:00:00+00:00",
+    "observed_end": "2026-10-06T23:55:00+00:00",
+    "candle_rows": 711648,
+    "funding_rows": 305,
+    "funding_observed_start": "2026-06-27 08:00:00+00:00",
+    "funding_observed_end": "2026-10-06 16:00:00+00:00",
+    "funding_missing_before_observed_start": true,
+    "funding_endpoint_note": "Bitget v2 history-fund-rate returned only the available recent pages; older funding is absent from the public endpoint and is not fabricated.",
+    "mark_price_source": "history-mark-candles",
+    "trade_price_source": "history-candles",
+    "extensions": [
+      {
+        "created_at": "2026-10-07T16:16:34.518388+00:00",
+        "symbol": "BTCUSDT",
+        "product_type": "USDT-FUTURES",
+        "interval": "5m",
+        "requested_start": "2026-08-01T00:00:00+00:00",
+        "requested_end_exclusive": "2026-10-07T00:00:00+00:00",
+        "observed_start": "2026-08-01T00:00:00+00:00",
+        "observed_end": "2026-10-06T23:55:00+00:00",
+        "candle_rows": 19296,
+        "funding_rows": 201,
+        "funding_observed_start": "2026-08-01T00:00:00+00:00",
+        "funding_observed_end": "2026-10-06T16:00:00+00:00",
+        "funding_missing_before_observed_start": true,
+        "funding_endpoint_note": "Bitget v2 history-fund-rate returned only the available recent pages; older funding is absent from the public endpoint and is not fabricated.",
+        "mark_price_source": "history-mark-candles",
+        "trade_price_source": "history-candles"
+      }
+    ]
+  },
+  "strategies": [
+    "V4.1.2",
+    "V4.5.3",
+    "V7.1.2"
+  ],
+  "fee_policy": {
+    "published_taker_bps": 6.0,
+    "published_maker_bps": 2.0,
+    "rebate_fraction": 0.6,
+    "effective_taker_bps": 2.4000000000000004,
+    "effective_maker_bps": 0.8
+  },
+  "execution": "5m OHLC execution and mark-price proxy; routine exposure may use maker-touch model; protective exits use taker; deterministic impact/slippage; 2% per-bar participation cap.",
+  "funding": "Only public Bitget funding records in local cache are applied; earlier missing settlements are not fabricated.",
+  "parameter_search": false,
+  "data_sha256": "035c3013a1d8bbb075af1139c9c91f0098a8feb62338492eb43548fb7178ca6b",
+  "coverage": {
+    "five_minute_rows": 711648,
+    "missing_rows": 0,
+    "funding_rows": 305,
+    "funding_start": "2026-06-27T08:00:00+00:00",
+    "funding_end": "2026-10-06T16:00:00+00:00"
+  },
+  "limits": [
+    "Public funding endpoint does not provide the full 2020-2026 funding history; the backtest uses only the observed 2026-06-27 to 2026-10-06 settlements.",
+    "Five-minute OHLC is coarser than tick/order-book replay; maker queue priority is unobserved.",
+    "Maintenance-margin brackets and impact are deterministic assumptions; no liquidation occurred in the base runs.",
+    "The data were available during research and are not a blind out-of-sample test."
+  ]
+}

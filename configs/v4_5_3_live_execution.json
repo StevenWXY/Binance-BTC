@@ -1,0 +1,38 @@
+{
+  "version": "V4.5.3-live-execution",
+  "based_on": "V4.5.3 b022 signal; execution-only profile",
+  "status": "paper-trade-before-live",
+  "signal_params": {
+    "short_enabled": true,
+    "gate": "structural",
+    "entry": "break8",
+    "confirmation": "activity",
+    "adx_min": 32.0,
+    "protection": "base",
+    "cooldown_hours": 3,
+    "risk": "higher"
+  },
+  "execution_policy": {
+    "anchor_fraction": 0.25,
+    "maker_levels": 3,
+    "maker_spacing_ticks": 1,
+    "maker_ttl_seconds": 20,
+    "timeout_fallback": "ioc",
+    "max_spread_bps": 8.0,
+    "reductions_and_reversals": "ioc_reduce_only_first",
+    "protective_exits": "reduce_only_ioc_or_market",
+    "quantity_rounding": "exchange_qty_step_toward_zero",
+    "dust_policy": "accumulate_until_exchange_minimum"
+  },
+  "planning_fee_assumptions_bps": {
+    "taker": 2.4,
+    "maker": 0.8
+  },
+  "live_requirements": [
+    "Refresh minQty, qtyStep, minNotional and priceTick from the exchange.",
+    "Use WebSocket execution reports and REST reconciliation.",
+    "Cancel stale post-only orders before submitting a new signal plan.",
+    "Do not treat order acceptance as a fill.",
+    "Paper trade with real L2 before enabling live orders."
+  ]
+}

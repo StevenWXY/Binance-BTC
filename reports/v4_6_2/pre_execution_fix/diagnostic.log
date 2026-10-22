@@ -1,0 +1,21 @@
+control_taker: CAGR=57.41% DD=-21.62% Sharpe=1.713 positive=61.73% cycles=510 maker=0.0% (7.7s)
+control_maker: CAGR=52.04% DD=-20.87% Sharpe=1.600 positive=60.49% cycles=508 maker=28.6% (7.6s)
+all_taker: CAGR=57.41% DD=-21.62% Sharpe=1.713 positive=61.73% cycles=510 maker=0.0% (7.6s)
+maker_strict: CAGR=51.62% DD=-21.52% Sharpe=1.590 positive=60.49% cycles=508 maker=21.7% (7.7s)
+no_rebate: CAGR=45.79% DD=-21.87% Sharpe=1.456 positive=60.49% cycles=508 maker=30.0% (7.8s)
+double_slippage: CAGR=49.79% DD=-21.17% Sharpe=1.549 positive=60.49% cycles=508 maker=29.1% (7.7s)
+extra_hour_latency: CAGR=47.25% DD=-22.25% Sharpe=1.504 positive=56.79% cycles=508 maker=30.6% (7.8s)
+exposure_minus005: CAGR=48.92% DD=-19.81% Sharpe=1.602 positive=60.49% cycles=508 maker=29.6% (7.7s)
+exposure_plus005: CAGR=55.19% DD=-21.93% Sharpe=1.598 positive=60.49% cycles=509 maker=27.6% (8.1s)
+quote_offset_0.5bp: CAGR=51.89% DD=-20.96% Sharpe=1.596 positive=60.49% cycles=508 maker=28.9% (8.0s)
+quote_offset_2.0bp: CAGR=52.32% DD=-21.03% Sharpe=1.607 positive=60.49% cycles=508 maker=27.3% (7.8s)
+        strategy          period     cagr  daily_sharpe  max_drawdown  monthly_mean  monthly_std  positive_month_fraction  cycles_per_year  maker_notional_fraction
+          V4.6.1            full 0.574130      1.713161     -0.216186      0.044275     0.107911                 0.617284        75.253501                 0.000000
+          V4.6.1       2020_2023 0.550776      1.745824     -0.216186      0.042486     0.114115                 0.604167        75.750000                 0.000000
+          V4.6.1       2024_2025 0.552983      1.749287     -0.143975      0.040387     0.082055                 0.625000        70.951436                 0.000000
+          V4.6.1 2026_diagnostic 0.760636      1.624627     -0.125452      0.064186     0.141684                 0.666667        83.792647                 0.000000
+V4.6.2_candidate            full 0.520439      1.599953     -0.208715      0.041203     0.106244                 0.604938        74.958389                 0.285756
+V4.6.2_candidate       2020_2023 0.488824      1.607172     -0.208715      0.038741     0.111289                 0.583333        75.250000                 0.337035
+V4.6.2_candidate       2024_2025 0.501376      1.630495     -0.160026      0.037398     0.080770                 0.625000        70.951436                 0.304538
+V4.6.2_candidate 2026_diagnostic 0.750500      1.610195     -0.119924      0.064481     0.143767                 0.666667        83.792647                 0.232605
+FINAL STATUS research_only_target_tradeoffs_remain

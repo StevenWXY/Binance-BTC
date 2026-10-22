@@ -27,3 +27,13 @@ venv/
 
 # Duplicate image exported by the Codex desktop app.
 Codex 图像*.png
+
+# V4.6.2 replay objects are local caches; JSON/CSV evidence remains visible.
+reports/v4_6_2/**/*.pkl
+reports/v4_6_2/**/*equity.csv
+
+# Local market-data caches, app exports, and temporary render artifacts.
+data/
+output/
+outputs/
+tmp/
