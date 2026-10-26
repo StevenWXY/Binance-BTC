@@ -1,0 +1,30 @@
+{
+  "version": "V4.5.3",
+  "based_on": "V4.5.2 b022",
+  "signal_params": {
+    "short_enabled": true,
+    "gate": "structural",
+    "entry": "break8",
+    "confirmation": "activity",
+    "adx_min": 32.0,
+    "protection": "base",
+    "cooldown_hours": 3,
+    "risk": "higher"
+  },
+  "execution": {
+    "published_taker_bps": 4.0,
+    "rebate_fraction": 0.4,
+    "effective_taker_bps": 2.4,
+    "published_maker_bps": 0.2,
+    "effective_maker_bps": 0.12,
+    "maker_enabled": true,
+    "maker_offset_bps": 0.0,
+    "maker_order_timeout_minutes": 60,
+    "maker_exit_enabled": false,
+    "base_slippage_bps": 1.0,
+    "impact_bps": 8.0,
+    "max_minute_participation": 0.02
+  },
+  "post2024_max_drawdown_limit": 0.30,
+  "status": "frozen_execution_refinement_candidate"
+}

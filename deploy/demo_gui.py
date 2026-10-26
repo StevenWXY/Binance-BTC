@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
 """Dependency-free Binance Futures Demo configuration/health GUI."""
-import hashlib, hmac, html, json, os, subprocess, sys, time
+import hashlib, hmac, html, json, os, secrets, subprocess, sys, time
+from http.cookies import SimpleCookie
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlencode, urlparse
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 BASE_URL = "https://demo-fapi.binance.com"
 HOST = os.getenv("BTC_GUI_HOST", "127.0.0.1")
@@ -89,6 +94,14 @@ def page(msg=''):
 class H(BaseHTTPRequestHandler):
     def do_GET(self):
         p=urlparse(self.path); msg=''
+        if p.path == '/bitget':
+            from deploy.bitget_v453_ui import render
+            token=secrets.token_urlsafe(24)
+            message=parse_qs(p.query).get('message',[''])[0]
+            body=render(message,token).encode('utf-8')
+            self.send_response(200); self.send_header('Set-Cookie',f'bitget_csrf={token}; HttpOnly; SameSite=Strict; Path=/bitget')
+            self.send_header('Content-Type','text/html; charset=utf-8'); self.send_header('Content-Length',str(len(body))); self.end_headers(); self.wfile.write(body)
+            return
         if p.path.startswith('/check/'):
             k=p.path.split('/')[-1]
             try: msg='连接成功：'+json.dumps(account(load()[k]).get('totalWalletBalance'),ensure_ascii=False)
@@ -116,9 +129,25 @@ class H(BaseHTTPRequestHandler):
             except Exception as e: msg='紧急平仓失败：'+str(e)
         elif p.path.startswith('/status/'):
             k=p.path.split('/')[-1]; msg='状态已刷新'
-        self.send_response(200); self.send_header('Content-Type','text/html; charset=utf-8'); self.end_headers(); self.wfile.write(page(msg).encode())
+        body=page(msg)
+        if p.path == '/': body=body.replace('<h1>','<p><a href="/bitget">Bitget V4.5.3 实盘控制台</a></p><h1>',1)
+        encoded=body.encode('utf-8')
+        self.send_response(200); self.send_header('Content-Type','text/html; charset=utf-8'); self.send_header('Content-Length',str(len(encoded))); self.end_headers(); self.wfile.write(encoded)
     def do_POST(self):
-        n=int(self.headers.get('Content-Length','0')); d=parse_qs(self.rfile.read(n).decode()); x=load()
+        n=int(self.headers.get('Content-Length','0')); raw=self.rfile.read(n).decode(); p=urlparse(self.path)
+        if p.path.startswith('/bitget/'):
+            d=parse_qs(raw)
+            cookie=SimpleCookie(self.headers.get('Cookie',''))
+            supplied=cookie.get('bitget_csrf')
+            token=(d.get('csrf') or [''])[0]
+            if not supplied or not hmac.compare_digest(supplied.value,token):
+                self.send_error(403,'CSRF validation failed'); return
+            from deploy.bitget_v453_ui import dispatch
+            message=dispatch(p.path.rsplit('/',1)[-1],d)
+            location='/bitget?'+urlencode({'message':message})
+            self.send_response(303); self.send_header('Location',location); self.end_headers()
+            return
+        d=parse_qs(raw); x=load()
         for k in STRATEGIES:
             old=x.get(k,{})
             secret=d.get(k+'_api_secret',[''])[0] or old.get("api_secret","")

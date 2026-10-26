@@ -17,3 +17,8 @@ venv/
 Codex 图像*.png
 
 runtime/
+
+# Local documentation captures
+bitget_*.html
+bitget_*.txt
+bitget_*_probe.json
