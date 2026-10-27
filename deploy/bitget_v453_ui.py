@@ -29,7 +29,15 @@ def _process():
 
 def _alive(pid):
     try:
-        os.kill(int(pid), 0)
+        pid = int(pid)
+        os.kill(pid, 0)
+        if os.name == "posix":
+            cmdline = Path(f"/proc/{pid}/cmdline").read_bytes().replace(b"\0", b" ")
+            if not cmdline or b"deploy/bitget_v453_runner.py" not in cmdline:
+                return False
+            stat = Path(f"/proc/{pid}/stat").read_text(encoding="ascii").split()
+            if len(stat) > 2 and stat[2] == "Z":
+                return False
         return True
     except (OSError, ValueError, TypeError):
         return False
@@ -84,16 +92,17 @@ def _stop():
     entry = _process()
     pid = entry.get("pid")
     if not _alive(pid):
+        cancelled = runner.cancel_pending_entry()
         PROCESS.unlink(missing_ok=True)
-        return "策略当前未运行；现有仓位和交易所保护单未改变。"
+        return "策略当前未运行；" + ("已撤销遗留的本策略 Maker 挂单。" if cancelled else "未发现本策略遗留 Maker 挂单。") + "现有仓位和交易所保护单未改变。"
     os.kill(int(pid), signal.SIGTERM)
     deadline = time.time() + 5
     while _alive(pid) and time.time() < deadline:
         time.sleep(0.1)
     if _alive(pid):
         raise RuntimeError("策略进程尚未停止；未取消挂单")
-    PROCESS.unlink(missing_ok=True)
     cancelled = runner.cancel_pending_entry()
+    PROCESS.unlink(missing_ok=True)
     return "策略已停止；" + ("未成交 Maker 挂单已取消。" if cancelled else "当前没有本策略未成交 Maker 挂单。") + "现有仓位和交易所保护单仍保留。"
 
 

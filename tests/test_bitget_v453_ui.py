@@ -1,3 +1,5 @@
+import os
+
 from urllib.parse import parse_qs
 
 from deploy import bitget_v453_ui as ui
@@ -27,8 +29,15 @@ def test_start_requires_explicit_live_word(monkeypatch):
 def test_stop_flattens_nothing(monkeypatch):
     monkeypatch.setattr(ui, "_process", lambda: {"pid": 123})
     monkeypatch.setattr(ui, "_alive", lambda _pid: False)
+    monkeypatch.setattr(ui.runner, "cancel_pending_entry", lambda: None)
     result = ui._stop()
-    assert "未改变" in result
+    assert "未发现本策略遗留 Maker 挂单" in result
+    assert "现有仓位和交易所保护单未改变" in result
+
+
+def test_unrelated_live_pid_is_not_treated_as_the_strategy_process():
+    if os.name == "posix":
+        assert ui._alive(os.getpid()) is False
 
 
 def test_render_escapes_message_and_includes_confirmation():
