@@ -4,6 +4,8 @@
 
 ## 服务器部署
 
+更新或重启 GUI 前，先从页面停止策略并确认 `runtime/bitget_v453/runner.lock` 已消失。GUI 与 runner 是独立进程；结束 `btc-gui` tmux 会话不会自动停止 runner。不要在 runner 仍运行时删除锁文件或重置策略状态。
+
 ```bash
 git fetch origin xuyujian-bitget-v453
 git switch xuyujian-bitget-v453
@@ -37,3 +39,35 @@ API 凭证和运行状态只写入被 Git 忽略的 `runtime/bitget_v453/`。不
 行情使用 Bitget 官方 UTA v3 已收盘 `1H` K 线、标记价 K 线和公开 v2 历史资金费率。实盘不使用回测的 2% 分钟参与率或历史返佣假设；公开接口查询到的数量步长、价格步长、最低成交额会在每次循环动态读取。Maker 队列和部分成交无法与 OHLC 回测完全相同。
 
 这套代码已完成本地接口模拟测试；没有 API 凭证时不会启动实盘，也不会通过预检或市场数据请求下单。
+
+## 状态检查
+
+```bash
+cd ~/Binance-BTC
+pid="$(cat runtime/bitget_v453/runner.lock 2>/dev/null || true)"
+if [ -n "$pid" ]; then ps -p "$pid" -o pid=,etime=,args=; else echo "runner 未运行"; fi
+python - <<'PY'
+import json, time
+from datetime import datetime, timezone
+from pathlib import Path
+p = Path("runtime/bitget_v453/state.json")
+if not p.exists():
+    print("尚无策略状态")
+else:
+    s = json.loads(p.read_text())
+    t = s.get("updated_at", 0)
+    print("更新时间 UTC:", datetime.fromtimestamp(t, timezone.utc).isoformat() if t else None)
+    print("状态年龄秒:", round(time.time() - t, 1) if t else None)
+    print("最近完成K线:", s.get("last_bar"), "错误:", s.get("error"))
+    print("目标/当前BTC:", s.get("target_qty"), "/", s.get("current_qty"))
+PY
+tail -n 20 runtime/logs/bitget-v453.log
+```
+
+runner 进程存在只是必要条件。状态持续更新、`error` 为 `None` 且 K 线时间正常推进，才表示最近策略周期成功。信号和目标仓位为 0 时没有订单属正常情况。runner 停止时留下的 `KeyboardInterrupt` 通常是正常停止记录。
+
+## 故障处理
+
+- 历史 K 线 `40020 Parameter limit error`：使用 `4b12852` 或更新版本；每次最多取 100 根并分段下载。
+- 订单查询 `25204 Order does not exist`：策略会暂停替代下单。先停止 runner，再核对交易所普通挂单、保护单和仓位；仅当它们均为空且该 `clientOid` 确认为不存在时，备份状态文件并清除本地过期 `pending_order`。不要删除整个状态文件。
+- GUI 与 `runner.lock` 不一致：核对锁内 PID 对应的进程命令行，再用 GUI 停止 runner；不要仅重启 GUI 或直接删除活动锁文件。

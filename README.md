@@ -14,6 +14,8 @@
 
 以下命令在腾讯 Ubuntu 服务器执行。更新不会删除 `runtime/` 下的 API 配置或策略状态：
 
+更新或重启 GUI 前，先从页面停止策略，并确认 `runtime/bitget_v453/runner.lock` 已消失。GUI 和 runner 是独立进程；仅结束 `btc-gui` tmux 会话不会停止 runner。不要在 runner 仍运行时删除锁文件或重置策略状态。
+
 ```bash
 cd ~/Binance-BTC
 git fetch origin xuyujian-bitget-v453
@@ -40,9 +42,17 @@ ssh -N -L 8080:127.0.0.1:8080 ubuntu@服务器公网IP
 
 1. 填写 Bitget UTA API Key、Secret 和 Passphrase，保存。API 只需合约读取和交易权限，关闭提现权限，并建议设置服务器 IP 白名单。
 2. 点击“只读账户预检”。预检要求 UTA、单向持仓，且 BTCUSDT 无持仓、普通挂单和保护单。当前若显示 `hedge_mode`，需先在 Bitget 合约账户设置切换为单向持仓，再重新预检。
-3. 预检通过后，输入 `LIVE` 并点击“启动 V4.5.3”。这会启动真实账户交易；首次启动会通过 API 设置 BTCUSDT 逐仓和 7 倍杠杆。
+3. 预检通过后，输入 `LIVE` 并点击“启动 V4.5.3”。这会启动真实账户交易；首次 runner 初始化会设置并确认 BTCUSDT 逐仓和 7 倍杠杆。
 4. “停止策略”会停止 runner 并尝试撤销本策略未成交 Maker 挂单，但保留仓位和交易所保护单。紧急平仓需输入 `CLOSE`，会撤销本策略挂单、提交 reduce-only 市价平仓并确认仓位归零。
 
 **重要：保存 API 或运行只读预检不会下单；输入 `LIVE` 启动后可能根据最新已收盘 K 线信号开始交易。实盘会影响真实资金。** 启动前确认 API 环境、账户、保证金和仓位均符合预期。不要将 API 凭证发送到聊天、提交到 Git 或放入 `runtime/` 以外的文件。
 
 凭证及运行状态保存在 Git 忽略的 `runtime/bitget_v453/`。建议该 UTA 账户专供此策略使用，避免人工交易或其他机器人共享 BTCUSDT 单向仓位。
+
+## 运行状态与故障处理
+
+runner PID 存在只代表进程活着。正常状态还应有持续刷新的 `runtime/bitget_v453/state.json`、`error: null`、有效的最近完成 K 线时间，且日志没有反复的 `cycle failed`。目标仓位为 0 时没有订单是正常状态；停止 runner 时的 `KeyboardInterrupt` 通常是正常停止记录。检查命令见 [`deploy/BITGET_V453.md`](deploy/BITGET_V453.md)。
+
+- 历史 K 线报 `40020 Parameter limit error`：使用提交 `4b12852` 或更新版本，每次请求最多 100 根并分段下载。
+- 订单查询报 `25204 Order does not exist`：策略会暂停替代下单。先停止 runner，再核对交易所普通挂单、保护单和仓位。只有这些都为空，且该 `clientOid` 确认不存在，才备份状态文件并清除本地过期 `pending_order`；不要删除整个状态文件或仅凭本地编号推断交易所挂单。
+- GUI 和锁文件状态不一致：核对锁内 PID 的进程命令行，再通过 GUI 停止实际 runner；不要只重启 GUI 或直接删除活动锁文件。
