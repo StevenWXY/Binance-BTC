@@ -43,6 +43,35 @@ def _alive(pid):
         return False
 
 
+def _active_runner_pids():
+    candidates = [_process().get("pid")]
+    try:
+        candidates.append(runner.LOCK.read_text(encoding="ascii").strip())
+    except FileNotFoundError:
+        pass
+    active = []
+    for candidate in candidates:
+        try:
+            pid = int(candidate)
+        except (TypeError, ValueError):
+            continue
+        if pid not in active and _alive(pid):
+            active.append(pid)
+    return active
+
+
+def _terminate_runners():
+    pids = _active_runner_pids()
+    for pid in pids:
+        os.kill(pid, signal.SIGTERM)
+    deadline = time.time() + 5
+    while any(_alive(pid) for pid in pids) and time.time() < deadline:
+        time.sleep(0.1)
+    if any(_alive(pid) for pid in pids):
+        raise RuntimeError("策略进程尚未停止")
+    return pids
+
+
 def _save_config(form):
     old = _config()
     values = {
@@ -65,8 +94,9 @@ def _start(form):
     if (form.get("confirm_live") or [""])[0] != "LIVE":
         raise ValueError("输入 LIVE 后再启动实盘策略")
     state = runner.read_json(runner.STATE)
-    if _alive(_process().get("pid")):
-        return "V4.5.3 已在运行。"
+    active = _active_runner_pids()
+    if active:
+        return f"V4.5.3 已在运行，PID {active[0]}。"
     report = runner.preflight()
     if not state.get("initialized") and not report["ready"]:
         raise ValueError("首次启动未通过只读预检。请确认 UTA、单向持仓、BTCUSDT 无仓位和无挂单。")
@@ -97,34 +127,17 @@ def _start(form):
 
 
 def _stop():
-    entry = _process()
-    pid = entry.get("pid")
-    if not _alive(pid):
-        cancelled = runner.cancel_pending_entry()
-        PROCESS.unlink(missing_ok=True)
-        return "策略当前未运行；" + ("已撤销遗留的本策略 Maker 挂单。" if cancelled else "未发现本策略遗留 Maker 挂单。") + "现有仓位和交易所保护单未改变。"
-    os.kill(int(pid), signal.SIGTERM)
-    deadline = time.time() + 5
-    while _alive(pid) and time.time() < deadline:
-        time.sleep(0.1)
-    if _alive(pid):
-        raise RuntimeError("策略进程尚未停止；未取消挂单")
+    stopped = _terminate_runners()
     cancelled = runner.cancel_pending_entry()
     PROCESS.unlink(missing_ok=True)
-    return "策略已停止；" + ("未成交 Maker 挂单已取消。" if cancelled else "当前没有本策略未成交 Maker 挂单。") + "现有仓位和交易所保护单仍保留。"
+    prefix = "策略已停止；" if stopped else "策略当前未运行；"
+    return prefix + ("本策略未成交 Maker 挂单已取消。" if cancelled else "未发现本策略遗留 Maker 挂单。") + "现有仓位和交易所保护单仍保留。"
 
 
 def _flatten(form):
     if (form.get("confirm_close") or [""])[0] != "CLOSE":
         raise ValueError("输入 CLOSE 才会撤销本策略挂单并市价平掉 BTCUSDT 仓位")
-    entry = _process()
-    if _alive(entry.get("pid")):
-        os.kill(int(entry["pid"]), signal.SIGTERM)
-        deadline = time.time() + 5
-        while _alive(entry.get("pid")) and time.time() < deadline:
-            time.sleep(0.1)
-        if _alive(entry.get("pid")):
-            raise RuntimeError("策略进程尚未停止，未执行平仓")
+    _terminate_runners()
     PROCESS.unlink(missing_ok=True)
     result = runner.flatten()
     return "已提交平仓操作：" + json.dumps(result, ensure_ascii=False)
@@ -153,9 +166,9 @@ def dispatch(action, form):
 
 def _state_summary():
     state = runner.read_json(runner.STATE)
-    process = _process()
-    running = _alive(process.get("pid"))
-    status = f"运行中 PID {process.get('pid')}" if running else "未运行（以下为上次保存的状态快照）"
+    active = _active_runner_pids()
+    running = bool(active)
+    status = f"运行中 PID {active[0]}" if running else "未运行（以下为上次保存的状态快照）"
     if not state:
         return status + "；尚无策略状态"
     error_label = "最近错误" if running else "上次错误"

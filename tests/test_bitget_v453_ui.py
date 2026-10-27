@@ -32,7 +32,29 @@ def test_stop_flattens_nothing(monkeypatch):
     monkeypatch.setattr(ui.runner, "cancel_pending_entry", lambda: None)
     result = ui._stop()
     assert "未发现本策略遗留 Maker 挂单" in result
-    assert "现有仓位和交易所保护单未改变" in result
+    assert "现有仓位和交易所保护单仍保留" in result
+
+
+def test_stop_finds_runner_pid_from_lock_when_gui_pid_is_stale(tmp_path, monkeypatch):
+    lock = tmp_path / "runner.lock"
+    lock.write_text("777", encoding="ascii")
+    process = tmp_path / "process.json"
+    process.write_text('{"pid":111}')
+    monkeypatch.setattr(ui, "PROCESS", process)
+    monkeypatch.setattr(ui.runner, "LOCK", lock)
+    alive = {777}
+    killed = []
+    monkeypatch.setattr(ui, "_alive", lambda pid: int(pid) in alive)
+    def fake_kill(pid, _sig):
+        killed.append(pid)
+        alive.discard(pid)
+    monkeypatch.setattr(ui.os, "kill", fake_kill)
+    monkeypatch.setattr(ui.time, "sleep", lambda _seconds: None)
+    monkeypatch.setattr(ui.runner, "cancel_pending_entry", lambda: ["v453-old"])
+    result = ui._stop()
+    assert killed == [777]
+    assert "策略已停止" in result
+    assert "未成交 Maker 挂单已取消" in result
 
 
 def test_unrelated_live_pid_is_not_treated_as_the_strategy_process():
