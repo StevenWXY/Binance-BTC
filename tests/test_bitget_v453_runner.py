@@ -91,6 +91,18 @@ def test_position_quantity_requires_isolated_seven_x():
         runner.current_qty(positions)
 
 
+def test_settings_entry_prefers_isolated_seven_x_when_uta_returns_duplicates():
+    settings = {"symbolConfigList": [
+        {"category": "USDT-FUTURES", "symbol": "BTCUSDT",
+         "marginMode": "crossed", "leverage": "10"},
+        {"category": "USDT-FUTURES", "symbol": "BTCUSDT",
+         "marginMode": "isolated", "leverage": "7",
+         "longLeverage": "7", "shortLeverage": "7"},
+    ]}
+    assert runner._settings_entry(settings)["marginMode"] == "isolated"
+    assert runner._settings_entry(settings)["leverage"] == "7"
+
+
 def test_round_down_to_exchange_step():
     assert runner.round_down("0.01239", "0.0001") == Decimal("0.0123")
 

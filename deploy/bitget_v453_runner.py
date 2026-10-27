@@ -205,7 +205,10 @@ def current_qty(positions):
 def _settings_entry(settings):
     items = [x for x in settings.get("symbolConfigList", [])
              if x.get("category") == "USDT-FUTURES" and x.get("symbol") == "BTCUSDT"]
-    return items[0] if items else None
+    # UTA may report both a default cross configuration and an isolated
+    # symbol configuration. Prefer the exact execution configuration.
+    return next((x for x in items if x.get("marginMode") == "isolated"
+                 and str(x.get("leverage")) == "7"), items[0] if items else None)
 
 
 def ensure_ready(client, state):
