@@ -159,7 +159,9 @@ class UTAClient:
                             params={"category": "USDT-FUTURES", "symbol": "BTCUSDT"})
 
     def order_info(self, client_oid):
-        return self.request("GET", "/api/v3/trade/order-info", params={"clientOid": client_oid})
+        return self.request("GET", "/api/v3/trade/order-info",
+                            params={"category": "USDT-FUTURES", "symbol": "BTCUSDT",
+                                    "clientOid": client_oid})
 
     def set_leverage(self, pos_side):
         return self.request("POST", "/api/v3/account/set-leverage", body={

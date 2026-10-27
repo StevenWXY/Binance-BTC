@@ -94,3 +94,14 @@ def test_get_error_includes_http_status_and_exchange_detail_without_credentials(
     client = UTAClient(opener=lambda *a, **kw: (_ for _ in ()).throw(error))
     with pytest.raises(BitgetError, match="HTTP 400.*40020.*Parameter limit error"):
         client.request("GET", "/api/v3/market/history-candles", private=False)
+
+
+def test_order_info_includes_required_product_and_symbol_parameters():
+    seen = []
+    def opener(req, **kwargs):
+        seen.append(req)
+        return Response({"code": "00000", "data": {"orderStatus": "live"}})
+    result = UTAClient(CREDS, opener=opener).order_info("v453-test")
+    assert result["orderStatus"] == "live"
+    assert seen[0].full_url.endswith(
+        "/api/v3/trade/order-info?category=USDT-FUTURES&clientOid=v453-test&symbol=BTCUSDT")

@@ -494,11 +494,12 @@ def cycle(client=None):
         try:
             info = client.order_info(pending["clientOid"])
             status = _order_status(info)
-        except BitgetError:
+        except BitgetError as exc:
             state["updated_at"] = int(time.time())
-            state["error"] = "Could not reconcile pending order by clientOid; no replacement order sent"
+            state["error"] = ("Could not reconcile pending order by clientOid; "
+                               "no replacement order sent. Exchange response: " + str(exc))[:500]
             write_json(STATE, state)
-            raise RuntimeError(state["error"])
+            raise RuntimeError("Could not reconcile pending order by clientOid; no replacement order sent") from None
         state["last_order"] = info
         age = time.time() - float(pending["created_at"])
         if changed_event or age >= MAKER_TTL_SECONDS:
