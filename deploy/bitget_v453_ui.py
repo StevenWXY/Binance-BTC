@@ -84,6 +84,14 @@ def _start(form):
     process = subprocess.Popen([sys.executable, "deploy/bitget_v453_runner.py"], cwd=ROOT,
                                stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
     log.close()
+    time.sleep(0.25)
+    if process.poll() is not None or not _alive(process.pid):
+        tail = ""
+        try:
+            tail = "\n".join(LOG.read_text(encoding="utf-8", errors="replace").splitlines()[-12:])
+        except OSError:
+            pass
+        raise RuntimeError("Runner 启动后立即退出；未报告为运行中。请检查日志：" + tail[-1200:])
     runner.write_json(PROCESS, {"pid": process.pid, "started_at": int(time.time()), "strategy": "V4.5.3"})
     return f"V4.5.3 实盘已启动，PID {process.pid}。按最近一根已收盘小时 K 线的信号运行，不读取未完成 K 线。"
 
@@ -146,17 +154,20 @@ def dispatch(action, form):
 def _state_summary():
     state = runner.read_json(runner.STATE)
     process = _process()
-    status = f"运行中 PID {process.get('pid')}" if _alive(process.get("pid")) else "未运行"
+    running = _alive(process.get("pid"))
+    status = f"运行中 PID {process.get('pid')}" if running else "未运行（以下为上次保存的状态快照）"
     if not state:
         return status + "；尚无策略状态"
+    error_label = "最近错误" if running else "上次错误"
     rows = [status, f"最近完成 K 线：{state.get('last_bar', '尚无')}",
             f"信号：{state.get('last_signal', '尚无')}，目标 BTC：{state.get('target_qty', '尚无')}，当前 BTC：{state.get('current_qty', '尚无')}",
             f"USDT 权益：{state.get('equity', '尚无')}，标记价格：{state.get('mark_price', '尚无')}",
             f"逐仓 / 杠杆：{state.get('margin_mode', '尚未验证')} / {state.get('leverage', '尚未验证')}x"]
     if state.get("pending_order"):
-        rows.append("Maker 挂单：" + str(state["pending_order"].get("clientOid")))
+        prefix = "Maker 挂单" if running else "状态记录的 Maker 挂单（请核对交易所）"
+        rows.append(prefix + "：" + str(state["pending_order"].get("clientOid")))
     if state.get("error"):
-        rows.append("最近错误：" + str(state["error"]))
+        rows.append(error_label + "：" + str(state["error"]))
     return "<br>".join(html.escape(x) for x in rows)
 
 

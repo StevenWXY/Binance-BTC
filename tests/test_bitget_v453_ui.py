@@ -40,6 +40,39 @@ def test_unrelated_live_pid_is_not_treated_as_the_strategy_process():
         assert ui._alive(os.getpid()) is False
 
 
+def test_start_does_not_report_success_if_runner_exits_immediately(tmp_path, monkeypatch):
+    class DeadProcess:
+        pid = 987654
+        def poll(self): return 2
+    monkeypatch.setattr(ui.runner, "STATE", tmp_path / "state.json")
+    monkeypatch.setattr(ui, "PROCESS", tmp_path / "process.json")
+    monkeypatch.setattr(ui, "LOG", tmp_path / "runner.log")
+    monkeypatch.setattr(ui.runner, "preflight", lambda: {"ready": True})
+    monkeypatch.setattr(ui.subprocess, "Popen", lambda *args, **kwargs: DeadProcess())
+    monkeypatch.setattr(ui, "_alive", lambda _pid: False)
+    monkeypatch.setattr(ui.time, "sleep", lambda _seconds: None)
+    try:
+        ui._start({"confirm_live": ["LIVE"]})
+    except RuntimeError as exc:
+        assert "立即退出" in str(exc)
+    else:
+        raise AssertionError("GUI reported a dead runner as started")
+
+
+def test_stopped_state_marks_pending_order_and_error_as_saved_snapshot(tmp_path, monkeypatch):
+    state = tmp_path / "state.json"
+    state.write_text('{"pending_order":{"clientOid":"v453-old"},"error":"old error"}')
+    process = tmp_path / "process.json"
+    process.write_text('{"pid":123}')
+    monkeypatch.setattr(ui.runner, "STATE", state)
+    monkeypatch.setattr(ui, "PROCESS", process)
+    monkeypatch.setattr(ui, "_alive", lambda _pid: False)
+    summary = ui._state_summary()
+    assert "上次保存的状态快照" in summary
+    assert "状态记录的 Maker 挂单（请核对交易所）" in summary
+    assert "上次错误：old error" in summary
+
+
 def test_render_escapes_message_and_includes_confirmation():
     page = ui.render("<unsafe>", "csrf-token")
     assert "&lt;unsafe&gt;" in page
