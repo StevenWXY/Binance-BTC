@@ -29,6 +29,7 @@ HOUR_MS = 3_600_000
 WARMUP_DAYS = 150
 POLL_SECONDS = 10
 MAKER_TTL_SECONDS = 60 * 60
+CANDLE_CHUNK_HOURS = 90
 OWN_PREFIX = "v453"
 PROTECT_PREFIX = "v453p"
 
@@ -85,7 +86,9 @@ def parse_candles(rows):
 
 
 def download_candle_history(client, start_ms, end_ms, kind):
-    chunk_ms = 900 * HOUR_MS
+    # UTA v3 history-candles rejects large limits; keep each hourly request
+    # below the 100-row limit and leave room for inclusive time boundaries.
+    chunk_ms = CANDLE_CHUNK_HOURS * HOUR_MS
     frames = []
     left = start_ms
     while left < end_ms:

@@ -107,6 +107,19 @@ def test_round_down_to_exchange_step():
     assert runner.round_down("0.01239", "0.0001") == Decimal("0.0123")
 
 
+def test_candle_history_chunks_are_smaller_than_exchange_limit(monkeypatch):
+    calls = []
+    class Fake:
+        def candles(self, start, end, **kwargs):
+            calls.append((start, end))
+            return [[start, "1", "2", "0.5", "1.5", "10", "15"]]
+    monkeypatch.setattr(runner.time, "sleep", lambda _seconds: None)
+    result = runner.download_candle_history(Fake(), 0, 225 * runner.HOUR_MS, "market")
+    assert len(result) == 3
+    assert all(end - start <= runner.CANDLE_CHUNK_HOURS * runner.HOUR_MS
+               for start, end in calls)
+
+
 def test_entry_is_post_only_and_uses_bid_without_extra_leverage():
     class Fake:
         def orderbook(self): return {"b": [["80000.1", "2"]], "a": [["80000.2", "3"]]}

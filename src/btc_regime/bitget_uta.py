@@ -89,6 +89,15 @@ class UTAClient:
                     continue
                 if method != "GET":
                     raise UnknownWriteResult("Write response uncertain; query by clientOid before retrying") from None
+                if isinstance(exc, HTTPError):
+                    try:
+                        detail = exc.read(512).decode("utf-8", "replace").replace("\n", " ")
+                    except OSError:
+                        detail = ""
+                    message = f"GET failed (HTTP {exc.code}): {path}"
+                    if detail:
+                        message += ": " + detail
+                    raise BitgetError(message[:800]) from None
                 raise BitgetError("GET failed: " + path) from None
             if not isinstance(result, dict) or "code" not in result:
                 if method != "GET":
@@ -108,7 +117,7 @@ class UTAClient:
     def candles(self, start_ms, end_ms, *, interval="1H", kind="market"):
         return self.request("GET", "/api/v3/market/history-candles", private=False,
                             params={"category": "USDT-FUTURES", "symbol": "BTCUSDT",
-                                    "interval": interval, "type": kind, "limit": 1000,
+                                    "interval": interval, "type": kind, "limit": 100,
                                     "startTime": start_ms, "endTime": end_ms})
 
     def funding_history(self, page_no):

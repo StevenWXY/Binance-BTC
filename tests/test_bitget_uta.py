@@ -2,11 +2,12 @@ import base64
 import hashlib
 import hmac
 import json
-from urllib.error import URLError
+from io import BytesIO
+from urllib.error import HTTPError, URLError
 
 import pytest
 
-from btc_regime.bitget_uta import Credentials, UTAClient, UnknownWriteResult, sign
+from btc_regime.bitget_uta import BitgetError, Credentials, UTAClient, UnknownWriteResult, sign
 
 
 CREDS = Credentials("test-key", "test-secret", "test-passphrase")
@@ -76,3 +77,20 @@ def test_demo_header_and_public_request_has_no_api_key():
     UTAClient(demo=True, opener=opener).instruments()
     assert seen[0].get_header("Paptrading") == "1"
     assert seen[0].get_header("Access-key") is None
+
+
+def test_history_candles_uses_uta_safe_limit():
+    seen = []
+    def opener(req, **kwargs):
+        seen.append(req)
+        return Response({"code": "00000", "data": []})
+    UTAClient(opener=opener).candles(1, 2)
+    assert "limit=100" in seen[0].full_url
+
+
+def test_get_error_includes_http_status_and_exchange_detail_without_credentials():
+    error = HTTPError("https://api.bitget.com/api/v3/public", 400, "Bad Request", {},
+                      BytesIO(b'{"code":"40020","msg":"Parameter limit error"}'))
+    client = UTAClient(opener=lambda *a, **kw: (_ for _ in ()).throw(error))
+    with pytest.raises(BitgetError, match="HTTP 400.*40020.*Parameter limit error"):
+        client.request("GET", "/api/v3/market/history-candles", private=False)
